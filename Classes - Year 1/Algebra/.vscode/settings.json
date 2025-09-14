@@ -1,0 +1,23 @@
+{
+  "files.exclude": {
+    "**/*.aux": true,
+    "**/*.log": true,
+    "**/*.out": true,
+    "**/*.toc": true,
+    "**/*.synctex.gz": true,
+    "**/*.bbl": true,
+    "**/*.blg": true,
+    "**/*.fdb_latexmk": true,
+    "**/*.fls": true,
+    "**/*.nav": true,
+    "**/*.snm": true,
+    "**/*.vrb": true,
+    "**/*.bak": true,
+    "**/*.gz": true,
+    "**/*.tmp": true,
+    "**/_minted-*": true,
+    "**/build": true,
+    "**/dist": true,
+    "**/out": true
+  }
+}

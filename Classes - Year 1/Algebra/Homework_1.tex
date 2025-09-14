@@ -1,0 +1,311 @@
+\documentclass[addpoints,10pt]{exam}
+
+\usepackage{amsmath,amsthm,enumitem,wrapfig,amsfonts,mathtools}
+\usepackage[mathscr]{euscript}
+\usepackage[super]{nth}
+
+\usepackage{geometry}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\renewcommand{\rmdefault}{ptm} %Change the Front Family from the default(cmr) to ptm(Times)
+\usepackage{amsmath,amsfonts,amsthm,amssymb} % Math packages
+\usepackage{bm}
+\usepackage{mathptmx}
+\usepackage{graphicx}
+\usepackage{sectsty} % Allows customizing section commands
+% \allsectionsfont{\centering} % Make all sections centered, the default font and small caps
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{xcolor}
+\definecolor{darkpastelgreen}{rgb}{0.01, 0.75, 0.24}
+\definecolor{blue-violet}{rgb}{0.54, 0.17, 0.89}
+
+% Custom problem environment
+\newcounter{cprob}
+\newenvironment{cprob}[1]{%
+    \setcounter{cprob}{#1}%
+    \noindent\textbf{Problem \thecprob.}%
+}{%
+    \par\bigskip%
+}
+
+\theoremstyle{plain}
+\newtheorem{thm}{\protect\theoremname}
+  \theoremstyle{definition}
+  \newtheorem{prob}[thm]{Problem}
+  \newtheorem*{problem*}{Open Problem}
+  \theoremstyle{plain}
+  \newtheorem{conjecture}[thm]{Conjecture}
+  \theoremstyle{plain}
+  \newtheorem{lem}[thm]{Lemma}
+  \newtheorem{obs}[thm]{Observation}
+  \newtheorem{cor}[thm]{Corollary}
+  \theoremstyle{definition}
+\newtheorem{definition}[thm]{Definition}
+
+
+% Patch prob environment to be single spaced
+\let\oldprob\prob
+\let\endoldprob\endprob
+\renewenvironment{prob}
+  {\begin{singlespace}\oldprob}
+  {\endoldprob\end{singlespace}}
+
+% start problem one line below like for enumerated problems with multiple parts
+\newcommand{\belowtitle}{\leavevmode\newline}
+
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}
+\newcommand{\kk}{\ensuremath{\Bbbk}} 
+\newcommand{\CC}{\ensuremath{\mathbb{C}}}
+\newcommand{\FF}{\ensuremath{\mathbb{F}}}
+\newcommand{\NN}{\ensuremath{\mathbb{N}}}
+\newcommand{\QQ}{\ensuremath{\mathbb{Q}}} 
+\newcommand{\RR}{\ensuremath{\mathbb{R}}} 
+\newcommand{\ZZ}{\ensuremath{\mathbb{Z}}}
+\newcommand{\MM}{\ensuremath{\mathcal{M}}}
+\newcommand{\TT}{\ensuremath{\mathcal{T}}}
+\newcommand{\BB}{\ensuremath{\mathcal{B}}}
+\newcommand{\VV}{\ensuremath{\mathcal{V}}}
+\newcommand{\WW}{\ensuremath{\mathcal{W}}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}}
+\newcommand{\PP}{\ensuremath{\mathcal{P}}}
+\newcommand{\LL}{\ensuremath{\mathcal{L}}}
+
+\newcommand{\sm}{\char`\\}
+%vector stuff
+\DeclarePairedDelimiter{\ip}{\langle}{\rangle} %inner product/generate
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert} %norm
+\DeclarePairedDelimiter{\sqb}{\lbrack}{\rbrack} %corrd
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\mbf}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\tbf}[1]{\textbf{ #1 }}
+
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\def\env@matrix{\hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols c}}
+
+  \newcommand{\proj}[2]{\text{proj}_{#1}(#2)}
+  
+
+%%% Formatting: Page Header
+\newcommand{\StudentName}{Danny Banegas}
+\newcommand{\AssignmentName}{Homework 1}
+\newcommand{\CourseName}{MATH 721 - Algebra II}
+
+
+\pagestyle{headandfoot}
+\runningheadrule
+\firstpageheadrule
+\firstpageheader{\CourseName}{\StudentName}{\AssignmentName}
+\runningheader{\CourseName}{\StudentName}{\AssignmentName}
+\firstpagefooter{}{\thepage}{}
+\runningfooter{}{\thepage}{}
+
+\printanswers
+
+\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+
+\usepackage{parskip}
+\usepackage{setspace}
+\doublespacing
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+\begin{document}
+
+Submit the following from the problem list: 2, 3, 5, 6, 8, 10, 11, 12, 13, 16, 23.
+
+Submit two of the following : 19, 20, 21, 22, 24.
+
+\begin{prob}
+If $p$ is a prime number, prove that the nonzero elements of $\mathbb{Z}_p$ form a multiplicative group of order $p-1$. Show that this statement is false if $p$ is not a prime.
+\end{prob}
+
+    \begin{proof} Consider $\ZZ_{4}\setminus\{0\}=\{1,2,3\}$. $2(2)=0\not\in \ZZ_{4}\setminus\{0\}$, so closure doesn't hold and it can't be a group under multiplication at all. Therefore, the statement is false if $p$ is not prime. Now consider the statement for a prime $p$.
+        
+    $\ZZ_{2}=\{0,1\}$ and so $\ZZ^{*}_{2}=\{1\}$ is clearly a group under multiplication of order $2-1=1$. Now consider any prime $p>2$, which must be odd. $p=2k+1$ for some $k\in \ZZ^{+}$. \underline{\textbf{Observe.}}
+
+    $\langle 2\rangle^{*}_{p}=\{2,4,\hdots, 2k\}\sqcup \{2(2k),\hdots\}$. Well, since $p=2k+1$, $2(2k)=4k=2k+2k=(2k+1)+(2k-1)=p+2k-1=2k-1=p-2$. So note that the elements following $2k$ must be odd since $p$ is odd. Additionally, $2q(p-2)=-4q=p-4q$ for $q=1,\hdots, k-1$ and finally note that $2(k-1)(p-2)=2(k-1)p-2(k-1)(2)=p-2k=1$. Therefore,
+
+    $\langle 2\rangle^{*}_{p}=\{2,4,\hdots, 2k\}\sqcup \{2(2k),\hdots\}=\{2,4,\hdots, 2k\}\sqcup \{p-2,p-4\hdots,p-2k,\hdots\}=\{2,4,\hdots,p-1\}\sqcup \{p-2,p-4,\hdots,1,2,\hdots\}.$ and continuing in this fashion loops us back around to the evens.
+
+    So, $\langle 2\rangle^{*}_{p}=(\mathcal{E}_{p}\setminus\{0\})\sqcup (\mathcal{O}_{p})=\ZZ^{*}_{p}$ must therefore be a cyclic multiplicative group of order $p-1$.
+
+\end{proof}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{prob}\belowtitle
+\begin{enumerate}[label=(\alph*)]
+\item Prove that the relation given by $a \sim b \iff a - b \in \mathbb{Z}$ is an equivalence relation on the additive group $\mathbb{Q}$.
+\item Prove that $\mathbb{Q}/\mathbb{Z}$ is an infinite abelian group.
+\end{enumerate}
+\end{prob}
+
+\begin{proof}\belowtitle
+    (a)\quad For any $a,b,c\in (\QQ,+),$
+    \begin{align*}
+        &\mathbf{[a\sim a]:}\quad a-a=0\in \ZZ \implies a\sim a.\\
+        &\mathbf{[a\sim b\implies b\sim a]:}\quad a\sim b\implies a-b\in \ZZ \implies -(a-b)=b-a\in \ZZ\implies  b\sim a.\\
+        &\mathbf{[a\sim b,\,b\sim c\implies a\sim c]:}\quad a\sim b,\,b\sim c\implies c\sim b\implies (a-b)-(c-b)=a-c\in \ZZ\implies a\sim c.
+    \end{align*}
+
+    So $\sim$ is an equivalence relation on $(\QQ,+)$.
+
+    (b)\quad $\QQ/\ZZ=\{[\frac{a}{b}]=\frac{a}{b}+\ZZ \mid a,b\in \ZZ\text{ and }b\nmid a\}$. Consider any $q_{1},q_{2}\in (0,1)$. If $[q_{1}]=[q_{2}],$ then $[q_{1}]-[q_{2}]=\ZZ$ and so $q_{1}-q_{1}\in \ZZ$. Well, $q_{1},q_{2}\in (0,1)$, so $q_{1}-q_{2}\in (-1,1)$ and therefore $q_{1}-q_{2}=0$. So $[q_{1}]=[q_{2}]\implies q_{1}=q_{2}$. On the other hand, $q_{1}=q_{2}\implies [q_{1}]=[q_{2}]$ by definition. So then
+    $$q_{1}=q_{2}\iff [q_{1}]=[q_{2}],\;\forall q_{1},q_{2}\in (0,1).$$
+    Since the rationals are dense in $\RR$, there are infinitely many distinct rationals in $(0,1)$ and infinitely many distinct cosets of the form $[q]$ where $q\in (0,1)$. Therefore, $\QQ/\ZZ$ is infinite. Lastly, since $(\QQ,+)$ is Abelian, so is $\QQ/\ZZ$ since $[q_{1}]+[q_{2}]=[q_{1}+q_{2}]=[q_{2}+q_{1}]=[q_{2}]+[q_{1}]$.
+
+    Thus,
+    \begin{center}
+    $\QQ/\ZZ$ is an infinite Abelian group.
+    \end{center}
+\end{proof}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{prob}
+Let $p$ be a prime number and let $Z(p^\infty)$ be the following subset of the group $\mathbb{Q}/\mathbb{Z}$:
+\[
+\ZZ(p^\infty)=\left\{\, \frac{a}{b} \in \mathbb{Q}/\mathbb{Z} \;\middle|\; a,b\in\mathbb{Z},\ b=p^i \text{ for some } i \ge 0 \right\}.
+\]
+Prove that $\ZZ(p^\infty)$ is an infinite subgroup of $\mathbb{Q}/\mathbb{Z}$.
+\end{prob}
+
+\begin{proof}
+    Clearly, $\ZZ(p^{\infty})\subset \QQ/\ZZ$. Consider some integers $i,j\geq 0$ and $a_{i},a_{j}\in \ZZ$. 
+    \begin{align*}
+    &\textbf{[Closure]:}\quad[\frac{a_{i}}{p^{i}}]+[\frac{a_{j}}{p^{i}}]=[\frac{p^{j}(a_{i})+p^{i}(a_{j})}{p^{i+j}}]\in \ZZ(p^{\infty}).\\
+    &\textbf{[Inverses]:}\quad[\frac{-a_{i}}{p^{i}}]+[\frac{a_{i}}{p^{i}}]=[0]\implies -[\frac{a_{i}}{p^{i}}]=[\frac{-a_{i}}{p^{i}}].
+    \end{align*}
+
+    So $\ZZ(p^{\infty})\leq \QQ/\ZZ$. Now once more consider some integers $i,j\in \ZZ^{+}$ but set $a=1$. Notice that $\frac{1}{p^{i}},\frac{1}{p^{j}}\in (0,1)$. \underline{\textbf{Observe.}}
+
+    This result essentially follows from \textbf{Problem 2}. $[\frac{1}{p^{i}}]=[\frac{1}{p^{j}}]\implies [\frac{1}{p^{i}}]-[\frac{1}{p^{j}}]=\ZZ\implies \frac{1}{p^{i}}-\frac{1}{p^{j}}\in \ZZ$. Well, $\frac{1}{p^{i}},\frac{1}{p^{j}}\in (0,1)\implies \frac{1}{p^{i}}-\frac{1}{p^{j}}\in (-1,1)\implies \frac{1}{p^{i}}-\frac{1}{p^{j}}=0\implies \frac{1}{p^{i}}=\frac{1}{p^{i}}\implies i=j$. On the other hand, $i=j\implies \frac{1}{p^{i}}=\frac{1}{p^{j}}\implies [\frac{1}{p^{i}}]=[\frac{1}{p^{j}}]$ by definition. So then,
+    $$i=j\iff [\frac{1}{p^{i}}]=[\frac{1}{p^{j}}],\;\forall i,j\in \ZZ^{+}.$$
+    There are infinitely many distinct positive integers so there must be infinitely many distinct cosets in $\ZZ(p^{\infty})$.
+
+    Thus,
+    \begin{center}
+    $\ZZ(p^{\infty})$ is an infinite subgroup of $\QQ/\ZZ$.
+    \end{center}
+\end{proof}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{prob}
+If $G$ is a finite group of even order, prove that $G$ has an element of order two.
+\end{prob}
+
+\begin{prob}
+Let $Q_8$ be the multiplicative group generated by the complex matrices
+\[
+A=\begin{pmatrix}0 & 1 \\ -1 & 0\end{pmatrix},
+\qquad
+B=\begin{pmatrix}0 & i \\ i & 0\end{pmatrix}.
+\]
+Observe that $A^4=B^4=I_2$ and $BA=AB^3$. Prove that $Q_8$ is a group of order $8$.
+\end{prob}
+
+\begin{prob}
+Let $G$ be a group and let $\operatorname{Aut}(G)$ denote the set of all automorphisms of $G$.
+\begin{enumerate}[label=(\alph*)]
+\item Prove that $\operatorname{Aut}(G)$ is a group with composition of functions as the binary operation.
+\item Prove that $\operatorname{Aut}(\mathbb{Z}) \cong \mathbb{Z}_2,\ 
+\operatorname{Aut}(\mathbb{Z}_6)\cong \mathbb{Z}_2,\
+\operatorname{Aut}(\mathbb{Z}_8)\cong \mathbb{Z}_2 \times \mathbb{Z}_2,\
+\operatorname{Aut}(\mathbb{Z}_p)\cong \mathbb{Z}_{p-1}\ (p\ \text{prime})$.
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+Let $G$ be an infinite group that is isomorphic to each of its proper subgroups. Prove that $G \cong \mathbb{Z}$.
+\end{prob}
+
+\begin{prob}
+Let $G$ be the multiplicative group of $2\times 2$ invertible matrices with rational entries. Show that
+\[
+A=\begin{pmatrix}0 & -1 \\ 1 & 0\end{pmatrix},
+\qquad
+B=\begin{pmatrix}0 & 1 \\ -1 & -1\end{pmatrix}
+\]
+have finite orders but $AB$ has infinite order.
+\end{prob}
+
+\begin{prob}
+Let $G$ be an abelian group containing elements $a$ and $b$ of orders $m$ and $n$, respectively. Prove that $G$ contains an element of order $\operatorname{lcm}(m,n)$.
+\end{prob}
+
+\begin{prob}
+Let $H,K$ be subgroups of a group $G$. Prove that $HK$ is a subgroup of $G$ if and only if $HK=KH$.
+\end{prob}
+
+\begin{prob}
+Let $H,K$ be subgroups of finite index of a group $G$ such that $[G:H]$ and $[G:K]$ are relatively prime. Prove that $G=HK$.
+\end{prob}
+
+\begin{prob}
+Let $H,K,N$ be subgroups of $G$ such that $H\subseteq N$. Prove that $HK\cap N = H(K\cap N)$.
+\end{prob}
+
+\begin{prob}
+Let $H,K,N$ be subgroups of $G$ such that $H\subseteq K,\ H\cap N=K\cap N,\ HN=KN$. Prove that $H=K$.
+\end{prob}
+
+\begin{prob}
+Let $H$ be a subgroup of $G$. For $a\in G$, prove that $aHa^{-1}$ is a subgroup of $G$ that is isomorphic to $H$.
+\end{prob}
+
+\begin{prob}
+Let $G$ be a finite group and $H$ a subgroup of $G$ of order $n$. If $H$ is the only subgroup of $G$ of order $n$, prove that $H$ is normal in $G$.
+\end{prob}
+
+\begin{prob}
+If $H$ is a cyclic normal subgroup of a group $G$, then every subgroup of $H$ is normal in $G$.
+\end{prob}
+
+\begin{prob}
+What is $Z(S_n)$ for $n \ge 2$?
+\end{prob}
+
+\begin{prob}
+If $H$ is a normal subgroup of $G$ such that $H$ and $G/H$ are finitely generated, then $G$ is finitely generated.
+\end{prob}
+
+\begin{prob}
+If $N$ is a normal subgroup of $G$, $[G:N]$ is finite, $H$ is a subgroup of $G$, $|H|$ is finite, and $[G:N]$ and $|H|$ are relatively prime, then $H$ is a subgroup of $N$.
+\end{prob}
+
+\begin{prob}
+If $N$ is a normal subgroup of $G$, $|N|$ is finite, $H$ is a subgroup of $G$, $[G:H]$ is finite, and $[G:H]$ and $|N|$ are relatively prime, then $N$ is a subgroup of $H$.
+\end{prob}
+
+\begin{prob}
+If $G$ is a finite group and $H,K$ are subgroups of $G$, then
+\[
+[G:H\cap K] \le [G:H][G:H].
+\]
+\end{prob}
+
+\begin{prob}
+If $H,K,L$ are subgroups of a finite group $G$ such that $H\subseteq K$, then
+\[
+[K:H] \ge [L\cap K : L\cap H].
+\]
+\end{prob}
+
+\begin{prob}
+Let $H,K$ be subgroups of a group $G$. Assume that $H\cup K$ is a subgroup of $G$. Prove that either $H\subseteq K$ or $K\subseteq H$.
+\end{prob}
+
+\begin{prob}
+Let $G$ be an abelian group, $H$ a subgroup of $G$ such that $G/H$ is an infinite cyclic group. Prove that $G \cong H \times G/H$.
+\end{prob}
+
+\end{document}

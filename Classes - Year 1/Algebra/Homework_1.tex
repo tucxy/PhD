@@ -287,9 +287,9 @@ Let $H,K$ be subgroups of finite index of a group $G$ such that $[G:H]$ and $[G:
 \end{prob}
 
 \begin{proof}
-By \textbf{Class notes - 08/29} we have that $|G|=[G:M]|M|\implies [G:M]=\frac{|G|}{|M|}$ for all $M\leq G$. Therefore, we have that $[G:H]=\frac{|G|}{|H|}=n,\,[G:K]=\frac{|G|}{|K|}=m$ where $gcd(m,n)=1$. \Observe
+$[G:H]=n,\,[G:K]=m$ for some coprime integers $m,n\in \ZZ^{+}$. If $G$ is finite, then without loss of generality $|K|<|H|$ and so $\frac{[G:K]}{[G:H]}=\frac{\frac{|G|}{|K|}}{\frac{|G|}{|H|}}=\frac{|H|}{|K|}$. Therefore, we must have that $[G:K]=|G/K|=|H|$ and $[G:H]=|G/H|=|K|$. So $|G|=[G:K]|K|=|H||K|$, and since $[G:H]=|K|$ and $[G:K]=|H|$ are coprime, we have that $H\cap K=\{e\}$. Otherwise a shared element $g\in H\cap K$ would have order $1<|g|$ which divides $|H|$ and $|G|$ and then $1<|g|\leq \gcd(|H|,|G|)$, a contradiction. Therefore, $|HK|=\frac{|H||K|}{|H\cap K|}=|H||K|=|G|$ and necessarily $HK=G$.
 
-If $G$ is finite, so are $H$ and $K$. So, $|G|=|H|n=|K|m\implies |H|=\frac{m|K|}{n}$. Since $n\nmid m$, $n$ must divide $|K|$. Similarly, $|G|=|H|n=|K|m\implies |H|=\frac{n|K|}{m}$. So $m$ divides $|H|$ by the same logic. Therefore, $|K|=nx$ and $|H|=my$ for some $x,y\in \ZZ^{+}$.
+Now, if $G$ is infinite
 \end{proof}
 
 \begin{prob}

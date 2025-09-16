@@ -136,11 +136,11 @@ If $p$ is a prime number, prove that the nonzero elements of $\mathbb{Z}_p$ form
 
     \begin{proof} Consider $\ZZ_{4}\setminus\{0\}=\{1,2,3\}$. $2(2)=0\not\in \ZZ_{4}\setminus\{0\}$, so closure doesn't hold and it can't be a group under multiplication at all. Therefore, the statement is false if $p$ is not prime. Now consider the statement for a prime $p$.
         
-    $\ZZ_{2}=\{0,1\}$ and so $\ZZ^{*}_{2}=\{1\}$ is clearly a group under multiplication of order $2-1=1$. Now consider any prime $p>2$, which must be odd. $p=2k+1$ for some $k\in \ZZ^{+}$. \underline{\textbf{Observe.}}
+    $\ZZ_{2}=\{0,1\}$ and so $\ZZ^{*}_{2}=\{1\}$ is clearly a group under multiplication of order $2-1=1$. Now consider any prime $p>2$, which must be odd. $p=2k+1$ for some $k\in \ZZ^{+}$. Observe.
 
     $\langle 2\rangle^{*}_{p}=\{2,4,\hdots, 2k\}\sqcup \{2(2k),\hdots\}$. Well, since $p=2k+1$, $2(2k)=4k=2k+2k=(2k+1)+(2k-1)=p+2k-1=2k-1=p-2$. So note that the elements following $2k$ must be odd since $p$ is odd. Additionally, $2q(p-2)=-4q=p-4q$ for $q=1,\hdots, k-1$ and finally note that $2(k-1)(p-2)=2(k-1)p-2(k-1)(2)=p-2k=1$. Therefore,
 
-    $\langle 2\rangle^{*}_{p}=\{2,4,\hdots, 2k\}\sqcup \{2(2k),\hdots\}=\{2,4,\hdots, 2k\}\sqcup \{p-2,p-4\hdots,p-2k,\hdots\}=\{2,4,\hdots,p-1\}\sqcup \{p-2,p-4,\hdots,1,2,\hdots\}.$ and continuing in this fashion loops us back around to the evens.
+    $\langle 2\rangle^{*}_{p}=\{2,4,\hdots, 2k\}\sqcup \{2(2k),\hdots\}=\{2,4,\hdots, 2k\}\sqcup \{p-2,p-4\hdots,p-2k,\hdots\}=\{2,4,\hdots,p-1\}\sqcup \{p-2,p-4,\hdots,1,2,\hdots\}$ and continuing in this fashion loops us back around to the evens.
 
     So, $\langle 2\rangle^{*}_{p}=(\mathcal{E}_{p}\setminus\{0\})\sqcup (\mathcal{O}_{p})=\ZZ^{*}_{p}$ must therefore be a cyclic multiplicative group of order $p-1$.
 

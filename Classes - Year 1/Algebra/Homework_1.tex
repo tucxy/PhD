@@ -54,7 +54,7 @@
 % start problem one line below like for enumerated problems with multiple parts
 \newcommand{\belowtitle}{\leavevmode\newline}
 %\Observe command
-\newcommand{\Observe}{\underline{\textbf{Observe.}}}
+\newcommand{\Observe}{\text{Observe.}}
 %(=>)
 \newcommand{\IF}{\mathbf{(\Rightarrow)}}
 %(<=)
@@ -287,11 +287,24 @@ Let $H,K$ be subgroups of finite index of a group $G$ such that $[G:H]$ and $[G:
 \end{prob}
 
 \begin{proof}
-$[G:H]=n,\,[G:K]=m$ for some coprime integers $m,n\in \ZZ^{+}$. If $G$ is finite, then without loss of generality $|K|<|H|$ and so $\frac{[G:K]}{[G:H]}=\frac{\frac{|G|}{|K|}}{\frac{|G|}{|H|}}=\frac{|H|}{|K|}$. Therefore, we must have that $[G:K]=|G/K|=|H|$ and $[G:H]=|G/H|=|K|$. So $|G|=[G:K]|K|=|H||K|$, and since $[G:H]=|K|$ and $[G:K]=|H|$ are coprime, we have that $H\cap K=\{e\}$. Otherwise a shared element $g\in H\cap K$ would have order $1<|g|$ which divides $|H|$ and $|G|$ and then $1<|g|\leq \gcd(|H|,|G|)$, a contradiction. Therefore, $|HK|=\frac{|H||K|}{|H\cap K|}=|H||K|=|G|$ and necessarily $HK=G$.
+  We begin by proving $(H\cap K)\leq H,K\leq G$.\belowtitle
+  $\textbf{[1-Step]:\;}\forall a,b\in (H\cap K)\implies ab^{-1}\in H\text{ and }ab^{-1}\in K\implies ab^{-1}\in (H\cap K)\implies (H\cap K)\leq H,K\leq G$.
 
-Now, if $G$ is infinite
+  Since $(H\cap K)\leq H,K \leq G$, by the Tower Law
+  \begin{center}
+    $[G:(H\cap K)]=[G:H][H:H\cap K]=[G:K][K:H\cap K]\implies [K:H\cap K]=\frac{[G:H][H:H\cap K]}{[G:K]}$\newline
+    and $\gcd([G:H],[G:K])=1\implies [G:K]\mid [H:H\cap K]$.
+  \end{center}
+
+  Now consider $H_{K}=\{hK\mid h\in H\}\subseteq G/K$. $h_{1}K=h_{2}K\implies h_{2}^{-1}h_{1}\in K\implies h_{2}^{-1}h_{1}\in (H\cap K).$ Well, $h_{1}(H\cap K)=h_{2}(H\cap K)\implies h_{2}^{-1}h_{1}\in (H\cap K)$. So then we see that $h_{2}K\in [h_{1}]_{K}\iff h_{2}(H\cap K)\in [h_{1}]_{(H\cap K)},\,\forall h\in H.$ Therefore, $[h]_{K}\leftrightarrow [h]_{(H\cap K)}$ is clearly a bijection between $H_{K}$ and $H/(H\cap K)$. \Observe
+
+  $(H_{K}\subseteq G/K)\iff (|H_{k}|\leq [G:K])$ and $(|H_{k}|\leq [G:K])$ and $([G:K]\mid [H:H\cap K]=|H_{K}|)\implies |H_{K}|[G:K]$ and so $H_{k}\not\subset G/K$ and $H_{K}=\{hK\mid h\in H\}=G/K.$ Therefore, $\forall g\in G,\exists h\in H$ such that $gK=h_{g}K$. Finally, $\forall g\in G,\text{ and }k\in K,\,\exists h\in H\text{ and }k_{*}\in K\text{ such that }gk=h_{g}k_{*}$. Let $k_{*}k^{-1}=k_{g}$ and we see that $\forall g\in G, g=h_{g}k_{g}$.
+
+  Thus,
+
+  $$H,K\leq G\text{ and }\gcd([G:H],[G:K])=1\implies G=HK.$$
+
 \end{proof}
-
 \begin{prob}
 Let $H,K,N$ be subgroups of $G$ such that $H\subseteq N$. Prove that $HK\cap N = H(K\cap N)$.
 \end{prob}

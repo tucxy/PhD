@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.1.24)  17 SEP 2025 03:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.1.24)  17 SEP 2025 03:37
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/baneg/Desktop/git/PhD/Classes - Year 1/Algebra/Homework_1.tex"
-(c:/Users/baneg/Desktop/git/PhD/Classes - Year 1/Algebra/Homework_1.tex
+**"c:/Users/baneg/Desktop/git/PhD/Classes - Year 1/Algebra/HW1-DB.tex"
+(c:/Users/baneg/Desktop/git/PhD/Classes - Year 1/Algebra/HW1-DB.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
 (c:/texlive/2023/texmf-dist/tex/latex/exam/exam.cls
@@ -596,8 +596,8 @@ File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count356
 \l__pdf_internal_box=\box69
-) (./Homework_1.aux)
-\openout1 = `Homework_1.aux'.
+) (./HW1-DB.aux)
+\openout1 = `HW1-DB.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 128.
 LaTeX Font Info:    ... okay on input line 128.
@@ -669,6 +669,11 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 Package pgfplots notification 'compat/show suggested version=true': document has been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 133--134
+
+ []
+
 LaTeX Font Info:    Trying to load font information for OT1+ztmcm on input line 135.
 (c:/texlive/2023/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
@@ -697,31 +702,26 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 135.
  [1{c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2023/texmf-dist/fonts/enc/dvips/base/8r.enc}
 
-]
-Underfull \hbox (badness 10000) in paragraph at lines 151--152
-
- []
-
-[2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13]
+] [2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13]
 This exam contains 0 questions with 0 parts, 0 subparts, and 0 subsubparts.
 This exam has a total of 0 points.
 This exam has a total of 0 bonus points.
-(./Homework_1.aux)
+(./HW1-DB.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 27569 strings out of 474221
- 673238 string characters out of 5750188
+ 27566 strings out of 474221
+ 673155 string characters out of 5750188
  1937978 words of memory out of 5000000
- 49346 multiletter control sequences out of 15000+600000
- 595666 words of font info for 102 fonts, out of 8000000 for 9000
+ 49344 multiletter control sequences out of 15000+600000
+ 595411 words of font info for 101 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,10n,107p,840b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,10n,107p,836b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/urw/symbol/usyr.pfb><c:/texlive/2023/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2023/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2023/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Homework_1.pdf (13 pages, 127971 bytes).
+Output written on HW1-DB.pdf (13 pages, 123340 bytes).
 PDF statistics:
  101 PDF objects out of 1000 (max. 8388607)
  65 compressed objects within 1 object stream

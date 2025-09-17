@@ -1,8 +1,8 @@
 # Fdb version 4
-["pdflatex"] 1758096885.05465 "c:/Users/baneg/Desktop/git/PhD/Classes - Year 1/Algebra/Homework_1.tex" "Homework_1.pdf" "Homework_1" 1758096886.68883 0
-  "Homework_1.aux" 1758096886 332 08d12c86f79af5f461c61e50d17f1deb "pdflatex"
-  "Homework_1.tex" 1758096884 23415 ee04f60c53bdb80a97b09d5ad7fc0c94 ""
-  "c:/Users/baneg/Desktop/git/PhD/Classes - Year 1/Algebra/Homework_1.tex" 1758096884 23415 ee04f60c53bdb80a97b09d5ad7fc0c94 ""
+["pdflatex"] 1758098243.48079 "c:/Users/baneg/Desktop/git/PhD/Classes - Year 1/Algebra/HW1-DB.tex" "HW1-DB.pdf" "HW1-DB" 1758098245.07683 0
+  "HW1-DB.aux" 1758098244 332 08d12c86f79af5f461c61e50d17f1deb "pdflatex"
+  "HW1-DB.tex" 1758098241 20747 8166f04c391df5823a1d7f5a1d4a8ba0 ""
+  "c:/Users/baneg/Desktop/git/PhD/Classes - Year 1/Algebra/HW1-DB.tex" 1758098241 20747 8166f04c391df5823a1d7f5a1d4a8ba0 ""
   "c:/texlive/2023/texmf-dist/fonts/enc/dvips/base/8r.enc" 1706145770 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "c:/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1706146327 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2023/texmf-dist/fonts/tfm/adobe/symbol/psyr.tfm" 1706150419 1408 5937f58aa508ea2cea4901c07d10f5fe ""
@@ -35,7 +35,6 @@
   "c:/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmmib10.tfm" 1706145131 1524 554068197b70979a55370e6c6495f441 ""
   "c:/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmr10.tfm" 1706145131 1296 45809c5a464d5f32c8f98ba97c1bb47f ""
   "c:/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm" 1706145131 1124 6c73e740cf17375f03eec0ee63599741 ""
-  "c:/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm" 1706145131 1116 933a60c408fc0a863a92debe84b2d294 ""
   "c:/texlive/2023/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm" 1706149839 688 37338d6ab346c2f1466b29e195316aa4 ""
   "c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb" 1706144016 30251 6afa5cb1d0204815a708a080681d4674 ""
   "c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1706144016 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
@@ -217,7 +216,7 @@
   "c:/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1706151986 8210992 50eca61535bfacacd4d39eb1fcf3b582 ""
   "c:/texlive/2023/texmf.cnf" 1706151766 713 e69b156964470283e0530f5060668171 ""
   (generated)
-  "Homework_1.aux"
-  "Homework_1.log"
-  "Homework_1.pdf"
+  "HW1-DB.aux"
+  "HW1-DB.log"
+  "HW1-DB.pdf"
   (rewritten before read)

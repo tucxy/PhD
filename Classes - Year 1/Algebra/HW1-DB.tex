@@ -350,24 +350,29 @@ Now we present the solution to $16$ on the following page.
 
 \end{proof}
 \newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Choose 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\setcounter{thm}{18}   % next prob is 19
-
-\begin{prob}
-If $N$ is a normal subgroup of $G$, $[G:N]$ is finite, $H$ is a subgroup of $G$, $|H|$ is finite, and $[G:N]$ and $|H|$ are relatively prime, then $H$ is a subgroup of $N$.
-\end{prob}
-
-\begin{prob}
-If $N$ is a normal subgroup of $G$, $|N|$ is finite, $H$ is a subgroup of $G$, $[G:H]$ is finite, and $[G:H]$ and $|N|$ are relatively prime, then $N$ is a subgroup of $H$.
-\end{prob}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Choose 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{thm}{20}   % next prob is 20
 
 \begin{prob}
 If $G$ is a finite group and $H,K$ are subgroups of $G$, then
 \[
-[G:H\cap K] \le [G:H][G:H].
+[G:H\cap K] \le [G:H][G:K].
 \]
 \end{prob}
+\begin{proof}
+Since $G$ is finite and $H,K\leq G$, we have the following
 
+\begin{align}
+&|HK|=\frac{|H||K|}{|H\cap K|}\leq |G|\\
+&[G:H]=\frac{|G|}{|H|}\\
+&[G:K]=\frac{|G|}{|K|}\\
+&[G:H\cap K]=\frac{|G|}{|H\cap K|}
+\end{align}
+Observe.
+\begin{center}
+$|HK|=\frac{|H||K|}{|H|}\leq |G|\implies (|G|)\frac{|H||K|}{|H\cap K|}\leq |G|^{2}\implies (\frac{|G|}{|H||K|})\frac{|H||K|}{|H\cap K|}=\frac{|G|}{|H\cap K|}=[G:K]\leq \frac{|G|^{2}}{|H||K|}=[G:H][G:K]$
+\end{center}
+\end{proof}
 \begin{prob}
 If $H,K,L$ are subgroups of a finite group $G$ such that $H\subseteq K$, then
 \[

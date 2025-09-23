@@ -60,6 +60,8 @@
 \newcommand{\IF}{\mathbf{(\Rightarrow)}}
 %(<=)
 \newcommand{\FI}{\mathbf{(\Leftarrow)}}
+%equivalence classes; \class[S]{ *content in square brackets* }
+\newcommand{\class}[2][]{\ensuremath{\left[\,#2\,\right]_{#1}}}
 
 \newcommand{\horrule}[1]{\rule{\linewidth}{#1}}
 \newcommand{\kk}{\ensuremath{\Bbbk}} 
@@ -162,22 +164,22 @@
 \begin{prob}
   Let $p$ be a prime number and let $Z(p^\infty)$ be the following subset of the group $\mathbb{Q}/\mathbb{Z}$:
   \[
-  \ZZ(p^\infty)=\left\{\, \frac{a}{b} \in \mathbb{Q}/\mathbb{Z} \;\middle|\; a,b\in\mathbb{Z},\ b=p^i \text{ for some } i \ge 0 \right\}.
+  \ZZ(p^\infty)=\left\{\, \left[\frac{a}{b}\right] \in \mathbb{Q}/\mathbb{Z} \;\middle|\; a,b\in\mathbb{Z},\ b=p^i \text{ for some } i \ge 0 \right\}.
   \]
   Prove that $\ZZ(p^\infty)$ is an infinite subgroup of $\mathbb{Q}/\mathbb{Z}$.
 \end{prob}
 
 \begin{proof}
-    Clearly, $\ZZ(p^{\infty})\subset \QQ/\ZZ$. Consider some integers $i,j\geq 0$ and $a_{i},a_{j}\in \ZZ$. 
+    Clearly, $\ZZ(p^{\infty})\subset \QQ/\ZZ$. Consider any integers $i,j\geq 0$ and let $a_{i},a_{j}\in \ZZ$. 
     \begin{align*}
-      &\textbf{[Closure]:}\quad[\frac{a_{i}}{p^{i}}]+[\frac{a_{j}}{p^{i}}]=[\frac{p^{j}(a_{i})+p^{i}(a_{j})}{p^{i+j}}]\in \ZZ(p^{\infty}).\\
-      &\textbf{[Inverses]:}\quad[\frac{-a_{i}}{p^{i}}]+[\frac{a_{i}}{p^{i}}]=[0]\implies -[\frac{a_{i}}{p^{i}}]=[\frac{-a_{i}}{p^{i}}].
+      &\textbf{[Closure]:}\quad\class{\frac{a_{i}}{p^{i}}}+\class{\frac{a_{j}}{p^{i}}}=\class{\frac{p^{j}(a_{i})+p^{i}(a_{j})}{p^{i+j}}}\in \ZZ(p^{\infty}).\\
+      &\textbf{[Inverses]:}\quad\class{\frac{-a_{i}}{p^{i}}}+\class{\frac{a_{i}}{p^{i}}}=\class{0}\implies -\class{\frac{a_{i}}{p^{i}}}=\class{\frac{-a_{i}}{p^{i}}}.
     \end{align*}
 
-    So $\ZZ(p^{\infty})\leq \QQ/\ZZ$. Now once more consider some integers $i,j\in \ZZ^{+}$ but set $a=1$. Notice that $\frac{1}{p^{i}},\frac{1}{p^{j}}\in (0,1)$. \underline{\textbf{Observe.}}
+    So $\ZZ(p^{\infty})\leq \QQ/\ZZ$. Now consider some integers $i,j\in \ZZ^{+}$ and set $a=1$. Notice that $\frac{1}{p^{i}},\frac{1}{p^{j}}\in (0,1)$. Observe.
 
-    This result essentially follows from \textbf{Problem 2}. $[\frac{1}{p^{i}}]=[\frac{1}{p^{j}}]\implies [\frac{1}{p^{i}}]-[\frac{1}{p^{j}}]=\ZZ\implies \frac{1}{p^{i}}-\frac{1}{p^{j}}\in \ZZ$. Well, $\frac{1}{p^{i}},\frac{1}{p^{j}}\in (0,1)\implies \frac{1}{p^{i}}-\frac{1}{p^{j}}\in (-1,1)\implies \frac{1}{p^{i}}-\frac{1}{p^{j}}=0\implies \frac{1}{p^{i}}=\frac{1}{p^{i}}\implies i=j$. On the other hand, $i=j\implies \frac{1}{p^{i}}=\frac{1}{p^{j}}\implies [\frac{1}{p^{i}}]=[\frac{1}{p^{j}}]$ by definition. So then,
-    $$i=j\iff [\frac{1}{p^{i}}]=[\frac{1}{p^{j}}],\;\forall i,j\in \ZZ^{+}.$$
+    This result essentially follows from \textbf{Problem 2}. $\class{\frac{1}{p^{i}}}=\class{\frac{1}{p^{j}}}\implies \class{\frac{1}{p^{i}}}-\class{\frac{1}{p^{j}}}=\ZZ\implies \frac{1}{p^{i}}-\frac{1}{p^{j}}\in \ZZ$. Well, $\frac{1}{p^{i}},\frac{1}{p^{j}}\in (0,1)\implies \frac{1}{p^{i}}-\frac{1}{p^{j}}\in (-1,1)\implies \frac{1}{p^{i}}-\frac{1}{p^{j}}=0\implies \frac{1}{p^{i}}=\frac{1}{p^{i}}\implies i=j$. On the other hand, $i=j\implies \frac{1}{p^{i}}=\frac{1}{p^{j}}\implies \class{\frac{1}{p^{i}}}=\class{\frac{1}{p^{j}}}$ by definition. So then,
+    $$i=j\iff \class{\frac{1}{p^{i}}}=\class{\frac{1}{p^{j}}},\;\forall i,j\in \ZZ^{+}.$$
     There are infinitely many distinct positive integers so there must be infinitely many distinct cosets in $\ZZ(p^{\infty})$.
 
     Thus,
@@ -241,7 +243,7 @@ Well,
 \begin{proof}\belowtitle
   $\IF\;HK\leq G\implies\text{For all }hk\in HK$, $(hk)^{-1}=k^{-1}h^{-1}\in HK$. Therefore, $HK=\{hk\mid h\in H, k\in K\}=\{k^{-1}h^{-1}\mid k\in K,h\in H\}=KH$.
 
-  $\FI$ Note $HK=KH\implies \forall hk\in HK,\,\exists (h_{k_{1}},k_{h_{1}})\in H\times K, \text{ such that }hk=k_{h_{1}}h_{k_{1}}\in KH=HK$. The same logic holds for 'flipped' elements$\;\;kh\in KH=HK$. \Observe
+  $\FI$ Note $HK=KH\implies \forall hk\in HK,\,\exists (h_{k},k_{h})\in H\times K, \text{ such that }hk=k_{h}h_{k}\in KH=HK$. The same logic holds for 'flipped' elements$\;\;kh\in KH=HK$. \Observe
   \begin{align*}
     &\textbf{[Closure]: } (h_{1}k_{1})(h_{2}k_{2})=(h_{1}k_{1})(k_{h_{2}}h_{k_{2}})=h_{1}(k_{1}k_{h_{2}})h_{k_{2}}=(k_{1}k_{h_{2}})_{h_{1}}h_{k_{1}k_{h_{2}}}h_{k_{2}}\in KH=HK.\\
     &\textbf{[Inverses]: }\text{For any }hk\in HK,\,(hk)^{-1}=k^{-1}h^{-1}\in KH=HK.
@@ -260,17 +262,23 @@ Well,
 
 \begin{proof}
   We begin by proving $(H\cap K)\leq H,K\leq G$.\belowtitle
-  $\textbf{[1-Step]:\;}\forall a,b\in (H\cap K)\implies ab^{-1}\in H\text{ and }ab^{-1}\in K\implies ab^{-1}\in (H\cap K)\implies (H\cap K)\leq H,K\leq G$.
+  $\textbf{[1-Step]:\;}\forall a,b\in (H\cap K),\,ab^{-1}\in H\text{ and }ab^{-1}\in K\implies ab^{-1}\in (H\cap K)\implies (H\cap K)\leq H,K\leq G$.
 
-  Since $(H\cap K)\leq H,K \leq G$, by the Tower Law for groups,
+  Since $(H\cap K)\leq H,K \leq G$, by the Tower Rule for groups,
   \begin{center}
     $[G:(H\cap K)]=[G:H][H:H\cap K]=[G:K][K:H\cap K]\implies [K:H\cap K]=\frac{[G:H][H:H\cap K]}{[G:K]}$\newline
     and $\gcd([G:H],[G:K])=1\implies [G:K]\mid [H:H\cap K]$.
   \end{center}
 
-  Now consider $H_{K}=\{hK\mid h\in H\}\subseteq G/K$. $h_{1}K=h_{2}K\implies h_{2}^{-1}h_{1}\in K\implies h_{2}^{-1}h_{1}\in (H\cap K).$ Well, $h_{1}(H\cap K)=h_{2}(H\cap K)\implies h_{2}^{-1}h_{1}\in (H\cap K)$. So then we see that $hK\in [h_{1}]_{K}\iff h(H\cap K)\in [h_{1}]_{(H\cap K)},\,\forall h\in H.$ Therefore, $[h]_{K}\leftrightarrow [h]_{(H\cap K)}$ is clearly a bijection from $H_{K}$ to $H/(H\cap K)$. \Observe
+  Now consider $H_{K}=\{hK\mid h\in H\}\subseteq G/K$ and $H/(H\cap K)=\{h(H\cap K)\mid h\in H\}$. Well,
+  \begin{align*}
+    &H \ni h_{2}\in \class[K]{h_{1}}\iff h_{1}K=h_{2}K\iff h_{2}^{-1}h_{1}\in K\iff h_{2}^{-1}h_{1}\in (H\cap K)\iff h_{2}\in \class[(H\cap K)]{h_{1}}\\
+    &H \ni h_{2}\in \class[(H\cap K)]{h_{1}}\iff h_{1}(H\cap K)=h_{2}(H\cap K)\iff h_{2}^{-1}h_{1}\in (H\cap K)\iff h_{2}^{-1}h_{1}\in K\iff h_{2}\in \class[K]{h_{1}}
+  \end{align*}
+  So $h_{2}\in \class[K]{h_{1}}\iff h_{2}\in \class[(H\cap K)]{h_{1}}$ and clearly $\class[K]{h}\leftrightarrow\class[(H\cap K)]{h}$ is a bijection from $H_{K}$ to $H/(H\cap K)$.
+  \Observe
 
-  $(H_{K}\subseteq G/K)\iff (|H_{k}|\leq [G:K])$ and then $(|H_{k}|\leq [G:K])$ with $([G:K]\mid [H:H\cap K]=|H_{K}|)\implies |H_{K}|=[G:K]$ and so $H_{k}\not\subset G/K\implies H_{K}=\{hK\mid h\in H\}=G/K.$ Therefore, $\forall g\in G,\exists h_{g}\in H$ such that $gK=h_{g}K$. Finally, $h_{g}^{-1}g\in K\implies \exists k_{g}\in K$ such that $h_{g}^{-1}g=k_{g}\implies g=h_{g}k_{g}$. So we see that $\forall g\in G,\,\exists (h_{g},k_{g})\in H\times K$ such that $g=h_{g}k_{g}$.
+  $(H_{K}\subseteq G/K)\iff (|H_{k}|\leq [G:K])$ and then $(|H_{k}|\leq [G:K])$ with $([G:K]\mid [H:H\cap K]=|H_{K}|)$ implies that $|H_{K}|=[G:K].$ Therefore, $H_{k}\not\subset G/K$ and we must have that $ H_{K}=G/K.$ Therefore, $\forall g\in G,\exists h_{g}\in H$ such that $gK=h_{g}K$. Finally, $h_{g}^{-1}g\in K\implies \exists k_{g}\in K$ such that $h_{g}^{-1}g=k_{g}\implies g=h_{g}k_{g}$. So we see that $\forall g\in G,\,\exists (h_{g},k_{g})\in H\times K$ such that $g=h_{g}k_{g}$.
 
   Thus,
 
@@ -303,10 +311,10 @@ Well,
 
 \begin{proof}
   $H\subseteq K$ is given. We show $K\subseteq H$ to prove the statement.\belowtitle
-  $\mathbf{[\supseteq]:\;} \forall k\in K,\,\exists h_{k}\in H$ such that $kN=h_{k}N$ and so $h_{k}^{-1}k\in N.$ Well, $h_{k}^{-1}\in H\subseteq K$ and so by closure $h_{k}^{-1}k\in K\implies h_{k}^{-1}k\in (K\cap N)=(H\cap N).$ Finally, $h_{k}^{-1}k\in H$ and so $\exists h_{*}\in H$ such that $h_{k}k=h_{*}\implies k=h_{k}h_{*}\in H.$ Therefore, $K\subseteq H.$
+  $\mathbf{[\supseteq]:\;} \forall k\in K,\,\exists h_{k}\in H$ such that $kN=h_{k}N$ and so $h_{k}^{-1}k\in N.$ Well, $h_{k}^{-1}\in H\subseteq K$ and therefore by closure $h_{k}^{-1}k\in K\implies h_{k}^{-1}k\in (K\cap N)=(H\cap N).$ Finally, $h_{k}^{-1}k\in H$ and so $\exists h_{*}\in H$ such that $h_{k}k=h_{*}\implies k=h_{k}h_{*}\in H.$ Therefore, $K\subseteq H.$
 
   Thus,
-  $$H,K,N\leq G\text{ and }H\subseteq K,\,H\cap N=K\cap N,\, HN=KN\implies H=K.$$
+  $$H,K,N\leq G\text{ with }H\subseteq K,\,H\cap N=K\cap N,\text{ and }HN=KN\implies H=K.$$
 \end{proof}
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% lemma %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -351,7 +359,7 @@ Now we present the solution to $16$ on the following page.
 \end{proof}
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Choose 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\setcounter{thm}{20}   % next prob is 20
+\setcounter{thm}{20}   % next prob is 21
 
 \begin{prob}
 If $G$ is a finite group and $H,K$ are subgroups of $G$, then
@@ -373,14 +381,35 @@ Observe.
 $|HK|=\frac{|H||K|}{|H|}\leq |G|\implies (|G|)\frac{|H||K|}{|H\cap K|}\leq |G|^{2}\implies (\frac{|G|}{|H||K|})\frac{|H||K|}{|H\cap K|}=\frac{|G|}{|H\cap K|}=[G:K]\leq \frac{|G|^{2}}{|H||K|}=[G:H][G:K]$
 \end{center}
 \end{proof}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Problem 22 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{prob}
 If $H,K,L$ are subgroups of a finite group $G$ such that $H\subseteq K$, then
 \[
 [K:H] \ge [L\cap K : L\cap H].
 \]
 \end{prob}
+
+\begin{proof}\belowtitle
+  Consider elements in $K/H=\{kH\mid k\in K\}$ and $(L\cap K)/(L\cap H)=\{k(L\cap H)\mid k\in (L\cap K)\}$. Well,
+    $$k_{2}\in \class[(L\cap H)]{k_{1}}\implies k_{1}(L\cap H)=k_{2}(L\cap H)\implies k_{2}^{-1}k_{1}\in (L\cap H)\implies k_{2}^{-1}k_{1}\in H\implies k_{2}\in \class[H]{k_{1}}$$
+  Therefore $f:(L\cap K)/(L\cap H)\to K/H$ where $f(\class[L\cap H]{k})=\class[H]{k}$ is well-defined. Observe. \\
+
+  $\forall \class[(L\cap H)]{k_{1}},\class[(L\cap H)]{k_{2}}\in (L\cap K)/(L\cap H)$, if $f(\class[(L\cap H)]{k_{1}})=f(\class[(L\cap H)]{k_{2}})$, then $\class[H]{k_{1}}=\class[H]{k_{2}}$ by definition. So then $k_{2}^{-1}k_{1}\in H$ and since $\class[(L\cap K)]{k_{1}},\class[(L\cap K)]{k_{2}}\in (L\cap K)/(L\cap H)$, obviously $k_{1},k_{2}\in L$. So $k_{2}^{-1}k_{1}\in L$ by closure and finally $k_{2}^{-1}k_{1}\in (L\cap H)\implies \class[(L\cap H)]{k_{1}}=\class[(L\cap H)]{k_{2}}$. So $f$ is injective.
+
+  Therefore, since $G$ is finite and $f$ is an injection from $(L\cap K)/(L\cap H)$ to $K/H$ it must be the case that $|(L\cap K)/(L\cap H)|=[L\cap K:L\cap H]\leq [K:H]=|K/H|$. Otherwise, the mapping either wouldn't be well-defined or wouldn't be injective by the Pigeonhole Principle, both contradictions.
+
+  Thus,
+  \begin{center}
+    If $H,K,L$ are subgroups of a finite group $G$ such that $H\subseteq K$, then $[K:H] \ge [L\cap K : L\cap H].$
+  \end{center}
+
+
+
+\end{proof}
 \newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Michael Jordan %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Michael Jordan %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{prob}
   Let $H,K$ be subgroups of a group $G$. Assume that $H\cup K$ is a subgroup of $G$. Prove that either $H\subseteq K$ or $K\subseteq H$.
 \end{prob}

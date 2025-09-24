@@ -131,7 +131,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Problem 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setcounter{thm}{1}   % next prob is 2
-
+\bf{Alert!} In $\ZZ_{n}$, I use $m$ to refer to $[m]$. Also, I use $\class[H]{g}$ or simply $\class{g}$ refer to cosets in $G/H$.
 \begin{prob}\belowtitle
   \begin{enumerate}[label=(\alph*)]
     \item Prove that the relation given by $a \sim b \iff a - b \in \mathbb{Z}$ is an equivalence relation on the additive group $\mathbb{Q}$.
@@ -140,7 +140,7 @@
 \end{prob}
 
 \begin{proof}\belowtitle
-    (a)\quad For any $a,b,c\in (\QQ,+),$
+    (a)\quad For any $a,b,c\in \QQ$
     \begin{align*}
         &\mathbf{[a\sim a]:}\quad a-a=0\in \ZZ \implies a\sim a.\\
         &\mathbf{[a\sim b\implies b\sim a]:}\quad a\sim b\implies a-b\in \ZZ \implies -(a-b)=b-a\in \ZZ\implies  b\sim a.\\
@@ -151,7 +151,7 @@
 
     (b)\quad $\QQ/\ZZ=\{[\frac{a}{b}]=\frac{a}{b}+\ZZ \mid a,b\in \ZZ\text{ and }b\nmid a\}$. Consider any $q_{1},q_{2}\in (0,1)$. If $[q_{1}]=[q_{2}],$ then $[q_{1}]-[q_{2}]=\ZZ$ and so $q_{1}-q_{1}\in \ZZ$. Well, $q_{1},q_{2}\in (0,1)$, so $q_{1}-q_{2}\in (-1,1)$ and therefore $q_{1}-q_{2}=0$. So $[q_{1}]=[q_{2}]\implies q_{1}=q_{2}$. On the other hand, $q_{1}=q_{2}\implies [q_{1}]=[q_{2}]$ by definition. So then
     $$q_{1}=q_{2}\iff [q_{1}]=[q_{2}],\;\forall q_{1},q_{2}\in (0,1).$$
-    Since the rationals are dense in $\RR$, there are infinitely many distinct rationals in $(0,1)$ and infinitely many distinct cosets of the form $[q]$ where $q\in (0,1)$. Therefore, $\QQ/\ZZ$ is infinite. Lastly, since $(\QQ,+)$ is Abelian, so is $\QQ/\ZZ$ since $[q_{1}]+[q_{2}]=[q_{1}+q_{2}]=[q_{2}+q_{1}]=[q_{2}]+[q_{1}]$.
+    Since the rationals are dense in $\RR$, there are infinitely many distinct rationals in $(0,1)$ and infinitely many distinct cosets of the form $[q]$ where $q\in (0,1)$. Therefore, $\QQ/\ZZ$ is infinite. Lastly, since $\QQ$ is Abelian, so is $\QQ/\ZZ$ since $[q_{1}]+[q_{2}]=[q_{1}+q_{2}]=[q_{2}+q_{1}]=[q_{2}]+[q_{1}]$.
 
     Thus,
     \begin{center}
@@ -217,6 +217,9 @@ Well,
   \operatorname{Aut}(\mathbb{Z}_p)\cong \mathbb{Z}_{p-1}\ (p\ \text{prime})$.
 \end{enumerate}
 \end{prob}
+
+\begin{proof}Let $meow$
+\end{proof}
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Problem 8 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -293,7 +296,7 @@ Well,
 \end{prob}
 
 \begin{proof}
-  Notice that since $H\subseteq N,\, HN=N$. We show $H(K\cap N)=HK\cap HN=HK\cap N.$\belowtitle
+  Notice that since $H\subseteq N,\, HN=N$. Therefore, we show $H(K\cap N)=HK\cap HN=HK\cap N.$\belowtitle
   $\mathbf{[\subseteq]:\;} \forall a\in H(K\cap N),\,a=hg$ where $h\in H\text{ and }g\in (K\cap N).$ Well, $g\in K\implies a=hg\in HK.$ Similarly, $g\in N \implies a=hg\in HN.$ Therefore, $a\in HK\cap HN\implies H(K\cap N)\subseteq (HK\cap HN)=(HK\cap N)$.
 
   $\mathbf{[\supseteq]:\;} \forall a\in HK\cap HN,\;a=hg$ where $hg\in HK$ and $hg\in HN.$ So then $g\in K$ and $g\in N$ and we have $a=hg$ where $h\in H$ and $g\in K\cap N$. Therefore, $a\in H(K\cap N)\implies H(K\cap N)\subseteq HK\cap HN=HK\cap N$.
@@ -325,13 +328,13 @@ We prove the following lemma to be used for \textbf{Problem 16.}
 \end{lem*}
 
 \begin{proof}
-  If $H=\{e\}$ it is cyclic. If $H$ is non-trivial, then it contains some $h\neq e.$ Well, since $h\in H\leq G$, $h=g^{k}$ for some $k\in\ZZ^{+}$. So then there exists some minimal non-trivial power $n=\min \{i\in \ZZ^{+}\mid g^{i}\in H\setminus \{e\}\}$ of $g$ present in $H\setminus\{e\}$. Observe.
+  Let $G=\langle g\rangle$. If $H=\{g^{0}\}=\{e\}$ it is cyclic. If $H$ is non-trivial, then it contains some $h\neq e.$ Well, since $h\in H\leq G$, we have that $h=g^{k}$ for some $k\in\ZZ\setminus\{0\}$. So then there exists some minimal positive power $n=\min \{i\in \ZZ^{+}\mid g^{i}\in H\setminus \{e\}\}$ of $g$ present in $H\setminus\{e\}$. Observe.
 
-  By the division algorithm, $\forall m\in \{i\in \ZZ^{+}\mid g^{m}=H\setminus\{e\}\}$, there exist unique integers $q,r$ with $0\leq r<n$ such that
+  By the division algorithm and since $n\leq m$, $\forall m\in \{i\in \ZZ^{+}\mid g^{i}\in H\},\,\exists (q,r)\in (\ZZ^{+})^{2}$ with $0\leq r<n$ such that
   $$m=nq+r\implies g^{m}=g^{nq+r}=g^{nq}g^{r}\implies g^{m-nq}=g^{r}\in H.$$
-  But since $n$ is the minimal power of $g$ in $H$, $r=0$ otherwise we get a contradiction via $0<r<n$. So then for any $m\in \ZZ^{+},\text{ such that }g^{m}\in H,\;g^{m}=g^{nq_{m}}=(g^{n})^{q_{m}}$ for some $q_{m}\in \NN$. Therefore, $H=\langle g^{n}\rangle$, a cyclic group.
+  But since $n$ is the minimal positive power of $g$ in $H$, $r=0$ otherwise we get a contradiction via $0<r<n$. So then for any $m\in \ZZ^{+},\text{ such that }g^{m}\in H,\text{ by the division algorithm we have that }g^{m}=g^{nq+(0)}=(g^{n})^{q}$ for some $q\in \ZZ^{+}$. Note that this accounts for all elements of $H$, since all negative powers of $g$ in $H$ are inverses of positive powers of $g$ in $H$, which are multiples of $n$, and since $g^{0}=e\in H\leq G$ by definition.
 
-  Next, if $G$ is finite and of order $N$, consider any divisor $d$ of $|G|=N$. Since $G=\langle g\rangle$, $|g|=N$. Well, since $d|N,\,\exists!q\in \ZZ^{+}\text{ such that }dq=N$. So we see $g^{dq}=g^{N}\implies (g^{q})^{d}=e$. Such a $d$ is necessarily a minimal power that gives identity here since $0<q,d$ and otherwise $N=d'q<dq=N$, which is nonsense. So $|g^{q}|=d.$ So then there is only one power $q$ of $g$ that has order $|g^{q}|=d$ (otherwise the existence of $q'\neq q\text{ such that }|g^{q'}|=d\implies N=q'd\neq qd=N$... nonsense.) Since any $d-$ordered subgroup $H_{d}$ of $G$ is cyclic, it must be generated by some power of $G$, of which there is only one and so $H_{d}=\langle g^{d}\rangle$ is the only subgroup of order $d|N.$
+  Next, if $G$ is finite and of order $N$, consider any divisor $d$ of $|G|=N$. Since $G=\langle g\rangle$, $|g|=N$. Well, since $d|N,\,\exists!q\in \ZZ^{+}\text{ such that }dq=N$. So we see $g^{dq}=g^{N}\implies (g^{q})^{d}=e$. Such a $d$ is necessarily a minimal power that gives identity here since $0<q,d$ and otherwise $N=d'q<dq=N$, which is nonsense. So $|g^{q}|=d.$ So then there is only one power $q$ of $g$ that has order $|g^{q}|=d$ (otherwise the existence of $q'\neq q\text{ such that }|g^{q'}|=d\implies N=q'd\neq qd=N$... nonsense.) Since any $d-$ordered subgroup $H_{d}$ of $G$ is cyclic, it must be generated by some power of $G$, of which there is only one and so $H_{d}=\langle g^{d}\rangle$ is the only subgroup of order $d$ which divides $N.$
    
 \end{proof}
 Now we present the solution to $16$ on the following page.
@@ -374,11 +377,12 @@ Since $G$ is finite and $H,K\leq G$, we have the following
 &|HK|=\frac{|H||K|}{|H\cap K|}\leq |G|\\
 &[G:H]=\frac{|G|}{|H|}\\
 &[G:K]=\frac{|G|}{|K|}\\
+\implies&[G:H][G:K]=\frac{|G|^{2}}{|H||K|}\\
 &[G:H\cap K]=\frac{|G|}{|H\cap K|}
 \end{align}
 Observe.
 \begin{center}
-$|HK|=\frac{|H||K|}{|H|}\leq |G|\implies (|G|)\frac{|H||K|}{|H\cap K|}\leq |G|^{2}\implies (\frac{|G|}{|H||K|})\frac{|H||K|}{|H\cap K|}=\frac{|G|}{|H\cap K|}=[G:K]\leq \frac{|G|^{2}}{|H||K|}=[G:H][G:K]$
+$|HK|=\frac{|H||K|}{|H\cap K|}\leq |G|\implies (|G|)\frac{|H||K|}{|H\cap K|}\leq |G|^{2}\implies (\frac{|G|}{|H||K|})\frac{|H||K|}{|H\cap K|}=\frac{|G|}{|H\cap K|}=[G:K]\leq \frac{|G|^{2}}{|H||K|}=[G:H][G:K]$
 \end{center}
 \end{proof}
 \newpage
@@ -425,8 +429,5 @@ If $H,K,L$ are subgroups of a finite group $G$ such that $H\subseteq K$, then
   $$H,K,H\cup K\leq G\implies H\subseteq K\text{ or }K\subseteq H.$$
 \end{proof}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{prob}
-Let $G$ be an abelian group, $H$ a subgroup of $G$ such that $G/H$ is an infinite cyclic group. Prove that $G \cong H \times G/H$.
-\end{prob}
 
 \end{document}

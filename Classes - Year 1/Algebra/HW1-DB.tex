@@ -131,7 +131,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Problem 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setcounter{thm}{1}   % next prob is 2
-\bf{Alert!} In $\ZZ_{n}$, I use $m$ to refer to $[m]$. Also, I use $\class[H]{g}$ or simply $\class{g}$ refer to cosets in $G/H$.
+\textbf{Alert!} In $\ZZ_{n}$, I use $m$ to refer to $[m]$. Also, I sometimes use $\class[H]{g}$ or simply $\class{g}$ refer to cosets in $G/H$.
 \begin{prob}\belowtitle
   \begin{enumerate}[label=(\alph*)]
     \item Prove that the relation given by $a \sim b \iff a - b \in \mathbb{Z}$ is an equivalence relation on the additive group $\mathbb{Q}$.
@@ -149,9 +149,9 @@
 
     So $\sim$ is an equivalence relation on $(\QQ,+)$.
 
-    (b)\quad $\QQ/\ZZ=\{[\frac{a}{b}]=\frac{a}{b}+\ZZ \mid a,b\in \ZZ\text{ and }b\nmid a\}$. Consider any $q_{1},q_{2}\in (0,1)$. If $[q_{1}]=[q_{2}],$ then $[q_{1}]-[q_{2}]=\ZZ$ and so $q_{1}-q_{1}\in \ZZ$. Well, $q_{1},q_{2}\in (0,1)$, so $q_{1}-q_{2}\in (-1,1)$ and therefore $q_{1}-q_{2}=0$. So $[q_{1}]=[q_{2}]\implies q_{1}=q_{2}$. On the other hand, $q_{1}=q_{2}\implies [q_{1}]=[q_{2}]$ by definition. So then
-    $$q_{1}=q_{2}\iff [q_{1}]=[q_{2}],\;\forall q_{1},q_{2}\in (0,1).$$
-    Since the rationals are dense in $\RR$, there are infinitely many distinct rationals in $(0,1)$ and infinitely many distinct cosets of the form $[q]$ where $q\in (0,1)$. Therefore, $\QQ/\ZZ$ is infinite. Lastly, since $\QQ$ is Abelian, so is $\QQ/\ZZ$ since $[q_{1}]+[q_{2}]=[q_{1}+q_{2}]=[q_{2}+q_{1}]=[q_{2}]+[q_{1}]$.
+    (b)\quad $\QQ/\ZZ=\{[q]=q+\ZZ \mid q\in \QQ\}$. Consider any $q_{1},q_{2}\in (0,1)\cap \QQ$. If $[q_{1}]=[q_{2}],$ then $[q_{1}]-[q_{2}]=\ZZ$ and $q_{1}-q_{1}\in \ZZ$. Well, $q_{1},q_{2}\in (0,1)$, so $q_{1}-q_{2}\in (-1,1)\cap \ZZ\implies q_{1}-q_{2}=0$. So $[q_{1}]=[q_{2}]\implies q_{1}=q_{2}$. On the other hand, $q_{1}=q_{2}\implies [q_{1}]=[q_{2}]$ by definition. So then
+    $$q_{1}=q_{2}\iff [q_{1}]=[q_{2}],\;\forall q_{1},q_{2}\in (0,1)\cap \QQ.$$
+    Since the rationals are dense in $\RR$, there are infinitely many distinct rationals in $(0,1)$ and infinitely many distinct cosets of the form $[q]$ where $q\in (0,1)\cap \QQ$. Therefore, $\QQ/\ZZ$ is infinite. Lastly, since $(\QQ,+)$ is Abelian, so is $\QQ/\ZZ$ since $[q_{1}]+[q_{2}]=[q_{1}+q_{2}]=[q_{2}+q_{1}]=[q_{2}]+[q_{1}]$.
 
     Thus,
     \begin{center}
@@ -176,21 +176,24 @@
       &\textbf{[Inverses]:}\quad\class{\frac{-a_{i}}{p^{i}}}+\class{\frac{a_{i}}{p^{i}}}=\class{0}\implies -\class{\frac{a_{i}}{p^{i}}}=\class{\frac{-a_{i}}{p^{i}}}.
     \end{align*}
 
-    So $\ZZ(p^{\infty})\leq \QQ/\ZZ$. Now consider some integers $i,j\in \ZZ^{+}$ and set $a=1$. Notice that $\frac{1}{p^{i}},\frac{1}{p^{j}}\in (0,1)$. Observe.
-
-    This result essentially follows from \textbf{Problem 2}. $\class{\frac{1}{p^{i}}}=\class{\frac{1}{p^{j}}}\implies \class{\frac{1}{p^{i}}}-\class{\frac{1}{p^{j}}}=\ZZ\implies \frac{1}{p^{i}}-\frac{1}{p^{j}}\in \ZZ$. Well, $\frac{1}{p^{i}},\frac{1}{p^{j}}\in (0,1)\implies \frac{1}{p^{i}}-\frac{1}{p^{j}}\in (-1,1)\implies \frac{1}{p^{i}}-\frac{1}{p^{j}}=0\implies \frac{1}{p^{i}}=\frac{1}{p^{i}}\implies i=j$. On the other hand, $i=j\implies \frac{1}{p^{i}}=\frac{1}{p^{j}}\implies \class{\frac{1}{p^{i}}}=\class{\frac{1}{p^{j}}}$ by definition. So then,
-    $$i=j\iff \class{\frac{1}{p^{i}}}=\class{\frac{1}{p^{j}}},\;\forall i,j\in \ZZ^{+}.$$
-    There are infinitely many distinct positive integers so there must be infinitely many distinct cosets in $\ZZ(p^{\infty})$.
-
+    So $\ZZ(p^{\infty})\leq \QQ/\ZZ$. Next, for any $i,j\in \ZZ^{+}$, notice that $\frac{1}{p^{i}},\frac{1}{p^{j}}\in (0,1)$. We showed in \textbf{Problem 3} that $\class{q_{1}}=\class{q_{2}}\iff q_{1}=q_{2},\,\forall q_{1},q_{2}\in (0,1)$. Well, if $i\neq j$, then $\frac{1}{p^{i}}\neq \frac{1}{p^{j}}$. Therefore, since there are infinitely many distinct positive integers $k\in \ZZ^{+}$, there are infinitely many distinct cosets of the form $\class{\frac{1}{p^{k}}}$ in $\ZZ(p^\infty)$.
     Thus,
     \begin{center}
     $\ZZ(p^{\infty})$ is an infinite subgroup of $\QQ/\ZZ$.
     \end{center}
 \end{proof}
+
+% Old shit:
+%This result essentially follows from \textbf{Problem 2}. But we can do the computations anyways. $\class{\frac{1}{p^{i}}}=\class{\frac{1}{p^{j}}}\implies \class{\frac{1}{p^{i}}}-\class{\frac{1}{p^{j}}}=\ZZ\implies \frac{1}{p^{i}}-\frac{1}{p^{j}}\in \ZZ$. Well, $\frac{1}{p^{i}},\frac{1}{p^{j}}\in (0,1)\implies \frac{1}{p^{i}}-\frac{1}{p^{j}}\in (-1,1)\implies \frac{1}{p^{i}}-\frac{1}{p^{j}}=0\implies \frac{1}{p^{i}}=\frac{1}{p^{i}}\implies i=j$. On the other hand, $i=j\implies \frac{1}{p^{i}}=\frac{1}{p^{j}}\implies \class{\frac{1}{p^{i}}}=\class{\frac{1}{p^{j}}}$ by definition. So then,
+
+    %$$i=j\iff \class{\frac{1}{p^{i}}}=\class{\frac{1}{p^{j}}},\;\forall i,j\in \ZZ^{+}.$$
+
+    %There are infinitely many distinct positive integers so there must be infinitely many distinct cosets in $\ZZ(p^{\infty})$.
+
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Problem 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setcounter{thm}{4}   % next prob is 5
-
+\begingroup\setstretch{1.0}
 \begin{prob}
   Let $Q_8$ be the multiplicative group generated by the complex matrices
   \[
@@ -201,8 +204,30 @@
   Observe that $A^4=B^4=I_2$ and $BA=AB^3$. Prove that $Q_8$ is a group of order $8$.
 \end{prob}
 
-\begin{proof}
-Well, 
+\begin{proof} We will use the notation $-M$ to denote $(-m_{ij})$ where $M=(m_{ij})$. To begin, notice that
+  $$A^{2}=\begin{pmatrix}
+    0 & 1\\
+    -1 & 0
+  \end{pmatrix}^{2}=\begin{pmatrix}
+    -1 & 0 \\
+    0 & -1
+  \end{pmatrix}=-I\implies A^{3}=A(-I)=-A.$$ We are given that $A^{4}=I$, the identity. So $|A|=4$. Similarly, notice that
+  $$B^{2}=\begin{pmatrix}
+    0 & i\\
+    i & 0
+  \end{pmatrix}^{2}=\begin{pmatrix}
+    -1 & 0 \\
+    0 & -1
+  \end{pmatrix}=A^{2}=-I,$$
+  
+ and then obviously $B^{-1}=B^{3}=-B$ and we are given that $B^{4}=I$, so $|B|=4$. 
+ 
+ So $\langle A\rangle,\,\langle B \rangle \leq Q_{8}$ are both cyclic subgroups of order $4$. Observe.
+  $$\langle A\rangle \cap \langle B\rangle = \{I,-I\}\implies |\langle A\rangle\langle B\rangle|=\frac{|\langle A\rangle||\langle B\rangle|}{|\langle A\rangle \cap \langle B\rangle|}=\frac{(4)(4)}{(2)}=8.$$
+  Well, we are given that $A$ and $B$ generate all of $Q_{8}$, which means $Q_{8}=\langle A,B\rangle =\langle A\rangle\langle B\rangle$.
+
+  Thus,
+  $$|Q_{8}|=|\langle A,B\rangle|=|\langle A\rangle\langle B\rangle|=\frac{|\langle A\rangle||\langle B\rangle|}{|\langle A\rangle \cap \langle B\rangle|}=8.$$
 \end{proof}
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Problem 6 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -234,7 +259,29 @@ Well,
   \]
   have finite orders but $AB$ has infinite order.
 \end{prob}
-
+\begin{proof} Note the following products.
+\begin{align*}
+      &A^{2}=\begin{pmatrix}
+      0 & -1\\
+      1 & 0
+    \end{pmatrix}^{2}=\begin{pmatrix}
+      -1 & 0\\
+      0 & -1
+    \end{pmatrix}=-I\implies A^{4}=(-I)^{2}=I\\
+      &B^{2}=\begin{pmatrix}0 & 1 \\
+      -1 & -1\end{pmatrix}^{2}=\begin{pmatrix}
+      -1 & -1 \\
+      1 & 0\end{pmatrix}\implies B^{3}=\begin{pmatrix}
+      1 & 0 \\
+      0 & 1\end{pmatrix}=I\\
+      &AB=\begin{pmatrix}
+      1 & 1 \\
+      0 & 1 \end{pmatrix}=(AB)^{2}=\begin{pmatrix}
+      1 & 2 \\
+      0 & 1\end{pmatrix} 
+\end{align*}
+Above it is shown $A$ and $B$ have finite order. Now consider non-trivial powers of $(AB)$.
+\end{proof}
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Problem 10 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setcounter{thm}{9}   % next prob is 10

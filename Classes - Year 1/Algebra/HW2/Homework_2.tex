@@ -1,0 +1,320 @@
+\documentclass[addpoints,10pt]{exam}
+
+\usepackage{amsmath,amsthm,enumitem,wrapfig,amsfonts,mathtools}
+\usepackage[mathscr]{euscript}
+\usepackage[super]{nth}
+
+\usepackage{geometry}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\renewcommand{\rmdefault}{ptm} %Change the Front Family from the default(cmr) to ptm(Times)
+\usepackage{amsmath,amsfonts,amsthm,amssymb} % Math packages
+\usepackage{bm}
+\usepackage{mathptmx}
+\usepackage{graphicx}
+\usepackage{sectsty} % Allows customizing section commands
+% \allsectionsfont{\centering} % Make all sections centered, the default font and small caps
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{xcolor}
+\definecolor{darkpastelgreen}{rgb}{0.01, 0.75, 0.24}
+\definecolor{blue-violet}{rgb}{0.54, 0.17, 0.89}
+
+% Custom problem environment
+\newcounter{cprob}
+\newenvironment{cprob}[1]{%
+    \setcounter{cprob}{#1}%
+    \noindent\textbf{Problem \thecprob.}%
+}{%
+    \par\bigskip%
+}
+
+\theoremstyle{plain}
+\newtheorem{thm}{\protect\theoremname}
+  \theoremstyle{definition}
+  \newtheorem{prob}[thm]{Problem}
+  \newtheorem*{problem*}{Open Problem}
+  \theoremstyle{plain}
+  \newtheorem{conjecture}[thm]{Conjecture}
+  \theoremstyle{plain}
+  \newtheorem{lem}[thm]{Lemma}
+  \newtheorem*{lem*}{Lemma}
+  \newtheorem{obs}[thm]{Observation}
+  \newtheorem{cor}[thm]{Corollary}
+  \theoremstyle{definition}
+\newtheorem{definition}[thm]{Definition}
+
+
+% Patch prob environment to be single spaced
+\let\oldprob\prob
+\let\endoldprob\endprob
+\renewenvironment{prob}
+  {\begin{singlespace}\oldprob}
+  {\endoldprob\end{singlespace}}
+
+% start problem one line below like for enumerated problems with multiple parts
+\newcommand{\belowtitle}{\leavevmode\newline}
+%\Observe command
+\newcommand{\Observe}{\text{Observe.}}
+%(=>)
+\newcommand{\IF}{\mathbf{(\Rightarrow)}}
+%(<=)
+\newcommand{\FI}{\mathbf{(\Leftarrow)}}
+%equivalence classes; \class[S]{ *content in square brackets* }
+\newcommand{\class}[2][]{\ensuremath{\left[\,#2\,\right]_{#1}}}
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}
+\newcommand{\kk}{\ensuremath{\Bbbk}} 
+\newcommand{\CC}{\ensuremath{\mathbb{C}}}
+\newcommand{\FF}{\ensuremath{\mathbb{F}}}
+\newcommand{\NN}{\ensuremath{\mathbb{N}}}
+\newcommand{\QQ}{\ensuremath{\mathbb{Q}}} 
+\newcommand{\RR}{\ensuremath{\mathbb{R}}} 
+\newcommand{\ZZ}{\ensuremath{\mathbb{Z}}}
+\newcommand{\MM}{\ensuremath{\mathcal{M}}}
+\newcommand{\TT}{\ensuremath{\mathcal{T}}}
+\newcommand{\BB}{\ensuremath{\mathcal{B}}}
+\newcommand{\VV}{\ensuremath{\mathcal{V}}}
+\newcommand{\WW}{\ensuremath{\mathcal{W}}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}}
+\newcommand{\PP}{\ensuremath{\mathcal{P}}}
+\newcommand{\LL}{\ensuremath{\mathcal{L}}}
+
+\newcommand{\sm}{\char`\\}
+%vector stuff
+\DeclarePairedDelimiter{\ip}{\langle}{\rangle} %inner product/generate
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert} %norm
+\DeclarePairedDelimiter{\sqb}{\lbrack}{\rbrack} %corrd
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\mbf}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\tbf}[1]{\textbf{ #1 }}
+
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\def\env@matrix{\hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols c}}
+
+  \newcommand{\proj}[2]{\text{proj}_{#1}(#2)}
+  
+
+%%% Formatting: Page Header
+\newcommand{\StudentName}{Danny Banegas}
+\newcommand{\AssignmentName}{Homework 2}
+\newcommand{\CourseName}{MATH 721 - Algebra II}
+
+
+\pagestyle{headandfoot}
+\runningheadrule
+\firstpageheadrule
+\firstpageheader{\CourseName}{\StudentName}{\AssignmentName}
+\runningheader{\CourseName}{\StudentName}{\AssignmentName}
+\firstpagefooter{}{\thepage}{}
+\runningfooter{}{\thepage}{}
+
+\printanswers
+
+\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+
+\usepackage{parskip}
+\usepackage{setspace}
+\doublespacing
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 26 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{thm}{25}   % next prob is 26
+\begin{prob}\belowtitle If $H$ is a subgroup of $G$, prove that the group $N(H)/C(H)$ is isomorphic to a subgroup of $\mathrm{Aut}(H)$.\end{prob}
+\begin{proof}
+  Recall that $C(H)=\{g\in G\mid ghg=h,\;\forall h\in H\}\leq N(H)=\{g\in G\mid gHg=H\}\leq G$. \textbf{By the notes on 9/12} we have that $C_{n}:H\to H$ where $C_{n}(h)=nhn^{-1}$ is an automorphism of $H$ if $n\in N(H)$. Now let $f:N(H)\to \mathrm{Aut}(H)$ where $f(n)=\phi_{n},\,\forall n\in N(H)$. We show $f$ is a group homomorphism. $\forall n_{1},n_{2}\in N(H):$
+    $$f(n_{1}n_{2})=\phi_{n_{1}n_{2}}\coloneq h\mapsto (n_{1}n_{2}) h (n_{1}n_{2})^{-1}=\phi_{n_{1}}(n_{2}hn_{2}^{-1})=\phi_{n_{1}}(\phi_{n_{2}}(h))\eqcolon\phi_{n_{1}}\circ \phi_{n_{2}}=f(n_{1})f(n_{2}).$$
+  So $f$ is a group homomorphism from $N(H)$ to $\mathrm{Aut}(H)$. Next, we show that $\mathrm{ker}\;f=C(H)$.
+
+  $\mathbf{(\subseteq)}:\;\forall n\in \mathrm{ker}\;f$, $f(n)=id\in \mathrm{Aut}(H)$. So then $\phi_{n}(h)=nhn^{-1}=h=id(h),\;\forall h\in H$. Therefore, $n\in C(H)$ and $\mathrm{ker}\; f\subseteq C(H)$. 
+
+  $\mathbf{(\supseteq)}:\;\forall n\in C(H)\text{ we have that }nhn^{-1}=h,\,\forall h\in H$ and so $\phi_{n}(h)=nhn^{-1}=h=id(h),\, \forall h\in H.$ Therefore, $f(n)=\phi_{n}=id$, and $n\in \mathrm{ker}\; f.$ So $C(H)
+  \subseteq \mathrm{ker}\;f$.
+
+  We have now shown that $\mathrm{ker}\;f=C(H)$.
+
+  Finally, since $f$ is a group homomorphism from $N(H)$ to $\mathrm{Aut}(H)$, by the \textbf{First isomorphism Theorem} we have that $N(H)/\mathrm{ker}\;f=N(H)/C(H)\cong f(N(H))\leq \mathrm{Aut}(H)$.
+
+  Thus,
+
+  $$\text{If }H\leq G,\text{ then }N(H)/C(H)\text{ is isomorphic to some subgroup of }\mathrm{Aut}(H).$$
+\end{proof}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 27 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{prob}\belowtitle If $G/Z(G)$ is cyclic, then $G$ is abelian.\end{prob}
+\begin{proof}
+  Since $G/Z(G)$ is cyclic, $G/Z(G)=\langle [g]\rangle$ for some $g\in G$. Therefore, for any $a,b\in G$,
+  \begin{align}
+  &[a]=[g]^{\alpha}=[g^{\alpha}]\text{ for some }\alpha\in \NN\\
+  &[b]=[g]^{\beta}=[g^{\beta}]\text{ for some }\beta\in \NN\\
+  &(1)\implies g^{-\alpha}a\in Z(G)\\
+  &(2)\implies g^{-\beta}b\in Z(G)
+  \end{align}
+  So then $g^{-\alpha}a=z_{a}\implies a=g^{\alpha}z_{a}$ and $g^{-\beta}b=z_{b}\implies b=g^{\beta}z_{b}$ for some $z_{a},z_{b}\in Z(G)$. Observe.
+  \begin{center}
+  $ab=(g^{\alpha}z_{a})(g^{\beta}z_{b})=g^{\alpha}g^{\beta}z_{b}(z_{a})=g^{\beta}(g^{\alpha})z_{b}z_{a}=g^{\beta}z_{b}(g^{\alpha})z_{a}=(g^{\beta}z_{b})(g^{\alpha}z_{a})=ba.$
+  \end{center}
+  Thus,
+  \begin{center}
+  If $G/Z(G)$ is cyclic, then $G$ is abelian.
+  \end{center}
+\end{proof}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 28 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{prob}\belowtitle Every group of order $28$, $56$, $200$ must contain a normal Sylow subgroup, and hence is not simple.\end{prob}
+
+Note that the justification for \textbf{(I)} is not circular, the reader may find the proof of \textbf{Problem 35} on \textbf{Page 6}
+\begin{proof}\belowtitle
+  \textbf{(I)}: $|G|=28=4(7)=2^{2}(7)$. So $|G|=p^{2}q$ where $p=2,q=7$. So by \textbf{Problem 35}, $G$ is not simple since it contains a normal Sylow subgroup.
+
+  \textbf{(II)}: $|G|=56=8(7)=2^{3}(7)$. By \textbf{Sylow's Theorems}, the number of distinct Sylow $7-$subgroups, $n_{7}$, is such that:
+  $$n_{7}\equiv 1\pmod{7}\text{ and } n_{7}\mid 8\implies n_{7}\in \{1,8\}.$$
+  If $n_{7}=1,$ then there is a unique Sylow $7-$subgroup which is therefore normal. So $G$ is not simple since it the Sylow subgroup is proper. If $n_{7}=8$, then there are $8$ distinct Sylow $7-$subgroups $P_{1},\hdots,P_{8}$. Since $P_{i}\cap P_{j}\leq P_{i},P_{j}$ for any $1\leq i<j\leq 8$, we have that  $|P_{i}\cap P_{j}|\in \{1,8\}$ but if it's $8$ then the two aren't distinct. So $P_{i}\cap P_{j}=\{e\}$ for all $1\leq i<j\leq 8$. Therefore, $|P_{1}\cup \cdots \cup P_{8}|=8(7)-7=49.$ Therefore, since by the remaining $7$ non-identity elements must belong to $Q\setminus \{e\}$, where $Q$ is a Sylow $2-$subgroup, given to exist since $2\nmid 7$. This is formally justified as follows: $Q$ subgroup only shares identity with any $P_{i}$ since $g\in Q$ and $g\in P_{i}$ for all $i=1,\hdots,8$. Therefore, $G=P_{1}\cup P_{8}\cup Q$ implies that $Q$ is a unique Sylow $2-$subgroup, which is therefore normal. So $G$ is not simple.
+
+  \textbf{(III)}: $|G|=10(20)=2(5)(4(5))=2^{3}5^{2}$. By \textbf{Sylows Theorems}, the number of distinct Sylow $5-$subgroups, $n_{5}$, is such that:
+  $$n_{5}\equiv 1\pmod{5}\text{ and }n_{5}\mid 8\implies n_{5}\in \{1,2,4,8\}$$
+  But $2,4,8\not\equiv 1\pmod{5}$. So $n_{5}=1$ and the Sylow $5-$subgroup is unique and therefore normal, as well as proper. So $G$ is not simple.
+
+\end{proof}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 30 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{thm}{29}   % next prob is 35
+\begin{prob}\belowtitle
+There is no simple group of order $24$.
+\end{prob}
+\begin{proof}
+  $|G|=4(6)=2^{3}(3)$, and so by \textbf{Sylow's Theorems}
+  $$n_{2}\equiv 1\pmod{2}\text{ and }n_{2}\mid 3\implies n_{2}\in \{1,3\}$$
+  If $n_{2}=1$, then the Sylow $2-$subgroup is proper and unique and therefore normal. So $G$ is not simple.
+
+  If $n_{2}=3,$ then there are $3$ distinct Sylow $2-$subgroups $P_{1},P_{2},P_{3}$ which must all have the trivial intersection $\{e\}$ otherwise they are not distinct. Therefore, $|P_{1}\cup P_{2}\cup P_{3}|=3(2^{3})-2=22=|G|-2$. Therefore the remaining $2$ non-identity elements must belong to the Sylow $3-$subgroup $Q$ which exists by \textbf{Sylow's Theorems} since $3\nmid 8$. This is formally justified via $g\in Q\cap P_{i}\implies |g|$ divides $2^{3}$ and $3$ which implies that $|g|=1$ for any $i=1,2,3$. Therefore, $|P_{1}\cup P_{2}\cup P_{3}\cup Q|=3(2^{3})+3-3=|G|\implies G=P_{1}\cup P_{2}\cup P_{3}\cup Q$, so $Q$ is a unique Sylow $3-$subgroup, which is therefore normal and since it's proper, $G$ is not simple.
+
+\end{proof}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 31 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{prob}\belowtitle
+There is no simple group of order $36$.
+\end{prob}
+
+\begin{proof}
+  $|G|=36=6(6)=2^{2}3^{2}$. So by \textbf{Sylow's Theorems},
+  $$n_{3}\equiv 1\pmod{3}\text{ and }n_{3}\mid 4\implies n_{3}\in \{1,4\}$$
+  If $n_{3}=1$ then the proper Sylow $3-$subgroup is unique and therefore normal. So then $G$ is not simple.
+
+  If $n_{3}=4$, then there are $4$ distinct Sylow $3-$subgroups $P_{1},\hdots,P_{4}$ and they all have pairwise trivial intersections otherwise they aren't distinct. So then $|P_{1}\cup \cdots \cup P_{4}|=4(3^{2})-3=|G|-3$. So then the remaining $3$ non-identity elements must belong to the Sylow $2-$subgroup $Q$ of order $4$ which exists by \textbf{Sylow's Theorems} since $2\nmid 9$. This is formally justified via $g\in Q\cap P_{i}\implies |g|$ divides $2^{2}$ and $3^{2}$ which implies that $|g|=1$ for any $i=1,\hdots, 4$. Therefore, $|P_{1}\cup P_{2}\cup P_{3}\cup P_{4}\cup Q|=4(3^{2})+(4)-4=|G|\implies G=P_{1}\cup P_{2}\cup P_{3}\cup P_{4}\cup Q$, so $Q$ is a unique Sylow $2-$subgroup, which is therefore normal and since it's proper, $G$ is not simple.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 33 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{thm}{32}   % next prob is 33
+\begin{prob}\belowtitle
+There is no simple group of order $56$.
+\end{prob}
+
+\begin{proof}
+$|G|=56\implies G$ is not simple by \textbf{Problem 28}.
+
+\end{proof}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 35 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{thm}{34}   % next prob is 35
+\begin{prob}\belowtitle Let $G$ be a group of order $p^2 q$ where $p, q$ are distinct primes. Show that $G$ is not simple.\end{prob}
+
+\begin{proof} Since $p,q$ are distinct primes, we have two cases.
+
+  $\mathbf{(q<p)}\implies n_{p}\equiv 1\pmod{p}$ and $n_{p}\mid q\implies n_{p}\in \{1,q\}$. But $2\leq q<p\implies q\not\equiv 1\pmod{p}$. So $n_{p}=1$ and $G$ is not simple.
+
+  $\mathbf{(p<q)}\implies n_{q}\equiv 1\pmod{q}$ and $n_{q}\mid p^{2}\implies n_{q}\in \{1,p,p^{2}\}$. If $n_{q}=1$, $G$ is not simple. Next, since $p<q\text{ we have that }p\not\equiv 1\pmod{q}$. Lastly, if $n_{p}=p^{2}$, then there are $p^{2}$ Sylow $q-$subgroups $Q_{1},\hdots, Q_{p^{2}}$ of order $q$ in $G$. Therefore, for any $1\leq i<j<p^{2}$, since $Q_{i}\cap Q_{j}\leq Q_{i},Q_{j}$, we have that $|Q_{i}\cap Q_{j}|\in \{1,q\}$. But if $|Q_{i}\cap Q_{j}|=q$, then $Q_{i}=Q_{j}$ and they are not distinct, a contradiction. So then $Q_{i}\cap Q_{j}=\{e\}$ and $Q_{1}\cap \cdots \cap Q_{p^{2}}=\{e\}.$ Therefore, $|Q_{1}\cup \cdots Q_{p^{2}}|=p^{2}q-(p^{2}-1)$. So then the remaining $p^{2}-1$ non-identity elements must belong to the Sylow $p-$subgroup $P$ of order $p^{2}$, given to exist by \textbf{Sylow's Theorems}. This is formally justified as follows: For any $i=1,\hdots, p^{2}$, $Q_{i}\cap P=\{e\}$ since $g\in Q_{i}\cap P\implies |g|$ divides $q$ and $p^{2}$, which have $\mathrm{gcd}(q,p^{2})=1$ otherwise $q|p^{2}\implies q\in \{1,p,p^{2}\}$ all contradictions since $q$ is prime and $q\nmid p$. So then,
+  $$|Q_{1}\cup Q_{p^{2}}\cup P|=[p^{2}(q)-(p^{2}-1)]+p^{2}-1=p^{2}q\implies G=Q_{1}\cup \cdots Q_{p^{2}}\cup P.$$
+  Therefore $P$ is a proper and unique Sylow $p$ subgroup, and therefore it is normal. So then $P\triangleleft G$ and $G$ is not simple.
+
+  Thus,
+
+  \begin{center}
+  A group of order $p^{2}q$ where $p,q$ are distinct primes is not simple.
+  \end{center}
+\end{proof}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 36 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{prob}\belowtitle  If every Sylow $p$-subgroup of a finite group $G$ is normal for every prime $p$, then $G$ is isomorphic to the direct product of its Sylow subgroups.\end{prob}
+
+We begin by proving a Lemma.
+\setcounter{thm}{0}
+\begin{lem}
+$P\trianglelefteq G$ is a Sylow $p-$subgroup $\iff$ $P$ is a unique Sylow $p-$subgroup in $G$.
+\end{lem}
+
+\begin{proof}
+  Let $P$ be a Sylow $p-$subgroup of $G$. If $P$ is normal, then $gPg^{-1}=P,\,\forall g\in G$. Well, for any Sylow $p-$subgroup $Q$, we have that there exists $g_{*}\in G$ such that $Q=g_{*}Pg_{*}^{-1}=P$. So $P$ is unique.
+\end{proof}
+Now we solve the problem.
+\begin{proof}
+  To begin, we use $[n]$ to denote $\{1,\hdots, n\}$ throughout here. \belowtitle Now, since $G$ is finite, it's order has some prime decomposition $|G|=\prod_{i=1}^{n} p_{i}^{a_{i}}$ where $p_{1},\hdots, p_{n}$ are distinct primes and $a_{a}\in \ZZ^{+}$ for all $i=1,\hdots, n$. Notice that for any $k\in \{1,\hdots, n\}$, we have that $p_{k}^{a_{k}}\nmid p_{i}^{a_{i}}$ for all $i\in \{1,\hdots, n\}\setminus \{k\}$ otherwise $p_{k}$ is $1$ or a multiple of some prime $p_{i}$ in our prime decomposition and therefore not prime, a contradiction. So then for each $k\in [n]$, $p_{i}\nmid \prod_{i\in [n]\setminus \{k\}}p_{i}^{a_{i}}$. Therefore, by \textbf{Sylow's Theorems} there exists a Sylow $p_{i}-$subgroup $P_{i}$ of order $p_{i}^{a_{i}}$ for each $i\in [n]$.
+
+  Next, by \textbf{Lemma 1} each of these subgroups is unique since they are all normal by assumption. Also recall that by \textbf{Problem 10}, $HK=KH\iff HK\leq G.$ Observe.
+
+  Since $P_{1},P_{2}\trianglelefteq G$,  $P_{1}P_{2}=P_{2}P_{1}\implies P_{1}P_{2}\leq G$ by \textbf{Problem 10}. Suppose $\prod_{i=1}^{k}P_{i}\leq G$ for some $2\leq k<n$, and consider $\prod_{i=1}^{k+1}P_{i}$. Well, $\prod_{i=1}^{k+1}P_{i}=(\prod_{i=1}^{k}P_{i})P_{k+1}$. Then, since $\prod_{i=1}^{k}P_{i}\leq G$ and $P_{k+1}\trianglelefteq G$, we have that $P_{k+1}(\prod_{i=1}^{k}P_{i})=(\prod_{i=1}^{k}P_{i})P_{k+1}\implies \prod_{i=1}^{k+1}P_{i}\leq G$. So then recursively we have that $|P_{1}\cdots P_{n}|=\frac{|P_{1}|\cdots |P_{n}|}{|P_{1}\cap \cdots \cap P_{n}|}$. 
+
+  Lastly, consider $P_{i}\cap P_{j}\leq P_{i},P_{j}$ for $1\leq i<j\leq n$. Well, $g\in P_{i}\cap P_{j}\implies |g|$ divides $p_{i}^{a_{i}}$ and $p_{j}^{a_{j}}$. So $|g|=p_{i}^{m}=p_{j}^{n}$ for some $(m,n)\in \ZZ_{a_{i}+1}\times \ZZ_{a_{j}+1}$. Therefore, $(m,n)=(0,0)$ otherwise once more $p_{i}$ and $p_{j}$ are not distinct primes. So then $P_{i}\cap P_{j}=\{e\}$ and we have that $P_{1}\cap \cdots \cap P_{n}=\{e\}$.
+
+  Therefore, $|P_{1}\cdots P_{n}|=\frac{|P_{1}|\cdots |P_{n}|}{|P_{1}\cap \cdots \cap P_{n}|}=\frac{\prod_{i=1}^{n} p_{i}^{a_{i}}}{1}=|G|$ and so $G=P_{1}\cdots P_{n}$. Well, since $P_{i}\trianglelefteq G,\,\forall i\in [n]$, $G$ is an internal direct product and finally we have that $P_{1}\cdots P_{n}=G\cong P_{1}\oplus \cdots \oplus P_{n}$.
+
+\end{proof}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 37 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{thm}{36}
+\begin{prob}\belowtitle If $P$ is a normal Sylow $p$-subgroup of a finite group $G$ and $f:G\to G$ is a group homomorphism, then $f(P)\subseteq P$.\end{prob}
+
+  \begin{proof}Since $P$ is a Sylow $p-$subgroup of $G$, $|G|=p^{n}m$ for some $m\in \ZZ^{+}$ where $p\nmid m$.\belowtitle
+  Next, let $f_{p}$ be $f$ whose domain is restricted to $P$. $f_{p}$ is a group homomorphism since for any $a,b\in P$, we have that $f_{p}(ab)=f(ab)=f(a)f(b)=f_{p}(a)f_{p}(b)$. So by the \textbf{First Isomorphism Theorem},
+    $$P/\mathrm{ker}\;f_{p}\cong f_{p}(P)=f(P).$$
+  Therefore, $|P/\mathrm{ker}\;f_{p}|=\frac{|P|}{|\mathrm{ker}\;f_{p}|}=|f(P)|\implies \frac{|P|}{|f(P)|}=|\mathrm{ker}\;f_{p}|$ and so $|f(P)|$ divides $|P|=p^{n}\implies |f(P)|=p^{k}$ for some $0\leq k\leq n.$ Observe.
+
+  $P\trianglelefteq G\text{ and }f(P)\leq G \implies gP=Pg,\,\forall g\in G\implies f(P)P=Pf(P)\implies f(P)P\leq G$ by \textbf{Problem 10}. Notice that $P\cap f(P)$ must be a $p-$subgroup of $G$ since it is a subgroup of both $P$ and $f(P)$. Therefore, $|f(P)P|=\frac{|f(P)||P|}{|f(P)\cap P|}$ must be some power of $p$ and $f(P)P$ is a $p-$subgroup of $G$. Lastly, notice that $P\subseteq f(P)P$. Well, $P\not\subset f(P)P$, otherwise $f(P)P$ is a higher order $p-$subgroup of $G$ than the Sylow $p-$subgroup $P$ of $G$, a contradiction. Therefore $P=f(P)P$ and we must have that $f(P)\subseteq P$.
+
+
+
+  Thus,
+  \begin{center}
+  If $G$ is finite, and $P\trianglelefteq G$ is a Sylow $p$-subgroup and $f:G\to G$ is a group homomorphism, then $f(P)\subseteq P$.
+  \end{center}
+\end{proof}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 38 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{prob}\belowtitle Let $G$ be a cyclic group of order $n$. Let $d$ be a divisor of $n$. Prove that $G$ has a unique subgroup with $d$ elements.\end{prob}
+
+\begin{proof}
+  If $H=\{e\}$ it is cyclic. If $H$ is non-trivial, then it contains some $h\neq e.$ Well, since $h\in H\leq G$, $h=g^{k}$ for some $k\in\ZZ^{+}$. So then there exists some minimal non-trivial power $\mu=\min \{i\in \ZZ^{+}\mid g^{i}\in H\setminus \{e\}\}$ of $g$ present in $H\setminus\{e\}$. Observe.
+
+  By the division algorithm, $\forall m\in \{i\in \ZZ^{+}\mid g^{m}=H\setminus\{e\}\}$, there exists a unique pair of naturals $(q,r)$ with $0\leq r<\mu$ such that
+  $$m=\mu q+r\implies g^{m}=g^{\mu q+r}=g^{\mu q}g^{r}\implies g^{m-\mu q}=g^{r}\in H.$$
+  Suppose $r\neq 0$. But then $g^{r}\in H$ for some $0<r<\mu $ and $\mu $ is not minimal, a contradiction. So then $r=0$ and for any $m\in \ZZ^{+},\text{ such that }g^{m}\in H,\;g^{m}=g^{\mu q_{*}}=(g^{\mu })^{q_{*}}$ for some $q_{*}\in \NN$. Therefore, $H=\langle g^{\mu }\rangle$, a cyclic group. So any subgroup of a cyclic group is cyclic.
+
+  Next, if $G$ is finite and of order $n$, consider any divisor $d$ of $|G|=n$. Since $G=\langle g\rangle$, $|g|=n$. Well, since $d|n,\,\exists!q\in \ZZ^{+}\text{ such that }dq=n$. So we see $g^{dq}=g^{n}\implies (g^{q})^{d}=e$. Such a $d$ is necessarily a minimal power that gives identity here since $0<q,d$ and otherwise there exists $0<k<n$ such that $k=d'q<dq=n$, and so $g^{k}=e$ and $|g|=k$, a contradiction. So $|g^{q}|=d.$ Suppose $|g^{q'}|=d$ for some $q'\leq n$ with $q'\neq q$. But then $n=q'd< qd=n$, a contradiction. So there is only one power $q$ of $g$ with order $d$. Since any $d-$ordered subgroup $H_{d}$ of $G$ is cyclic, it must be generated by some power of $G$, of which there is only one and so $H_{d}=\langle g^{d}\rangle$ is the only subgroup of order $d$ which divides $n$.
+
+\end{proof}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 39 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{prob}\belowtitle A semidirect product $H\rtimes_{\varphi} K$ is unchanged up to isomorphism if the action $\varphi:K\to \mathrm{Aut}(H)$ is composed with an automorphism of $K$. More precisely, for automorphisms $f:K\to K$, prove that
+$H\rtimes_{\varphi\circ f} K \cong H\rtimes_{\varphi} K$.\end{prob}
+
+\begin{proof}
+  Let $\phi:H\rtimes_{\varphi}K\to H\rtimes_{\varphi\circ f}K$ be defined via $(h,k)\mapsto (h,f^{-1}(k))$. Since $\phi^{-1}\coloneq (h,k)\mapsto (h,f(k))$ is such that $\phi^{-1}(\phi((h,k)))=\phi^{-1}((h,f^{-1}(k)))=(h,f(f^{-1}(k)))=(h,k)$ and $\phi(\phi^{-1}(h,k))=\phi((h,f(k)))=(h,f^{-1}(f(k)))=(h,k)$, $\phi$ has an inverse and is a bijection. We now show $\phi$ is a group homomorphism.
+  \begin{center}
+    $\phi((h_{1},k_{1})(h_{2},k_{2}))=\phi(h_{1}\varphi_{k_{1}}(h_{2}),k_{1}k_{2})=(h_{1}\varphi_{k_{1}}(h_{2}),f^{-1}(k_{1}k_{2}))=(h_{1}\varphi_{k_{1}}(h_{2}),f^{-1}(k_{1}k_{2}))=(h_{1}\varphi_{f(f^{-1}(k_{1}))}(h_{2}),f^{-1}(k_{1})f^{-1}(k_{2}))=(h_{1},f^{-1}(k_{1}))(h_{2},f^{-1}(k_{2}))=\phi((h_{1},k_{1}))\phi((h_{2},k_{2}))$.
+  \end{center}
+  Thus,  $\phi$ is a group isomorphism and $H\rtimes_{\varphi\circ f} K \cong H\rtimes_{\varphi} K$.
+
+\end{proof}
+
+\end{document}

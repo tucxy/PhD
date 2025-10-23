@@ -1,0 +1,199 @@
+\documentclass[addpoints,10pt]{exam}
+
+\usepackage{amsmath,amsthm,enumitem,wrapfig,amsfonts,mathtools}
+\usepackage[mathscr]{euscript}
+\usepackage[super]{nth}
+
+\usepackage{geometry}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\renewcommand{\rmdefault}{ptm} %Change the Front Family from the default(cmr) to ptm(Times)
+\usepackage{amsmath,amsfonts,amsthm,amssymb} % Math packages
+\usepackage{bm}
+\usepackage{mathptmx}
+\usepackage{graphicx}
+\usepackage{sectsty} % Allows customizing section commands
+% \allsectionsfont{\centering} % Make all sections centered, the default font and small caps
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{xcolor}
+\definecolor{darkpastelgreen}{rgb}{0.01, 0.75, 0.24}
+\definecolor{blue-violet}{rgb}{0.54, 0.17, 0.89}
+
+% Custom problem environment
+\newcounter{cprob}
+\newenvironment{cprob}[1]{%
+    \setcounter{cprob}{#1}%
+    \noindent\textbf{Problem \thecprob.}%
+}{%
+    \par\bigskip%
+}
+
+\theoremstyle{plain}
+\newtheorem{thm}{\protect\theoremname}
+  \theoremstyle{definition}
+  \newtheorem{prob}[thm]{Problem}
+  \newtheorem*{problem*}{Open Problem}
+  \theoremstyle{plain}
+  \newtheorem{conjecture}[thm]{Conjecture}
+  \theoremstyle{plain}
+  \newtheorem{lem}[thm]{Lemma}
+  \newtheorem*{lem*}{Lemma}
+  \newtheorem{obs}[thm]{Observation}
+  \newtheorem{cor}[thm]{Corollary}
+  \theoremstyle{definition}
+\newtheorem{definition}[thm]{Definition}
+
+
+% Patch prob environment to be single spaced
+\let\oldprob\prob
+\let\endoldprob\endprob
+\renewenvironment{prob}
+  {\begin{singlespace}\oldprob}
+  {\endoldprob\end{singlespace}}
+
+% start problem one line below like for enumerated problems with multiple parts
+\newcommand{\belowtitle}{\leavevmode\newline}
+%\Observe command
+\newcommand{\Observe}{\text{Observe.}}
+%(=>)
+\newcommand{\IF}{\mathbf{(\Rightarrow)}}
+%(<=)
+\newcommand{\FI}{\mathbf{(\Leftarrow)}}
+%equivalence classes; \class[S]{ *content in square brackets* }
+\newcommand{\class}[2][]{\ensuremath{\left[\,#2\,\right]_{#1}}}
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}
+\newcommand{\kk}{\ensuremath{\Bbbk}} 
+\newcommand{\CC}{\ensuremath{\mathbb{C}}}
+\newcommand{\FF}{\ensuremath{\mathbb{F}}}
+\newcommand{\KK}{\ensuremath{\mathbb{K}}}
+\newcommand{\NN}{\ensuremath{\mathbb{N}}}
+\newcommand{\QQ}{\ensuremath{\mathbb{Q}}} 
+\newcommand{\RR}{\ensuremath{\mathbb{R}}} 
+\newcommand{\ZZ}{\ensuremath{\mathbb{Z}}}
+\newcommand{\MM}{\ensuremath{\mathcal{M}}}
+\newcommand{\TT}{\ensuremath{\mathcal{T}}}
+\newcommand{\BB}{\ensuremath{\mathcal{B}}}
+\newcommand{\VV}{\ensuremath{\mathcal{V}}}
+\newcommand{\WW}{\ensuremath{\mathcal{W}}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}}
+\newcommand{\PP}{\ensuremath{\mathcal{P}}}
+\newcommand{\LL}{\ensuremath{\mathcal{L}}}
+
+\newcommand{\sm}{\char`\\}
+%vector stuff
+\DeclarePairedDelimiter{\ip}{\langle}{\rangle} %inner product/generate
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert} %norm
+\DeclarePairedDelimiter{\sqb}{\lbrack}{\rbrack} %corrd
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\mbf}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\tbf}[1]{\textbf{ #1 }}
+
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\def\env@matrix{\hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols c}}
+
+  \newcommand{\proj}[2]{\text{proj}_{#1}(#2)}
+  
+
+%%% Formatting: Page Header
+\newcommand{\StudentName}{Danny Banegas}
+\newcommand{\AssignmentName}{Homework 2}
+\newcommand{\CourseName}{MATH 721 - Algebra II}
+
+
+\pagestyle{headandfoot}
+\runningheadrule
+\firstpageheadrule
+\firstpageheader{\CourseName}{\StudentName}{\AssignmentName}
+\runningheader{\CourseName}{\StudentName}{\AssignmentName}
+\firstpagefooter{}{\thepage}{}
+\runningfooter{}{\thepage}{}
+
+\printanswers
+
+\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+
+\usepackage{parskip}
+\usepackage{setspace}
+\doublespacing
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+\begin{document}
+Submit the following from the problem list: 40, 41, 42, 45, 46, 47, 48, 49, 50, 51, 52.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 40 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{thm}{39}   % next prob is 40
+\begin{prob}
+Prove that an abelian group has a composition series if and only if it is finite.
+\end{prob}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 41 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{prob}
+Prove that a solvable simple group is abelian.
+\end{prob}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 42 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{prob}
+Prove that a solvable group that has a composition series is finite.
+\end{prob}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 45 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{thm}{44}   % next prob is 45
+\begin{prob}
+If $\KK\subseteq \FF$ is a field extension, $u,v\in \FF$, $v$ is algebraic over $\KK(u)$, and $v$ is transcendental over $\KK$, then $u$ is algebraic over $\KK(v)$.
+\end{prob}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 46 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{prob}
+If $\KK\subseteq \FF$ is a field extension and $u\in \FF$ is algebraic of odd degree over $\KK$, then so is $u^{2}$ and $\KK(u)=\KK(u^{2})$. 
+\end{prob}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 47 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{prob}
+Let $\KK \subseteq \FF$ be a field extension. If $X^n - a \in \KK[X]$ is irreducible and $u \in \FF$ is a root of $X^n - a$ and $m$ divides $n$, then the degree of $u^m$ over $\KK$ is $n/m$. What is the irreducible polynomial of $u^m$ over $\KK$?.
+\end{prob}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 48 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{prob}
+Let $\KK \subseteq R \subseteq \FF$ be an extension of rings with $\KK,\FF$ fields. If $\KK \subseteq \FF$ is algebraic, prove that $R$ is a field.
+\end{prob}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 49 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{prob}
+Let $f = X^3 - 6X^2 + 9X + 3 \in \mathbb{Q}[X]$.
+\begin{enumerate}[label=(\alph*)]
+\item Prove that $f$ is irreducible in $\mathbb{Q}[X]$.
+\item Let $u$ be a real root of $f$. Consider the extension $\mathbb{Q} \subseteq \mathbb{Q}(u)$. Express each of the following elements in terms of the basis $\{1,u,u^2\}$ of the $\mathbb{Q}$-vector space $\mathbb{Q}(u)$:
+\[
+u^4,\quad u^5,\quad 3u^5 - u^4 + 2,\quad (u+1)^{-1},\quad (u^2 - 6u + 8)^{-1}.
+\]
+\end{enumerate}
+\end{prob}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 50 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{prob}
+Let $F = \mathbb{Q}(\sqrt{2}, \sqrt{3})$. Find $[F:\mathbb{Q}]$ and a basis of $\FF$ over $\mathbb{Q}$.
+\end{prob}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 51 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{prob}
+Let $\KK$ be a field. In the field $\KK(X)$, let $u=X^{3}/(X+1)$. What is $[\KK(X):\KK(u)]?$
+\end{prob}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 52 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{prob}
+Let $\KK\subseteq \FF$ be a field extension. If $u,v\in \FF$ are algebraic over $\KK$ of degrees $m$ and $n$, respectively, then $[\KK(u,v): \KK]\leq mn.$ If $m$ and $n$ are relatively prime, then $[\KK(u,v):\KK]=mn.$
+\end{prob}
+\newpage
+
+
+\end{document}

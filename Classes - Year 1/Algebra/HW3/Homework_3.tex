@@ -136,18 +136,76 @@ Prove that an abelian group has a composition series if and only if it is finite
 \end{prob}
 
 \begin{proof}
-hey
+  $(\impliedby)\;$ If $G$ is finite, it must have order $n=\prod_{i=1}^{m}p_{i}^{a_{i}}$ for some distinct primes $p_{1},\hdots, p_{m}$ and $a_{0},\hdots, a_{m}\in \ZZ^{+}.$ Every subgroup of $G$ are normal since it's abelian, so each each Sylow $p_{i}-$subgroup $P_{i}<G$ of order $p_{i}^{a_{i}}$ is normal. So by $\textbf{Problem 36}$, $G$ is the internal direct product $G=P_{1}\cdots P_{m}\cong P_{1}\times \cdots \times P_{m}$ of it's Sylow subgroups. Now consider any $a,b\in P_{1}\cdots P_{k}\setminus P_{1}\cdots P_{k-1}$ for some $1< k\leq m$. 
+  \begin{align*}
+    &[a]=[b]\in P_{1}\cdots P_{k}/ P_{1}\cdots P_{k-1} \implies b^{-1}a\in P_{1}\cdots P_{k-1}\implies |b^{-1}a|\text{ divides }p_{1}^{a_{1}}\cdots p_{k-1}^{a_{k-1}}.\\
+    &a,b\in P_{1}\cdots P_{k}\setminus P_{1}\cdots P_{k-1}=P_{k}\setminus\{e\}\text{ since }P_{1}\cdots P_{k-1}\cap P_{k}=\{e\}.
+  \end{align*}
+  $\text{So }|a|,|b|\in \{p_{k}^{i}\mid 1\leq i\leq a_{k}\} \text{ and without loss of generality },|a|=p_{k}^\alpha,\,|b|=p_{k}^{\beta}\text{ for some }0 \leq \alpha\leq \beta\leq a_{k}.$ So then since $G$ is Abelian, $|b^{-1}a|$ divides $\mathrm{lcm}(|a|,|b|)=p_{k}^{\beta}$. So the $|b^{-1}a|$ divides $p_{k}^{\beta}$ and $p_{1}^{a_{1}}\cdots p_{k-1}^{a_{k-1}}$, and since $\mathrm{gcd}(p_{1}^{a_{1}}\cdots p_{k-1}^{a_{k-1}},p_{k}^{\beta})=1$, $|b^{-1}a|$ must in fact be $1$. So $b^{-1}a=e\implies a=b$. On the other hand, $a=b\implies [a]=[b]$ by definition. Therefore, for any $a,b\in P_{1}\cdots P_{k}\setminus P_{1}\cdots P_{k-1}$:
+    $$[a]=[b]\in P_{1}\cdots P_{k}/ P_{1}\cdots P_{k-1}\iff a=b.$$
+  Well, any $g\in P_{1}\cdots P_{k}$ is either in $P_{1}\cdots P_{k}\setminus P_{1}\cdots P_{k-1}$ or it isn't, so pick some $q\in P_{1}\cdots P_{k}\setminus P_{1}\cdots P_{k-1}$.
+  $$[g]=\begin{cases}[q],\,\text{ if }g\in P_{1}\cdots P_{k}\setminus P_{1}\cdots P_{k-1}\\ [e],\text{ if }g\in P_{1}\cdots P_{k-1}\\ \end{cases}$$
+  Therefore, $P_{1}\cdots P_{k}/ P_{1}\cdots P_{k-1}=\{[e],[q]\}\cong \ZZ_{2}$ is simple for each $1< k\leq m$, and by the same sort of argument $P_{1}/\{e\}$ is simple since $[a]=[b]\iff b^{-1}a\in \{e\}\iff a=b\implies P_{1}/\{e\}=\{[e],[g]\}$ for any $g\in P_{1}\setminus\{e\}$. So $\{e\} \triangleleft P_{1}\triangleleft P_{1}P_{2} \triangleleft \cdots \triangleleft P_{1}P_{2} \cdots P_{m-1}\triangleleft P_{1}P_{2}\cdots P_{m}=G$ is a composition series. We prove the other direction on the following page.
+
+  \newpage $(\implies)\;$ If an abelian group $G$ has a composition series 
+    $$\{e\}=H_{0}\triangleleft H_{1} \triangleleft \cdots \triangleleft H_{n-1}\triangleleft H_{n}=G$$
+  for some $n\in \ZZ^{+}$, then for each $1\leq k\leq n$, $H_{k}/H_{k-1}$ is simple and abelian. So then for any $g\in H_{k}$, $\langle [g]\rangle=\{e\}$ or $H_{k}/H_{k-1}.$ If $\langle g\rangle=\{e\},\;\forall g\in H_{k}/H_{k-1}$, then $H_{k}/H_{k-1}=\{[e]\}$, otherwise $\exists g_{*}\in H_{k}$ such that $\langle [g_{*}]\rangle = H_{k}/H_{k-1}$. In either case $H_{k}/H_{k-1}$ is cyclic. Suppose $H_{k}/H_{k-1}$ infinite, so $H_{k}/H_{k-1}\cong \ZZ$. But then $H_{k}/H_{k-1}$ isn't simple since $\ZZ$ isn't simple ($\{e\}\triangleleft 2\ZZ\triangleleft \ZZ$), a contradiction. So $H_{k}/H_{k-1}$ must be a simple finite cyclic group, which implies it has prime order since $H_{k}\triangleright H_{k-1}\implies |H_{k}/H_{k-1}|>1$. Observe.
+  \begin{center}
+    $[H_{1}:H_{0}]\in \ZZ^{+}\implies |H_{1}|=|H_{0}|[H_{1}:H_{0}]=(1)[H_{1}:H_{0}]\in \ZZ^{+}$. Suppose $|H_{k}|\in \ZZ^{+}$ for some $1\leq k\leq n$. Therefore, $|H_{k+1}|=|H_{k}|[H_{k+1}:H_{k}]\in \ZZ^{+}$. So then $|H_{m}|\in \ZZ^{+}$ for all $0\leq m\leq n$.
+  \end{center}
+  So $|H_{n}|=|G|\in \ZZ^{+}$.
+
+  Thus,
+
+  \begin{center}
+  An abelian group has a composition series if and only if it is finite.
+  \end{center}
 \end{proof}
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 41 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{prob}
 Prove that a solvable simple group is abelian.
 \end{prob}
+
+\begin{proof}
+Since $G$ is simple, $Z(G)\trianglelefteq G$ is either $\{e\}$ Suppose $Z(G)=\{e\}$, and consider the commutator subgroup $G'=\langle a^{-1}b^{-1}ab\mid a,b\in G\rangle\trianglelefteq G$. $G'\neq \{e\}$, otherwise $a^{-1}b^{-1}ab=e,\forall a,b\in G\implies G$ is abelian $\implies Z(G)=G$, a contradiction. So $G'=G$ and $G^{(2)}=(G')'=(G)'=G'=G$. Now suppose $G^{(k)}=G$ for some $k\geq 2$. Then $G^{k+1}=(G^{(k)})'=(G)'=G'=G$. But then $G^{n}=G\neq \{e\}$ for all $n\in \ZZ^{+}$, and $G$ isn't solvable. So $Z(G)=\{e\}$.
+
+Thus,
+
+\begin{center}
+  A solvable simple group is abelian.
+\end{center}
+\end{proof}
+We now prove a lemma for \textbf{Problem 42}.
+\begin{lem}
+  Any consecutive subquotient of a consecutive quotient of derived subgroups is Abelian.
+\end{lem}
+\begin{proof}
+Let $G^{(k-1)}\trianglerighteq  H_{1} \geq \cdots H_{p}\geq H_{p+1}\geq H_{m} \trianglerighteq G^{(k)}$ for some $k,m\in \ZZ^{+}$ and $0\leq p \leq m$. Well, $(H_{p})'=\{\}$  
+\end{proof}
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 42 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{prob}
 Prove that a solvable group that has a composition series is finite.
 \end{prob}
+
+\begin{proof}
+ If a solvable group $G$ with a composition series is abelian, then it is finite by \textbf{Problem 40}. Suppose such a group $G$ is not abelian.  There exists a minimal $n\in \ZZ^{+}$ such that $G^{(n)}=\{e\}$ since $G$ is solvable and we have $(i)$ the derived normal series and $(ii)$ some composition series of $G$:
+  $$(i)\;G=G^{(0)}\trianglerighteq G'=G^{(1)}\trianglerighteq\cdots \trianglerighteq G^{(n-1)}\trianglerighteq G^{(n)}=\{e\}\text{ and }(ii)\;G=H_{0}\triangleright H_{1}\triangleright\cdots \triangleright H_{m-1}\triangleright H_{m}=\{e\}$$
+By \textbf{Schreiers's Theorem} these normal series have an equivalent refinement, that is:
+  \begin{align*}
+    &(1)\;G_{i,j}=G^{(i+1)}(G^{(i)}\cap H_{j})\text{ for }\begin{array}{c} \scriptstyle 0\leq j\leq n-1\\[-12pt]\scriptstyle 0\leq j\leq m-1\end{array}\text{ and }(2) \;H_{i,j}=(G^{(i)}\cap H_{j})H_{j+1}\text{ for }\begin{array}{c} \scriptstyle 0\leq j\leq n\\[-12pt]\scriptstyle 0\leq j\leq m-1\end{array}\\
+    \implies &(3) \begin{array}{c} \scriptstyle G= G^{0} = G_{0,0}\trianglerighteq G_{0,1}\trianglerighteq \cdots \trianglerighteq G_{0,m}=G'=G_{1,0}\trianglerighteq G_{1,1}\trianglerighteq \cdots \trianglerighteq G_{1,m}=G^{(2)}=G_{2,0}\trianglerighteq \cdots \trianglerighteq G_{n-1,m}=G^{(n)}=G_{n,0}=\{e\}.\\[-10pt] \scriptstyle G= H_{0} = H_{0,0}\trianglerighteq H_{1,0}\trianglerighteq \cdots \trianglerighteq H_{n,0}=H_{1}=H_{0,1}\trianglerighteq H_{1,1}\trianglerighteq \cdots \trianglerighteq H_{n,1}=H_{2}= H_{2,0}\trianglerighteq \cdots \trianglerighteq H_{n,m-1}=H_{n}=H_{0,m}=\{e\}\end{array}\\
+    \text{ and }&(4)\; G_{i,j}/G_{i,j+1}\cong H_{i,j}/H_{i+1,j}
+  \end{align*}
+  These series are normal by the \textbf{Butterfly Lemma} as stated in the class notes. Now, consider any $0\leq k \leq n$. We have $H_{k-1}=H_{0,k-1}\trianglerighteq \cdots \trianglerighteq H_{n,k-1}=H_{k}$ and $H_{k}$ is a maximal proper normal subgroup of $H_{k-1}$, that is: $H_{k}\leq N\trianglelefteq H_{k-1}\implies N=H_{k-1}$ or $N=H_{k}$. So then since we have a containment chain, there exists some $0\leq p\leq n$ such that $H_{k-1}=H_{0,k-1}=\cdots = H_{p,k-1}\triangleright H_{p+1,k-1}=\cdots=H_{n,k-1}=H_{k}.$ Therefore, by $(4)$:
+  $$H_{k-1}/H_{k}=H_{p,k-1}/H_{p+1,k-1}\cong G_{p,k-1}/G_{p,k}$$ which is abelian by \textbf{lemma 1} since it is a subquotient of $G^{(p-1)}/G^{(p)}$. So then $H_{k-1}/H_{k}$ is abelian and simple, and we proved earlier in \textbf{Problem 40} that an abelian simple group must be cyclic and finite of prime order and that if quotients of a composition series of $G$ are finite, that $G$ itself is finite.
+
+  Thus,
+  \begin{center}
+    A solvable group that has a composition series is finite.
+  \end{center}
+\end{proof}
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 45 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setcounter{thm}{44}   % next prob is 45

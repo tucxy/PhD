@@ -19,8 +19,9 @@
 \usepackage{xcolor}
 \definecolor{darkpastelgreen}{rgb}{0.01, 0.75, 0.24}
 \definecolor{blue-violet}{rgb}{0.54, 0.17, 0.89}
-
+%\usepackage{polylongdiv} %polynomial long division
 % Custom problem environment
+\usepackage{polynom}
 \newcounter{cprob}
 \newenvironment{cprob}[1]{%
     \setcounter{cprob}{#1}%
@@ -92,6 +93,7 @@
 \newcommand{\tbf}[1]{\textbf{ #1 }}
 \newcommand{\Span}{\ensuremath{\mathrm{Span}}}
 
+
 \makeatletter
 \renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
   \hskip -\arraycolsep
@@ -136,7 +138,7 @@ Prove that an abelian group has a composition series if and only if it is finite
 \end{prob}
 
 \begin{proof}
-  $(\impliedby)\;$ If $G$ is finite, it must have order $n=\prod_{i=1}^{m}p_{i}^{a_{i}}$ for some distinct primes $p_{1},\hdots, p_{m}$ and $a_{0},\hdots, a_{m}\in \ZZ^{+}.$ Every subgroup of $G$ are normal since it's abelian, so each each Sylow $p_{i}-$subgroup $P_{i}<G$ of order $p_{i}^{a_{i}}$ is normal. So by $\textbf{Problem 36}$, $G$ is the internal direct product $G=P_{1}\cdots P_{m}\cong P_{1}\times \cdots \times P_{m}$ of it's Sylow subgroups. Now consider any $a,b\in P_{1}\cdots P_{k}\setminus P_{1}\cdots P_{k-1}$ for some $1< k\leq m$. 
+  $(\impliedby)\;$ If $G$ is finite, it must have order $n=\prod_{i=1}^{m}p_{i}^{a_{i}}$ for some distinct primes $p_{1},\hdots, p_{m}$ and $a_{0},\hdots, a_{m}\in \ZZ^{+}.$ Every subgroup of $G$ is normal since it's abelian, so each each Sylow $p_{i}-$subgroup $P_{i}<G$ of order $p_{i}^{a_{i}}$ is normal. So by $\textbf{Problem 36}$, $G$ is the internal direct product $G=P_{1}\cdots P_{m}\cong P_{1}\times \cdots \times P_{m}$ of its Sylow subgroups. Now consider any $a,b\in P_{1}\cdots P_{k}\setminus P_{1}\cdots P_{k-1}$ for some $1< k\leq m$. 
   \begin{align*}
     &[a]=[b]\in P_{1}\cdots P_{k}/ P_{1}\cdots P_{k-1} \implies b^{-1}a\in P_{1}\cdots P_{k-1}\implies |b^{-1}a|\text{ divides }p_{1}^{a_{1}}\cdots p_{k-1}^{a_{k-1}}.\\
     &a,b\in P_{1}\cdots P_{k}\setminus P_{1}\cdots P_{k-1}=P_{k}\setminus\{e\}\text{ since }P_{1}\cdots P_{k-1}\cap P_{k}=\{e\}.
@@ -168,7 +170,7 @@ Prove that a solvable simple group is abelian.
 \end{prob}
 
 \begin{proof}
-Since $G$ is simple, $Z(G)\trianglelefteq G$ is either $\{e\}$ Suppose $Z(G)=\{e\}$, and consider the commutator subgroup $G'=\langle a^{-1}b^{-1}ab\mid a,b\in G\rangle\trianglelefteq G$. $G'\neq \{e\}$, otherwise $a^{-1}b^{-1}ab=e,\forall a,b\in G\implies G$ is abelian $\implies Z(G)=G$, a contradiction. So $G'=G$ and $G^{(2)}=(G')'=(G)'=G'=G$. Now suppose $G^{(k)}=G$ for some $k\geq 2$. Then $G^{k+1}=(G^{(k)})'=(G)'=G'=G$. But then $G^{n}=G\neq \{e\}$ for all $n\in \ZZ^{+}$, and $G$ isn't solvable. So $Z(G)=\{e\}$.
+Since $G$ is simple, $Z(G)\trianglelefteq G$ is either $\{e\}$ Suppose $Z(G)=\{e\}$, and consider the commutator subgroup $G'=\langle a^{-1}b^{-1}ab\mid a,b\in G\rangle\trianglelefteq G$. $G'\neq \{e\}$, otherwise $a^{-1}b^{-1}ab=e,\forall a,b\in G\implies G$ is abelian $\implies Z(G)=G$, a contradiction. So $G'=G$ and $G^{(2)}=(G')'=(G)'=G'=G$. Now suppose $G^{(k)}=G$ for some $k\geq 2$. Then $G^{k+1}=(G^{(k)})'=(G)'=G'=G$. But then $G^{n}=G\neq \{e\}$ for all $n\in \ZZ^{+}$, and $G$ isn't solvable. So $Z(G)=G$.
 
 Thus,
 
@@ -177,14 +179,20 @@ Thus,
 \end{center}
 \end{proof}
 We now prove a lemma for \textbf{Problem 42}.
+\setcounter{thm}{0}   % next prob is 40
 \begin{lem}
-  Any consecutive subquotient of a consecutive quotient of derived subgroups is Abelian.
+  Any subquotient (of subgroups normal to each other) of a consecutive quotient of derived subgroups is Abelian.
 \end{lem}
 \begin{proof}
-Let $G^{(k-1)}\trianglerighteq  H_{1} \geq \cdots H_{p}\geq H_{p+1}\geq H_{m} \trianglerighteq G^{(k)}$ for some $k,m\in \ZZ^{+}$ and $0\leq p \leq m$. Well, $(H_{p})'=\{\}$  
+Let $G^{(k-1)}\trianglerighteq  H_{1} \trianglerighteq H_{2}\trianglerighteq  \cdots \trianglerighteq H_{p}\trianglerighteq \cdots \trianglerighteq  H_{q}\trianglerighteq \cdots H_{m-1}\trianglerighteq H_{m} \trianglerighteq G^{(k)}$ for some $k,m\in \ZZ^{+}$ and some $0\leq p<q \leq m$. Well, 
+$$(H_{p})'=\{g\in G^{(k)}\mid g=a^{-1}b^{-1}ab\text{ for }a,b\in H_{p}\trianglelefteq G^{(k-1)}\}\trianglelefteq G^{(k)}\implies H_{p}\trianglerighteq H_{q}\trianglerighteq G^{(k)}\trianglerighteq (H_{p})'.$$
+So then $\forall a,b\in H_{p},\;(ba)^{-1}ab=a^{-1}b^{-1}ab\in (H_{p})'\leq H_{q}\implies (ab)H_{q}=(ba)H_{q}.$ Therefore, $[a][b]=[ab]=[ba]=[b][a]\in H_{p}/H_{q}$. So $H_{p}/H_{q}$ is abelian.
 \end{proof}
+
+I know now that I could have used some more theorems from class to make these proofs shorter. I was in too deep here and I derived important ideas myself by doing it this way so I'm cool with it. Apologies for the lengths though.
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 42 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{thm}{41}   % next prob is 42
 \begin{prob}
 Prove that a solvable group that has a composition series is finite.
 \end{prob}
@@ -196,10 +204,10 @@ By \textbf{Schreiers's Theorem} these normal series have an equivalent refinemen
   \begin{align*}
     &(1)\;G_{i,j}=G^{(i+1)}(G^{(i)}\cap H_{j})\text{ for }\begin{array}{c} \scriptstyle 0\leq j\leq n-1\\[-12pt]\scriptstyle 0\leq j\leq m-1\end{array}\text{ and }(2) \;H_{i,j}=(G^{(i)}\cap H_{j})H_{j+1}\text{ for }\begin{array}{c} \scriptstyle 0\leq j\leq n\\[-12pt]\scriptstyle 0\leq j\leq m-1\end{array}\\
     \implies &(3) \begin{array}{c} \scriptstyle G= G^{0} = G_{0,0}\trianglerighteq G_{0,1}\trianglerighteq \cdots \trianglerighteq G_{0,m}=G'=G_{1,0}\trianglerighteq G_{1,1}\trianglerighteq \cdots \trianglerighteq G_{1,m}=G^{(2)}=G_{2,0}\trianglerighteq \cdots \trianglerighteq G_{n-1,m}=G^{(n)}=G_{n,0}=\{e\}.\\[-10pt] \scriptstyle G= H_{0} = H_{0,0}\trianglerighteq H_{1,0}\trianglerighteq \cdots \trianglerighteq H_{n,0}=H_{1}=H_{0,1}\trianglerighteq H_{1,1}\trianglerighteq \cdots \trianglerighteq H_{n,1}=H_{2}= H_{2,0}\trianglerighteq \cdots \trianglerighteq H_{n,m-1}=H_{n}=H_{0,m}=\{e\}\end{array}\\
-    \text{ and }&(4)\; G_{i,j}/G_{i,j+1}\cong H_{i,j}/H_{i+1,j}
+    \text{ and }&(4)\; G_{i,j}/G_{i,j+1}\cong H_{i,j}/H_{i+1,j}.
   \end{align*}
-  These series are normal by the \textbf{Butterfly Lemma} as stated in the class notes. Now, consider any $0\leq k \leq n$. We have $H_{k-1}=H_{0,k-1}\trianglerighteq \cdots \trianglerighteq H_{n,k-1}=H_{k}$ and $H_{k}$ is a maximal proper normal subgroup of $H_{k-1}$, that is: $H_{k}\leq N\trianglelefteq H_{k-1}\implies N=H_{k-1}$ or $N=H_{k}$. So then since we have a containment chain, there exists some $0\leq p\leq n$ such that $H_{k-1}=H_{0,k-1}=\cdots = H_{p,k-1}\triangleright H_{p+1,k-1}=\cdots=H_{n,k-1}=H_{k}.$ Therefore, by $(4)$:
-  $$H_{k-1}/H_{k}=H_{p,k-1}/H_{p+1,k-1}\cong G_{p,k-1}/G_{p,k}$$ which is abelian by \textbf{lemma 1} since it is a subquotient of $G^{(p-1)}/G^{(p)}$. So then $H_{k-1}/H_{k}$ is abelian and simple, and we proved earlier in \textbf{Problem 40} that an abelian simple group must be cyclic and finite of prime order and that if quotients of a composition series of $G$ are finite, that $G$ itself is finite.
+  These series are normal by the \textbf{Butterfly Lemma} as stated in the class notes. Now, consider any $0\leq k \leq n$. We have $H_{k-1}=H_{0,k-1}\trianglerighteq \cdots \trianglerighteq H_{n,k-1}=H_{k}$ and $H_{k}$ is a maximal proper normal subgroup of $H_{k-1}$, that is: $H_{k}\trianglelefteq N\trianglelefteq H_{k-1}\implies N=H_{k-1}$ or $N=H_{k}$. So then since we have a containment chain, there exists some $0\leq p\leq n$ such that $H_{k-1}=H_{0,k-1}=\cdots = H_{p,k-1}\triangleright H_{p+1,k-1}=\cdots=H_{n,k-1}=H_{k}.$ Therefore, by $(4)$:
+  $$H_{k-1}/H_{k}=H_{p,k-1}/H_{p+1,k-1}\cong G_{p,k-1}/G_{p,k}$$ which is abelian by \textbf{Lemma 1} since it is a subquotient of $G^{(p-1)}/G^{(p)}$. So then $H_{k-1}/H_{k}$ is abelian and simple, and we proved earlier in \textbf{Problem 40} that an abelian simple group must be cyclic and finite of prime order and that if quotients of a composition series of $G$ are finite, that $G$ itself is finite.
 
   Thus,
   \begin{center}
@@ -210,23 +218,79 @@ By \textbf{Schreiers's Theorem} these normal series have an equivalent refinemen
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 45 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setcounter{thm}{44}   % next prob is 45
 \begin{prob}
-If $\KK\subseteq \FF$ is a field extension, $u,v\in \FF$, $v$ is algebraic over $\KK(u)$, and $v$ is transcendental over $\KK$, then $u$ is algebraic over $\KK(v)$.
+If $\KK\supseteq \FF$ is a field extension, $u,v\in \FF$, $v$ is algebraic over $\KK(u)$, and $v$ is transcendental over $\KK$, then $u$ is algebraic 
+over $\KK(v)$.
 \end{prob}
+\begin{proof}
+$v$ is algebraic over $\KK(u)\implies$ there exists a non-zero degree $n\in \ZZ^{+}$ polynomial $P(x)=\sum_{i=0}^{n}p_{i}(u)x^{i}$ over $\KK(u)$ such that $P(v)=0$. Let $m=\max\{\deg(p_{i}(x))\mid 0\leq i \leq n\}$. Then for each $0\leq i \leq n$, we have that $p_{i}(x)= \sum_{j=0}^{m}a_{ij}x^{j}$ for some $a_{i0},\hdots,a_{im}\in \KK$. Note that if $\deg{p_{i}(x)}<m,\,a_{i(\deg{p_{i}(x)})}=\cdots =a_{im}=0$. Observe.
+\begin{align*}
+  P(v)&=\sum_{i=0}^{n}p_{i}(u)v^{i}=\sum_{i=0}^{n}(\sum_{j=0}^{m}a_{ij}u^{j})v^{i}=\sum_{i=0}^{n}(\sum_{j=0}^{m}a_{ij}v^{i}u^{j})=\sum_{i=0}^{n}(a_{i0}v^{j}+a_{i1}v^{j}u+\cdots +a_{im}v^{j}u^{m})\\
+  &=\sum_{i=0}^{n}a_{i0}v^{j}+\sum_{i=0}^{n}a_{i1}v^{j}u+\cdots +\sum_{i=0}^{n}a_{im}v^{j}u^{m}=\sum_{j=0}^{m}(\sum_{i=0}^{n}a_{ij}v^{i}u^{j})=\sum_{j=0}^{m}q_{j}(v)u^{j}=Q(u)=0,\\
+  \text{where }q_{j}(x)&=\sum_{i=0}^{n}a_{ij}x^{j}\text{ and }Q(x)=\sum_{j=0}^{m}q_{j}(v)x^{j}\in \KK(v)[x].
+\end{align*}
+Now, by definition not all $a_{ij}$'s are zero, so not all $q_{j}(x)$'s are zero. That is, there exists some $0\leq k\leq m$ such that $q_{k}(x)\neq 0\in \KK[x]$. Well, since $v$ is transcendental over $\KK$, $q_{k}(x)\neq 0\implies q_{k}(v)\neq 0$; $v$ cannot be a zero of $q_{k}(x)$ since it's non-zero over $\KK$. Therefore, $Q(x)=\sum_{j=0}^{m}q_{j}(v)x^{j}\neq 0\in \KK(v)[x]$ and since $Q(u)=0$, $u$ must be algebraic over $\KK(v)$.
+
+Thus,
+\begin{center}
+if $\KK\supseteq \FF$ is a field extension, $u,v\in \FF$, $v$ is algebraic over $\KK(u)$, and $v$ is transcendental over $\KK,\newline$ then $u$ is algebraic 
+over $\KK(v)$.
+\end{center}
+\end{proof}
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 46 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{prob}
-If $\KK\subseteq \FF$ is a field extension and $u\in \FF$ is algebraic of odd degree over $\KK$, then so is $u^{2}$ and $\KK(u)=\KK(u^{2})$. 
+If $\KK\supseteq \FF$ is a field extension and $u\in \FF$ is algebraic of odd degree over $\KK$, then so is $u^{2}$ and $\KK(u)=\KK(u^{2})$. 
 \end{prob}
+\begin{proof}
+Since $u$ is algebraic of odd degree $n=2k+1$ over $\KK$ for some $k\in \ZZ^{+}$, 
+  $$\KK[x]/\langle P(x)\rangle\cong \Span\{1,x,\hdots,x^{n-1}\}\cong\Span\{1,u,\hdots, u^{n-1}\}=\KK(u)$$
+for some monic irreducible degree $n$ polynomial $P(x)$ over $\KK$ such that $p(u)=0$. (This isomorphism is the canonical one $[f(x)]\longleftrightarrow f(u)$ where $[f(x)]=[g(x)]\longleftrightarrow f(u)=g(u)$. Therefore, $[0]=[P(x)]\longleftrightarrow 0\implies P(u)=0\in \KK(u)$. This is also just given since the extension is defined by that relation but whatever.) Obviously, $u^{2}\in \KK(u)$, so any $q(u^{2})$ belongs to $\KK(u)$ and therefore any $\frac{f(u^{2})}{g(u^{2})}\in \KK(u^{2})$ also belongs to $\KK(u)$. So $\KK(u^{2})\subseteq \KK(u)$. Additionally, $u^{2}$ must be algebraic otherwise $\KK(u^{2})\cong K(x)\supset K[x]=\Span\{x^{m}\mid m\in \NN\}$ is infinite dimensional and so $\KK(u^{2})\subseteq \KK(u^{2})$ implies that $\KK(u)$ is infinite dimensional, a contradiction. Next, $P(x)=\sum_{i=0}^{n}a_{i}x^{i}=\sum_{i=0}^{2k+1}a_{i}x^{i}=\sum_{i=0}^{k}a_{2i+1}x^{2i+1} + \sum_{i=0}^{k}a_{2i}x^{2i}=x\sum_{i=0}^{k}a_{2i+1}x^{2i} + \sum_{i=0}^{k}a_{2i}x^{2i}$ for some $a_{0},\hdots, a_{2k+1}\in \KK$. So then $P(u)=u\sum_{i=0}^{k}a_{2i+1}u^{2i} + \sum_{i=0}^{k}a_{2i}u^{2i}=0$. Since $\sum_{i=0}^{k}a_{2i+1}u^{2i}$ has degree $2k<n$, $u$ can't be a zero of it since it is degree $n$ over $\KK$. Therefore,
+$$u=\frac{-\sum_{i=0}^{k}a_{2i}u^{2i}}{\sum_{i=0}^{k}a_{2i+1}u^{2i}}=\frac{-\sum_{i=0}^{k}a_{2i}(u^{2})^{i}}{\sum_{i=0}^{k}a_{2i+1}(u^{2})^{i}}\in \left\{\frac{f(u^{2})}{g(u^{2})}\mid f(x),g(x)\in \KK[x]\text{ and }g(u^{2})\neq 0\right\}=\KK(u^{2}).$$
+So then any $f(u)\in \KK(u)$ must also belong to $\KK(u^{2})$ and $\KK(u)\supseteq \KK(u^{2})$.
+
+Thus,
+\begin{center}
+if $\KK\subseteq \FF$ is a field extension and $u\in \FF$ is algebraic of odd degree over $\KK$, then so is $u^{2}$ and $\KK(u)=\KK(u^{2})$.
+\end{center}
+
+
+\end{proof}
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 47 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{prob}
-Let $\KK \subseteq \FF$ be a field extension. If $X^n - a \in \KK[X]$ is irreducible and $u \in \FF$ is a root of $X^n - a$ and $m$ divides $n$, then the degree of $u^m$ over $\KK$ is $n/m$. What is the irreducible polynomial of $u^m$ over $\KK$?.
+Let $\KK \supseteq \FF$ be a field extension. If $X^n - a \in \KK[X]$ is irreducible and $u \in \FF$ is a root of $X^n - a$ and $m$ divides $n$, then the degree of $u^m$ over $\KK$ is $n/m$. What is the irreducible polynomial of $u^m$ over $\KK$?.
 \end{prob}
+\begin{proof}
+Since $u^{n}-a=0$ and $m\mid n,\, n=mk$ for some $k\in \ZZ^{+}$ and so $u^{mk}-a=0\implies (u^{m})^{k}-a=0$, so $u^{m}$ is a zero of $x^{k}-a\in \KK[x]$. Now, suppose $x^{k}-a$ is reducible over $\KK$. Then $x^{k}-a=f(x)g(x)$
+for some non-constant polynomials $f(x),g(x)\in \KK[x]$ such that $\deg(f(x))=\alpha,\,\deg(g(x))=\beta$ and $\alpha+\beta=k$. So we get that $x^{n}-a=(x^{m})^{k}-a=f(x^{m})g(x^{m})$. 
+
+(The composition $(a\circ b)(x)=a(b(x))$ over a field $\FF$ can only $(1)$ multiply $b(x)$ by itself some finite number of times and/or $(2)$ scale $b(x)$ via $\FF$ and/or $(3)$ add scalars in $\FF$ to $b(x)$ all of which preserve structure.)
+
+So $f(x^{m})$ and $g(x^{m})$ are polynomials of degree $m\alpha>1,\text{and }m\beta>1,$ respectively. But then $x^{n}-a$ is reducible over $\KK$, a contradiction. So $x^{k}-a$ must be irreducible over $\KK$ and $u^{m}$ is a zero of it.
+
+Thus,
+\begin{center}
+if $\KK \supseteq \FF$ is a field extension, $X^n - a \in \KK[X]$ is irreducible, $u \in \FF$ is a root of $X^n - a$, and $m$ divides $n$, then the degree of $u^m$ over $\KK$ is $n/m$ and $x^{k}-a$ is the irreducible polynomial of $u^{m}$ over $\KK$.
+\end{center}
+\end{proof}
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 48 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{prob}
-Let $\KK \subseteq R \subseteq \FF$ be an extension of rings with $\KK,\FF$ fields. If $\KK \subseteq \FF$ is algebraic, prove that $R$ is a field.
+Let $\KK \supseteq R \supseteq \FF$ be an extension of rings with $\KK,\FF$ fields. If $\KK \supseteq \FF$ is algebraic, prove that $R$ is a field.
 \end{prob}
+\begin{proof}
+Since $\KK$ is algebraic over $\FF$, $\forall \alpha\in \KK$ there exists a minimal non-zero polynomial $f(\alpha)$ over $\FF$ such that $f(\alpha)=0$. Therefore, since $R\subseteq \KK$, it must also be algebraic over $\FF$. If $\KK=R=\FF=\{0\}$, they're... arguably fields but then $\KK$ can't be algebraic over $\FF$ since there are no non-zero polynomials over $\FF$. So $R\neq \{0\}$ and it contains some non-zero element $r\in R\subseteq \KK$. It has a multiplicative inverse $r^{-1}$ in  $\KK$ and there exists some minimal degree $n\in \ZZ^{+}$ polynomial $P(x)=\sum_{i=0}^{n}a_{i}x^{i}\in \FF[x]$ such that $P(r)=0$. Note that since it's irreducible and $r\neq 0$, the constant term is non-zero, otherwise it's reducible: $\sum_{i=0}^{n}a_{i}x^{i}=\sum_{i=1}^{n}a_{i}x^{i}=x(\sum_{i=0}^{n}a_{i}x^{i-1})$. Observe.
+\begin{align*}
+  P(r)&=\sum_{i=0}^{n}a_{i}r^{i}=0\implies r^{-1}(\sum_{i=0}^{n}a_{i}r^{i})=0\implies r^{-1}a_{0}+\sum_{i=0}^{n}a_{i}r^{i-1}=0\\
+  \implies r^{-1}a_{0}&=-\sum_{i=0}^{n}a_{i}r^{i-1}\implies r^{-1}=-\frac{1}{a_{0}}\sum_{i=0}^{n}a_{i}r^{i-1}\in R.
+\end{align*}
+This holds because $\FF\subseteq R$. So then every $r\in R$ has a multiplicative inverse $r^{-1}$ in $R$. So then since $R$ has multiplicative inverses, it has unity by closure, and it is commutative with no zero divisors via $R\subseteq \KK$, $R$ is a field.
+
+Thus,
+\begin{center}
+if $\KK \supseteq R \supseteq \FF$ is an extension of rings where $\KK\text{ and }\FF$ are fields, and $\KK \supseteq \FF$ is algebraic, then $R$ is a field.
+\end{center}
+\end{proof}
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 49 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{prob}
@@ -239,6 +303,41 @@ u^4,\quad u^5,\quad 3u^5 - u^4 + 2,\quad (u+1)^{-1},\quad (u^2 - 6u + 8)^{-1}.
 \]
 \end{enumerate}
 \end{prob}
+\begin{proof}
+\textbf{(a)} $3$ is prime and divides all integer coefficients of $f(x)=x^3 - 6x^2 + 9x + 3\in \QQ[x]$ except the leading one, and $3^{2}\nmid 3$, the constant term of $f(x)$, so by \textbf{Eisenstein's Criterion} $f(x)$ is irreducible over $\QQ.\newline$
+
+\textbf{(b)} Since $f(x)=x^3 - 6x^2 + 9x + 3$ is monic and irreducible over $\QQ$ and $u$ is a zero of it we have 
+$$\QQ[x]/\langle x^3 - 6x^2 + 9x + 3\rangle \cong \QQ(u)=\Span\{1,u,u^{2}\}\text{ and }u^3 - 6u^2 + 9u + 3=0.$$
+So then $u^{3}=6u^{2}-9u-3$. Observe.
+\begin{align*}
+  &u^{4}=u(u^{3})=u(6u^{2}-9u-3)=6u^{3}-9u^{2}-3u=6(6u^{2}-9u-3)-9u^{2}-3u=27u^{2}-57u-18.\\
+  &u^{5}=u(u^{4})=u(27u^{2}-57u-18)=27u^{3}-57u^{2}-18u=27(6u^{2}-9u-3)-57u^{2}-18u.\\
+  &\ \ \ \ \ \! \! \! =105u^{2}-261u-81.\\
+  &3u^5 - u^4 + 2=3(105u^{2}-261u-81)-(27u^{2}-57u-18)+2=288u^{2}-726u-223.\\
+\end{align*}
+Next, we use long division to factor $f(u)$ into a multiple of $(u+1)$ and $(u^2 - 6u + 8)$ so we can solve for the  using the remainder. We could have solved a system but this is easier. \newpage
+\polylongdiv[style=D]{x^3-6x^2+9x+3}{x+1}\newline
+\;\;So $\frac{f(u)}{u+1}=u^{2}-7u+16-\frac{13}{u+1}\implies f(u)=0=(u^{2}-7u+16)(u+1)-13\implies \frac{1}{13}(u^{2}-7u+16)(u+1)=1.$ So $(u+1)^{-1}=\frac{1}{13}(u^{2}-7u+16).\newline\text{Next we solve for }(u^2-6u+8)^{-1}.\newline$ Division didn't work so we just solve a system directly. 
+$(u^2-6u+8)^{-1}=au^{2}+bu+c$ for some $a,b,c\in \QQ$. So $(u^2-6u+8)(u^2-6u+8)^{-1}=(u^2-6u+8)(au^{2}+bu+c)=a u^4 + (b - 6a)u^3 + (c - 6b + 8a)u^2 + (-6c + 8b)u + 8c=(c - a)u^2 + (-3a - b - 6c)u + (-3b + 8c)=0u^{2}+0u+1.$
+\[
+\begin{pmatrix}
+-1 & 0 & 1 & 0\\
+-3 & -1 & -6 & 0\\
+0 & -3 & 8 & 1
+\end{pmatrix}
+\;\longrightarrow\;
+\begin{pmatrix}
+1 & 0 & 0 & \tfrac{1}{35}\\
+0 & 1 & 0 & -\tfrac{9}{35}\\
+0 & 0 & 1 & \tfrac{1}{35}
+\end{pmatrix}.
+\]
+\[
+\implies a=\tfrac{1}{35},\quad b=-\tfrac{9}{35},\quad c=\tfrac{1}{35}.
+\]
+So, $(u^2-6u+8)^{-1}=\tfrac{1}{35}(u^2-9u+1).$
+
+\end{proof}
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 50 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{prob}

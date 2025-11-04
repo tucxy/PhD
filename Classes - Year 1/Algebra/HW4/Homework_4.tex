@@ -1,0 +1,197 @@
+\documentclass[addpoints,10pt]{exam}
+
+\usepackage{amsmath,amsthm,enumitem,wrapfig,amsfonts,mathtools}
+\usepackage[mathscr]{euscript}
+\usepackage[super]{nth}
+
+\usepackage{geometry}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\renewcommand{\rmdefault}{ptm} %Change the Front Family from the default(cmr) to ptm(Times)
+\usepackage{amsmath,amsfonts,amsthm,amssymb} % Math packages
+\usepackage{bm}
+\usepackage{mathptmx}
+\usepackage{graphicx}
+\usepackage{sectsty} % Allows customizing section commands
+% \allsectionsfont{\centering} % Make all sections centered, the default font and small caps
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{xcolor}
+\definecolor{darkpastelgreen}{rgb}{0.01, 0.75, 0.24}
+\definecolor{blue-violet}{rgb}{0.54, 0.17, 0.89}
+%\usepackage{polylongdiv} %polynomial long division
+% Custom problem environment
+\usepackage{polynom}
+\newcounter{cprob}
+\newenvironment{cprob}[1]{%
+    \setcounter{cprob}{#1}%
+    \noindent\textbf{Problem \thecprob.}%
+}{%
+    \par\bigskip%
+}
+
+\theoremstyle{plain}
+\newtheorem{thm}{\protect\theoremname}
+  \theoremstyle{definition}
+  \newtheorem{prob}[thm]{Problem}
+  \newtheorem*{problem*}{Open Problem}
+  \theoremstyle{plain}
+  \newtheorem{conjecture}[thm]{Conjecture}
+  \theoremstyle{plain}
+  \newtheorem{lem}[thm]{Lemma}
+  \newtheorem*{lem*}{Lemma}
+  \newtheorem{obs}[thm]{Observation}
+  \newtheorem{cor}[thm]{Corollary}
+  \theoremstyle{definition}
+\newtheorem{definition}[thm]{Definition}
+
+
+% Patch prob environment to be single spaced
+\let\oldprob\prob
+\let\endoldprob\endprob
+\renewenvironment{prob}
+  {\begin{singlespace}\oldprob}
+  {\endoldprob\end{singlespace}}
+
+% start problem one line below like for enumerated problems with multiple parts
+\newcommand{\belowtitle}{\leavevmode\newline}
+%\Observe command
+\newcommand{\Observe}{\text{Observe.}}
+%(=>)
+\newcommand{\IF}{\mathbf{(\Rightarrow)}}
+%(<=)
+\newcommand{\FI}{\mathbf{(\Leftarrow)}}
+%equivalence classes; \class[S]{ *content in square brackets* }
+\newcommand{\class}[2][]{\ensuremath{\left[\,#2\,\right]_{#1}}}
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}
+\newcommand{\kk}{\ensuremath{\Bbbk}} 
+\newcommand{\CC}{\ensuremath{\mathbb{C}}}
+\newcommand{\FF}{\ensuremath{\mathbb{F}}}
+\newcommand{\KK}{\ensuremath{\mathbb{K}}}
+\newcommand{\NN}{\ensuremath{\mathbb{N}}}
+\newcommand{\QQ}{\ensuremath{\mathbb{Q}}} 
+\newcommand{\RR}{\ensuremath{\mathbb{R}}} 
+\newcommand{\ZZ}{\ensuremath{\mathbb{Z}}}
+\newcommand{\MM}{\ensuremath{\mathcal{M}}}
+\newcommand{\TT}{\ensuremath{\mathcal{T}}}
+\newcommand{\BB}{\ensuremath{\mathcal{B}}}
+\newcommand{\VV}{\ensuremath{\mathcal{V}}}
+\newcommand{\WW}{\ensuremath{\mathcal{W}}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}}
+\newcommand{\PP}{\ensuremath{\mathcal{P}}}
+\newcommand{\LL}{\ensuremath{\mathcal{L}}}
+
+\newcommand{\sm}{\char`\\}
+%vector stuff
+\DeclarePairedDelimiter{\ip}{\langle}{\rangle} %inner product/generate
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert} %norm
+\DeclarePairedDelimiter{\sqb}{\lbrack}{\rbrack} %corrd
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\mbf}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\tbf}[1]{\textbf{ #1 }}
+\newcommand{\Span}{\ensuremath{\mathrm{Span}}}
+
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\def\env@matrix{\hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols c}}
+
+  \newcommand{\proj}[2]{\text{proj}_{#1}(#2)}
+  
+
+%%% Formatting: Page Header
+\newcommand{\StudentName}{Danny Banegas}
+\newcommand{\AssignmentName}{Homework 3}
+\newcommand{\CourseName}{MATH 721 - Algebra II}
+
+
+\pagestyle{headandfoot}
+\runningheadrule
+\firstpageheadrule
+\firstpageheader{\CourseName}{\StudentName}{\AssignmentName}
+\runningheader{\CourseName}{\StudentName}{\AssignmentName}
+\firstpagefooter{}{\thepage}{}
+\runningfooter{}{\thepage}{}
+
+\printanswers
+
+\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+
+\usepackage{parskip}
+\usepackage{setspace}
+\doublespacing
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+\begin{document}
+Turn in problems 54, 55, 57, 58, 59, 60, 61, 62, 63, 64, 65.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 40 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 54–65 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{thm}{53} % next prob is 54
+
+\begin{prob}
+If $f\in \KK[X]$ (with $\KK$ field) has degree $n$ and $\FF$ is a splitting field of $f$ over $\KK$, prove that $[\FF:\KK]\mid n!$.
+\end{prob}
+
+\begin{proof}
+$f$ has at most $n$ distinct zeros. If $n=0$, then $f$ is constant and splits in $\KK=\FF$ so $[\FF:\KK]=1\mid n!$ (arguably). Suppose $n\geq 1$. Let $(a_{i})$ be the $k$-tuple consisting of all $1\leq k\leq n$ distinct zeros of $f$ in (strictly) ascending order; $a_{1}< \cdots < a_{k}$. Then $\FF\cong \KK(a_{1},\hdots,a_{k})$. Now consider $[\FF:\KK]$.
+
+
+\end{proof}
+
+\begin{prob}
+If $K\subseteq F$ is a field extension, $F$ is algebraically closed, and $E$ is the set of all elements of $F$ that are algebraic over $K$, prove that $E$ is an algebraic closure of $K$.
+\end{prob}
+
+\setcounter{thm}{56} % skip 56
+
+\begin{prob}
+If $[F:K]=2$, then $K\subseteq F$ is a normal extension.
+\end{prob}
+
+\begin{prob}
+If $d$ is a nonnegative rational number, then $\operatorname{Aut}_{\mathbb{Q}}\!\big(\mathbb{Q}(\sqrt{d})\big)$ is the identity or is isomorphic to $\mathbb{Z}_{2}$.
+\end{prob}
+
+\begin{prob}
+What is the Galois group of $\mathbb{Q}\!\left(\sqrt{2},\sqrt{3},\sqrt{5}\right)$ over $\mathbb{Q}$?
+\end{prob}
+
+\begin{prob}
+Assume $K$ is a field of characteristic $0$. Let $G$ be the subgroup of $\operatorname{Aut}_{K}\!\big(K(X)\big)$ generated by the $K$-automorphism induced by $X\mapsto X+1$. Prove that $G$ is an infinite cyclic group. What is the fixed field $E$ of $G$? What is $[K(X):E]$?
+\end{prob}
+
+\begin{prob}
+Let $k$ be a finite field of characteristic $p>0$.
+\begin{enumerate}[label=(\alph*)]
+\item Prove that for every $n>0$ there exists an irreducible polynomial $f\in k[X]$ of degree $n$.
+\item Prove that for every irreducible polynomial $P\in k[X]$ there exists $n\ge 0$ such that $P$ divides $X^{p^{\,n}}-X$.
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+Let $p$ be a prime and $\mathbb{F}_{q}$ (with $q=p^{s}$) be the finite field with $q$ elements. Let $f\in \mathbb{F}_{q}[X]$ be an irreducible polynomial. Prove that $f$ is irreducible in $\mathbb{F}_{q^{m}}[X]$ if and only if $m$ and $\deg f$ are relatively prime.
+\end{prob}
+
+\begin{prob}
+Prove that $E=\mathbb{F}_{2}[X]/(X^{4}+X^{3}+1)$ is a field with $16$ elements. What are the roots of $X^{4}+X^{3}+1$ in $E$?
+\end{prob}
+
+\begin{prob}
+Prove that an algebraic extension of a perfect field is a perfect field.
+\end{prob}
+
+\begin{prob}
+Show that the extension $\mathbb{Q}\subseteq \mathbb{Q}\!\left(\sqrt[4]{2},\, i\right)$ is Galois. Find its Galois group.
+\end{prob}
+
+
+\end{document}

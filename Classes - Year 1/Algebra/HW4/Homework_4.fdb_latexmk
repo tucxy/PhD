@@ -1,8 +1,8 @@
 # Fdb version 4
-["pdflatex"] 1762221544.11832 "c:/Users/baneg/Desktop/git/PhD/Classes - Year 1/Algebra/HW4/Homework_4.tex" "Homework_4.pdf" "Homework_4" 1762221545.34677 0
-  "Homework_4.aux" 1762221545 329 54a089244f13493d73e19024d03ef2ff "pdflatex"
-  "Homework_4.tex" 1762221543 7234 2e69705411e574b8c91e11be3b71c4df ""
-  "c:/Users/baneg/Desktop/git/PhD/Classes - Year 1/Algebra/HW4/Homework_4.tex" 1762221543 7234 2e69705411e574b8c91e11be3b71c4df ""
+["pdflatex"] 1762990577.85779 "c:/Users/baneg/Desktop/git/PhD/Classes - Year 1/Algebra/HW4/Homework_4.tex" "Homework_4.pdf" "Homework_4" 1762990579.03011 0
+  "Homework_4.aux" 1762990578 329 54a089244f13493d73e19024d03ef2ff "pdflatex"
+  "Homework_4.tex" 1762990577 9296 b04d5333a334cb594666ee3216f45d67 ""
+  "c:/Users/baneg/Desktop/git/PhD/Classes - Year 1/Algebra/HW4/Homework_4.tex" 1762990577 9296 b04d5333a334cb594666ee3216f45d67 ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc" 1742272516 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "c:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1742273017 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/adobe/symbol/psyr.tfm" 1742276261 1408 5937f58aa508ea2cea4901c07d10f5fe ""
@@ -34,12 +34,14 @@
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmmi10.tfm" 1742271917 1528 abec98dbc43e172678c11b3b9031252a ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmmib10.tfm" 1742271917 1524 554068197b70979a55370e6c6495f441 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmr10.tfm" 1742271917 1296 45809c5a464d5f32c8f98ba97c1bb47f ""
+  "c:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm" 1742271917 1124 6c73e740cf17375f03eec0ee63599741 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm" 1742275806 688 37338d6ab346c2f1466b29e195316aa4 ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb" 1742271038 30251 6afa5cb1d0204815a708a080681d4674 ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1742271038 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1742271038 35752 024fb6c41858982481f6968b5fc26508 ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1742271038 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb" 1742271038 34694 870c211f62cb72718a00e353f14f254d ""
+  "c:/texlive/2025/texmf-dist/fonts/type1/urw/symbol/usyr.pfb" 1742276261 33709 b09d2e140b7e807d3a97058263ab6693 ""
   "c:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmb8a.pfb" 1742276638 44729 fea0975e20ec51c992338362f05f1146 ""
   "c:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmr8a.pfb" 1742276638 46026 687528a208fbfc1f00832bb96cccebbb ""
   "c:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmri8a.pfb" 1742276638 45458 504e2b06fa82109d168c7a0afb09e145 ""

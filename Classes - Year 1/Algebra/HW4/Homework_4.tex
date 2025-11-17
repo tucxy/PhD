@@ -142,9 +142,16 @@ If $f\in \KK[X]$ (with $\KK$ field) has degree $n$ and $\FF$ is a splitting fiel
 \end{prob}
 
 \begin{proof}
-$f$ has at most $n$ distinct zeros. If $n=0$, then $f$ is constant and splits in $\KK=\FF$ so $[\FF:\KK]=1\mid n!$ (arguably). Suppose $n\geq 1$. Let $(a_{i})$ be the $k$-tuple consisting of all $1\leq k\leq n$ distinct zeros of $f$ in (strictly) ascending order; $a_{1}< \cdots < a_{k}$. Then $\FF\cong \KK(a_{1},\hdots,a_{k})$. Now consider $[\FF:\KK]$.
+If $f$ has a degree $1$ over $\KK$, then it has only one zero $a$ whose minimal polynomial must have degree $1=[\KK(a):\KK]=[\FF:\KK]\mid 1!.$ If $f$ has degree $2$ over $\KK$, then it has at most two distinct zeros. Suppose $f$ is redicuble. Then it splits into two linear factors over $\KK$ and so $\FF\cong \KK\implies [\FF:\KK]=1\mid 2!$. Otherwise $f$ is irreducible, and so the minimal polynomial for a zero $a_{1}$ of $f$ must be of the form $\frac{f(x)}{\ell}$ for some $\ell\in \KK$, and therefore both zeros $a_{1}$ and $a_{2}$ share the same minimal polynomial $x^{2}+bx+c=(x-a_{1})(x-a_{2})\in \KK[x]$. So then $x^{2}-(a_{1}+a_{2})x+a_{1}a_{2}=x^{2}+bx+c\implies a_{2}=-b-a_{1}\in \KK(a)$ and so $\FF\cong \KK(a)\implies [\FF:\KK]\in \{1,2\}$ both of which divide $2!.$ Suppose $[\FF:\KK]\mid d!$ if $\FF$ is the splitting field of any degree $d$ polynomial $f$ over $\KK$ for all $1\leq d<m$ for some $m\geq 2$. Consider the statement for a degree $m$ polynomial $f$ over $\KK.\newline$
 
+If $f$ is reducible, then $f(x)=P(x)Q(x)$ for some non-constant degree $p$ and $(m-p)$ polynomials $P$ and $Q$ over $\KK$. Let $\FF_{P}$ be the splitting field of $P$ over $\KK$ and $\FF_{Q}$ be the splitting field of $Q$ over $\FF_{P}$. Since $\deg_{\KK}(P(x))=p,\,deg_{\FF_{P}}(Q(x))=deg_{\KK}(Q(x))=m-p<m$, we have that $[\FF_{Q}:\FF_{P}]\mid (m-p)!$ an $[\FF_{P}:\KK]\mid p!$. Well, $\FF_{Q}=(\FF_{P})(\alpha\mid Q(\alpha)=0)\cong (\KK(a\mid P(a)=0))(b\mid Q(b)=0)=\KK(\alpha\mid P(\alpha)=0\text{ or }Q(\alpha)=0)\cong \FF$. $\text{So finally, }\FF_{Q}\supseteq \FF_{P}\supseteq \KK\implies [\FF:\KK]=[\FF_{Q}:\KK]=[\FF_{Q}:\FF_{P}][\FF_{P}:\KK] \mid p!(m-p)!\mid m!\;(\text{via }\binom{p}{m}=\frac{m!}{p!(m-p)!}).$ So $[\FF:\KK]\mid m!$.
 
+If $f$ is irreducible, then for any zero $a$ of $f$, $[\KK(a):\KK]=m$ and by the division algorithm we have $f(x)=(x-a)Q(x)$ over $\KK(a)$ where $Q$ has degree $m-1$. Since $Q$ has degree less than $m$, the splitting field $\FF_{Q}$ of $Q$ over $\KK(a)$ must be such that $[\FF_{Q}:\KK(a)]\mid (m-1)!$ and since $\FF_{Q}=(\KK(a))(\alpha \mid Q(\alpha)=0)=\KK(\alpha \mid x-\alpha =0 \text{ or }Q(\alpha)=0)\cong \FF$ we have that $[\FF:\KK]=[\FF_{Q}:\KK]=[\FF_{Q}:\FF_{P}][\FF_{P}:\KK]$ divides $m(m-1)!=m!$.
+
+Thus, by induction,
+\begin{center}
+If $\FF\supseteq \KK$ is the splitting field of a degree $n$ polynomial over $\KK$, then $[\FF:\KK]\mid n!$.
+\end{center}
 \end{proof}
 
 \begin{prob}

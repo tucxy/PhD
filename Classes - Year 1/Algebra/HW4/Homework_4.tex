@@ -98,6 +98,7 @@
 \newcommand{\tbf}[1]{\textbf{ #1 }}
 \newcommand{\Span}{\ensuremath{\mathrm{Span}}}
 \newcommand{\Char}[1]{\mathrm{Char}\; #1}
+\DeclareMathOperator{\lcm}{lcm}
 
 
 \makeatletter
@@ -261,12 +262,16 @@ Let $p$ be a prime and $\mathbb{F}_{q}$ (with $q=p^{s}$) be the finite field wit
 \end{prob}
 
 \begin{proof}
-Let $f(x)$ be an irreducible polynomial over $\FF_{p^{n}}$ with degree $\deg{f(x)}=d$ for some prime $p$ and some $n\in \ZZ^{+}$. Also, let $f_{p,N}(x)=x^{p^{N}}-x$ over $\FF_{p}$ for any $N\in \ZZ^{+}$ and recall that every element of $\FF_{p^{nN}}$, the splitting field of $f_{p,N}(x)$, is a zero of $f_{p,N}(x)$.
+Let $f(x)$ be an irreducible polynomial over $\FF_{p^{n}}$ with degree $\deg{f(x)}=d$ for some prime $p$ and some $n\geq 1$. Also, let $f_{p,N}(x)=x^{p^{N}}-x$ over $\FF_{p}$ for any $N\in \ZZ^{+}$ and recall that every element of $\FF_{p^{nN}}$, the splitting field of $f_{p,N}(x)$, is a zero of $f_{p,N}(x)$.
 
-Now, since $f(x)$ is irreducible over $\FF_{p^{n}}$, any zero $\alpha$ of $f(x)$ has the minimal polynomial $p_{\alpha}(x)=\frac{f(x)}{c}$ over $\FF_{p^{n}}$ where $c$ is the leading coefficient of $f(x)$ and so it has degree $d$ over $\FF_{p^{n}}$. That is, $\FF_{p^{n}}(\alpha)=\FF_{p^{nd}}$. So then $\alpha$ is a zero of $f_{p,nd}(x)$, and we have that $\alpha^{p^{nd}}=\alpha$.
+Now, since $f(x)$ is irreducible over $\FF_{p^{n}}$, any zero $\alpha$ of $f(x)$ has the minimal polynomial $p_{\alpha}(x)=\frac{f(x)}{c}$ over $\FF_{p^{n}}$ where $c$ is the leading coefficient of $f(x)$ and so it has degree $d$ over $\FF_{p^{n}}$. That is, $\FF_{p^{n}}(\alpha)=\FF_{p^{nd}}$. So then $\alpha$ is a zero of $f_{p,nd}(x)$, and we also have that $d$ is smallest integer such that $\alpha^{p^{nd}}=\alpha$. Furthermore, $\alpha^{nk}=\alpha\iff d\mid k$. 
 
-$(\implies)$ Suppose $f(x)$ is irreducible over $\FF^{p^{nm}}$, that is, every zero of $f(x)$ does not belong to $\FF_{p^{nm}}$. Then, since $\FF_{p^{nm}}$ is a splitting field for $f_{p,nm}(x)$, $\alpha$ must not be a zero of $f_{p,nm}(x)$. Suppose $\deg{f(x)}=d$ and $m$ are not relatively prime. Then they share some divisor $q\geq 2$ such that $d=qa$ and $m=qb$ for some $a,b\in \ZZ^{+}$. Observe.
-$$\alpha^{nd}=\alpha^{nqa}=\alpha\implies\alpha=\alpha^{nqab}=\alpha^{nma}$$
+$(\implies)$ If $f(x)$ is irreducible over $\FF_{p^{nm}}$, then $\alpha$ has degree $d$ over both $\FF_{p^{n}}$ and $\FF_{p^{nm}}$. So $\alpha=k_{1}=k_{2}$ is the smallest integer such that $\alpha^{p^{nk_{1}}}=\alpha^{p^{nmk_{2}}}=\alpha$. Additionally, the previous equalities hold for any multiples $k_{1},k_{2}\geq 1$ of $d$. Suppose $g=\gcd(d,m)>1$, then $\frac{d}{g}=\ell_{d}< d,\frac{m}{g}=\ell_{m}< m$. Observe. 
+  $$ m\ell_{d}=m\frac{d}{g}=\frac{m}{g}d=d\ell_{m}\implies \alpha^{p^{nm\ell_{d}}}=\alpha^{p^{nm(\frac{d}{g})}}=\alpha^{p^{nd(\frac{m}{g})}}=\alpha^{p^{nd\ell_{m}}}=\alpha.$$
+But then there is a smaller positive integer $k_{2}=\ell_{d}<d$ such that $\alpha^{nmk_{2}}=\alpha$, a contradiction. So we must have that $\gcd(d,m)=1$.
+
+$(\impliedby)$ On the other hand, if $\gcd(d,m)=1$, recall that that $d$ is the smallest positive integer $d=k_{1}$ such that $\alpha^{p^{nk_{1}}}=\alpha$ for any zero $\alpha$ of $f(x)$. So for any $k_{2}\geq 1$ such that $\alpha^{p^{nmk_{2}}}=\alpha$, we must have that $d\mid mk_{2}$. Suppose we have such a $k_{2}$ less than $d$. But then $\gcd(d,m)=1\text{ and }d\mid mk_{2}\implies d\mid k_{2}$ and $k_{2}<d$, which is impossible. So the smallest such $k_{2}=d$, which is also the degree of $\alpha$ over $\FF_{p^{nm}}$. Since degree of any zero $\alpha$ of $f(x)$ is $d$ over $\FF_{p^{nm}}$, $f(x)$ must be irreducible over $\FF_{p^{nm}}$. (Otherwise we have some minimal polynomial of degree less than d which can be pulled out of $f(x)$ over $\FF_{p^{nm}}$).
+
 
 \end{proof}
 

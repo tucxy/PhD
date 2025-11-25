@@ -162,8 +162,30 @@ If $f\in \KK[X]$ (with $\KK$ field) has degree $n$ and $\FF$ is a splitting fiel
 \end{proof}
 
 \begin{prob}
-If $K\subseteq F$ is a field extension, $F$ is algebraically closed, and $E$ is the set of all elements of $F$ that are algebraic over $K$, prove that $E$ is an algebraic closure of $K$.
+If $\KK\subseteq \FF$ is a field extension, $\FF$ is algebraically closed, and $\EE$ is the set of all elements of $\FF$ that are algebraic over $\KK$, prove that $\EE$ is an algebraic closure of $\KK$.
 \end{prob}
+
+\begin{proof}
+All elements of $\EE=\{\alpha\in \FF\mid \alpha \text{ is algebraic over }\KK\}$ are algebraic over $\KK$. Now, consider some polynomial $f(x)$ over $\KK$. $\FF\supseteq \KK\implies \FF[x]\supseteq \KK[x]\implies f(x)\in \FF$ and since $\FF$ is algebraically closed, any zero $a$ of $f(x)$ must belong to $\FF$. So any algebraic $a$ over $\KK$ belongs to $\{\alpha\in \FF\mid \alpha \text{ is algebraic over }\KK\}=\EE$.
+
+Next, we prove that $\EE$ is a field. For any $\alpha,\beta\in \EE\subseteq \FF$ with $\beta\neq 0$,
+  \begin{align*}
+    &\alpha\beta^{-1},\alpha-\beta\in \KK(\alpha,\beta)\implies \KK(\alpha,\beta,\alpha\beta^{-1})=\KK(\alpha,\beta,\alpha-\beta)=\KK(\alpha,\beta)\\ \implies &\ZZ^{+}\ni[\KK(\alpha,\beta):\KK]=[\KK(\alpha,\beta,\alpha\beta^{-1}):\KK(\alpha\beta^{-1})][\KK(\alpha\beta^{-1}):\KK]\\
+     \implies &\ZZ^{+}\ni[\KK(\alpha,\beta):\KK]=[\KK(\alpha,\beta,\alpha-\beta):\KK(\alpha-\beta)][\KK(\alpha-\beta):\KK]\\
+     \implies &[\KK(\alpha\beta^{-1}):\KK],[\KK(\alpha-\beta):\KK]\in \ZZ^{+}
+  \end{align*}
+Therefore, since adjoining $\alpha\beta^{-1}$ or $\alpha-\beta$ to $\KK$ gives a finite extension of $K$, they must algebraic over $\KK$, and so they both belong to $\EE$, which is then a subfield of $\FF.$ Additionally, since every element of $\EE$ is algebraic over $\KK$, $\EE$ is an algebraic extension of $\KK$. Lastly, consider any $g(x)=\sum_{i=0}^{n}\alpha_{i}x^{i}\in \EE[x]$. Since $\EE$ is algebraic over $\KK$, $\alpha_{0},\hdots, \alpha_{n}$ are all algebraic over $\KK$. So then any zero $\beta$ of $g(x)$ is algebraic over $\KK(\alpha_{0},\hdots,\alpha_{n})$, which must be a finite extension of $\KK$. Observe.
+\begin{align*}
+&\KK(\alpha_{0},\hdots,\alpha_{n},\beta)\supseteq \KK(\beta)\supseteq \KK\text{ and }[\KK(\alpha_{0},\hdots,\alpha_{n},\beta):\KK(\alpha_{0},\hdots,\alpha_{n})]\in \ZZ^{+}\\
+\implies & [\KK(\alpha_{0},\hdots,\alpha_{n},\beta):\KK]=[\KK(\alpha_{0},\hdots,\alpha_{n},\beta):\KK(\alpha_{0},\hdots,\alpha_{n})][\KK(\alpha_{0},\hdots,\alpha_{n}):\KK]\in \ZZ^{+}\\
+\implies &\ZZ^{+}\ni[\KK(\alpha_{0},\hdots,\alpha_{n},\beta):\KK]=[\KK(\alpha_{0},\hdots,\alpha_{n},\beta):\KK(\beta)][\KK(\beta):\KK]
+\end{align*}
+So $[\KK(\beta):\KK]\in \ZZ^{+}\implies \beta\text{ is algebraic over $\KK$}.$ Therefore, $\beta\in \EE \text{ and } \EE$ is an algebraically closed, algebraic extension of $\KK$.
+Thus,
+\begin{center}
+$\EE$ is an algebraic closure of $\KK$.
+\end{center}
+\end{proof}
 
 \setcounter{thm}{56} % skip 56
 
@@ -279,15 +301,17 @@ Prove that $E=\mathbb{F}_{2}[X]/(X^{4}+X^{3}+1)$ is a field with $16$ elements. 
 \end{prob}
 
 \begin{proof}
-  Let $p(x)=x^{4}+x^{3}+1\in \FF_{2}$. $p(0)=p(1)=1\neq 0$, so $p(x)$ has no zeros in $\FF_{2}$ and therefore no linear factors over $\FF_{2}$, which means it can't factor into a linear and cubic. Suppose $p(x)$ is reducible. Then must split into two irreducible quadratics over $\FF_{2}$. These quadratics must have a non-zero constant and leading coefficient, which must then be $1\in \FF_{2}$, otherwise $x$ would divide them along with $p(x)$ or they wouldn't be quadratic at all. So then a factor $p(x)$ could only be $x^{2}+x+1$ or $x^{2}+1$. However, notice that $x^{2}+1$ has $1$ as a zero, so $x-1$ divides it, and would have to then divide $p(x)$. Therefore, we must have that $p(x)$ has only one possible (repeated) factor: $x^{2}+x+1$. Well, since $\Char{\FF_{2}}=2$, we have Freshman's dream for multiples of $2$ and so $(x^{2}+x+1)^{2}=((x^{2})+(x+1))^{2}=x^{4}+x^{2}+2x+1=x^{4}+x^{2}+1\neq x^{4}+x^{3}+1=p(x)$, a contradiction. So $p(x)$ must be irreducible over $\FF_{2}.$
+  Let $p(x)=x^{4}+x^{3}+1\in \FF_{2}$. $p(0)=p(1)=1\neq 0$, so $P(x)$ has no zeros in $\FF_{2}$ and therefore no linear factors over $\FF_{2}$, and so it can't factor into a linear and cubic. Suppose $P(x)$ is reducible. Then must split into two irreducible quadratics over $\FF_{2}$. Well, $x^{2}+1=(x+1)(x-1)$ and $x^{2}+x=x(x+1)$, and $x^{2}=x(x)$ over $\FF_{2}$. Since $x^{2}+x+1$ is the only irreducible quadratic over $\FF_{2}$, we must have that $P(x)=(x^{2}+x+1)^{2}$. Recall that $\Char \FF_{2}=2$ and so $(f(x)+g(x))^{2}=(f(x))^{2}+(g(x))^{2}$ over $\FF_{2}$. But then
+    $$P(x)=x^{4}+x^{3}+1=((x^{2})+(x+1))^{2}=x^{4}+(x+1)^{2}=x^{4}+x^{2}+1,\text{ a contradiction.}$$
+  So then $P(x)=x^{4}+x^{3}+1$ is irreducible of degree $4$ over $\FF_{2}$ and for any zero $\alpha$ of $P(x)$
+   $$\FF_{2}[x]/\langle x^{4}+x^{3}+1\rangle=\Span_{\FF_{2}}\{[1],[x],[x^{2}],[x^{3}]\}\cong \Span_{\FF_{2}}\{1,\alpha,\alpha^{2},\alpha^{3}\}=\FF_{2}(\alpha).$$
+   So $\EE=\FF_{2}[x]/\langle x^{4}+x^{3}+1\rangle$ is a $4$-dimensional $\FF_{2}$-vector space and we must have that $|\EE|=2^{4}=16$. For the remainder of this proof we will exclusively work in $\EE$ and so we refer to cosets $[f(x)]_{\EE}$ by any of their representatives $f(x)$ and let modulo $x^{4}+x^{3}+1$ be implied.
 
-  Since $p(x)$ is monic and irredicuble, $\langle p(x)\rangle$ is a maximal ideal, and so $\EE=\FF_{2}[x]/\langle x^{4}+x^{3}+1\rangle$ is a field extension that is also a $4$-dimensional $\FF_{2}$-vector space. Therefore $|\FF_{2}[x]/\langle x^{4}+x^{3}+1\rangle|2^{4}=16$. Now we will just use the shorthand $x\coloneq [x]$ since we work in $\EE$ for the remainder of this proof. 
-
-  $\EE=\Span\{1,x,x^{2},x^{3}\}$. Now, since $x^{4}+x^{3}+1=0$ in this field, $x^{4}=-x^{3}-1=x^{3}+1$, and obviously $x$ is a root of $p(x)=x^{4}+x^{3}+1$ over $\EE$. Then, recall that since $\EE\cong \FF_{2^{4}}$, a finite field with characteristic $2$, we must have that the Frobenius endomorphism $\varphi_{2}(x)=x^{2}$ is an automorphism in $\mathrm{Aut}_{\FF_{2}}(\FF_{2^{4}})$. So then it permutes roots of any $f(x)\in \FF_{2}$ in any extension of $\FF_{2}$ to each other. Therefore, the orbit $\langle x\rangle\varphi_{2}=\{x\}\cup \{x^{2}\}\cup \{x^{4}=x^{3}+1\} \cup \{x^{8}=(x^{4})^{2}=(x^{3}+1)^{2}=x^{6}+1=(x^{3}+x^{2}+x+1)+1=x^{3}+x^{2}+x\}\cup \cdots = \{x,x^{2},x^{3}+1,x^{3}+x^{2}+x\}$ must be all roots of $p(x)$ over $\EE$, since they are four distinct elements and $p(x)$ has at most four distinct roots.
+  So $\EE=\Span\{1,x,x^{2},x^{3}\}$ and since $x^{4}+x^{3}+1=0$ in this field, $x^{4}=-x^{3}-1=x^{3}+1$, and obviously $x$ is a root of $p(x)=x^{4}+x^{3}+1$ over $\EE$. Then, recall that since $\EE\cong \FF_{2^{4}}$, is a finite field extension of $\FF_{2}$ with characteristic $2$, we must have that the Frobenius mapping $\varphi_{2}\coloneq x\mapsto x^{2}$ is an endomorphism of $\EE$ (In fact it is a isomorphism in $\mathrm{Aut}_{\FF_{2}}(\FF_{2^{4}})$) and so it permutes roots of polynomials in $\EE[x]$ to each other. Well, $x^{4}=x^{3}+1\implies x^{5}=x(x^{4})=x(x^{3}+1)=x^{4}+x=x^{3}+x+1\implies x^{6}=x(x^{5})=x(x^{3}+x+1)=x^{4}+x^{2}+x=(x^{3}+1)+x^{2}+x=x^{3}+x^{2}+x+1.$
+  
+  Therefore, the orbit $\mathrm{Orb}_{\varphi_{2}}(\EE)=\{x\}\cup \{x^{2}\}\cup \{x^{4}=x^{3}+1\} \cup \{x^{8}=(x^{4})^{2}=(x^{3}+1)^{2}=x^{6}+1=(x^{3}+x^{2}+x+1)+1=x^{3}+x^{2}+x\}\cup \cdots = \{x,x^{2},x^{3}+1,x^{3}+x^{2}+x\}$ must be all roots of $P(x)=x^{4}+x^{3}+1$ over $\EE$, since they are four distinct elements and $P(x)$ has at most four distinct roots.
 
 \end{proof}
-
-Heres the computation used to find $x^{6}$. $x^{4}=x^{3}+1\implies x^{5}=x(x^{4})=x(x^{3}+1)=x^{4}+x=x^{3}+x+1\implies x^{6}=x(x^{5})=x(x^{3}+x+1)=x^{4}+x^{2}+x=(x^{3}+1)+x^{2}+x=x^{3}+x^{2}+x+1$
 \newpage
 \begin{prob}
 Prove that an algebraic extension of a perfect field is a perfect field.

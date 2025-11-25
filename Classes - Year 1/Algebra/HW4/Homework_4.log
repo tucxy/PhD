@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.18)  21 NOV 2025 10:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.18)  24 NOV 2025 23:47
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -718,46 +718,46 @@ Underfull \hbox (badness 10000) in paragraph at lines 152--153
 ]
 
 [2]
-LaTeX Font Info:    Trying to load font information for U+dsrom on input line 203.
+
+[3]
+LaTeX Font Info:    Trying to load font information for U+dsrom on input line 225.
  (c:/texlive/2025/texmf-dist/tex/latex/doublestroke/Udsrom.fd
 File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
 )
-Underfull \hbox (badness 10000) in paragraph at lines 206--207
-
- []
-
-
-
-[3]
-Underfull \hbox (badness 10000) in paragraph at lines 227--228
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 229--230
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 231--232
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 233--234
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
 
  []
 
 
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 253--255
+Underfull \hbox (badness 10000) in paragraph at lines 249--250
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 251--252
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 253--254
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 255--256
 
  []
 
 
 
 [5]
+Underfull \hbox (badness 10000) in paragraph at lines 275--277
+
+ []
+
+
 
 [6]
 
@@ -766,6 +766,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 253--255
 [8]
 
 [9]
+
+[10]
 This exam contains 0 questions with 0 parts, 0 subparts, and 0 subsubparts.
 This exam has a total of 0 points.
 This exam has a total of 0 bonus points.
@@ -781,18 +783,18 @@ LaTeX Font Warning: Size substitutions with differences
 
  ) 
 Here is how much of TeX's memory you used:
- 28140 strings out of 473190
- 682161 string characters out of 5719979
+ 28142 strings out of 473190
+ 682217 string characters out of 5719979
  1211781 words of memory out of 5000000
- 50895 multiletter control sequences out of 15000+600000
+ 50897 multiletter control sequences out of 15000+600000
  607057 words of font info for 134 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,14n,105p,1524b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/doublestroke/dsrom10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/symbol/usyr.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/symbol/usyr.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Homework_4.pdf (9 pages, 137873 bytes).
+Output written on Homework_4.pdf (10 pages, 140641 bytes).
 PDF statistics:
- 103 PDF objects out of 1000 (max. 8388607)
- 65 compressed objects within 1 object stream
+ 106 PDF objects out of 1000 (max. 8388607)
+ 67 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

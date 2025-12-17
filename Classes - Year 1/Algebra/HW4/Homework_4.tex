@@ -3,8 +3,8 @@
 \usepackage{amsmath,amsthm,enumitem,wrapfig,amsfonts,mathtools}
 \usepackage[mathscr]{euscript}
 \usepackage[super]{nth}
-\usepackage{bbm}
 \usepackage{dsfont}
+\usepackage{xparse}
 
 \usepackage{geometry}
 \usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
@@ -99,6 +99,13 @@
 \newcommand{\Span}{\ensuremath{\mathrm{Span}}}
 \newcommand{\Char}[1]{\mathrm{Char}\; #1}
 \DeclareMathOperator{\lcm}{lcm}
+\newcommand{\id}{\ensuremath{\mathrm{id}}}
+\newcommand{\Gal}[2]{\mathrm{Gal}(#1/#2)}
+\newcommand{\Aut}{\ensuremath{\mathrm{Aut}}}
+\newcommand{\Fix}[2]{\mathrm{Fix}_{#1}(#2)}
+
+
+
 
 
 \makeatletter
@@ -138,10 +145,9 @@
 \doublespacing
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 \begin{document}
-Turn in problems 54, 55, 57, 58, 59, 60, 61, 62, 63, 64, 65.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 40 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 54–65 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 54 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setcounter{thm}{53} % next prob is 54
 
 \begin{prob}
@@ -157,54 +163,99 @@ If $f\in \KK[X]$ (with $\KK$ field) has degree $n$ and $\FF$ is a splitting fiel
 
   Thus, by induction,
   \begin{center}
-  If $\FF\supseteq \KK$ is the splitting field of a degree $n\in \ZZ^{+}$ polynomial over $\KK$, then $[\FF:\KK]\mid n!$.
+    If $\FF\supseteq \KK$ is the splitting field of a degree $n\in \ZZ^{+}$ polynomial over $\KK$, then $[\FF:\KK]\mid n!$.
   \end{center}
 \end{proof}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 55 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{prob}
 If $\KK\subseteq \FF$ is a field extension, $\FF$ is algebraically closed, and $\EE$ is the set of all elements of $\FF$ that are algebraic over $\KK$, prove that $\EE$ is an algebraic closure of $\KK$.
 \end{prob}
 
 \begin{proof}
-All elements of $\EE=\{\alpha\in \FF\mid \alpha \text{ is algebraic over }\KK\}$ are algebraic over $\KK$. Now, consider some polynomial $f(x)$ over $\KK$. $\FF\supseteq \KK\implies \FF[x]\supseteq \KK[x]\implies f(x)\in \FF$ and since $\FF$ is algebraically closed, any zero $a$ of $f(x)$ must belong to $\FF$. So any algebraic $a$ over $\KK$ belongs to $\{\alpha\in \FF\mid \alpha \text{ is algebraic over }\KK\}=\EE$.
+  All elements of $\EE=\{\alpha\in \FF\mid \alpha \text{ is algebraic over }\KK\}$ are algebraic over $\KK$. Now, consider some polynomial $f(x)$ over $\KK$. $\FF\supseteq \KK\implies \FF[x]\supseteq \KK[x]\implies f(x)\in \FF$ and since $\FF$ is algebraically closed, any zero $a$ of $f(x)$ must belong to $\FF$. So any algebraic $a$ over $\KK$ belongs to $\{\alpha\in \FF\mid \alpha \text{ is algebraic over }\KK\}=\EE$.
 
-Next, we prove that $\EE$ is a field. For any $\alpha,\beta\in \EE\subseteq \FF$ with $\beta\neq 0$,
+  Next, we prove that $\EE$ is a field. For any $\alpha,\beta\in \EE\subseteq \FF$ with $\beta\neq 0$,
+    \begin{align*}
+      &\alpha\beta^{-1},\alpha-\beta\in \KK(\alpha,\beta)\implies \KK(\alpha,\beta,\alpha\beta^{-1})=\KK(\alpha,\beta,\alpha-\beta)=\KK(\alpha,\beta)\\ \implies &\ZZ^{+}\ni[\KK(\alpha,\beta):\KK]=[\KK(\alpha,\beta,\alpha\beta^{-1}):\KK(\alpha\beta^{-1})][\KK(\alpha\beta^{-1}):\KK]\\
+      \implies &\ZZ^{+}\ni[\KK(\alpha,\beta):\KK]=[\KK(\alpha,\beta,\alpha-\beta):\KK(\alpha-\beta)][\KK(\alpha-\beta):\KK]\\
+      \implies &[\KK(\alpha\beta^{-1}):\KK],[\KK(\alpha-\beta):\KK]\in \ZZ^{+}
+    \end{align*}
+  Therefore, since adjoining $\alpha\beta^{-1}$ or $\alpha-\beta$ to $\KK$ gives a finite extension of $K$, they must algebraic over $\KK$, and so they both belong to $\EE$, which is then a subfield of $\FF.$ Additionally, since every element of $\EE$ is algebraic over $\KK$, $\EE$ is an algebraic extension of $\KK$. Lastly, consider any $g(x)=\sum_{i=0}^{n}\alpha_{i}x^{i}\in \EE[x]$. Since $\EE$ is algebraic over $\KK$, $\alpha_{0},\hdots, \alpha_{n}$ are all algebraic over $\KK$. So then any zero $\beta$ of $g(x)$ is algebraic over $\KK(\alpha_{0},\hdots,\alpha_{n})$, which must be a finite extension of $\KK$. Observe.
   \begin{align*}
-    &\alpha\beta^{-1},\alpha-\beta\in \KK(\alpha,\beta)\implies \KK(\alpha,\beta,\alpha\beta^{-1})=\KK(\alpha,\beta,\alpha-\beta)=\KK(\alpha,\beta)\\ \implies &\ZZ^{+}\ni[\KK(\alpha,\beta):\KK]=[\KK(\alpha,\beta,\alpha\beta^{-1}):\KK(\alpha\beta^{-1})][\KK(\alpha\beta^{-1}):\KK]\\
-     \implies &\ZZ^{+}\ni[\KK(\alpha,\beta):\KK]=[\KK(\alpha,\beta,\alpha-\beta):\KK(\alpha-\beta)][\KK(\alpha-\beta):\KK]\\
-     \implies &[\KK(\alpha\beta^{-1}):\KK],[\KK(\alpha-\beta):\KK]\in \ZZ^{+}
+    &\KK(\alpha_{0},\hdots,\alpha_{n},\beta)\supseteq \KK(\beta)\supseteq \KK\text{ and }[\KK(\alpha_{0},\hdots,\alpha_{n},\beta):\KK(\alpha_{0},\hdots,\alpha_{n})]\in \ZZ^{+}\\
+    \implies & [\KK(\alpha_{0},\hdots,\alpha_{n},\beta):\KK]=[\KK(\alpha_{0},\hdots,\alpha_{n},\beta):\KK(\alpha_{0},\hdots,\alpha_{n})][\KK(\alpha_{0},\hdots,\alpha_{n}):\KK]\in \ZZ^{+}\\
+    \implies &\ZZ^{+}\ni[\KK(\alpha_{0},\hdots,\alpha_{n},\beta):\KK]=[\KK(\alpha_{0},\hdots,\alpha_{n},\beta):\KK(\beta)][\KK(\beta):\KK]
   \end{align*}
-Therefore, since adjoining $\alpha\beta^{-1}$ or $\alpha-\beta$ to $\KK$ gives a finite extension of $K$, they must algebraic over $\KK$, and so they both belong to $\EE$, which is then a subfield of $\FF.$ Additionally, since every element of $\EE$ is algebraic over $\KK$, $\EE$ is an algebraic extension of $\KK$. Lastly, consider any $g(x)=\sum_{i=0}^{n}\alpha_{i}x^{i}\in \EE[x]$. Since $\EE$ is algebraic over $\KK$, $\alpha_{0},\hdots, \alpha_{n}$ are all algebraic over $\KK$. So then any zero $\beta$ of $g(x)$ is algebraic over $\KK(\alpha_{0},\hdots,\alpha_{n})$, which must be a finite extension of $\KK$. Observe.
-\begin{align*}
-&\KK(\alpha_{0},\hdots,\alpha_{n},\beta)\supseteq \KK(\beta)\supseteq \KK\text{ and }[\KK(\alpha_{0},\hdots,\alpha_{n},\beta):\KK(\alpha_{0},\hdots,\alpha_{n})]\in \ZZ^{+}\\
-\implies & [\KK(\alpha_{0},\hdots,\alpha_{n},\beta):\KK]=[\KK(\alpha_{0},\hdots,\alpha_{n},\beta):\KK(\alpha_{0},\hdots,\alpha_{n})][\KK(\alpha_{0},\hdots,\alpha_{n}):\KK]\in \ZZ^{+}\\
-\implies &\ZZ^{+}\ni[\KK(\alpha_{0},\hdots,\alpha_{n},\beta):\KK]=[\KK(\alpha_{0},\hdots,\alpha_{n},\beta):\KK(\beta)][\KK(\beta):\KK]
-\end{align*}
-So $[\KK(\beta):\KK]\in \ZZ^{+}\implies \beta\text{ is algebraic over $\KK$}.$ Therefore, $\beta\in \EE \text{ and } \EE$ is an algebraically closed, algebraic extension of $\KK$.
-Thus,
-\begin{center}
-$\EE$ is an algebraic closure of $\KK$.
-\end{center}
+  So $[\KK(\beta):\KK]\in \ZZ^{+}\implies \beta\text{ is algebraic over $\KK$}.$ Therefore, $\beta\in \EE \text{ and } \EE$ is an algebraically closed, algebraic extension of $\KK$.
+  Thus,
+  \begin{center}
+    $\EE$ is an algebraic closure of $\KK$.
+  \end{center}
 \end{proof}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 57 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setcounter{thm}{56} % skip 56
 
 \begin{prob}
-If $[F:K]=2$, then $K\subseteq F$ is a normal extension.
+If $[\FF:\KK]=2$, then $\KK\subseteq \FF$ is a normal extension.
 \end{prob}
 
+\begin{proof}
+  Let $P(x)\in \KK[x]$ be irreducible over $\KK$ with a zero $\alpha\in \FF$. The minimal polynomial $P_{\alpha}(x)\in \KK[x]$ of $\alpha$ must divide $P(x)$, and since $P(x)$ is irreducible over $\KK$, $P_{\alpha}(x)=\frac{1}{c}P(x)$, where $c$ is the leading coefficient of $P(x)$. Well, $\alpha\in \FF\implies \FF\supseteq \KK(\alpha)\supseteq \KK$. Therefore,
+    $$[\FF:\KK]=[\FF:\KK(\alpha)][\KK(\alpha):\KK]=2\implies \alpha \text{ has degree }1\text{ or }2\text{ over }\KK.$$
+  If $\alpha$ has degree $1$ over $\KK$, $P_{\alpha}(x)$ and therefore $P(x)$ has only one zero, $\alpha$ which belongs to $\FF$. If $\alpha$ has degree $2$ over $\KK$, then $P_{\alpha}(x)$ and therefore $P(x)$ has at most two distinct roots $\alpha,\beta$ such that $P_{\alpha}(x)=x^{2}+bx+c=(x-\alpha)(x-\beta)$. for some $b,c\in \KK$. So then $x^{2}+bx+c=(x-\alpha)(x-\beta)=x^{2}-(\beta+\alpha)x+\alpha\beta=x^{2}+bx+c$. Finally, $\beta+\alpha=-b\implies \beta=b-\alpha\in \FF$. In either case, $P(x)$ splits completely over $\FF$. So then any irreducible polynomial over $\KK$ with a root in $\FF$ splits completely over $\FF$.
+
+  Thus,
+  \begin{center}
+    If $[\FF:\KK]=2$, then $\KK\subseteq \FF$ is a normal extension.
+  \end{center}
+
+\end{proof}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 58 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{prob}
 If $d$ is a nonnegative rational number, then $\operatorname{Aut}_{\mathbb{Q}}\!\big(\mathbb{Q}(\sqrt{d})\big)$ is the identity or is isomorphic to $\mathbb{Z}_{2}$.
 \end{prob}
+\begin{proof}
+  If $\sqrt{d}\in \QQ$, then $\QQ(\sqrt{d})=\QQ$ and so the only automorphism of $\QQ$ that fixes $\QQ$ is the identity, that is, $\Aut_{\QQ}(\QQ(\sqrt{d}))=\{\id\}\cong \{e\}.$ If $\sqrt{d}\not\in \QQ$, then it's minimal polynomial must be $x^{2}-d\in \QQ[x]$, and so it's only conjugate roots are $\sqrt{d},-\sqrt{d}$. Any automorphism in $\Aut_{\QQ}(\QQ(\sqrt{d}))$ is completely defined by where it's adjoined root $\sqrt{d}$ is sent to, and since it may only be sent to it's conjugates $\sqrt{d},\sqrt{-d}$ via $\id\coloneq \sqrt{d}\mapsto \sqrt{d}$ and $\phi\coloneq \sqrt{d}\mapsto -\sqrt{d}$, respectively, we have that $\Aut_{\QQ}(\QQ(\sqrt{d}))=\{\id,\phi\}\cong \ZZ_{2}.$
 
+  Thus,
+  \begin{center}
+    If $d$ is a nonnegative rational number, then $\operatorname{Aut}_{\mathbb{Q}}\!\big(\mathbb{Q}(\sqrt{d})\big)$ is the identity or is isomorphic to $\mathbb{Z}_{2}$.
+  \end{center}
+
+\end{proof}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 59 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \begin{prob}
 What is the Galois group of $\mathbb{Q}\!\left(\sqrt{2},\sqrt{3},\sqrt{5}\right)$ over $\mathbb{Q}$?
 \end{prob}
+\begin{proof}
+  By the previous proof, $d\in \QQ\setminus\QQ^{-}\text{ and }\sqrt{d}\not\in \QQ\implies \sqrt{d},-\sqrt{d}$ are the only conjugate roots of $\sqrt{d}$ over $\QQ$. So then since any automorphism in $\Gal{\QQ(\sqrt{2},\sqrt{3},\sqrt{5})}{\QQ}$ is completely defined by which conjugates over $\QQ$ it's adjoined roots are permuted to, and each root has two conjugates, we have that $|\Gal{\QQ(\sqrt{2},\sqrt{3},\sqrt{5})}{\QQ}|=2^{3}=8$. Let $\phi_{d}\in \Gal{\QQ(\sqrt{2},\sqrt{3},\sqrt{5})}{\QQ}$ be the automorphism that sends $\sqrt{d}$ to $-\sqrt{d}$ and fixes all other roots, for each $d\in \{2,3,5\}$. 
+
+  Any such $\phi_{d}^{2}$ sends $\sqrt{d}$ to $-\sqrt{d}$ and then back to $\sqrt{d}$, and since it fixes everything else $\phi_{d}^{2}=\id$ for each $d\in \{2,3,5\}$. By definition, these are distinct automorphisms which must generate the group, that is, $\Gal{\QQ(\sqrt{2},\sqrt{3},\sqrt{5})}{\QQ}=\langle \phi_{2},\phi_{3},\phi_{5}\rangle$. Well, $\phi_{a}\circ \phi_{b}\coloneq \substack{\sqrt{a}\mapsto-\sqrt{a} \\ \sqrt{b}\mapsto-\sqrt{b}}=\phi_{b}\circ \phi_{a}$ for each distinct pair $a,b\in \{2,3,5\}$, since these automorphisms don't affect generators other than the one, regardless of order. So then since all generators of the group commute pairwise, they all commute with each other in general and we have that $\Gal{\QQ(\sqrt{2},\sqrt{3},\sqrt{5})}{\QQ}$ is an abelian group of order $8$ with three distinct elements of order $2$.
+
+  Thus,
+    $$\Gal{\QQ(\sqrt{2},\sqrt{3},\sqrt{5})}{\QQ}\cong\ZZ_{2}\times \ZZ_{2}\times \ZZ_{2}.$$
+\end{proof}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 60 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{prob}
-Assume $K$ is a field of characteristic $0$. Let $G$ be the subgroup of $\operatorname{Aut}_{K}\!\big(K(X)\big)$ generated by the $K$-automorphism induced by $X\mapsto X+1$. Prove that $G$ is an infinite cyclic group. What is the fixed field $E$ of $G$? What is $[K(X):E]$?
+Assume $\KK$ is a field of characteristic $0$. Let $G$ be the subgroup of $\operatorname{Aut}_{\KK}\!\big(\KK(x)\big)$ generated by the $\KK$-automorphism induced by $x\mapsto x+1$. Prove that $G$ is an infinite cyclic group. What is the fixed field $\EE$ of $G$? What is $[\KK(X):\EE]$?
 \end{prob}
+\begin{proof}
+Let $\phi\in \operatorname{Aut}_{\KK}\!\big(\KK(x)\big)$ be the $\KK$-automorphism defined above, so $G=\langle \phi \rangle$. Now suppose $G$ is finite of order $n\in \ZZ^{+}$. Then, $\phi^{n}\coloneq x\mapsto x+n =\id\coloneq x\mapsto x$, that is, $n=0$ over $\KK$. In fact since $|G|=n$, $k\neq 0$ for all $0<k<n$. But then $\Char \KK=n\in \ZZ^{+}$, a contradiction. So $G$ must be an infinite cyclic group.
+
+By definition, $\EE=\Fix{\KK(x)}{G}=\{\frac{f(x)}{g(x)}\in \KK(x)\mid \sigma(\frac{f(x)}{g(x)})=\alpha,\; \forall \sigma\in G\}$. Consider any $Q(x)=\frac{f(x)}{g(x)}\in \KK(x)$ which is fixed by $G$ where $f(x),g(x)$ have $k,c\in \NN$ distinct zeros over $\KK$, respectively. (The base field $\KK$ is always fixed by any subset of $\Aut_{\KK}(\EE)$ where $\EE$ is an extension of $\KK$, so this is an assumption we can make.) Then $Q(x)$ has at most $k$ zeros and at most $c$ poles.
+
+Suppose $Q(x)$ has a zero $\alpha\in \overline{\KK}$, for some fixed algebraic closure $\overline{\KK}$ of $\KK$, we must have that $Q(\alpha)=\phi^{k}(\alpha)=Q(\alpha+k)=0,\;\forall k\geq 1$, and so $Q$ has infinitely many zeros in $\overline{\KK}$, a contradiction. So $Q(x)$ must not have any zeros. Next, notice that if $Q(x)$ is fixed by $G$, then so is $Q^{-1}(x)=\frac{g(x)}{f(x)}$. So then suppose $Q(x)$ has some pole $\beta\in \overline{\KK}$. It is a zero of $Q^{-1}(x)$. But then once again we have that $Q^{-1}(\beta)=\phi_{k}(Q^{-1}(\beta))=Q^{-1}(\beta+k)=0,\;\forall k\geq 1$, and so $Q^{-1}(x)$ infinitely many poles in $\overline{\KK}$, a contradiction. So then $Q(x)$ must have no poles.
+
+Therefore, since $Q(x)$ has no poles or zeros, it must be some quotient which belongs to $\KK$. So $\EE\subseteq \KK$. On the other hand, $G\subseteq \Aut_{\KK}(\KK(x))$ fixes $\KK$ by definition, so $\KK\subseteq \EE$. Therefore, $\EE=\KK$ is the fixed field of $G$. and since $\EE=\KK$, we must have that $K(x)$ has infinite dimension over $\EE=\KK$.
+
+\end{proof}
 \newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 61 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 We prepare for the next problem by proving a bunch of useful stuff.
 \setcounter{thm}{0} % next prob is 54
 \begin{singlespace}
@@ -259,17 +310,27 @@ If $\KK$ is a finite field of characteristic $p>0$, then inside a fixed algebrai
 \end{proof}
 \end{singlespace}
 
-Alright now let's do the problem. I just wanted to prove this all myself instead of looking over the notes.
+Alright now let's do the problem. I just wanted to prove this all myself instead of looking over the notes. For now on I will refer to any finite field $\KK$ as $\FF_{p^{n}}$.
 \newpage
-\setcounter{thm}{61} % next prob is 61
+\setcounter{thm}{60} % next prob is 61
 \newpage
 \begin{prob}
-Let $k$ be a finite field of characteristic $p>0$.
+Let $\KK$ be a finite field of characteristic $p>0$.
 \begin{enumerate}[label=(\alph*)]
-\item Prove that for every $n>0$ there exists an irreducible polynomial $f\in k[X]$ of degree $n$.
-\item Prove that for every irreducible polynomial $P\in k[X]$ there exists $n\ge 0$ such that $P$ divides $X^{p^{\,n}}-X$.
+\item Prove that for every $n>0$ there exists an irreducible polynomial $f\in \KK[X]$ of degree $n$.
+\item Prove that for every irreducible polynomial $P\in \KK[X]$ there exists $n\ge 0$ such that $P$ divides $X^{p^{\,n}}-X$.
 \end{enumerate}
 \end{prob}
+\begin{proof}
+  \textbf{(a)} We use the convention $\KK=\FF_{p^{n}}$ for some $n\in \ZZ^{+}$ since $\kk$ is a finite field of characteristic $p$. By our theorems, there exists an extension $\KK_{m}=\FF_{p^{nm}}$ of degree $m$ over $\FF_{p^{n}}$. Suppose that for all $\alpha\in \FF_{p^{nm}}$, the degree of $\alpha$ over $\KK$ is strictly less than $[\FF_{p^{nm}}:\FF_{p^{n}}]=m$. So then by our theorems, any such $\alpha$ must belong to $\FF_{p^{n}}(\alpha)\subset \FF_{p^{nm}}$ and $[\FF_{p^{n}}(\alpha):\FF_{p^{n}}]=d$ for some divisor $0<d<nm$ of $[\FF_{p^{nm}}:\kk_{n}]=nm$. Once again, by our theorems, this must be the unique subfield $\FF_{p^{d}}$ of order $p^{d}$. So then all elements of $\FF_{p^{nm}}$ must belong to some unique proper subfield $\FF_{p^{d}}\subset \FF_{p^{nm}}$ where $d\mid nm$. 
+  
+  Let $\{d_{1},\hdots,d_{k}\}$ be the set of all divisors of $nm$ that are less than $nm$, and let $d_{\mathrm{max}}$ be the maximal divisor of $nm$. By our theorems, we have the containment chain $\FF_{p^{d_{1}}}\subset \FF_{p^{d_{2}}}\subset \cdots \subset \FF_{p^{d_{\mathrm{max}}}}\subset \FF_{p^{nm}}$ and so in fact all elements of $\FF_{p^{nm}}$ belong to $\FF_{p^{d_{\mathrm{max}}}}$. But then $\FF_{p^{d_{\mathrm{max}}}}$ isn't proper, a contradiction. Therefore, there exists an element $\alpha_{m}\in \FF_{p^{nm}}$ with degree $m$ over $\FF_{p^{n}}$, and so there exists a monic irreducible polynomial of $\alpha_{m}$ over $\FF_{p^{n}}$ with degree $m$, that is $\FF_{p^{nm}}=\FF_{p^{nm}}(\alpha_{m}).$ So for every $m>0$ there exists an irreducible polynomial of degree $m$ over $\KK=\FF_{p^{n}}$.
+
+  \textbf{(b)} Now, consider any irreducible polynomial $P(x)\in \FF_{p^{n}}[x].$ It must have some degree $q\in \ZZ^{+}$, and some zero $\alpha$ with the minimal polynomial $P_{\alpha}(x)=\frac{P(x)}{a}\in \FF_{p^{n}}[x]$ where $a$ is the leading coefficient of $P(x)$. So then $\alpha$ has degree $q$ over $\FF_{p^{n}}$ and $[\FF_{p^{n}}(\alpha):\KK]=q$. Therefore, by our theorems, $\FF_{p^{n}}(\alpha)=\FF_{p^{nq}}$, the splitting field of $f_{p,n,q}(x)=x^{p^{nq}}-x$ over $\FF_{p}$. Well, $\alpha\in \FF_{p^{nq}}\implies |\alpha|_{_{\boldsymbol{\cdot}}}$ divides $|\FF_{p^{nq}}^{*}|=p^{nq}-1$ and so $\alpha^{p^{nq}-1}=1\implies \alpha^{p^{nq}}=\alpha\implies f_{p,n,q}(\alpha)=(\alpha)^{p^{nq}}-\alpha=0$. So $\alpha$ is a zero of $f_{p,n,q}(x)=x^{p^{nq}}-x$ over $\FF_{p}$, which is also a polynomial over $\FF_{p^{n}}$. Therefore, for every irreducible polynomial of degree $q$ over $\KK=\FF_{p^{n}}$ divides $x^{p^{nq}}-x$.
+
+\end{proof}
+If the proper subset containment chain thing isn't allowed, I have another grosser proof with my original notation that makes a different argument on the next page.
+\newpage
 \begin{proof}
   Fix some algebraic closure $\overline{\KK}\supseteq \KK$. Every object that follows is contained in $\overline{\KK}$. By our theorems, if $\KK$ is a finite field of characteristic $p>0$, $p$ is prime and $\KK$ is an $n$-dimensional $\langle 1\rangle_{+}=\kk_{p}$-vector space for some $n\in \ZZ^{+}$. Also, there exists a unique extension $\KK_{m}$ of $\KK$ with $[\KK_{m}:\KK]=m$ for each $m\in \ZZ^{+}$. Finally, both $\KK$ and $\KK_{m}$ are unique splitting fields of $f_{p,n}=x^{p^{n}}-x$ and $f_{p,n,m}=x^{p^{nm}}$, respectively, over $\kk_{p}$ with respect to $\overline{\KK}$. Suppose that for all $\alpha\in \KK_{m}$, the degree of $\alpha$ over $\KK$ is strictly less than $[\KK_{m}:\KK]=m$. Any $\alpha$ must belong to $\KK(\alpha)\subseteq \KK_{m}$ and $[\KK(\alpha):\KK]=d$ for some divisor $0<d<nm$ of $[\KK_{m}:\kk_{p}]=nm$. Well, by our theorems this must be the unique subfield $\kk_{p,d}$ of order $p^{d}$. Therefore,
   $$\KK_{m}=\bigcup_{\substack{d\mid nm\\ 0<d<nm}} \kk_{p,d}\implies |\KK_{m}|=p^{nm}=|\bigcup_{\substack{d\mid nm\\ 0<d<nm}} \kk_{p,d}|\leq \sum_{\substack{d\mid nm\\ 0<d<nm}}p^{d}<\sum_{i=0}^{nm-1}p^{i}=\frac{p^{nm}-1}{1-p}<p^{nm},$$
@@ -279,6 +340,8 @@ Let $k$ be a finite field of characteristic $p>0$.
 
 \end{proof}
 \newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 62 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{prob}
 Let $p$ be a prime and $\mathbb{F}_{q}$ (with $q=p^{s}$) be the finite field with $q$ elements. Let $f\in \mathbb{F}_{q}[X]$ be an irreducible polynomial. Prove that $f$ is irreducible in $\mathbb{F}_{q^{m}}[X]$ if and only if $m$ and $\deg f$ are relatively prime.
 \end{prob}
@@ -296,6 +359,8 @@ Let $p$ be a prime and $\mathbb{F}_{q}$ (with $q=p^{s}$) be the finite field wit
 
 \end{proof}
 \newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 63 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{prob}
 Prove that $E=\mathbb{F}_{2}[X]/(X^{4}+X^{3}+1)$ is a field with $16$ elements. What are the roots of $X^{4}+X^{3}+1$ in $E$?
 \end{prob}
@@ -326,9 +391,41 @@ Therefore, if $\EE$ is some algebraic extension of $\KK$, then any $\alpha\in \E
 
 \end{proof}
 \newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 65 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{prob}
 Show that the extension $\mathbb{Q}\subseteq \mathbb{Q}\!\left(\sqrt[4]{2},\, i\right)$ is Galois. Find its Galois group.
 \end{prob}
+
+\begin{proof}
+$\sqrt[4]{2}$ and $i$ have minimal polynomials $x^{4}-2$ and $x^{2}+1$ over $\QQ$ they are both algebraic over $\QQ$ and so $\mathbb{Q}(\sqrt[4]{2},\, i)$ is a finite, and therefore algebraic extension of $\QQ$. Since $\QQ$ has characteristic $0$, it is perfect, and so is any algebraic extension of it such as $\mathbb{Q}(\sqrt[4]{2},\, i)$. So then $\mathbb{Q}(\sqrt[4]{2},\, i)$ is seperable.
+
+Now, notice that $\sqrt[4]{2},-\sqrt[4]{2},i\sqrt[4]{2},-i\sqrt[4]{2}$ are all zeros of $x^{4}-2$. Well, $x^{4}-2$ has at most $4$ distinct zeros over $\CC$, and so these must be all of them. Well, any extension $\EE$ where $x^{4}-2$ splits completely over must contain $i$ and $\sqrt[4]{2}$, so $\mathbb{Q}(\sqrt[4]{2}, i)\subseteq \EE$. Therefore, $\mathbb{Q}(\sqrt[4]{2}, i)$ must be a splitting field for $x^{4}-2$. Therefore, since $\mathbb{Q}(\sqrt[4]{2}, i)$ is a splitting field of some polynomial over $\QQ$, it is normal. Finally, since $\mathbb{Q}(\sqrt[4]{2}, i)$ is seperable and normal, it must be Galois. Now, since $x^{4}-2$ is monic and irreducible over $\QQ(i)$, $[\QQ(\sqrt[4]{2}, i):\QQ(i)]=4$ and $|\Gal{\QQ(\sqrt[4]{2}, i)}{\QQ}|=[\QQ(\sqrt[4]{2}, i):\QQ]=[\QQ(\sqrt[4]{2}, i):\QQ(i)][\QQ(i):\QQ]=8.$
+
+Let $a=\sqrt[4]{2}$ and $b=i$. So the conjugates of $a$ are $\{a,-a,ba,-ba\}$ and the conjugates of $b$ are $\{b,-b\}$. Also recall that that $a^{4}=(\sqrt[4]{2})^{4}=2$ and $b^{2}=i^{2}=-1$. Now, we denote automorphisms in $\Gal{\mathbb{Q}(\sqrt[4]{2}, i)}{\QQ}=\Gal{\mathbb{Q}(a,b)}{\QQ}$ that sends an adjoined root $\alpha\in \{a,b\}$ to one of its conjugates $\alpha^{\prime}$ and fixes the other adjoined root via $\phi_{\alpha,\alpha^{\prime}}\coloneq \alpha\mapsto \alpha$. Observe.
+\begin{align*}
+  &\phi_{b,-b}^{2}\coloneq\phi_{b,-b}(\phi_{b,-b}(b))=\phi_{b,-b}(-b)=b\implies \phi_{b,-b}^{2}=\id.\\
+  &(\phi_{b,-b}\circ \phi_{a,ba})(a)=\phi_{b,-b}(ba)=-ba\neq ba=\phi_{a,ba}(a)=(\phi_{a,ba}\circ \phi_{b,-b})(a)\\
+  \implies &\phi_{b,-b}\circ \phi_{a,ba}\neq \phi_{a,ba}\circ \phi_{b,-b}
+\end{align*}
+Therefore, $\Gal{\mathbb{Q}(a,b)}{\QQ}$ is a non-abelian group of order $8$ with an element $\phi_{b,-b}$ of order $2$. So then since it could only be isomorphic to $Q_{8}$ or $D_{4}$ purely by order, and $Q_{8}$ has no elements of order $2$, we must have that $\Gal{\mathbb{Q}(a,b)}{\QQ}\cong D_{4}$.
+
+\end{proof}
+
+%\begin{proof}
+%$\sqrt[4]{2}$ and $i$ have minimal polynomials $x^{4}-2$ and $x^{2}+1$ over $\QQ$ they are both algebraic over $\QQ$ and so $\mathbb{Q}(\sqrt[4]{2},\, i)$ is a finite, and therefore algebraic extension of $\QQ$. Since $\QQ$ has characteristic $0$, it is perfect, and so is any algebraic extension of it such as $\mathbb{Q}(\sqrt[4]{2},\, i)$. So then $\mathbb{Q}(\sqrt[4]{2},\, i)$ is seperable.
+
+%Now, notice that $\sqrt[4]{2},-\sqrt[4]{2},i\sqrt[4]{2},-i\sqrt[4]{2}$ are all zeros of $x^{4}-2$. Well, $x^{4}-2$ has at most $4$ distinct zeros over $\CC$, and so these must be all of them. Well, any extension $\EE$ where $x^{4}-2$ splits completely over must contain $i$ and $\sqrt[4]{2}$, so $\mathbb{Q}(\sqrt[4]{2}, i)\subseteq \EE$. Therefore, $\mathbb{Q}(\sqrt[4]{2}, i)$ must be a splitting field for $x^{4}-2$. Therefore, since $\mathbb{Q}(\sqrt[4]{2}, i)$ is a splitting field of some polynomial over $\QQ$, it is normal. Finally, since $\mathbb{Q}(\sqrt[4]{2}, i)$ is seperable and normal, it must be Galois. Now, since $x^{4}-2$ is monic and irreducible over $\QQ(i)$, $[\QQ(\sqrt[4]{2}, i):\QQ(i)]=4$ and $|\Gal{\QQ(\sqrt[4]{2}, i)}{\QQ}|=[\QQ(\sqrt[4]{2}, i):\QQ]=[\QQ(\sqrt[4]{2}, i):\QQ(i)][\QQ(i):\QQ]=8.$
+
+%Let $a=\sqrt[4]{2}$ and $b=i$. So the conjugates of $a$ are $\{a,-a,ba,-ba\}$ and the conjugates of $b$ are $\{b,-b\}$. Also recall that that $a^{4}=(\sqrt[4]{2})^{4}=2$ and $b^{2}=i^{2}=-1$. Now, we denote automorphisms in $\Gal{\mathbb{Q}(\sqrt[4]{2}, i)}{\QQ}=\Gal{\mathbb{Q}(a,b)}{\QQ}$ that sends an adjoined root $\alpha\in \{a,b\}$ to one of its conjugates $\alpha^{\prime}$ and fixes the other adjoined root via $\phi_{\alpha,\alpha^{\prime}}\coloneq \alpha\mapsto \alpha$. Observe.
+%\begin{align*}
+%  &\phi_{b,-b}^{2}\coloneq\phi_{b,-b}(\phi_{b,-b}(b))=\phi_{b,-b}(-b)=b\implies \phi_{b,-b}^{2}=\id.\\
+%  &\phi_{a,ba}^{2}\coloneq \phi_{a,ba}(ba)=\phi_{ba}(b)\phi_{ba}(a)=b(ba)=-a\implies \phi_{a,ba}^{3}\coloneq \phi_{a,ba}(-a)=-ba\\
+%  \implies &\phi_{a,ba}^{4}\coloneq \phi_{a,ba}(-ba)=-b(ba)=a\implies \phi_{a,ba}^{4}=\id\\
+%  \implies &\phi_{a,-a}=\phi_{a,-ba}^{2},\phi_{a,-ba}=\phi_{a,ba}^{3},|\phi_{b,-b}|=2,\text{ and }|\phi_{a,ba}|=4.
+%\end{align*}
+%Furthermore, since $\langle \phi_{b,-b}\rangle\cap \langle \phi_{a,ba}\rangle=\{\id\}$, we must have that $|\langle \phi_{b,-b}\rangle\langle \phi_{a,ba}\rangle|=\frac{(2)(4)}{1}=8=|G|$ and so $\Gal{\mathbb{Q}(a,b)}{\QQ}=\langle\phi_{b,-b},\phi_{a,ba}\rangle$. Well, $(\phi_{b,-b}\circ \phi_{a,ba})(a)=\phi_{b,-b}(ab)=-ab\neq ba=\phi_{a,ba}(a)=(\phi_{a,ba}\circ \phi_{b,-b})(a)$. Therefore, $\phi_{b,-b}\circ \phi_{a,ba}\neq \phi_{a,ba}\circ \phi_{b,-b}$, and $\Gal{\mathbb{Q}(a,b)}{\QQ}$ is a non-abelian group of order $8$ with an element $\phi_{b,-b}$ of order $2$. So then since it could only be isomorphic to $Q_{8}$ or $D_{4}$ purely by order, and $Q_{8}$ has no elements of order $2$, we must have that $\Gal{\mathbb{Q}(a,b)}{\QQ}\cong D_{4}$.
+
+%\end{proof}
 
 
 

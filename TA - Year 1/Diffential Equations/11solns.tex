@@ -1,0 +1,73 @@
+% !TEX program = pdflatex
+\documentclass[9pt]{article}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt}
+\pagestyle{empty}
+
+\begin{document}
+\scriptsize
+\textbf{MATH 266 -- HW 11 (Problems 2, 3, 4) One Page}
+
+\textbf{2.}\;
+$x' = \begin{pmatrix}1&1&1\\1&1&1\\1&1&1\end{pmatrix}x$.
+\[
+\boxed{
+x(t)=
+C_1 e^{3t}\!\begin{pmatrix}1\\1\\1\end{pmatrix}
++ C_2 \begin{pmatrix}1\\0\\-1\end{pmatrix}
++ C_3 \begin{pmatrix}0\\1\\-1\end{pmatrix}}
+\]
+So
+\[
+\boxed{
+\begin{aligned}
+x_1(t)&=C_1 e^{3t}+C_2,\\
+x_2(t)&=C_1 e^{3t}+C_3,\\
+x_3(t)&=C_1 e^{3t}-C_2-C_3.
+\end{aligned}}
+\]
+
+\textbf{3.}\;
+$x'=\begin{pmatrix}2&-5&0\\0&2&0\\-1&4&1\end{pmatrix}x$.
+\[
+\boxed{
+x(t)=
+C_1 e^{2t}\!\begin{pmatrix}1\\0\\-1\end{pmatrix}
++ C_2 e^{2t}\!\left(
+t\!\begin{pmatrix}1\\0\\-1\end{pmatrix}
++\begin{pmatrix}\tfrac15\\-\tfrac15\\0\end{pmatrix}\right)
++ C_3 e^{t}\!\begin{pmatrix}0\\0\\1\end{pmatrix}}
+\]
+So
+\[
+\boxed{
+\begin{aligned}
+x_1(t)&=e^{2t}\!\left(C_1+C_2 t+\frac{C_2}{5}\right),\\
+x_2(t)&=e^{2t}\!\left(-\frac{C_2}{5}\right),\\
+x_3(t)&=e^{2t}\!\left(-C_1-C_2 t\right)+C_3 e^{t}.
+\end{aligned}}
+\]
+
+\textbf{4.}\;
+$x'=\begin{pmatrix}1&1\\0&2\end{pmatrix}x+\begin{pmatrix}t e^{t}\\3e^{t}\end{pmatrix}$.
+\[
+\boxed{
+x(t)=
+C_1\begin{pmatrix}e^{t}\\0\end{pmatrix}
++ C_2\begin{pmatrix}e^{2t}\\e^{2t}\end{pmatrix}
++ \begin{pmatrix}\big(\tfrac{t^2}{2}-3t-3\big)e^{t}\\-3e^{t}\end{pmatrix}}
+\]
+So
+\[
+\boxed{
+\begin{aligned}
+x_1(t)&=C_1 e^{t}+C_2 e^{2t}+\left(\frac{t^2}{2}-3t-3\right)e^{t},\\
+x_2(t)&=C_2 e^{2t}-3e^{t}.
+\end{aligned}}
+\]
+
+\end{document}

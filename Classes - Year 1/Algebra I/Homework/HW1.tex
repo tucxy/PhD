@@ -1,0 +1,350 @@
+\documentclass[addpoints,10pt]{exam}
+
+\usepackage{amsmath,amsthm,enumitem,wrapfig,amsfonts,mathtools}
+\usepackage[mathscr]{euscript}
+\usepackage[super]{nth}
+\usepackage{dsfont}
+\usepackage{xparse}
+
+\usepackage{geometry}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\renewcommand{\rmdefault}{ptm} %Change the Front Family from the default(cmr) to ptm(Times)
+\usepackage{amsmath,amsfonts,amsthm,amssymb} % Math packages
+\usepackage{bm}
+\usepackage{mathptmx}
+\usepackage{graphicx}
+\usepackage{sectsty} % Allows customizing section commands
+% \allsectionsfont{\centering} % Make all sections centered, the default font and small caps
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{xcolor}
+\definecolor{darkpastelgreen}{rgb}{0.01, 0.75, 0.24}
+\definecolor{blue-violet}{rgb}{0.54, 0.17, 0.89}
+%\usepackage{polylongdiv} %polynomial long division
+% Custom problem environment
+\usepackage{polynom}
+\newcounter{cprob}
+\newenvironment{cprob}[1]{%
+    \setcounter{cprob}{#1}%
+    \noindent\textbf{Problem \thecprob.}%
+}{%
+    \par\bigskip%
+}
+
+\theoremstyle{plain}
+\newcommand{\theoremname}{Theorem}
+\newtheorem{thm}{\protect\theoremname}
+  \theoremstyle{definition}
+  \newtheorem{prob}[thm]{Problem}
+  \newtheorem*{problem*}{Open Problem}
+  \theoremstyle{plain}
+  \newtheorem{conjecture}[thm]{Conjecture}
+  \theoremstyle{plain}
+  \newtheorem{lem}[thm]{Lemma}
+  \newtheorem*{lem*}{Lemma}
+  \newtheorem{obs}[thm]{Observation}
+  \newtheorem{cor}[thm]{Corollary}
+  \theoremstyle{definition}
+\newtheorem{definition}[thm]{Definition}
+
+
+% Patch prob environment to be single spaced
+\let\oldprob\prob
+\let\endoldprob\endprob
+\renewenvironment{prob}
+  {\begin{singlespace}\oldprob}
+  {\endoldprob\end{singlespace}}
+
+% start problem one line below like for enumerated problems with multiple parts
+\newcommand{\belowtitle}{\leavevmode\newline}
+%\Observe command
+\newcommand{\Observe}{\text{Observe.}}
+%(=>)
+\newcommand{\IF}{\mathbf{(\Rightarrow)}}
+%(<=)
+\newcommand{\FI}{\mathbf{(\Leftarrow)}}
+%equivalence classes; \class[S]{ *content in square brackets* }
+\newcommand{\class}[2][]{\ensuremath{\left[\,#2\,\right]_{#1}}}
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}
+\newcommand{\kkk}{\ensuremath{\Bbbk}} 
+\newcommand{\CC}{\ensuremath{\mathbb{C}}}
+\newcommand{\FF}{\ensuremath{\mathbb{F}}}
+\newcommand{\KK}{\ensuremath{\mathbb{K}}}
+\newcommand{\NN}{\ensuremath{\mathbb{N}}}
+\newcommand{\QQ}{\ensuremath{\mathbb{Q}}} 
+\newcommand{\RR}{\ensuremath{\mathbb{R}}} 
+\newcommand{\ZZ}{\ensuremath{\mathbb{Z}}}
+\newcommand{\MM}{\ensuremath{\mathcal{M}}}
+\newcommand{\TT}{\ensuremath{\mathcal{T}}}
+\newcommand{\BB}{\ensuremath{\mathcal{B}}}
+\newcommand{\VV}{\ensuremath{\mathcal{V}}}
+\newcommand{\WW}{\ensuremath{\mathcal{W}}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}}
+\newcommand{\PP}{\ensuremath{\mathcal{P}}}
+\newcommand{\LL}{\ensuremath{\mathcal{L}}}
+\newcommand{\kk}{\ensuremath{\mathds{k}}}
+\newcommand{\EE}{\ensuremath{\mathbb{E}}}
+
+
+\newcommand{\sm}{\char`\\}
+%vector stuff
+\DeclarePairedDelimiter{\ip}{\langle}{\rangle} %inner product/generate
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert} %norm
+\DeclarePairedDelimiter{\sqb}{\lbrack}{\rbrack} %corrd
+
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\mbf}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\tbf}[1]{\textbf{ #1 }}
+\newcommand{\Span}{\ensuremath{\mathrm{Span}}}
+\newcommand{\Char}[1]{\mathrm{Char}\; #1}
+\DeclareMathOperator{\lcm}{lcm}
+\newcommand{\id}{\ensuremath{\mathrm{id}}}
+\newcommand{\Gal}[2]{\mathrm{Gal}(#1/#2)}
+\newcommand{\Aut}{\ensuremath{\mathrm{Aut}}}
+\newcommand{\Fix}[2]{\mathrm{Fix}_{#1}(#2)}
+\newcommand{\nil}{\ensuremath{\mathrm{nil}}}
+\newcommand{\Hom}{\ensuremath{\mathrm{Hom}}}
+
+
+
+
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\def\env@matrix{\hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols c}}
+
+  \newcommand{\proj}[2]{\text{proj}_{#1}(#2)}
+  
+
+%%% Formatting: Page Header
+\newcommand{\StudentName}{Danny Banegas}
+\newcommand{\AssignmentName}{Homework 4}
+\newcommand{\CourseName}{MATH 721 - Algebra II}
+
+
+\pagestyle{headandfoot}
+\runningheadrule
+\firstpageheadrule
+\firstpageheader{\CourseName}{\StudentName}{\AssignmentName}
+\runningheader{\CourseName}{\StudentName}{\AssignmentName}
+\firstpagefooter{}{\thepage}{}
+\runningfooter{}{\thepage}{}
+
+\printanswers
+
+\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+
+\usepackage{parskip}
+\usepackage{setspace}
+\doublespacing
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{thm}{0} % next prob is 1
+
+\begin{prob}
+Prove that if $0=1$ in a ring $R$, then $R$ is the zero ring (that is, its only element is $0$).
+\end{prob}
+
+\begin{proof}
+$\forall r\in R$, $r=1\cdot r=0\cdot r=0.$ Thus, $R=\{0\}$.
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{prob}
+A category $C'$ is a subcategory of a category $C$ if
+\begin{enumerate}[label=\arabic*)]
+  \item $\mathrm{Obj}(C') \subseteq \mathrm{Obj}(C)$, and
+  \item for all $A,B \in \mathrm{Obj}(C')$, $\mathrm{Hom}_{C'}(A,B) \subseteq \mathrm{Hom}_{C}(A,B)$.
+\end{enumerate}
+It is a full subcategory if in addition $\mathrm{Hom}_{C'}(A,B)=\mathrm{Hom}_{C}(A,B)$ for all $A,B \in \mathrm{Obj}(C')$.
+
+Ring is a subcategory of Rng (you do not need to prove this). Show that it is not a full subcategory.
+\end{prob}
+
+\begin{proof}
+$\varphi:\ZZ_{6}\mapsto \ZZ_{6}$ defined via $\varphi(a)=2a$ belongs to $\mathrm{Hom}_{\mathrm{Rng}}(\ZZ_{6},\ZZ_{6})$ but not $\mathrm{Hom}_{\mathrm{Ring}}(\ZZ_{6},\ZZ_{6})$ since $\varphi(1)=2\neq 1$, and a ring homomorphism in $\mathrm{Hom}_{\mathrm{Ring}}(\ZZ_{6},\ZZ_{6})$ must preserve $1$. Thus, $\mathrm{Hom}_{\mathrm{Ring}}(\ZZ_{6},\ZZ_{6})\subset \mathrm{Hom}_{\mathrm{Rng}}(\ZZ_{6},\ZZ_{6})\implies$ Ring is not a full subcategory of Rng.
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{prob}
+Let $a$ and $b$ be zero-divisors in a ring $R$. Either prove $a+b$ is always a zero-divisor or provide a specific counterexample.
+\end{prob}
+
+\begin{proof}
+Consider $[2],[3]\in \ZZ_{6}$. $[2]\cdot [3]=[0]$ and both are non-zero, so they are both zero-divisors. Yet $[2]+[3]=[5]$, which isn't a zero divisor since $([5][m])_{m=0}^{5}=([0],[5],[4],[3],[2],[1])$. Thus, the sum of two zero-divisors is not always a zero-divisor.
+
+\end{proof}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{prob}
+The center of a ring $R$ is $Z(R)=\{z \in R \mid rz=zr \text{ for all } r \in R\}$. Prove that the center of a ring $R$ is a subring of $R$.
+\end{prob}
+
+\begin{proof}
+$\forall a,b \in Z(R)$, and $\forall r\in R$,
+\begin{align*}
+    &\mathbf{[1]:} \; 1r=r1=r\implies 1\in Z(R)\\
+    &\mathbf{[\leq_{+}]:} \; (a-b)r=ar-br=(ra)-(rb)=r(a-b)\implies a-b\in Z(R)\\
+    &\mathbf{[\cdot]:} \; (ab)r=a(br)=a(rb)=(ar)b=(ra)b=r(ab)\implies ab\in Z(R). 
+\end{align*}
+Thus, $Z(R)$ is a subring of $R$.
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{prob}
+An element $x$ in a ring $R$ is called nilpotent if $x^m=0$ for some $m \in \ZZ^{+}$ (here $x^m$ denotes $x\cdot x \cdots x$ ($m$ times)).
+
+Prove that the nilpotent elements of a commutative ring $R$ form an ideal (this is called the nilradical of $R$).
+\end{prob}
+
+\begin{proof}
+Let $R$ be a commutative ring with unity, and let $\nil(R)$ be the set of all nilpotent elements of $R$; $\nil(R)=\{x\in R\mid x^{m}=0 \text{ for some }m\in \ZZ^{+}\}$. Let $x,y \in \nil(R)$. Then $x^{m}=0,y^{n}=0$ for some $m,n\in \ZZ^{+}$. Observe.
+$$(x-y)^{mn}=\sum_{i=0}^{m}\binom{m}{i}x^i(-y)^{mn-i}=$$
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 6 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{prob}
+Let $n \in \NN$.
+\begin{parts}
+\part Show that if $n=ab$ for some integers $a,b$, then $ab$ is a nilpotent element of $\ZZ/n\ZZ$.
+\part If $a \in \ZZ$, show that the element $a \in \ZZ/n\ZZ$ is nilpotent if and only if every prime divisor of $n$ divides $a$. In particular, determine the nilpotent elements of $\ZZ/72\ZZ$.
+\end{parts}
+\end{prob}
+
+\begin{proof}
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 7 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{prob}
+Let $R$ and $S$ be rings.
+\begin{parts}
+\part Prove that the direct product $R \times S=\{(r,s)\mid r \in R,\ s \in S\}$ forms a ring under componentwise addition and multiplication.
+\part Prove that $R \times S$ is commutative if and only if both $R$ and $S$ are commutative.
+\end{parts}
+\end{prob}
+
+\begin{proof}
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 8 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{prob}
+Let $R$ be a commutative ring. Define the ring $R[[x]]$ of formal power series by
+$$
+R[[x]]=\left\{\sum_{n=0}^{\infty} a_n x^n \ \middle|\ a_i \in R \right\}.
+$$
+\begin{parts}
+\part Prove that $R[[x]]$ is a commutative ring, and be sure to explain how to add and multiply elements.
+\part Show that $1-x$ is a unit with inverse $1+x+x^2+\cdots=\sum_{n=0}^{\infty} x^n$.
+\part (Optional Challenge) Prove that $\sum_{n=0}^{\infty} a_n x^n$ is a unit in $R[[x]]$ if and only if $a_0$ is a unit in $R$.
+\end{parts}
+\end{prob}
+
+\begin{proof}
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 9 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{prob}
+Decide which of the following are ring homomorphisms from $M_2(\ZZ)$ to $\ZZ$:
+\begin{parts}
+\part $\begin{pmatrix} a & b \\ c & d \end{pmatrix} \mapsto a$
+\part $\begin{pmatrix} a & b \\ c & d \end{pmatrix} \mapsto a+d$
+\part $\begin{pmatrix} a & b \\ c & d \end{pmatrix} \mapsto ad-bc$
+\end{parts}
+\end{prob}
+
+\begin{proof}
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 10 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{prob}
+Let
+$$
+R=\left\{
+\begin{pmatrix}
+a & b \\
+0 & d
+\end{pmatrix}
+\;\middle|\;
+a,b,d \in \ZZ
+\right\}.
+$$
+Prove that the map
+$$
+\varphi : R \to \ZZ \times \ZZ,\qquad
+\varphi\!\left(
+\begin{pmatrix}
+a & b \\
+0 & d
+\end{pmatrix}
+\right)=(a,d)
+$$
+is a surjective ring homomorphism and describe its kernel.
+\end{prob}
+
+\begin{proof}
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 11 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{prob}
+Decide which of the following are ideals of $\ZZ \times \ZZ$:
+\begin{parts}
+\part $\{(a,a)\mid a \in \ZZ\}$
+\part $\{(2a,2b)\mid a,b \in \ZZ\}$
+\part $\{(2a,0)\mid a \in \ZZ\}$
+\part $\{(a,-a)\mid a \in \ZZ\}$
+\end{parts}
+\end{prob}
+
+\begin{proof}
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 12 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{prob}
+The characteristic of a ring $R$ (denoted $\mathrm{char}\,R$) is the smallest $n \in \NN$ such that
+$$
+\underbrace{1_R+\cdots+1_R}_{n\ \text{times}}=0,
+$$
+and if there is no such $n$ we say the characteristic of $R$ is $0$.
+
+Prove that an integral domain has characteristic $0$ or a prime.
+\end{prob}
+
+\begin{proof}
+
+\end{proof}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\end{document}

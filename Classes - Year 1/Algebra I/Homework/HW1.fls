@@ -1,7 +1,7 @@
-PWD c:\Users\baneg\OneDrive\Desktop\git\PhD\Classes - Year 1\Fall 2025\Algebra II\HW3
+PWD c:\Users\baneg\OneDrive\Desktop\git\PhD\Classes - Year 1\Algebra I\Homework
 INPUT C:\Users\baneg\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\baneg\OneDrive\Desktop\git\PhD\Classes - Year 1\Fall 2025\Algebra II\HW3\Homework_3.tex
-OUTPUT Homework_3.log
+INPUT c:\Users\baneg\OneDrive\Desktop\git\PhD\Classes - Year 1\Algebra I\Homework\HW1.tex
+OUTPUT HW1.log
 INPUT C:\Program Files\MiKTeX\tex\latex\exam\exam.cls
 INPUT C:\Program Files\MiKTeX\tex\latex\exam\exam.cls
 INPUT C:\Program Files\MiKTeX\tex\latex\base\ifthen.sty
@@ -41,6 +41,14 @@ INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\euscript.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\euscript.sty
 INPUT C:\Program Files\MiKTeX\tex\generic\genmisc\nth.sty
 INPUT C:\Program Files\MiKTeX\tex\generic\genmisc\nth.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\doublestroke\dsfont.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\doublestroke\dsfont.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\l3packages\xparse\xparse.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\l3packages\xparse\xparse.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\l3kernel\expl3.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\l3kernel\expl3.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
+INPUT C:\Program Files\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
 INPUT C:\Program Files\MiKTeX\tex\latex\geometry\geometry.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\geometry\geometry.sty
 INPUT C:\Program Files\MiKTeX\tex\generic\iftex\ifvtex.sty
@@ -256,12 +264,10 @@ INPUT C:\Program Files\MiKTeX\tex\latex\psnfss\t1ptm.fd
 INPUT C:\Program Files\MiKTeX\tex\latex\psnfss\t1ptm.fd
 INPUT C:\Program Files\MiKTeX\tex\latex\psnfss\t1ptm.fd
 INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\times\ptmr8t.tfm
-INPUT C:\Program Files\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
-INPUT C:\Program Files\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
-INPUT .\Homework_3.aux
-INPUT .\Homework_3.aux
-INPUT Homework_3.aux
-OUTPUT Homework_3.aux
+INPUT .\HW1.aux
+INPUT .\HW1.aux
+INPUT HW1.aux
+OUTPUT HW1.aux
 INPUT C:\Program Files\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Program Files\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Program Files\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
@@ -271,7 +277,6 @@ INPUT C:\Program Files\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
 INPUT C:\Program Files\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
 INPUT C:\Program Files\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
 INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\times\ptmb8t.tfm
-INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\times\ptmri8t.tfm
 INPUT C:\Program Files\MiKTeX\tex\latex\psnfss\ot1ztmcm.fd
 INPUT C:\Program Files\MiKTeX\tex\latex\psnfss\ot1ztmcm.fd
 INPUT C:\Program Files\MiKTeX\tex\latex\psnfss\ot1ztmcm.fd
@@ -320,52 +325,46 @@ INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\times\ptmb7t.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\times\ptmri7t.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\times\ptmri7t.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\times\ptmri7t.tfm
-INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\times\ptmr8t.tfm
-INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\times\ptmb8t.tfm
-INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\times\ptmr8t.tfm
-INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\times\ptmb8t.tfm
-OUTPUT Homework_3.pdf
+INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\times\ptmri8t.tfm
+OUTPUT HW1.pdf
 INPUT C:\Program Files\MiKTeX\fonts\vf\adobe\times\ptmr8t.vf
 INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\times\ptmr8r.tfm
 INPUT C:\Users\baneg\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
 INPUT C:\Program Files\MiKTeX\fonts\enc\dvips\base\8r.enc
 INPUT C:\Program Files\MiKTeX\fonts\vf\adobe\times\ptmb8t.vf
 INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\times\ptmb8r.tfm
-INPUT C:\Program Files\MiKTeX\fonts\vf\adobe\times\ptmri8t.vf
-INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\times\ptmri8r.tfm
 INPUT C:\Program Files\MiKTeX\fonts\vf\adobe\times\zptmcm7t.vf
 INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\symbol\psyr.tfm
+INPUT C:\Program Files\MiKTeX\fonts\vf\adobe\times\zptmcm7m.vf
+INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\times\psyro.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\times\ptmri8r.tfm
+INPUT C:\Program Files\MiKTeX\fonts\vf\adobe\times\ptmri8t.vf
 INPUT C:\Program Files\MiKTeX\fonts\vf\adobe\times\zptmcm7y.vf
+INPUT C:\Users\baneg\AppData\Local\MiKTeX\fonts\tfm\public\rsfs\rsfs10.tfm
+INPUT C:\Program Files\MiKTeX\fonts\vf\adobe\times\zptmcm7y.vf
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmsy10.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\symbol\psyr.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\times\ptmr8r.tfm
 INPUT C:\Users\baneg\AppData\Local\MiKTeX\fonts\tfm\public\rsfs\rsfs10.tfm
 INPUT C:\Program Files\MiKTeX\fonts\vf\adobe\times\zptmcm7m.vf
 INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\times\psyro.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmmi10.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\times\ptmri8r.tfm
+INPUT C:\Program Files\MiKTeX\fonts\vf\adobe\times\zptmcm7y.vf
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmsy10.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\symbol\psyr.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\times\ptmr8r.tfm
+INPUT C:\Users\baneg\AppData\Local\MiKTeX\fonts\tfm\public\rsfs\rsfs10.tfm
+INPUT C:\Program Files\MiKTeX\fonts\vf\adobe\times\zptmcm7t.vf
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmr10.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\times\ptmr8t.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\times\ptmr8t.tfm
+INPUT C:\Program Files\MiKTeX\fonts\vf\adobe\times\ptmb7t.vf
 INPUT C:\Program Files\MiKTeX\fonts\vf\adobe\times\zptmcm7v.vf
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmex10.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\symbol\psyr.tfm
-INPUT C:\Program Files\MiKTeX\fonts\vf\adobe\times\zptmcm7m.vf
-INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\times\psyro.tfm
-INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmmi10.tfm
-INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\times\ptmri8r.tfm
-INPUT C:\Program Files\MiKTeX\fonts\vf\adobe\times\zptmcm7t.vf
-INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\symbol\psyr.tfm
-INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\times\ptmr8r.tfm
-INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmr10.tfm
-INPUT C:\Program Files\MiKTeX\fonts\vf\adobe\times\zptmcm7m.vf
-INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\times\psyro.tfm
-INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmmi10.tfm
-INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\times\ptmri8r.tfm
-INPUT C:\Program Files\MiKTeX\fonts\vf\adobe\times\zptmcm7y.vf
-INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmsy10.tfm
-INPUT C:\Users\baneg\AppData\Local\MiKTeX\fonts\tfm\public\rsfs\rsfs10.tfm
-INPUT C:\Program Files\MiKTeX\fonts\vf\adobe\times\zptmcm7t.vf
-INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\symbol\psyr.tfm
-INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\times\ptmr8r.tfm
-INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmr10.tfm
-INPUT C:\Program Files\MiKTeX\fonts\vf\adobe\times\zptmcm7y.vf
-INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmsy10.tfm
-INPUT C:\Users\baneg\AppData\Local\MiKTeX\fonts\tfm\public\rsfs\rsfs10.tfm
-INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmsy6.tfm
-INPUT Homework_3.aux
+INPUT C:\Program Files\MiKTeX\fonts\vf\adobe\times\ptmr8t.vf
+INPUT HW1.aux
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmex10.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmex10.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
@@ -374,8 +373,6 @@ INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
-INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\symbols\msam10.pfb
-INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\symbols\msam10.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\symbols\msbm10.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\public\amsfonts\symbols\msbm10.pfb
 INPUT C:\Program Files\MiKTeX\fonts\type1\urw\symbol\usyr.pfb

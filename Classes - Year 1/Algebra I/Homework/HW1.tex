@@ -107,6 +107,14 @@
 \newcommand{\Fix}[2]{\mathrm{Fix}_{#1}(#2)}
 \newcommand{\nil}{\ensuremath{\mathrm{nil}}}
 \newcommand{\Hom}{\ensuremath{\mathrm{Hom}}}
+\newcommand{\Obj}{\ensuremath{\mathrm{Obj}}}
+
+\newcommand{\Rng}{\ensuremath{\mathrm{Rng}}}
+\newcommand{\Ring}{\ensuremath{\mathrm{Ring}}}
+
+
+
+
 
 
 
@@ -128,8 +136,8 @@
 
 %%% Formatting: Page Header
 \newcommand{\StudentName}{Danny Banegas}
-\newcommand{\AssignmentName}{Homework 4}
-\newcommand{\CourseName}{MATH 721 - Algebra II}
+\newcommand{\AssignmentName}{Homework 1}
+\newcommand{\CourseName}{MATH 720 - Algebra I}
 
 
 \pagestyle{headandfoot}
@@ -146,10 +154,9 @@
 
 \usepackage{parskip}
 \usepackage{setspace}
-\doublespacing
+
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 \begin{document}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setcounter{thm}{0} % next prob is 1
 
@@ -158,7 +165,7 @@ Prove that if $0=1$ in a ring $R$, then $R$ is the zero ring (that is, its only 
 \end{prob}
 
 \begin{proof}
-$\forall r\in R$, $r=1\cdot r=0\cdot r=0.$ Thus, $R=\{0\}$.
+$\forall r\in R$, $r=1\cdot r=0\cdot r=0\implies R=\{0\}$.
 
 \end{proof}
 
@@ -166,18 +173,22 @@ $\forall r\in R$, $r=1\cdot r=0\cdot r=0.$ Thus, $R=\{0\}$.
 
 \begin{prob}
 A category $C'$ is a subcategory of a category $C$ if
-\begin{enumerate}[label=\arabic*)]
+\begin{enumerate}[label=(\arabic*)]
   \item $\mathrm{Obj}(C') \subseteq \mathrm{Obj}(C)$, and
   \item for all $A,B \in \mathrm{Obj}(C')$, $\mathrm{Hom}_{C'}(A,B) \subseteq \mathrm{Hom}_{C}(A,B)$.
 \end{enumerate}
 It is a full subcategory if in addition $\mathrm{Hom}_{C'}(A,B)=\mathrm{Hom}_{C}(A,B)$ for all $A,B \in \mathrm{Obj}(C')$.
 
-Ring is a subcategory of Rng (you do not need to prove this). Show that it is not a full subcategory.
+Ring with unity is a subcategory of Ring (you do not need to prove this). Show that it is not a full subcategory.
 \end{prob}
 
 \begin{proof}
-$\varphi:\ZZ_{6}\mapsto \ZZ_{6}$ defined via $\varphi(a)=2a$ belongs to $\mathrm{Hom}_{\mathrm{Rng}}(\ZZ_{6},\ZZ_{6})$ but not $\mathrm{Hom}_{\mathrm{Ring}}(\ZZ_{6},\ZZ_{6})$ since $\varphi(1)=2\neq 1$, and a ring homomorphism in $\mathrm{Hom}_{\mathrm{Ring}}(\ZZ_{6},\ZZ_{6})$ must preserve $1$. Thus, $\mathrm{Hom}_{\mathrm{Ring}}(\ZZ_{6},\ZZ_{6})\subset \mathrm{Hom}_{\mathrm{Rng}}(\ZZ_{6},\ZZ_{6})\implies$ Ring is not a full subcategory of Rng.
+$\varphi:\ZZ_{6}\mapsto \ZZ_{6}$ defined via $\varphi(a)=[0]a$ belongs to $\mathrm{Hom}_{\mathrm{Ring}}(\ZZ_{6},\ZZ_{6})$ but not $\mathrm{Hom}_{\mathrm{Ring\;with\;unity}}(\ZZ_{6},\ZZ_{6})$ since $\varphi([1])=[0]\neq [1]$, and a ring homomorphism in $\mathrm{Hom}_{\mathrm{Ring\;with\;unity}}(\ZZ_{6},\ZZ_{6})$ must preserve unity. So $\Hom_{\mathrm{Ring\;with\;unity}}(A,B)\neq \Hom_{\mathrm{Ring}}(A,B)$ for $A=B=\ZZ_{6}\in \mathrm{Obj}(\mathrm{Ring\;with\;unity})$.
 
+Thus, 
+\begin{center}
+Ring with unity is not a full subcategory of Ring.
+\end{center}
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -187,8 +198,12 @@ Let $a$ and $b$ be zero-divisors in a ring $R$. Either prove $a+b$ is always a z
 \end{prob}
 
 \begin{proof}
-Consider $[2],[3]\in \ZZ_{6}$. $[2]\cdot [3]=[0]$ and both are non-zero, so they are both zero-divisors. Yet $[2]+[3]=[5]$, which isn't a zero divisor since $([5][m])_{m=0}^{5}=([0],[5],[4],[3],[2],[1])$. Thus, the sum of two zero-divisors is not always a zero-divisor.
+Consider $[2],[3]\in \ZZ_{6}$. $[2]\cdot [3]=[0]$ and both are non-zero, so they are both zero-divisors. Yet $[2]+[3]=[5]$, which isn't a zero divisor since $([5][m])_{m=0}^{5}=([0],[5],[4],[3],[2],[1])$. 
 
+Thus, 
+\begin{center}
+the sum of two zero-divisors is not always a zero-divisor.
+\end{center}
 \end{proof}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
@@ -203,12 +218,14 @@ $\forall a,b \in Z(R)$, and $\forall r\in R$,
     &\mathbf{[\leq_{+}]:} \; (a-b)r=ar-br=(ra)-(rb)=r(a-b)\implies a-b\in Z(R)\\
     &\mathbf{[\cdot]:} \; (ab)r=a(br)=a(rb)=(ar)b=(ra)b=r(ab)\implies ab\in Z(R). 
 \end{align*}
-Thus, $Z(R)$ is a subring of $R$.
-
+Thus, 
+\begin{center}
+$Z(R)$ is a subring of $R$.
+\end{center}
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\newpage
 \begin{prob}
 An element $x$ in a ring $R$ is called nilpotent if $x^m=0$ for some $m \in \ZZ^{+}$ (here $x^m$ denotes $x\cdot x \cdots x$ ($m$ times)).
 
@@ -216,12 +233,24 @@ Prove that the nilpotent elements of a commutative ring $R$ form an ideal (this 
 \end{prob}
 
 \begin{proof}
-Let $R$ be a commutative ring with unity, and let $\nil(R)$ be the set of all nilpotent elements of $R$; $\nil(R)=\{x\in R\mid x^{m}=0 \text{ for some }m\in \ZZ^{+}\}$. Let $x,y \in \nil(R)$. Then $x^{m}=0,y^{n}=0$ for some $m,n\in \ZZ^{+}$. Observe.
-$$(x-y)^{mn}=\sum_{i=0}^{m}\binom{m}{i}x^i(-y)^{mn-i}=$$
+Let $R$ be a commutative ring with unity, and let $\nil(R)$ be the set of all nilpotent elements of $R$; $\nil(R)=\{x\in R\mid x^{m}=0 \text{ for some }m\in \ZZ^{+}\}$. Notice that in general for $r\in \nil(R)$: if $r^{N}=0$, then $r^{N+k}=r^{N}r^{k}=(0)r^{k}=0\implies r^{j}=0,\forall j\geq N$.
+
+Now let $x,y \in \nil(R)$. Then $x^{m}=0,y^{n}=0$ for some $m,n\in \ZZ^{+}$. By the Binomial Theorem,
+\begin{center}
+  $(x-y)^{m+n}=\sum_{i=0}^{m+n}\binom{m+n}{i}x^i(-y)^{m+n-i}=\sum_{i=0}^{m+n}(-1)^{m+n-i}\binom{m+n}{i}x^i(y)^{m+n-i}=0$
+
+  Since $i\geq m\implies x^{i}=0$ or $0\leq i<m\implies m+n-i\geq n\implies y^{m+n-i}=0$
+\end{center}
+So $x-y\in \nil(R)$, and therefore it is an additive subgroup of $R$.
+
+Since $R$ is commutative, $(rx)^{k}=r^{k}x^{k}$ For all $k\geq 1$. So then obviously $(rx)^{m}=r^{m}x^{m}=r^{m}(0)=0\implies rx=xr\in \nil(R)$.
+
+Thus,
+$$\text{The nilradical }\nil(R)\text{ of R is a two-sided ideal of }R.$$
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 6 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\newpage
 \begin{prob}
 Let $n \in \NN$.
 \begin{parts}
@@ -229,13 +258,30 @@ Let $n \in \NN$.
 \part If $a \in \ZZ$, show that the element $a \in \ZZ/n\ZZ$ is nilpotent if and only if every prime divisor of $n$ divides $a$. In particular, determine the nilpotent elements of $\ZZ/72\ZZ$.
 \end{parts}
 \end{prob}
-
+We quickly prove a lemma, which follows from \textbf{Euclid's Lemma}.
+\setcounter{thm}{0} % next prob is 1
+\begin{lem}
+If $p$ is prime, $a\in \ZZ$, and $n\in \ZZ^{+}$ such that $p\mid a^{n}$, then $p\mid a$.
+\end{lem}
 \begin{proof}
-
+Trivially, $p\mid a\implies p\mid a$. Next, $p\mid a^{2}=a(a)\implies p\mid a$ or $p\mid a\implies p\mid a$ by \textbf{Euclid's Lemma}. Now suppose that $p\mid a^{k}\implies p\mid a$ for some $k\geq 2$. Then, by \textbf{Euclid's Lemma}, $p\mid a^{k+1}=a(a^{k})\implies (i) p\mid a$ or $(ii) p\mid a^{k}$ and so $(i)$ $p\mid a$ or by our inductive step $(ii) p\mid a^{k}\implies p\mid a$. So $p\mid a^{k+1}\implies p\mid a$. Therefore, by induction, $p\mid a^{n}\implies p\mid a$ for all $n\geq 1$, and the statement is proven.
 \end{proof}
+\setcounter{thm}{6} % next prob is 7
+\begin{proof}
+\textbf{(a): }Since $ab=n\implies (ab)^{1}=ab=n=0\in \ZZ_{n} \implies ab\in \nil(\ZZ_{n})$.
 
+\textbf{(b): $(\implies)$ }If $a\in \ZZ$ is nilpotent in $\ZZ_{n}$, then $a^{m}=0$ for some $m\in \ZZ^{+}$. So then $a^{m}=0\in \ZZ_{n}\implies a^{m}=qn\in \ZZ$ for some $q\in \ZZ$ and $n\mid a^{m}$. Well, for any prime divisor $p$ of $n$, we must then have that $p\mid n$ and $n\mid a^{m}\implies p\mid a^{m}$. Therefore by \textbf{Lemma 1} $p\mid a$.
+
+$(\impliedby)$ Let $n=\prod_{i=1}^{k} p_{i}^{b_{i}}$ be the prime decomposition of $n$ where $p_{1},\hdots, p_{k}$ are all distinct prime divisors of $n$, and $b_{1},\hdots, b_{k}\in \ZZ^{+}$. If each prime divisor $p_{i}$ divides $a$, then $\exists q_{i}\in \ZZ$ such that $a=p_{i}q_{i}$ and $a^{b_{i}}=p_{i}^{b_{i}}q_{i}^{b_{i}}$for all $1\leq i\leq k$. Therefore, since $\ZZ$ is commutative,
+$$a^{\sum_{i=1}^{k}b_{i}}=\prod_{i=1}^{k} a^{b_{i}}=\prod_{i=1}^{k}p_{i}^{b_{i}}q_{i}^{b_{i}}=\prod_{i=1}^{k}q_{i}(\prod_{i=1}^{k}p_{i}^{b_{i}})=(\prod_{i=1}^{k}q_{i})n\implies a^{\sum_{i=1}^{k}b_{i}}=0\in \ZZ_{n}\implies a\in \nil(\ZZ_{n}).$$
+Thus, 
+\begin{center}
+$a\in \ZZ$ is nilpotent in $\ZZ_{n} \text{ for }n\in \NN \iff$ every prime divisor of $n$ divides $a$.
+\end{center}
+\end{proof}
+$72=9(8)=2^{3}3^{2}$ and so the nilpotent elements of $\ZZ_{72}$ are all $a\in \ZZ_{72}$ which are divisible by both $2$ and $3$. That is, all multiples of $6$ in $\ZZ_{72}$. So $\nil(\ZZ_{72})=\langle 6\rangle=\{0,6,12,18,24,30,36,42,48,54,60,66\}$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 7 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\newpage
 \begin{prob}
 Let $R$ and $S$ be rings.
 \begin{parts}
@@ -243,8 +289,53 @@ Let $R$ and $S$ be rings.
 \part Prove that $R \times S$ is commutative if and only if both $R$ and $S$ are commutative.
 \end{parts}
 \end{prob}
-
 \begin{proof}
+\textbf{(a):} For all $a=(r_{1},s_{1}),b=(r_{2},s_{2}),c=(r_{3},s_{3})\in R\times S,$
+we verify the ring axioms.
+\begin{align*}
+&[+_1]\ \text{(associativity)}:\quad (a+b)+c
+= (r_1+r_2,\; s_1+s_2)+(r_3,s_3) \\
+&\hspace{40mm}=((r_1+r_2)+r_3,\; (s_1+s_2)+s_3)
+=(r_1+(r_2+r_3),\; s_1+(s_2+s_3)) \\
+&\hspace{40mm}=(r_1,s_1)+(r_2+r_3,\; s_2+s_3)=a+(b+c).
+\\[2mm]
+&[+_2]\ \text{(commutativity)}:\quad a+b=(r_1+r_2,\; s_1+s_2)=(r_2+r_1,\; s_2+s_1)=b+a.
+\\[2mm]
+&[0]\ \text{(zero)}:\quad a+(0_{R},0_{S})=(r_1+0_R, s_1+0_S)=(0_R+r_{1},0_S+s_{1})=(0_{R},0_{S})+a=a\implies 0_{R\times S}=(0_{R},0_{S}).
+\\[2mm]
+&[+_3]\ \text{(additive inverse)}:\quad \text{Let }-a=(-r_1,-s_1).
+\ \text{Then }a+(-a)=(r_1-r_1,\; s_1-s_1)=(0_R,0_S)=0_{R\times S}.
+\\[3mm]
+&[\cdot_1]\ \text{(associativity)}:\quad (ab)c
+=(r_1r_2,\; s_1s_2)(r_3,s_3)
+=((r_1r_2)r_3,\; (s_1s_2)s_3)\\
+&\hspace{40mm}=(r_1(r_2r_3),\; s_1(s_2s_3))
+=(r_1,s_1)(r_2r_3,\; s_2s_3)=a(bc).
+\\[2mm]
+&[D_1]\ \text{(left distributivity)}:\quad a(b+c)
+=(r_1,s_1)(r_2+r_3,\; s_2+s_3)
+=(r_1(r_2+r_3),\; s_1(s_2+s_3))\\
+&\hspace{40mm}=(r_1r_2+r_1r_3,\; s_1s_2+s_1s_3)
+=(r_1r_2,\; s_1s_2)+(r_1r_3,\; s_1s_3)=ab+ac.
+\\[2mm]
+&[D_2]\ \text{(right distributivity)}:\quad (a+b)c
+=(r_1+r_2,\; s_1+s_2)(r_3,s_3)
+=((r_1+r_2)r_3,\; (s_1+s_2)s_3)\\
+&\hspace{40mm}=(r_1r_3+r_2r_3,\; s_1s_3+s_2s_3)
+=(r_1r_3,\; s_1s_3)+(r_2r_3,\; s_2s_3)=ac+bc.
+\\[2mm]
+&[1]\ \text{(unity)}:\quad (1_{R},1_{S})a=(1_{R}\cdot r_{1},1_{S}\cdot s_{1})=(r_{1}\cdot 1_{R},s_{1}\cdot 1_{S})=(r_{1},s_{1})=a\implies 1_{R\times S}=(1_{R},1_{S}).
+\end{align*}
+
+Thus,
+\begin{center}
+$R\times S$ is a ring with unity.
+\end{center}
+\end{proof}
+
+\begin{proof} \textbf{(b):} $(\implies)$ If $R\times S$ is commutative, then for all $r_{1},r_{2}\in R$ and all $s_{1},s_{2}\in S$, $(r_{1},s_{1})(r_{2},s_{2})=(r_{1}r_{2},s_{1}s_{2})=(r_{2},s_{2})(r_{1},s_{1})=(r_{2}r_{1},s_{2}s_{1})$. So then for all $r_{1},r_{2}\in R$, $s_{1},s_{2}\in S$, we have that $r_{1}r_{2}=r_{2}r_{1}$ and $s_{1}s_{2}=s_{2}s_{1}$, since such pairs are only equal if their components are equal. Therefore, $R$ and $S$ are both commutative.
+
+$(\impliedby)$ If $R$ and $S$ are both commutative, then for all $r_{1},r_{2}\in R$ and all $s_{1},s_{2}\in S$, $(r_{1},s_{1})(r_{2},s_{2})=(r_{1}r_{2},s_{1}s_{2})=(r_{2}r_{1},s_{2}s_{1})=(r_{2},s_{2})(r_{1},s_{1})$. So $R\times S$ is commutative.
 
 \end{proof}
 
@@ -263,11 +354,20 @@ $$
 \end{prob}
 
 \begin{proof}
-
+\textbf{(a):} For all $A(x)=\sum_{i=0}^{\infty} a_{i}x^{i}, B(x)=\sum_{j=0}^{\infty} b_{j}x^{j}\in R[[x]]$, addition is just adding coefficients of the same index (like in $R[x]$) and multiplication is termwise multiplication (Like in $R[x]$) which is called the \textit{Cauchy Product} for series. These are defined as follows:
+\begin{align*}
+A(x)B(x)&=(\sum_{i=0}^{\infty} a_{i}x^{i})(\sum_{j=0}^{\infty} b_{j}x^{j})=\sum_{n=0}^{\infty}(\sum_{i+j=n}a_{i}b_{j})x^{n}\\
+A(x)+B(x) &= (\sum_{i=0}^{\infty} a_{i}x^{i})+(\sum_{j=0}^{\infty} b_{j}x^{j})=\sum_{n=0}^{\infty} (a_{n}+b_{n})x^{n}
+\end{align*}
+It is given that $R[[x]]$ is a ring, so we just show multiplication is commutative. Recall that $R$ and $\ZZ$ are  commutative. So: 
+$$A(x)B(x)=\sum_{n=0}^{\infty}(\sum_{i+j=n}a_{i}b_{j})x^{n}=\sum_{n=0}^{\infty}(\sum_{j+i=n}b_{j}a_{i})x^{n}=B(x)A(x)$$
 \end{proof}
 
+\begin{proof}
+\textbf{(b): } $$(1-x)\sum_{n=0}^{\infty}x^{n}=\sum_{n=0}^{\infty}x^{n}-x\sum_{n=0}^{\infty}x^{n}=\sum_{n=0}^{\infty}x^{n}(1-x)=\sum_{n=0}^{\infty}x^{n}-\sum_{n=0}^{\infty}x^{n+1}=\sum_{n=0}^{\infty}x^{n}-\sum_{n=1}x^{n}=1$$
+\end{proof}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 9 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\newpage
 \begin{prob}
 Decide which of the following are ring homomorphisms from $M_2(\ZZ)$ to $\ZZ$:
 \begin{parts}
@@ -276,13 +376,21 @@ Decide which of the following are ring homomorphisms from $M_2(\ZZ)$ to $\ZZ$:
 \part $\begin{pmatrix} a & b \\ c & d \end{pmatrix} \mapsto ad-bc$
 \end{parts}
 \end{prob}
-
 \begin{proof}
+Let us refer to the mappings in $(a),(b),(c)$ via $\varphi_{a},\varphi_{b},\varphi_{c}$, respectively. 
+
+\textbf{(a):} $\varphi_{a}(\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix})=1=\varphi_{a}(\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix})\varphi_{a}(\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix})\neq 2 = \varphi_{a}(\begin{pmatrix} 2 & 2 \\ 2 & 2 \end{pmatrix})=\varphi_{a}(\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix})$. So $\varphi_{a}$ is not a ring homomorphism.
+
+\textbf{(b):} $\varphi_{b}(\begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix})=1=\varphi_{b}(\begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix})\varphi_{b}(\begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix})\neq 2 = \varphi_{b}(\begin{pmatrix} 2 & 1 \\ 1 & 0 \end{pmatrix})=\varphi_{b}(\begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}\begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix})$. So $\varphi_{b}$ is not a ring homomorphism.
+
+\textbf{(c):}$\varphi_{c}(\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix})+\varphi_{c}(\begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix})=0+0=0\neq 1=\varphi_{c}(\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix})=\varphi_{c}(\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}+\begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix})$ So $\varphi_{c}$ is not a ring homomorphism.
+
+So none of them are ring homomorphisms.
 
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 10 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\newpage
 \begin{prob}
 Let
 $$
@@ -309,11 +417,22 @@ is a surjective ring homomorphism and describe its kernel.
 \end{prob}
 
 \begin{proof}
+For all $\alpha=(a_{ij})=\begin{pmatrix} a_{11} & a_{12} \\ a_{21}=0 & a_{22} \end{pmatrix}, \beta=(b_{ij})=\begin{pmatrix} b_{11} & b_{12} \\ b_{21}=0 & b_{22} \end{pmatrix}\in R$,
+\begin{align*}
+&[1]: \varphi(I_{2})= (1,1)=1_{\ZZ\times \ZZ}\\
+&[+]:\varphi(\alpha)+\varphi(\beta)=(a_{11},a_{22})+(b_{11},b_{22})=(a_{11}+b_{11},a_{22}+b_{22})=\varphi((a_{ij}+b_{ij}))=\varphi(\alpha+\beta)\\
+&[\cdot]:\varphi(\alpha)\varphi(\beta)=(a_{11},a_{22})(b_{11},b_{22})=(a_{11}b_{11},a_{22}b_{22})=\varphi(\begin{pmatrix} a_{11}b_{11} & a_{11}b_{12}+a_{12}b_{22} \\ 0 & a_{22}b_{22} \end{pmatrix})=\varphi(\alpha\beta)\\
+&[\text{Onto}]:\forall (m,n)\in \ZZ\times \ZZ,\;\varphi(\begin{pmatrix}m & 0 \\ 0 & n \end{pmatrix})=(m,n)
+\end{align*}
+$\varphi(\alpha)=(0,0)\implies a_{11}=a_{22}=0\implies \alpha\in \{\begin{pmatrix} 0 & b \\ 0 & 0 \end{pmatrix}\mid b\in \ZZ\}$ and so $\ker\varphi\subseteq \{\begin{pmatrix} 0 & b \\ 0 & 0 \end{pmatrix}\mid b\in \ZZ\}$ and obviously $\varphi(\begin{pmatrix} 0 & b \\ 0 & 0 \end{pmatrix})=(0,0)$ for all $b\in \ZZ$ so $\{\begin{pmatrix} 0 & b \\ 0 & 0 \end{pmatrix}\mid b\in \ZZ\}\subseteq \ker \varphi$
 
+Thus,
+
+$$\varphi \text{ is a surjective ring homomorphism with} \ker \varphi = \{\begin{pmatrix} 0 & b \\ 0 & 0 \end{pmatrix}\mid b\in \ZZ\}$$
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 11 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\newpage
 \begin{prob}
 Decide which of the following are ideals of $\ZZ \times \ZZ$:
 \begin{parts}
@@ -324,7 +443,18 @@ Decide which of the following are ideals of $\ZZ \times \ZZ$:
 \end{parts}
 \end{prob}
 
-\begin{proof}
+\begin{proof} Call the subsets of $\ZZ\times \ZZ$ specified in $(a),(b),(c),(d)$: $A,B,C,D$, respectively.
+
+\textbf{(a):} $(1,2)\in \ZZ\times \ZZ$ and $(1,1)\in A$ but $(1,2)(1,1)=(1,1)(1,2)=(1,2)\notin A$, so this is not an ideal.
+
+\textbf{(b):} For all $(m,n)\in \ZZ\times \ZZ$ and all $(2a,2b),(2\alpha,2\beta)\in B$, $((2a,2b)-(2\alpha,2\beta))=(2(a-\alpha),2(b-\beta))\in B$ and $(m,n)(2a,2b)=(m2a,n2b)=(2(ma),2(nb))=(2(am),2(bn))=(2a,2b)(m,n)\in B=2\ZZ\times 2\ZZ$. This is a two-sided ideal.
+
+\textbf{(c):} For all $(m,n)\in \ZZ\times \ZZ$ and all $(2a,0),(2\alpha,0)\in C$, $((2a,0)-(2\alpha,0))=(2(a-\alpha),0)\in C$ and then $(m,n)(2a,0)=(m2a,0)=(2(ma),0)=(2(am),0)=(2a,0)(m,n)\in C=2\ZZ\times \{0\}$. This is a two-sided ideal.
+
+\textbf{(d):} $(1,-1)\in D$ but $(1,-1)(1,-1)=(1,1)\notin D$ so it's not closed under multiplication and therefore not an ideal.
+
+
+
 
 \end{proof}
 
@@ -341,6 +471,13 @@ Prove that an integral domain has characteristic $0$ or a prime.
 \end{prob}
 
 \begin{proof}
+Let $R$ be an integral domain and suppose $\Char{R}=p>0$ where $p$ is not prime. If a ring has characteristic $1$, then $1=0$ and the ring is $\{0\}$, which isn't an integral domain by definition. So, $1<p=ab$ for some non-trivial divisors $1<a,b<p$. But then $(\sum_{i=1}^{a} 1)(\sum_{j=1}^{b} 1)=\sum_{n=1}^{ab}1=\sum_{n=1}^{p}1=0\in R$ and $a=\sum_{i=1}^{a} 1, b=\sum_{j=1}^{b} 1$ are both non-zero zero-divisors in $R$ since $a,b<\Char{R}=p\implies (\sum_{i=1}^{a} 1),(\sum_{j=1}^{b} 1)\neq 0\in R$, a contradiction since $R$ is an integral domain. Therefore, if $\Char{R}$ is non-zero, it is prime. Otherwise $\Char{R}=0.$
+
+Thus,
+
+\begin{center}
+An integral domain $R$ has characteristic $0$ or a prime $p>0$.
+\end{center}
 
 \end{proof}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

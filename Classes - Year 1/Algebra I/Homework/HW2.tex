@@ -1,0 +1,288 @@
+\documentclass[addpoints,10pt]{exam}
+
+\usepackage{amsmath,amsthm,enumitem,wrapfig,amsfonts,mathtools}
+\usepackage[mathscr]{euscript}
+\usepackage[super]{nth}
+\usepackage{dsfont}
+\usepackage{xparse}
+
+\usepackage{geometry}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\renewcommand{\rmdefault}{ptm} %Change the Front Family from the default(cmr) to ptm(Times)
+\usepackage{amsmath,amsfonts,amsthm,amssymb} % Math packages
+\usepackage{bm}
+\usepackage{mathptmx}
+\usepackage{graphicx}
+\usepackage{sectsty} % Allows customizing section commands
+% \allsectionsfont{\centering} % Make all sections centered, the default font and small caps
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{xcolor}
+\definecolor{darkpastelgreen}{rgb}{0.01, 0.75, 0.24}
+\definecolor{blue-violet}{rgb}{0.54, 0.17, 0.89}
+%\usepackage{polylongdiv} %polynomial long division
+% Custom problem environment
+\usepackage{polynom}
+\newcounter{cprob}
+\newenvironment{cprob}[1]{%
+    \setcounter{cprob}{#1}%
+    \noindent\textbf{Problem \thecprob.}%
+}{%
+    \par\bigskip%
+}
+
+\theoremstyle{plain}
+\newcommand{\theoremname}{Theorem}
+\newtheorem{thm}{\protect\theoremname}
+  \theoremstyle{definition}
+  \newtheorem{prob}[thm]{Problem}
+  \newtheorem*{problem*}{Open Problem}
+  \theoremstyle{plain}
+  \newtheorem{conjecture}[thm]{Conjecture}
+  \theoremstyle{plain}
+  \newtheorem{lem}[thm]{Lemma}
+  \newtheorem*{lem*}{Lemma}
+  \newtheorem{obs}[thm]{Observation}
+  \newtheorem{cor}[thm]{Corollary}
+  \theoremstyle{definition}
+\newtheorem{definition}[thm]{Definition}
+
+
+% Patch prob environment to be single spaced
+\let\oldprob\prob
+\let\endoldprob\endprob
+\renewenvironment{prob}
+  {\begin{singlespace}\oldprob}
+  {\endoldprob\end{singlespace}}
+
+% start problem one line below like for enumerated problems with multiple parts
+\newcommand{\belowtitle}{\leavevmode\newline}
+%\Observe command
+\newcommand{\Observe}{\text{Observe.}}
+%(=>)
+\newcommand{\IF}{\mathbf{(\Rightarrow)}}
+%(<=)
+\newcommand{\FI}{\mathbf{(\Leftarrow)}}
+%equivalence classes; \class[S]{ *content in square brackets* }
+\newcommand{\class}[2][]{\ensuremath{\left[\,#2\,\right]_{#1}}}
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}
+\newcommand{\kkk}{\ensuremath{\Bbbk}} 
+\newcommand{\CC}{\ensuremath{\mathbb{C}}}
+\newcommand{\FF}{\ensuremath{\mathbb{F}}}
+\newcommand{\KK}{\ensuremath{\mathbb{K}}}
+\newcommand{\NN}{\ensuremath{\mathbb{N}}}
+\newcommand{\QQ}{\ensuremath{\mathbb{Q}}} 
+\newcommand{\RR}{\ensuremath{\mathbb{R}}} 
+\newcommand{\ZZ}{\ensuremath{\mathbb{Z}}}
+\newcommand{\MM}{\ensuremath{\mathcal{M}}}
+\newcommand{\TT}{\ensuremath{\mathcal{T}}}
+\newcommand{\BB}{\ensuremath{\mathcal{B}}}
+\newcommand{\VV}{\ensuremath{\mathcal{V}}}
+\newcommand{\WW}{\ensuremath{\mathcal{W}}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}}
+\newcommand{\PP}{\ensuremath{\mathcal{P}}}
+\newcommand{\LL}{\ensuremath{\mathcal{L}}}
+\newcommand{\kk}{\ensuremath{\mathds{k}}}
+\newcommand{\EE}{\ensuremath{\mathbb{E}}}
+
+
+\newcommand{\sm}{\char`\\}
+%vector stuff
+\DeclarePairedDelimiter{\ip}{\langle}{\rangle} %inner product/generate
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert} %norm
+\DeclarePairedDelimiter{\sqb}{\lbrack}{\rbrack} %corrd
+
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\mbf}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\tbf}[1]{\textbf{ #1 }}
+\newcommand{\Span}{\ensuremath{\mathrm{Span}}}
+\newcommand{\Char}[1]{\mathrm{Char}\; #1}
+\DeclareMathOperator{\lcm}{lcm}
+\newcommand{\id}{\ensuremath{\mathrm{id}}}
+\newcommand{\Gal}[2]{\mathrm{Gal}(#1/#2)}
+\newcommand{\Aut}{\ensuremath{\mathrm{Aut}}}
+\newcommand{\Fix}[2]{\mathrm{Fix}_{#1}(#2)}
+\newcommand{\nil}{\ensuremath{\mathrm{nil}}}
+\newcommand{\Hom}{\ensuremath{\mathrm{Hom}}}
+\newcommand{\Obj}{\ensuremath{\mathrm{Obj}}}
+
+\newcommand{\Rng}{\ensuremath{\mathrm{Rng}}}
+\newcommand{\Ring}{\ensuremath{\mathrm{Ring}}}
+
+
+
+
+
+
+
+
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\def\env@matrix{\hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols c}}
+
+  \newcommand{\proj}[2]{\text{proj}_{#1}(#2)}
+  
+
+%%% Formatting: Page Header
+\newcommand{\StudentName}{Danny Banegas}
+\newcommand{\AssignmentName}{Homework 1}
+\newcommand{\CourseName}{MATH 720 - Algebra I}
+
+
+\pagestyle{headandfoot}
+\runningheadrule
+\firstpageheadrule
+\firstpageheader{\CourseName}{\StudentName}{\AssignmentName}
+\runningheader{\CourseName}{\StudentName}{\AssignmentName}
+\firstpagefooter{}{\thepage}{}
+\runningfooter{}{\thepage}{}
+
+\printanswers
+
+\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+
+\usepackage{parskip}
+\usepackage{setspace}
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{thm}{0} % next prob is 1
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{prob}
+In the following problems, we investigate the relationship between integral domains and fields.
+\begin{enumerate}[label=(\alph*)]
+\item Prove that every field is an integral domain.
+\item Prove that if $R$ is a finite\footnote{meaning $|R|<\infty$} integral domain, then $R$ is a field. \tbf{Hint:} Consider the set function $a:R\to R$ given by multiplication by an element $a$ (it will not be a ring homomorphism). If $a$ is a non-zero-divisor, prove this is an injective function, and so must also be surjective since $R$ has finitely many elements.
+\item Find an example of an integral domain which is not a field.
+\end{enumerate}
+\end{prob}
+
+\begin{proof}
+    \textbf{(a) } Let $\KK$ be a field, and suppose it contains some non-zero zero divisor $b\in \KK\setminus\{0\}$. Then there exists some $a\in \KK\setminus\{0\}$ such that $ab=ba=0$. Since $a,b\in\KK\setminus\{0\}$, they are both units and so there exist $a^{-1},b^{-1}\in \KK$ such that $a^{-1}a=bb^{-1}=1\implies a^{-1}(ab)b^{-1}=1=a^{-1}(0)b^{-1}=0\implies 1=0$. But then $\KK=\{0\}$ which is not a field, a contradiction. Therefore, all non-zero elements are not zero divisors and so $\KK$ is a commutative ring with unity and no zero divisors, which is the definition of an integral domain.
+
+    \textbf{(b) } Let $R$ be a finite integral domain, and let $a$ be some non-zero zero divisor $a\in R\setminus\{0\}$. We show the mapping $a:R\to R$ via $a(x)=ax,\;\forall x\in R$ is a bijection. For all $x,y\in R$,
+    \begin{align*}
+        &\textbf{[1-1] }a(x)=a(y)\implies ax=ay\implies ax-ay=a(x-y)=0\implies x=y\\
+        &\text{ otherwise } a\text{ is a zero divisor, and we get a contradiction.}\\
+        &\textbf{[Onto] }a:R\hookrightarrow R \implies \text{ the domain is in bijection with its image }\implies |R|=|a(R)|\\
+        &\text{and since }a(R)\subseteq R\text{, we must have that }a(R)=R. 
+    \end{align*}
+    (This image is just the orbit of $a$ in a multiplicative monoid action of $R$ on itself) So then for each non-zero zero divisor $a\in R\setminus\{0\}$, $\exists x\in R$ such that $a(x)=ax=1$. That is, each non-zero zero divisor, which is just all of $R\setminus\{0\}$ is a unit. Therefore, $R$ is a commutative ring with unity and inverses for all non-zero elements, which is the definition of a field.
+
+    \textbf{(c) }$\ZZ$ is an integral domain but not a field.
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{prob}
+Let $I,J$ be ideals in a ring $R$ such that $I+J=(1)$. Prove that $IJ=I\cap J$.
+\end{prob}
+
+\begin{proof}
+    $(\subseteq)$ Recall that since $I,J$ are ideals of $R$, $ir\in I$ and $rj\in J,\;\forall i\in I,\forall j\in J,\forall r\in R$. So then for all $ij\in IJ$, we have that $(i)j\in I$ and $i(j)\in J\implies ij\in I\cap J\implies IJ\cap I\cap J$.
+    
+    $(\supseteq)$ $I+J=\langle 1\rangle\implies i+j=1$ for some $i\in I,j\in J$. Then for all $a\in I\cap J$, $a=a(1)=(1)a=a(i+j)=ai+aj=ia+ja=(i+j)a$ \end{proof}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{prob}
+Let $\varphi:R\to S$ be a ring homomorphism, and let $J$ be an ideal of $S$. Prove that $I=\varphi^{-1}(J)=\{i\in R\mid \varphi(i)\in J\}$ is an ideal of $R$.
+\end{prob}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{prob}
+Let $\varphi:R\to S$ be a ring homomorphism, and let $J$ be an ideal of $S$.
+\begin{enumerate}[label=(\alph*)]
+\item Prove that $\varphi(J)=\{\varphi(j)\mid j\in J\}$ need not be an ideal of $S$.
+\item Prove that if $\varphi$ is surjective, then $\varphi(J)$ is an ideal of $S$.
+\item Prove that if $\varphi$ is surjective, and $I=\ker\varphi$, then $S\cong R/I$ and if we let $\overline{J}\subseteq R/I$ be the image of $\varphi(J)$ under this isomorphism, then
+$$
+(R/I)/\overline{J}\cong R/(I+J).
+$$
+\end{enumerate}
+\end{prob}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{prob}
+Let $R$ be a commutative ring, $a\in R$, and let $f_1(x),\ldots,f_r(x)\in R[x]$.
+\begin{enumerate}[label=(\alph*)]
+\item Prove that $R[x]/(x-a)\cong R$.
+\item Prove the equality of ideals
+$$
+(f_1(x),\ldots,f_r(x),x-a)=(f_1(a),\ldots,f_r(a),x-a).
+$$
+\item Prove the useful substitution trick
+$$
+R[x]/(f_1(x),\ldots,f_r(x),x-a)\cong R/(f_1(a),\ldots,f_r(a)).
+$$
+\tbf{Hint:} Use part (c) of the previous problem.
+\end{enumerate}
+\end{prob}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 6 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{prob}
+If $\kkk$ is an algebraic closed field, then the only maximal ideals of $\kkk[x]$ are of the form $(x-a)$ where $a\in \kkk$. In this problem, we’ll see that this is not true when $\kkk$ is not algebraically closed.
+\begin{enumerate}[label=(\alph*)]
+\item Use the first isomorphism theorem to show that $\RR[x]/(x^2+1)\cong \CC$.
+\item Prove that $(x^2+1)$ is a maximal ideal of $\RR[x]$.
+\end{enumerate}
+\end{prob}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 7 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{prob}
+Let $R$ be a commutative ring with $0\neq 1$. In this problem, we will prove that every proper ideal of $R$ is contained in some maximal ideal.
+\begin{enumerate}[label=(\alph*)]
+\item Look up Zorn’s Lemma and record it here.
+\item Define $S=\{J\mid J\text{ is a proper ideal of }R\text{ and }J\supseteq I\}$. Explain why $S$ is a partially ordered set (what is the ordering?).
+\item Given a chain $C$ in $S$, prove that $\bigcap_{J\in C}J$ is an ideal of $R$ (you will use that $C$ is totally ordered), and further that this ideal is in the set $S$.
+\item Conclude using Zorn’s Lemma that $S$ has a maximal element.
+\end{enumerate}
+\end{prob}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 8 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{prob}
+Let $\kkk$ be a field. In this problem, we will prove that the only maximal ideal of $\kkk[[x]]$ is $(x)$, which makes $\kkk[[x]]$ a local ring.
+\begin{enumerate}[label=(\alph*)]
+\item Explain why $(x)=\{f\in \kkk[[x]]\mid f\text{ has no constant term}\}$.
+\item Compute $\kkk[[x]]/(x)$, and then explain why $(x)$ is a maximal ideal.
+\item You may freely use the following result from the optional hint last week: $f\in \kkk[[x]]$ is a unit if and only $f$ has a nonzero constant term. Use Proposition 1.41 to show that the only maximal ideal of $\kkk[[x]]$ is $(x)$.
+\end{enumerate}
+\end{prob}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 9 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{prob}
+Let $d$ be an integer which is not the square of an integer, and consider
+$$
+\QQ(\sqrt{d})=\{a+b\sqrt{d}\mid a,b\in \QQ\}.
+$$
+\begin{enumerate}[label=(\alph*)]
+\item Prove that $\QQ(\sqrt{d})$ is a subring of $\CC$.
+\item Define a function $N:\QQ(\sqrt{d})\to \QQ$ by $N(a+b\sqrt{d})=a^2+b^2d$. Prove that $N(zw)=N(z)N(w)$ and that $N(z)\neq 0$ if $z\neq 0$. This function is often called the norm.
+\item Prove that $\QQ(\sqrt{d})$ is a field and is the smallest subfield of $\CC$ containing both $\QQ$ and $\sqrt{d}$ (use $N$).
+\item Prove that $\QQ(\sqrt{d})\cong \QQ[t]/(t^2-d)$.
+\end{enumerate}
+\end{prob}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

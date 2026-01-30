@@ -240,11 +240,11 @@ $$
 \end{prob}
 
 \begin{proof}
-\textbf{(a)} Consider $\varphi:\ZZ\to \RR$ defined by $\varphi(n)=n\in R,\;\forall n\in \ZZ.$. This is obviously a homomorphism. Now look at $2\in 2\ZZ$, which is a well-known ideal of $\ZZ$. Well, $\pi\in \RR$ but $2\pi=\pi 2\not\in \varphi(2\ZZ)=2\ZZ$. So then $\varphi(2\ZZ)$ is not an ideal. So the image of an ideal need not be an ideal.
+\textbf{(a)} Consider $\varphi:\ZZ\to \RR$ defined by $\varphi(n)=n\in R,\;\forall n\in \ZZ.$. This is obviously a homomorphism. Now look at $2\in 2\ZZ$, which is a well-known ideal of $\ZZ$. Well, $\pi\in \RR$ but $2\pi=\pi 2\not\in \varphi(2\ZZ)=2\ZZ$. So then $\varphi(2\ZZ)$ is not an ideal and we see that the ring homomorphic image of an ideal need not be an ideal of the codomain.
 
-\textbf{(b)} For all $\varphi(a),\varphi(b)\in \varphi(J)$ with preimages $a,b\in J$, $\varphi(a)-\varphi(b)=\varphi(a-b)\in \varphi(J)$ since $a-b\in J$. Therefore $\varphi(J)\leq_{+} S$. Next, since $\varphi$ is surjective, for any $s\in S$, $\exists r\in R$ such that $s=\varphi(r)$. So then $s\varphi(a)=\varphi(r)\varphi(a)=\varphi(ra)$ and $\varphi(a)s=\varphi(a)\varphi(r)=\varphi(ar)$ which must both belong to $\varphi(J)$ since $J\subseteq R$ is an ideal $\implies ar,rs\in J$. Therefore, $\varphi(J)$ is an ideal of $S$.
+\textbf{(b)} For all $\varphi(a),\varphi(b)\in \varphi(J)$ with preimages $a,b\in J$, $\varphi(a)-\varphi(b)=\varphi(a-b)\in \varphi(J)$ since $a-b\in J$. Therefore $\varphi(J)\leq_{+} S$. Next, since $\varphi$ is surjective, for any $s\in S$, $\exists r\in R$ such that $s=\varphi(r)$. So then $s\varphi(a)=\varphi(r)\varphi(a)=\varphi(ra)$ and $\varphi(a)s=\varphi(a)\varphi(r)=\varphi(ar)$ which must both belong to $\varphi(J)$ since $J\subseteq R$ is an ideal $\implies ar,rs\in J$. Therefore, $\varphi(J)$ is an ideal of $S$. That is, a surjective ring homomorphic image of an ideal is in fact an ideal of the codomain.
 
-\textbf{(c)} Since $\varphi$ is surjective, so by the First Isomorphism Theorem, $R/\ker \varphi = R/I\cong S$ and so $S\cong R/I=R/\ker\varphi$. Let $\psi:R/I\to S$ be this pullback isomorphism. That is,
+\textbf{(c)} $\varphi$ is surjective, so by the First Isomorphism Theorem $R/\ker \varphi = R/I\cong \varphi(R)=S$ and so $S\cong R/\ker\varphi=R/I$. Let $\psi:R/I\to S$ be this pullback isomorphism. That is,
 \begin{align}
     &\overbrace{r}^{R}\overset{\varphi}{\mapsto}\overbrace{\varphi(r)=s}^{S}\overset{\psi}{\longleftrightarrow}\overbrace{\class[I]{r}=\class[\ker \varphi]{r}}^{I=\ker \varphi}\\
     \text{That is: }&\psi(s)=\psi(\varphi(r))=\class[I]{r}\in R/I,\;\text{ for each }s=\varphi(r)\in \varphi(R)=S\\

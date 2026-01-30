@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1769762650.00966 "c:/Users/baneg/OneDrive/Desktop/git/PhD/Classes - Year 1/Algebra I/Homework/HW2.tex" "HW2.pdf" "HW2" 1769762650.80774 0
+["pdflatex"] 1769765311.22199 "c:/Users/baneg/OneDrive/Desktop/git/PhD/Classes - Year 1/Algebra I/Homework/HW2.tex" "HW2.pdf" "HW2" 1769765311.98414 0
   "C:/Program Files/MiKTeX/fonts/enc/dvips/base/8r.enc" 1458473887 4993 80dc9bab7f31fb78a000ccfed0e27cab ""
   "C:/Program Files/MiKTeX/fonts/tfm/adobe/symbol/psyr.tfm" 1136793854 1408 5937f58aa508ea2cea4901c07d10f5fe ""
   "C:/Program Files/MiKTeX/fonts/tfm/adobe/times/psyro.tfm" 1136793854 1544 23a042a74981a3e4b6ce2e350e390409 ""
@@ -19,11 +19,9 @@
   "C:/Program Files/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmbsy5.tfm" 1233951848 1120 1e8878807317373affa7f7bba4cf2f6a ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmbsy6.tfm" 1233951848 1124 14ccf5552bc7f77ca02a8a402bea8bfb ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmbsy7.tfm" 1233951848 1120 7f9f170e8aa57527ad6c49feafd45d54 ""
-  "C:/Program Files/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmbsy8.tfm" 1233951848 1120 200be8b775682cdf80acad4be5ef57e4 ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmmib5.tfm" 1233951848 1496 c79f6914c6d39ffb3759967363d1be79 ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmmib6.tfm" 1233951848 1516 a3bf6a5e7ec4401b1f52092dfaaed242 ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmmib7.tfm" 1233951848 1508 6e807ff901c35a5f1fde0ca275533df8 ""
-  "C:/Program Files/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmmib8.tfm" 1233951848 1528 dab402b9d3774ca98baa037071cee7ae ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1233951854 916 f87d7c45f9c908e672703b83b72241a3 ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/amsfonts/symbols/msbm10.tfm" 1233951854 908 2921f8a10601f252058503cc6570e581 ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/cm/cmbsy10.tfm" 1136765053 1116 4e6ba9d7914baa6482fd69f67d126380 ""
@@ -31,7 +29,6 @@
   "C:/Program Files/MiKTeX/fonts/tfm/public/cm/cmbx5.tfm" 1136765053 1332 f817c21a1ba54560425663374f1b651a ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/cm/cmbx6.tfm" 1136765053 1344 8a0be4fe4d376203000810ad4dc81558 ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/cm/cmbx7.tfm" 1136765053 1336 3125ccb448c1a09074e3aa4a9832f130 ""
-  "C:/Program Files/MiKTeX/fonts/tfm/public/cm/cmbx8.tfm" 1136765053 1332 1fde11373e221473104d6cc5993f046e ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/cm/cmex10.tfm" 1136765053 992 662f679a0b3d2d53c1b94050fdaa3f50 ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/cm/cmmi10.tfm" 1136765053 1528 abec98dbc43e172678c11b3b9031252a ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/cm/cmmib10.tfm" 1136765053 1524 554068197b70979a55370e6c6495f441 ""
@@ -204,6 +201,7 @@
   "C:/Program Files/MiKTeX/tex/latex/polynom/polynom.sty" 1500473268 64735 cf26ee4ea3401b795b608e2a2d49b4ea ""
   "C:/Program Files/MiKTeX/tex/latex/psnfss/mathptmx.sty" 1585926771 4760 6e41de2b7a83dfa5d2c4b0a2fe01f046 ""
   "C:/Program Files/MiKTeX/tex/latex/psnfss/omlztmcm.fd" 1585253778 429 12564a37a279e4e0b533cdf5e03eeb7c ""
+  "C:/Program Files/MiKTeX/tex/latex/psnfss/omsptm.fd" 1585253778 595 95c2c0baea9c719a4be29a3d4122498b ""
   "C:/Program Files/MiKTeX/tex/latex/psnfss/omsztmcm.fd" 1585253778 365 f4ce75d394e7d9ac12ca7aac4045ed77 ""
   "C:/Program Files/MiKTeX/tex/latex/psnfss/omxztmcm.fd" 1585253778 346 c8cddcc90b6f567b28408eb374773c9c ""
   "C:/Program Files/MiKTeX/tex/latex/psnfss/ot1ptm.fd" 1585253778 1007 15056f4a61917ceed3a44e4ac11fcc52 ""
@@ -218,9 +216,9 @@
   "C:/Users/baneg/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1767143483 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/baneg/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs10.tfm" 1767165685 688 37338d6ab346c2f1466b29e195316aa4 ""
   "C:/Users/baneg/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1767143717 13323421 acdbf008148ff3fe1519ba349c4db12d ""
-  "HW2.aux" 1769762650 329 6f7a318231395676a85d875ba5541a1f "pdflatex"
-  "HW2.tex" 1769762649 16977 5d012c8ee7dfcf20383f0ab0cbfa0d1b ""
-  "c:/Users/baneg/OneDrive/Desktop/git/PhD/Classes - Year 1/Algebra I/Homework/HW2.tex" 1769762649 16977 5d012c8ee7dfcf20383f0ab0cbfa0d1b ""
+  "HW2.aux" 1769765311 329 6f7a318231395676a85d875ba5541a1f "pdflatex"
+  "HW2.tex" 1769765310 17896 11ac8b46646388c0f7c4458cf00c6c9f ""
+  "c:/Users/baneg/OneDrive/Desktop/git/PhD/Classes - Year 1/Algebra I/Homework/HW2.tex" 1769765310 17896 11ac8b46646388c0f7c4458cf00c6c9f ""
   (generated)
   "HW2.aux"
   "HW2.log"

@@ -1,0 +1,91 @@
+\documentclass[10pt,fleqn]{exam} % fleqn option for left alignment
+\usepackage{amsthm}
+\usepackage{libertine}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{multicol}
+\usepackage[shortlabels]{enumitem}
+\usepackage{siunitx}
+\usepackage{cancel}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\usepackage{listings}
+\usepackage{tikz}
+\usepackage{tcolorbox}
+\usepackage{varwidth}
+
+\newtcolorbox{substitution}[1][]{colback=blue!5!white, colframe=blue!75!black, title=Substitution, #1}
+
+\newtcolorbox{subinline}[1][]{
+    colback=gray!10!white, 
+    colframe=gray!50!black, 
+    boxrule=0.5pt, 
+    boxsep=1pt, 
+    left=1pt, 
+    right=1pt, 
+    top=1pt, 
+    bottom=1pt, 
+    sharp corners, 
+    #1
+}
+
+\pgfplotsset{width=10cm,compat=1.9}
+\usepgfplotslibrary{external}
+\tikzexternalize
+
+\newcommand{\class}{MATH 790} % This is the name of the course
+\newcommand{\examnum}{Reflections Week 2} % This is the name of the assignment
+\newcommand{\examdate}{Danny Banegas} % This is the due date
+\newcommand{\timelimit}{Graduate Seminar}
+
+\begin{document}
+\pagestyle{plain}
+\thispagestyle{empty}
+
+\noindent
+\begin{tabular*}{\textwidth}{l @{\extracolsep{\fill}} r @{\extracolsep{6pt}} l}
+    \textbf{\class} && \\
+    \textbf{\timelimit} &&\\
+    \textbf{\examdate} &&\\
+    \textbf{\examnum} &&
+\end{tabular*}
+
+\vspace{0.5cm} % Adjust space after the tabular
+\hrule
+\vspace{0.5cm}
+\noindent
+\begin{center}
+    \textbf{Reflections:}
+\end{center}
+$\newline\mathbf{[I]}$ \textbf{Write up a solution via LaTeX of the problem you presented. Send me both the pdf
+and the LaTeX code.}
+
+\setlength{\mathindent}{0pt}
+$$
+    \textbf{(3)} \int \frac{1}{x\sqrt{x^{2}-9}} \, dx\;\;\;
+    \boxed{
+        \begin{aligned}
+            \textbf{Substitution}&:x=a\sec(\theta)\\
+            a&=3\\
+            x&=3\sec(\theta)\\
+            \implies dx&=3\sec(\theta)\tan(\theta)\,d\theta\\
+            \implies \theta &=\mathrm{arcsec}(\frac{x}{3})\\
+            \sqrt{x^{2}-9}&=3\tan(\theta)
+        \end{aligned}
+    }
+    =\int\frac{1}{\underbrace{(3\sec(\theta))}_{x}\underbrace{(3\tan(\theta))}_{\sqrt{x^{2}-9}}}\overbrace{(3\sec(\theta)\tan(\theta)\,d\theta)}^{dx}
+$$
+$=\int \frac{1}{3}\,d\theta = \frac{1}{3}\theta + c = \frac{1}{3}\overbrace{\mathrm{arcsec}(\frac{x}{3})}^{\theta}+c\newline$
+
+$\newline\mathbf{[II]}$ \textbf{What do you think you succeed at most when presenting?} \\
+
+I think I generally present things in a simple way; I don't overcomplicate things. I was a bit disorganized on the board this time but usually I am very consistent and organized in how I do problems. Also I come prepared and I am not nervous.
+
+$\newline\mathbf{[III]}$ \textbf{What do you need to improve at?} \\ 
+
+My main problem is talking at the board/to myself rather to the students. I talk and work though problems too fast. I also am not exciting or excited to do math in general, I'm not a \textit{fun} teacher, it's just not really who I am. I need to work on making class more enjoyable for students, and find a better vibe between super casual and strictly business-like or whatever, the latter is all I know how to do.
+
+In general I don't try to innovate, and when I do problems on the board I don't interact with the class at all. Essentially the only engagement I have with students and that the students have with me is when I go around as they work in groups. This is something I would like to change. 
+
+\end{document}

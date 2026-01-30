@@ -157,7 +157,7 @@
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 \begin{document}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 0 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setcounter{thm}{0} % next prob is 1
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -177,11 +177,11 @@ In the following problems, we investigate the relationship between integral doma
     \textbf{(b) } Let $R$ be a finite integral domain, and let $a$ be some non-zero zero divisor $a\in R\setminus\{0\}$. We show the mapping $a:R\to R$ via $a(x)=ax,\;\forall x\in R$ is a bijection. For all $x,y\in R$,
     \begin{align*}
         &\textbf{[1-1] }a(x)=a(y)\implies ax=ay\implies ax-ay=a(x-y)=0\implies x=y\\
-        &\text{ otherwise } a\text{ is a zero divisor, and we get a contradiction.}\\
+        &\text{otherwise } a\text{ is a zero divisor, and we get a contradiction.}\\
         &\textbf{[Onto] }a:R\hookrightarrow R \implies \text{ the domain is in bijection with its image }\implies |R|=|a(R)|\\
-        &\text{and since }a(R)\subseteq R\text{, we must have that }a(R)=R. 
+        &\text{and since }a(R)\subseteq R\text{ (the domain is equal to the codomain), we must have that }a(R)=R. 
     \end{align*}
-    (This image is just the orbit of $a$ in a multiplicative monoid action of $R$ on itself) So then for each non-zero zero divisor $a\in R\setminus\{0\}$, $\exists x\in R$ such that $a(x)=ax=1$. That is, each non-zero zero divisor, which is just all of $R\setminus\{0\}$ is a unit. Therefore, $R$ is a commutative ring with unity and inverses for all non-zero elements, which is the definition of a field.
+    (This image is just the orbit of $a$ in the canonical multiplicative monoid action of $R$ on itself) So then for each non-zero zero divisor $a\in R\setminus\{0\}$, $\exists x\in R$ such that $a(x)=ax=1$. That is, each non-zero zero divisor, which is just all of $R\setminus\{0\}$ is a unit. Therefore, $R$ is a commutative ring with unity and inverses for all non-zero elements, which is the definition of a field.
 
     \textbf{(c) }$\ZZ$ is an integral domain but not a field.
 
@@ -215,10 +215,20 @@ Next, for any $r\in R$ and any $i\in \varphi^{-1}(J),\; \varphi(ri)=\varphi(r)\v
 Thus, $\varphi^{-1}(J)$ is an ideal of $R$.
 \end{proof}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+We prove a lemma to be used in some of the next problems.
+\setcounter{thm}{0} % next prob is 1
+\begin{lem}
+If $I,J$ are ideals of a ring $R$, then $I+J=\{i+j\mid i\in I,j\in J\}$ is also an ideal of $R$.
+\end{lem}
+\begin{proof}
+$\forall (i_{1}+j_{1}),(i_{2}+j_{2})\in I+J,\;(i_{1}+j_{1})-(i_{2}+j_{2})=(i_{1}-i_{2})+(j_{1}-j_{2})\in I+J\implies I+J\leq_{+}R.$ Next for all $r\in R$ and all $(i+j)\in I+J,\; r(i+j)=ri+rj,(i+j)r=ir+jr\in I+J$ since $ir,ri\in I$ and $rj,jr\in J$. Therefore, $I+J$ is an ideal of $R$. 
+\end{proof}
+\setcounter{thm}{3} % next prob is 1
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \begin{prob}
-Let $\varphi:R\to S$ be a ring homomorphism, and let $J$ be an ideal of $S$.
+Let $\varphi:R\to S$ be a ring homomorphism, and let $J$ be an ideal of $R$.
 \begin{enumerate}[label=(\alph*)]
 \item Prove that $\varphi(J)=\{\varphi(j)\mid j\in J\}$ need not be an ideal of $S$.
 \item Prove that if $\varphi$ is surjective, then $\varphi(J)$ is an ideal of $S$.
@@ -230,9 +240,25 @@ $$
 \end{prob}
 
 \begin{proof}
-\textbf{(a)} Consider $\varphi:\ZZ\to \RR$ defined by $\varphi(n)=n\in R,\;\forall n\in \ZZ.$. This is obviously a homomorphism. Now look at $2\in 2\ZZ$, which is a well-known ideal of $\ZZ$. Well, $\pi\in \RR$ but $2\pi=\pi 2\not\in \varphi(2\ZZ)=2\ZZ$. So then $\varphi(2\ZZ)$ is not an ideal.
+\textbf{(a)} Consider $\varphi:\ZZ\to \RR$ defined by $\varphi(n)=n\in R,\;\forall n\in \ZZ.$. This is obviously a homomorphism. Now look at $2\in 2\ZZ$, which is a well-known ideal of $\ZZ$. Well, $\pi\in \RR$ but $2\pi=\pi 2\not\in \varphi(2\ZZ)=2\ZZ$. So then $\varphi(2\ZZ)$ is not an ideal. So the image of an ideal need not be an ideal.
 
-\textbf{(b)}
+\textbf{(b)} For all $\varphi(a),\varphi(b)\in \varphi(J)$ with preimages $a,b\in J$, $\varphi(a)-\varphi(b)=\varphi(a-b)\in \varphi(J)$ since $a-b\in J$. Therefore $\varphi(J)\leq_{+} S$. Next, since $\varphi$ is surjective, for any $s\in S$, $\exists r\in R$ such that $s=\varphi(r)$. So then $s\varphi(a)=\varphi(r)\varphi(a)=\varphi(ra)$ and $\varphi(a)s=\varphi(a)\varphi(r)=\varphi(ar)$ which must both belong to $\varphi(J)$ since $J\subseteq R$ is an ideal $\implies ar,rs\in J$. Therefore, $\varphi(J)$ is an ideal of $S$.
+
+\textbf{(c)} Since $\varphi$ is surjective, so by the First Isomorphism Theorem, $R/\ker \varphi = R/I\cong S$ and so $S\cong R/I=R/\ker\varphi$. Let $\psi:R/I\to S$ be this pullback isomorphism. That is,
+\begin{align}
+    &\overbrace{r}^{R}\overset{\varphi}{\mapsto}\overbrace{\varphi(r)=s}^{S}\overset{\psi}{\longleftrightarrow}\overbrace{\class[I]{r}=\class[\ker \varphi]{r}}^{I=\ker \varphi}\\
+    \text{That is: }&\psi(s)=\psi(\varphi(r))=\class[I]{r}\in R/I,\;\text{ for each }s=\varphi(r)\in \varphi(R)=S\\
+    \implies &\psi(\varphi(j))=\class[I]{j}\in R/I\;\text{ for each }j\in J\\
+    \text{So let: }&\overline{J}=\psi(\varphi(J))=\{\psi(\varphi(j))=\class[I]{j}\mid j\in J\}\subseteq R/I
+\end{align}
+Recall the Third Isomorphism Theorem. For ideals $A,B$ of a ring $R$ where $A\subseteq B$ is a subset:
+$$(i)\; B/A\text{ is an ideal of }R/A\text{ and }(ii)\;\frac{(R/A)}{(B/A)}\cong \frac{R}{B}.$$
+\textit{* Note that in normal rings without unity required, $B/A$ is actually a quotient ring since ideals are always rings. That is: $A$ is an ideal of $B$ if every ideal is a ring. That need not be true if you require rings to have unity and then $B/A$ need not be a quotient ring, but just a set of cosets. However, the resulting quotient is always a quotient ring since the set of cosets $(B/A)$ is an ideal of the quotient ring $(R/A)$. Yet another reason (a) this coset notation sucks, and (b) this ring definition sucks.*} 
+
+By \textbf{Lemma 1}, $I+J$ is an ideal of $R$ since $I,J$ are ideals of $R$. Also, $I\subseteq I+J$ is a subset. Well, we can simply compute that $(I+J)/I=\{(i+j)+I\mid (i+j)\in I+J\}=\{j+I=\class[I]{j}\mid j\in J\}=\overline{J}$ by $(4)$. 
+
+Therefore, since $I,(I+J)$ are ideals of $R$ with $I\subseteq (I+J)$, by the Third Isomorphism Theorem we have that
+$$(i)\; \overline{J}=(I+J)/I\text{ is an ideal of $(R/I)$ and }(ii)\;\frac{(R/I)}{\overline{J}}=\frac{(R/I)}{(I+J)/I}=\cong \frac{R}{(I+J)}.$$
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

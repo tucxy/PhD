@@ -190,18 +190,30 @@ In the following problems, we investigate the relationship between integral doma
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{prob}
-Let $I,J$ be ideals in a ring $R$ such that $I+J=(1)$. Prove that $IJ=I\cap J$.
+Let $I,J$ be ideals in a commutative ring $R$ such that $I+J=(1)$. Prove that $IJ=I\cap J$.
 \end{prob}
 
 \begin{proof}
-    $(\subseteq)$ Recall that since $I,J$ are ideals of $R$, $ir\in I$ and $rj\in J,\;\forall i\in I,\forall j\in J,\forall r\in R$. So then for all $ij\in IJ$, we have that $(i)j\in I$ and $i(j)\in J\implies ij\in I\cap J\implies IJ\cap I\cap J$.
+    $(\subseteq)$ Recall that since $I,J$ are ideals of $R$, $ir\in I$ and $rj\in J,\;\forall i\in I,\forall j\in J,\forall r\in R$. So then for all $ij\in IJ$, we have that $(i)j\in I$ and $i(j)\in J\implies ij\in I\cap J\implies IJ\subseteq I\cap J$.
     
-    $(\supseteq)$ $I+J=\langle 1\rangle\implies i+j=1$ for some $i\in I,j\in J$. Then for all $a\in I\cap J$, $a=a(1)=(1)a=a(i+j)=ai+aj=ia+ja=(i+j)a$ \end{proof}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    $(\supseteq)$ $I+J=\langle 1\rangle\implies \hat{i}+\hat{j}=1$ for some $\hat{i}\in I,\hat{j}\in J$. Then for all $a\in I\cap J$, $a=a(1)=(1)a=a(\hat{i}+\hat{j})=a\hat{i}+a\hat{j}\in IJ+JI=IJ,$ since communativity in $R$ implies $IJ=JI$. Therefore, $I\cap J\subseteq IJ$.
 
+    Thus, $IJ=I\cap J$.
+
+\end{proof}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \begin{prob}
 Let $\varphi:R\to S$ be a ring homomorphism, and let $J$ be an ideal of $S$. Prove that $I=\varphi^{-1}(J)=\{i\in R\mid \varphi(i)\in J\}$ is an ideal of $R$.
 \end{prob}
+
+\begin{proof}
+$\forall a,b\in \varphi^{-1}(J),\;\varphi(a),\varphi(b)\in J\text{ and so }\varphi(a-b)=\varphi(a)-\varphi(b)\in J.$ So then $a-b\in \varphi^{-1}(J)$ and $\varphi^{-1}(J)\leq_{+} R$.
+
+Next, for any $r\in R$ and any $i\in \varphi^{-1}(J),\; \varphi(ri)=\varphi(r)\varphi(i)\in J$ and $\varphi(ir)=\varphi(i)\varphi(r)\in J$, since $J$ is an ideal of $S$. So then $ri,ir\in \varphi^{-1}(J).$
+
+Thus, $\varphi^{-1}(J)$ is an ideal of $R$.
+\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -216,6 +228,12 @@ $$
 $$
 \end{enumerate}
 \end{prob}
+
+\begin{proof}
+\textbf{(a)} Consider $\varphi:\ZZ\to \RR$ defined by $\varphi(n)=n\in R,\;\forall n\in \ZZ.$. This is obviously a homomorphism. Now look at $2\in 2\ZZ$, which is a well-known ideal of $\ZZ$. Well, $\pi\in \RR$ but $2\pi=\pi 2\not\in \varphi(2\ZZ)=2\ZZ$. So then $\varphi(2\ZZ)$ is not an ideal.
+
+\textbf{(b)}
+\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

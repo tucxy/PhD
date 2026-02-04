@@ -154,9 +154,58 @@
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 0 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setcounter{thm}{0} % next prob is 1
+Here are some Lemmas which are referenced throughout the problems.
+\begin{lem}[Sum of Ideals is an Ideal]
+  If $I,J$ are ideals of a ring $R$, then $I+J=\{i+j\mid i\in I,j\in J\}$ is also an ideal of $R$.
+\end{lem}
+\begin{proof}
+  $\forall (i_{1}+j_{1}),(i_{2}+j_{2})\in I+J,\;(i_{1}+j_{1})-(i_{2}+j_{2})=(i_{1}-i_{2})+(j_{1}-j_{2})\in I+J\implies I+J\leq_{+}R.$ Next for all $r\in R$ and all $(i+j)\in I+J,\; r(i+j)=ri+rj,(i+j)r=ir+jr\in I+J$ since $ir,ri\in I$ and $rj,jr\in J$. Thus, 
+  \begin{center}
+    If $I,J$ are ideals of $R$, then $I+J$ is an ideal of $R$. 
+  \end{center}
+  \end{proof}
 
+\begin{lem}[Inclusion Mapping is Ring Embedding]
+  If $S\subseteq R$ is a subring of a ring $R$, then the inclusion mapping $\iota: S\hookrightarrow R$ defined via $\iota(s)=s$ is a ring embedding (an injective ring homomorphism).
+\end{lem}
+\begin{proof}
+  For all $a,b\in S$,
+  \begin{align*}
+      &\iota(a+b)=a+b=\iota(a)+\iota(b)\\
+      &\iota(ab)=ab=\iota(a)\iota(b)\\
+      &\iota(1_{S})=1_{S}=1_{R}\\
+      &\iota(a)=\iota(b)\implies a=b\text{ by definition.}
+  \end{align*}
+\end{proof}
+\begin{lem}[Evaluation Mapping is a Surjective Ring Homomorphism]
+The evaluation homomorphism $\epsilon_{a}:R[x]\to R$ defined by $\epsilon_{a}(f(x))=f(a)$ is a surjective ring homomorphism for any $a\in R$.
+\end{lem}
+\begin{proof}
+  For all $f(x),g(x)\in R[x]$,
+  \begin{align*}
+      &\epsilon_{a}(f(x)+g(x))=f(a)+g(a)=\epsilon_{a}(f(x))+\epsilon_{a}(g(x))\\
+      &\epsilon_{a}(f(x)g(x))=f(a)g(a)=\epsilon_{a}(f(x))\epsilon_{a}(g(x))\\
+      &\epsilon_{a}(1_{R[x]})=1_{R}\\
+      &\text{For any }r\in R,\;\epsilon_{a}(r)=r\text{ so }\epsilon_{a}\text{ is surjective.}
+  \end{align*}
+\end{proof}
+\begin{lem}[Telescoping Identity]
+  For any $k\in \NN$ and any polynomial $x^{k}-y^{k}$ over a commutative ring $R$ where $x,y$ may either be indeterminates or elements of $R$, we have that:
+    $$x^{k}-y^{k}=(x-y)\sum_{\substack{i+j=k-1\\ i,j\in \NN}}x^{i}y^{j}.$$
+\end{lem}
+\begin{proof}
+  For $k>0$:
+  \begin{align*}
+    x\sum_{\substack{i+j=k-1\\ i,j\in \NN}}x^{i}y^{i}&=x(x^{k-1}+x^{k-2}y+\cdots +xy^{k-2}+y^{k-1})=x^{k}+(x^{k-1}y+\cdots +x^{2}y^{k-2}+xy^{k-1})\\
+    y\sum_{\substack{i+j=k-1\\ i,j\in \NN}}x^{i}y^{i}&= y(x^{k-1}+x^{k-2}y+\cdots +xy^{k-2}+y^{k-1})=(yx^{k-1}+x^{k-2}y^{2}+\cdots xy^{k-1})+y^{k}\\
+    &=(x^{k-1}y+x^{k-2}y^{2}+\cdots +xy^{k-1})+y^{k}\\
+    \implies (x-y)\sum_{\substack{i+j=k-1\\ i,j\in \NN}}x^{i}y^{i}&=x^{k}+(x^{k-1}y+\cdots +x^{2}y^{k-2}+xy^{k-1})-(x^{k-1}y+x^{k-2}y^{2}+\cdots +xy^{k-1})-y^{k}\\
+    &=x^{k}-y^{k}.
+  \end{align*}
+\end{proof}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\newpage
+\setcounter{thm}{0} % next prob is 1
 \begin{prob}
   In the following problems, we investigate the relationship between integral domains and fields.
   \begin{enumerate}[label=(\alph*)]
@@ -181,9 +230,7 @@
     \textbf{(c) }$\ZZ$ is an integral domain but not a field.
 
 \end{proof}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \begin{prob}
 Let $I,J$ be ideals in a commutative ring $R$ such that $I+J=(1)$. Prove that $IJ=I\cap J$.
 \end{prob}
@@ -213,32 +260,6 @@ Let $I,J$ be ideals in a commutative ring $R$ such that $I+J=(1)$. Prove that $I
     If $\varphi:R\to S$ is a ring homomorphism and $J$ is an ideal of $S$, then $\varphi^{-1}(J)$ is an ideal of $R$.
   \end{center}
 \end{proof}
-
-We prove some lemmas to be used in some of the next problems.
-\setcounter{thm}{0} % next prob is 1
-\begin{lem}
-  If $I,J$ are ideals of a ring $R$, then $I+J=\{i+j\mid i\in I,j\in J\}$ is also an ideal of $R$.
-\end{lem}
-\begin{proof}
-  $\forall (i_{1}+j_{1}),(i_{2}+j_{2})\in I+J,\;(i_{1}+j_{1})-(i_{2}+j_{2})=(i_{1}-i_{2})+(j_{1}-j_{2})\in I+J\implies I+J\leq_{+}R.$ Next for all $r\in R$ and all $(i+j)\in I+J,\; r(i+j)=ri+rj,(i+j)r=ir+jr\in I+J$ since $ir,ri\in I$ and $rj,jr\in J$. Thus, 
-  \begin{center}
-    If $I,J$ are ideals of $R$, then $I+J$ is an ideal of $R$. 
-  \end{center}
-  \end{proof}
-
-\begin{lem}
-  If $S\subseteq R$ is a subring of a ring $R$, then the inclusion mapping $\iota: S\hookrightarrow R$ defined via $\iota(s)=s$ is a ring embedding (an injective ring homomorphism).
-\end{lem}
-\begin{proof}
-  For all $a,b\in S$,
-  \begin{align*}
-      &\iota(a+b)=a+b=\iota(a)+\iota(b)\\
-      &\iota(ab)=ab=\iota(a)\iota(b)\\
-      &\iota(1_{S})=1_{S}=1_{R}\\
-      &\iota(a)=\iota(b)\implies a=b\text{ by definition.}
-  \end{align*}
-\end{proof}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \setcounter{thm}{3} % next prob is 4
@@ -259,9 +280,9 @@ We prove some lemmas to be used in some of the next problems.
 
   \textbf{(b)} For all $\varphi(a),\varphi(b)\in \varphi(J)$ with preimages $a,b\in J$, $\varphi(a)-\varphi(b)=\varphi(a-b)\in \varphi(J)$ since $a-b\in J$. Therefore $\varphi(J)\leq_{+} S$. Next, since $\varphi$ is surjective, for any $s\in S$, $\exists r\in R$ such that $s=\varphi(r)$. So then $s\varphi(a)=\varphi(r)\varphi(a)=\varphi(ra)$ and $\varphi(a)s=\varphi(a)\varphi(r)=\varphi(ar)$ which must both belong to $\varphi(J)$ since $J\subseteq R$ is an ideal $\implies ar,rs\in J$. Therefore, $\varphi(J)$ is an ideal of $S$. That is, a surjective ring homomorphic image of an ideal is in fact an ideal of the codomain.
 
-  \textbf{(c)} $\varphi$ is surjective, so by the First Isomorphism Theorem $R/\ker \varphi = R/I\cong \varphi(R)=S$ and so $S\cong R/\ker\varphi=R/I$. Let $\psi:R/I\to S$ be this pullback isomorphism. That is,
+  \textbf{(c)} $\varphi$ is surjective, so by the First Isomorphism Theorem $R/\ker \varphi = R/I\cong \varphi(R)=S$ and so $S\cong R/\ker\varphi=R/I$. Let $\psi:S\to R/I$ be this pullback isomorphism. That is,
   \begin{align}
-      &\overbrace{r}^{R}\overset{\varphi}{\mapsto}\overbrace{\varphi(r)=s}^{S}\overset{\psi}{\longleftrightarrow}\overbrace{\class[I]{r}=\class[\ker \varphi]{r}}^{I=\ker \varphi}\\
+      &\overbrace{r}^{R}\overset{\varphi}{\mapsto}\overbrace{\varphi(r)=s}^{S}\overset{\psi}{\longleftrightarrow}\overbrace{\class[I]{r}=\class[\ker \varphi]{r}}^{R/I=R/\ker \varphi}\\
       \text{So: }&\psi(s)=\psi(\varphi(r))=\class[I]{r}\in R/I,\;\text{ for each }s=\varphi(r)\in \varphi(R)=S\\
       \implies &\psi(\varphi(j))=\class[I]{j}\in R/I\;\text{ for each }j\in J\\
       \text{Now let: }&\overline{J}=\psi(\varphi(J))=\{\psi(\varphi(j))=\class[I]{j}\mid j\in J\}\subseteq R/I
@@ -284,17 +305,58 @@ Let $R$ be a commutative ring, $a\in R$, and let $f_1(x),\ldots,f_r(x)\in R[x]$.
 \item Prove that $R[x]/(x-a)\cong R$.
 \item Prove the equality of ideals
 $$
-(f_1(x),\ldots,f_r(x),x-a)=(f_1(a),\ldots,f_r(a),x-a).
+(f_1(x),\ldots,f_n(x),x-a)=(f_1(a),\ldots,f_n(a),x-a).
 $$
 \item Prove the useful substitution trick
 $$
-R[x]/(f_1(x),\ldots,f_r(x),x-a)\cong R/(f_1(a),\ldots,f_r(a)).
+R[x]/(f_1(x),\ldots,f_n(x),x-a)\cong R/(f_1(a),\ldots,f_n(a)).
 $$
 \tbf{Hint:} Use part (c) of the previous problem.
 \end{enumerate}
 \end{prob}
+\begin{proof}
+\textbf{(a)} Consider $\epsilon_{a}:R[x]\to R$ defined by $\epsilon_{a}(f(x))=f(a)$, an evaluation which was proven to be a \textit {surjective homomorphism} in \textbf{Lemma 3}. We show that $\ker \epsilon_{a}=\langle x-a\rangle=\{f(x)(x-a)\mid f(x)\in R[x]\}.$ 
 
-We use the telescoping identity for (a). Will do proof later.
+$(\subseteq)$ For any $B(x)=\sum_{k=0}^{n}b_{k}x^{k}\in \ker \varepsilon_{a},\; B(a)=0$. Well, $B(x)-B(a)=(\sum_{k=0}^{n}b_{k}x^{k})-(\sum_{k=0}^{n}b_{k}a^{k})=\sum_{k=0}^{n}b_{k}\newline(x^{k}-a^{k})=\sum_{k=1}^{n}b_{k}(x^{k}-a^{k})$. Then by $\textbf{Lemma 4},\;(x^{k}-a^{k})=(x-a)\sum_{i+j=k-1}x^{i}y^{j}$ for each $1\leq k\leq n$. Therefore,
+$$B(x)-B(a)=\sum_{k=1}^{n}b_{k}(x^{k}-a^{k})=\sum_{k=1}^{n}b_{k}((x-a)\sum_{i+j=k-1}x^{i}a^{j})=(x-a)\sum_{k=1}^{n}b_{k}(\sum_{i+j=k-1}x^{i}y^{j})$$
+and since in fact $B(a)=0$, we have that $B(x)=(x-a)\sum\limits_{k=1}^{n}b_{k}(\sum\limits_{i+j=k-1}x^{i}y^{j})\in \langle x-a\rangle$ since $\sum\limits_{k=1}^{n}b_{k}(\sum\limits_{i+j=k-1}x^{i}y^{j})$ belongs to $R[x]$. So then $\ker \epsilon_{a}\subseteq \langle x-a\rangle.$. 
+
+$(\subseteq)\;\forall C(x)=f(x)(x-a)\in \langle x-a\rangle$ obviously $C(a)=f(a)(a-a)=0\implies C(x)\in \ker \epsilon_{a}$. So then $\langle x-a\rangle\subseteq \ker \epsilon_{a}.$. Thus, by the \textbf{First Isomorphism Theorem},
+  $$R[x]/\ker \epsilon_{a}=R[x]/\langle \langle x-a\rangle\cong \epsilon_{a}(R[x])=R.$$
+
+\textbf{(b)} For each $1\leq m\leq n,$ there exist $b_{m,0},\hdots,b_{m,d_{m}}\in R$ and $d_{m}\in \NN$ such that $f_{m}(x)=\sum_{k=0}^{d_{m}}b_{m,k}x^{k}$. Now we use a result obtained in \textbf{(a)}:
+  $$f_{k}(x)-f_{k}(a)=(x-a)\sum_{i=1}^{d_{k}}b_{k,i}(\sum_{a+b=i-1}x^{a}y^{a})\implies f_{k}(x)=f_{k}(a)+(x-a)\sum_{i=1}^{d_{k}}b_{k,i}(\sum_{a+b=i-1}x^{a}y^{a})$$
+So then 
+$$f_{k}(x)\in \langle f_{k}(a),x-a\rangle \subseteq \langle f_1(a),\ldots,f_n(a),x-a\rangle,\;\forall 1\leq k \leq n$$
+and
+$$f_{k}(a)\in \langle f_{k}(x),x-a\rangle \subseteq \langle f_1(x),\ldots,f_n(x),x-a\rangle,\;\forall 1\leq k \leq n$$
+Therefore, all generators of $\langle f_1(x),\ldots,f_n(x),x-a\rangle$ belong to $\langle f_1(a),\ldots,f_n(a),x-a\rangle$ and vice versa. So the ideals are equal.
+
+\end{proof}
+\newpage
+(c)$$
+R[x]/(f_1(x),\ldots,f_n(x),x-a)\cong R/(f_1(a),\ldots,f_n(a)).
+$$
+\begin{proof}
+    \textbf{(c)} In $\textbf{(a)}$ we used the surjective homomorphism $\epsilon_{a}:R[x]\to R$ defined by $\epsilon_{a}(h(x))=h(a)$ to show that $R[x]/\langle x-a\rangle=R[x]/I\cong R$ by the \textbf{First Isomorphism Theorem} where $I=\ker \epsilon_{a}=\langle x-a \rangle$. Much like in $\textbf{Problem 4}$ let $\psi:R\to R[x]/I$ be the pullback isomorphism and let $J=\langle f_1(x),\ldots,f_n(x),x-a\rangle\subseteq R[x]$. Then:
+    \setcounter{equation}{0}
+
+      \begin{align}
+      &\overbrace{h(x)}^{R[x]}\overset{\epsilon_{a}}{\mapsto}\overbrace{\epsilon_{a}(h(x))=h(a)}^{R}\overset{\psi}{\longleftrightarrow}\overbrace{\class[I]{h(x)}=\class[\ker \epsilon_{a}]{h(x)}}^{R[x]/I =R[x]/\ker \epsilon_{a}}\\
+      \text{So: }&\psi(r)=\psi(\epsilon_{a}(h(x)))=\class[I]{h(x)}\in R[x]/I,\;\text{ for each }r=\epsilon_{a}(h(x))\in \epsilon_{a}(R[x])=R\\
+      \implies &\psi(\epsilon_{a}(j(x)))=\class[I]{j(x)}\in R[x]/I\;\text{ for each }j(x)\in J\\
+      \text{Now let: }&\overline{J}=\psi(\epsilon_{a}(J))=\{\psi(\epsilon_{a}(j))=\class[I]{j(x)}\mid j(x)\in J\}=J/I\subseteq R[x]/I \textit{ *an ideal of $R[x]/I$*}
+  \end{align}
+  Well, $(I+J)/I=(\langle x-a \rangle +\langle f_1(x),\ldots,f_n(x),x-a\rangle) / \langle x-a \rangle = \langle f_1(x),\ldots,f_n(x),x-a\rangle / \langle x-a \rangle=J/I=\overline{J}$. 
+  Since $I,(I+J)$ are ideals of $R[x]$ with $I\subseteq (I+J)$, by the Third Isomorphism Theorem we have that
+    $$\textcircled{\footnotesize 1}\; \overline{J}=(I+J)/I\text{ is an ideal of $(R[x]/I)$ and }\textcircled{\footnotesize 2}\;\frac{(R[x]/I)}{\overline{J}}=\frac{(R[x]/I)}{(I+J)/I}\cong \frac{R[x]}{I+J}=R[x]/J.$$
+  Now, we pass elements of $\frac{R[x]/I}{\overline{J}}$ through $\Phi:\frac{R[x]/I}{\overline{J}}\to \frac{R[x]}{\langle f_{1}(a),\hdots,f_{n}(a)\rangle }$ defined via $$\Phi(\class[I]{h(x)} + \overline{J})=\psi^{-1}(\class[I]{h(x)})+\psi^{-1}(\overline{J})=\psi^{-1}(\class[I]{h(x)})+\epsilon_{a}(J)$$
+  Obviously this is well defined since $\psi^{-1}$ is an isomorphism, and then $\forall \class[\overline{J}]{\class[I]{A(x)}}, \class[\overline{J}]{\class[I]{B(x)}}\in \frac{R[x]/I}{\overline{J}}:$
+  \begin{align*}
+  &\Phi{\class[\overline{J}]{\class[I]{f(x)}}+\class[\overline{J}]{\class[I]{g(x)}}}=\psi^{-1}(\class[I]{f(x)})+ \epsilon_{a}(J)+\psi^{-1}(g(x))+\epsilon_{a}(J)=\phi^{-1}(f(x)+g(x))+\epsilon_{a}(J)=\\
+  \end{align*}
+
+\end{proof}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 6 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{prob}

@@ -112,6 +112,8 @@
 \newcommand{\Rng}{\ensuremath{\mathrm{Rng}}}
 \newcommand{\Ring}{\ensuremath{\mathrm{Ring}}}
 
+\usepackage{hyperref} % MUST BE LAST
+
 
 
 
@@ -155,7 +157,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 0 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setcounter{thm}{0} % next prob is 1
 Here are some Lemmas which are referenced throughout the problems.
-\begin{lem}[Sum of Ideals is an Ideal]
+\begin{lem}[Sum of Ideals is an Ideal]\label{lem:1}
   If $I,J$ are ideals of a ring $R$, then $I+J=\{i+j\mid i\in I,j\in J\}$ is also an ideal of $R$.
 \end{lem}
 \begin{proof}
@@ -165,7 +167,7 @@ Here are some Lemmas which are referenced throughout the problems.
   \end{center}
   \end{proof}
 
-\begin{lem}[Inclusion Mapping is Ring Embedding]
+\begin{lem}[Inclusion Mapping is Ring Embedding]\label{lem:2}
   If $S\subseteq R$ is a subring of a ring $R$, then the inclusion mapping $\iota: S\hookrightarrow R$ defined via $\iota(s)=s$ is a ring embedding (an injective ring homomorphism).
 \end{lem}
 \begin{proof}
@@ -177,7 +179,7 @@ Here are some Lemmas which are referenced throughout the problems.
       &\iota(a)=\iota(b)\implies a=b\text{ by definition.}
   \end{align*}
 \end{proof}
-\begin{lem}[Evaluation Mapping is a Surjective Ring Homomorphism]
+\begin{lem}[Evaluation Mapping to coefficient ring is a Surjective Ring Homomorphism]\label{lem:3}
 The evaluation homomorphism $\epsilon_{a}:R[x]\to R$ defined by $\epsilon_{a}(f(x))=f(a)$ is a surjective ring homomorphism for any $a\in R$.
 \end{lem}
 \begin{proof}
@@ -189,12 +191,11 @@ The evaluation homomorphism $\epsilon_{a}:R[x]\to R$ defined by $\epsilon_{a}(f(
       &\text{For any }r\in R,\;\epsilon_{a}(r)=r\text{ so }\epsilon_{a}\text{ is surjective.}
   \end{align*}
 \end{proof}
-\begin{lem}[Telescoping Identity]
+\begin{lem}[Telescoping Identity]\label{lem:4}
   For any $k\in \NN$ and any polynomial $x^{k}-y^{k}$ over a commutative ring $R$ where $x,y$ may either be indeterminates or elements of $R$, we have that:
     $$x^{k}-y^{k}=(x-y)\sum_{\substack{i+j=k-1\\ i,j\in \NN}}x^{i}y^{j}.$$
 \end{lem}
 \begin{proof}
-  For $k>0$:
   \begin{align*}
     x\sum_{\substack{i+j=k-1\\ i,j\in \NN}}x^{i}y^{i}&=x(x^{k-1}+x^{k-2}y+\cdots +xy^{k-2}+y^{k-1})=x^{k}+(x^{k-1}y+\cdots +x^{2}y^{k-2}+xy^{k-1})\\
     y\sum_{\substack{i+j=k-1\\ i,j\in \NN}}x^{i}y^{i}&= y(x^{k-1}+x^{k-2}y+\cdots +xy^{k-2}+y^{k-1})=(yx^{k-1}+x^{k-2}y^{2}+\cdots xy^{k-1})+y^{k}\\
@@ -203,6 +204,49 @@ The evaluation homomorphism $\epsilon_{a}:R[x]\to R$ defined by $\epsilon_{a}(f(
     &=x^{k}-y^{k}.
   \end{align*}
 \end{proof}
+\begin{lem}[Polynomials over fields have division algorithm]\label{lem:5} If $\KK$ is a field, then for all $f(x),g(x)\in \KK[x]$, where $g(x)$ is non-zero there exists $q(x),r(x)\in \KK[x]$ such that either $r(x)=0$ or $\deg(r(x))<\deg(g(x))$ and then $f(x)=q(x)g(x)+r(x)$.
+\begin{proof}
+Let $f(x)=\sum_{i=1}^{n}a_{i}x^{i},g(x)=\sum_{j=1}^{m}b_{j}x^{j}\in \KK[x]$ have degrees $m,n$, respectively, such that $g(x)$ is non-zero. Since $\KK$ is a field, all non-zero coefficients are units. Note that leading terms must be non-zero.
+
+If $f(x)=0$, then $f(x)=0=0g(x)+0$ and so we have $q(x)=0,r(x)=0$ such that $f(x)=q(x)g(x)+r(x)$, which satisifies the statement. If $\deg(f(x))=n<m=\deg(g(x))$, then set $q(x)=0,r(x)=f(x)$, and then $f(x)=q(x)g(x)+r(x)=0(g(x))+f(x)$ satisfies the statement since $\deg(r(x))=\deg(f(x))<\deg(g(x))$. 
+
+Lastly, if $\deg(f(x))=n\geq m=\deg(g(x))$, set $t(x)=a_{n} b_{m}^{-1} x^{n-m}$. Then we have that the leading term of $t(x)g(x)$ is $(a_n b_m^{-1} x^{n-m})(b_m x^m)=a_n x^n$, which is leading term of $f(x)$.
+
+Now set $f_{1}(x)=f(x)-t(x)g(x)$. Then the $n$-coefficient will vanish; $[x^{n}](f(x)-t(x)g(x))=[x^{n}]f(x)-[x^{n}]t(x)g(x)=a_{n}-a_{n}=0$ and so $\deg(f_{1}(x))<\deg(f(x))=n$. If $\deg(f_{1}(x))<m=\deg(g(x))$ then we have $f(x)=t(x)g(x)+f_{1}(x)$, which satisfies the statement. 
+
+Otherwise if $\deg(f_{1}(x))<m=\deg(g(x))$, we repeat the process. For each step $i\geq 1$, let $d_{i}=\deg(f_{i}(x))$ set $t_{i}(x)=([x^{d_{i}}]f_{i}(x))(b_{m}^{-1})\;x^{m-d_{i}}$. Now set $f_{i+1}(x)=f_{i}(x)-t_{i}(x)g(x)$. Then $$[x^{d_{i}}]f_{i+1}(x)=([x^{d_{i}}]f_{i}(x))-([x^{d_{i}}]f_{i}(x))b^{-1}_{m}=0\text{ and }f_{i}(x)=t_{i}(x)g(x)+f_{i+1}$$
+So we see that by recursion, at each step $i\mapsto i+1$, $\deg(f_{i+1}(x))<\deg(f_{i}(x))$. Suppose our process terminates at some $i=k$ such that $f_{k}(x)$ has degree $\mu\geq m$. That is $f_{k+1}(x)$ is not an acceptable polynomial in $\KK[x]$; it has negative powers of $x$. So $f(x)=t(x)g(x)+\sum_{i=1}^{k}f_{i}(x)=(t(x)+\sum_{i=1}^{k-1}t_{i}(x))g(x)+f_{k}(x)$. Well, $t_{k}(x)=([x^{\mu}]f_{k}(x))(b_{m}^{-1})\;x^{m-\mu}$ must have positive degree, and so $t_{k}(x)g(x)$ has the same leading coefficient as $f_{k}(x)$. But then $f_{k+1}(x)$ is a polynomial in $\KK[x]$ with $\deg(f_{k+1}(x))<\deg(f_{k}(x)).$ So our process must terminate with at some $i=r$ such that $f_{r}(x)$ has degree strictly less than $m$. That is:
+  $$f(x)=t(x)g(x)+\sum_{i=1}^{r}f_{r}(x)=(t(x)+\sum_{i=1}^{r-1}t_{i}(x))g(x)+f_{r}(x)\text{ where }\deg(f_{r}(x))<m=\deg(g(x)).$$
+Which satisfies the statement. By exhaustion, the statement is proven.
+\end{proof}
+\end{lem}
+\newpage
+\begin{lem}\label{lem:6}
+Let $R$ be a commutative ring with unity. $R/I$ is a field if and only if $I$ is a maximal ideal of $R$.
+\end{lem}
+
+\begin{proof}
+($\impliedby$) For any non-zero $\overline{q}\in R/I$ there exists some non-zero reduced representative $q\in R\setminus I$ such that $\overline{q}=\class[I]{q}$. If $I$ is maximal, then it's proper and then $I\subset I+\langle q\rangle\subseteq R\implies I+\langle q\rangle=R$, since $I$ is maximal. So $1\in I+\langle q\rangle$ and therefore $\exists i\in I,\exists pq\in \langle q\rangle$ such that
+$$
+1=i+pq\implies \class[I]{1}=\class[I]{i+pq}=\class[I]{0}+\class[I]{p}\class[I]{q}\in R/I.
+$$
+So $\class[I]{q}$ is a unit. Therefore, we see all non-zero elements of $R/I$ are units and so $R/I$ is a field.
+
+($\implies$) If $R/I$ is a field, let $J$ be an ideal of $R$ with $I\subseteq J\subseteq R$.
+Then $J/I=\{j+I:j\in J\}$ is an ideal of $R/I$ by the \textbf{Third Isomorphism Theorem}.
+Well, since $R/I$ is a field, its only ideals are $\{0\}$ and $R/I$, so $J/I=\{0\}$ or $J/I=R/I.$
+
+If $J/I=\{0\}$, then $J=I$. Otherwise, If $J/I=R/I$, then $\class[I]{1}\in J/I$, so there exists $j\in J$ with $\class[I]{1}=\class[I]{j}$. That is, $j-1\in J$. So then $j-(j-1)=1\in J\implies r(1)=r\in J,\forall r\in R\implies J=R$. So $J=I$ or $j=R$ and therefore $I$ is maximal.
+
+Thus,
+\begin{center}
+  If $R$ is a commutative ring with unity, then $R/I$ is a field if and only if $I$ is a maximal ideal of $R$.
+\end{center}
+\end{proof}
+\begin{lem}[Zorn's Lemma]\label{lem:7}
+Let $(P,\le)$ be a partially ordered set.  
+If every chain in $P$ has an upper bound in $P$, then $P$ contains a maximal element.
+\end{lem}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \setcounter{thm}{0} % next prob is 1
@@ -276,7 +320,7 @@ Let $I,J$ be ideals in a commutative ring $R$ such that $I+J=(1)$. Prove that $I
 \end{prob}
 
 \begin{proof}
-  \textbf{(a)} Consider the inclusion map $\iota:\ZZ\hookrightarrow \RR$ defined by $\iota(n)=n\in R,\;\forall n\in \ZZ.$ This is a ring embedding by \textbf{Lemma 2}. Now look at $2\in 2\ZZ$, which is a well-known ideal of $\ZZ$. Well, $\pi\in \RR$ but $2\pi=\pi 2\not\in \iota(2\ZZ)=2\ZZ$. So then $\iota(2\ZZ)$ is not an ideal and we see that the ring homomorphic image of an ideal need not be an ideal of the codomain.
+  \textbf{(a)} Consider the inclusion map $\iota:\ZZ\hookrightarrow \RR$ defined by $\iota(n)=n\in R,\;\forall n\in \ZZ.$ This is a ring embedding by \textbf{Lemma }\ref{lem:2}. Now look at $2\in 2\ZZ$, which is a well-known ideal of $\ZZ$. Well, $\pi\in \RR$ but $2\pi=\pi 2\not\in \iota(2\ZZ)=2\ZZ$. So then $\iota(2\ZZ)$ is not an ideal and we see that the ring homomorphic image of an ideal need not be an ideal of the codomain.
 
   \textbf{(b)} For all $\varphi(a),\varphi(b)\in \varphi(J)$ with preimages $a,b\in J$, $\varphi(a)-\varphi(b)=\varphi(a-b)\in \varphi(J)$ since $a-b\in J$. Therefore $\varphi(J)\leq_{+} S$. Next, since $\varphi$ is surjective, for any $s\in S$, $\exists r\in R$ such that $s=\varphi(r)$. So then $s\varphi(a)=\varphi(r)\varphi(a)=\varphi(ra)$ and $\varphi(a)s=\varphi(a)\varphi(r)=\varphi(ar)$ which must both belong to $\varphi(J)$ since $J\subseteq R$ is an ideal $\implies ar,rs\in J$. Therefore, $\varphi(J)$ is an ideal of $S$. That is, a surjective ring homomorphic image of an ideal is in fact an ideal of the codomain.
 
@@ -289,16 +333,17 @@ Let $I,J$ be ideals in a commutative ring $R$ such that $I+J=(1)$. Prove that $I
   \end{align}
   Recall the Third Isomorphism Theorem. For ideals $A,B$ of a ring $R$ where $A\subseteq B$ is a subset:
     $$\textcircled{\footnotesize 1}\; B/A\text{ is an ideal of }R/A\text{ and }\textcircled{\footnotesize 2}\;\frac{(R/A)}{(B/A)}\cong \frac{R}{B}.$$
-  \textit{* Note that in normal rings without unity required, $B/A$ is actually a quotient ring since ideals are always rings. That is: $A$ is an ideal of $B$ if every ideal is a ring. That need not be true if you require rings to have unity and then $B/A$ need not be a quotient ring, but just a set of cosets. However, the resulting quotient is always a quotient ring since the set of cosets $(B/A)$ is an ideal of the quotient ring $(R/A)$. Yet another reason why (a) this coset notation sucks, and (b) this ring definition sucks.*} 
 
-  By \textbf{Lemma 1}, $I+J$ is an ideal of $R$ since $I,J$ are ideals of $R$. Also, $I\subseteq I+J$ is a subset. Well, we can simply compute that $(I+J)/I=\{(i+j)+I\mid (i+j)\in I+J\}=\{j+I=\class[I]{j}\mid j\in J\}=\overline{J}$ by $(4)$. 
+  %\textit{* Note that in normal rings without unity required, $B/A$ is actually a quotient ring since ideals are always rings. That is: $A$ is an ideal of $B$ if every ideal is a ring. That need not be true if you require rings to have unity and then $B/A$ need not be a quotient ring, but just a set of cosets. However, the resulting quotient is always a quotient ring since the set of cosets $(B/A)$ is an ideal of the quotient ring $(R/A)$. Yet another reason why (a) this coset notation sucks, and (b) this ring definition sucks.*} 
+
+  By \textbf{Lemma }\ref{lem:1}, $I+J$ is an ideal of $R$ since $I,J$ are ideals of $R$. Also, $I\subseteq I+J$ is a subset. Well, we can simply compute that $(I+J)/I=\{(i+j)+I\mid (i+j)\in I+J\}=\{j+I=\class[I]{j}\mid j\in J\}=\overline{J}$ by $(4)$. 
 
   Therefore, since $I,(I+J)$ are ideals of $R$ with $I\subseteq (I+J)$, by the Third Isomorphism Theorem we have that
     $$\textcircled{\footnotesize 1}\; \overline{J}=(I+J)/I\text{ is an ideal of $(R/I)$ and }\textcircled{\footnotesize 2}\;\frac{(R/I)}{\overline{J}}=\frac{(R/I)}{(I+J)/I}\cong \frac{R}{(I+J)}.$$
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\newpage
 \begin{prob}
 Let $R$ be a commutative ring, $a\in R$, and let $f_1(x),\ldots,f_r(x)\in R[x]$.
 \begin{enumerate}[label=(\alph*)]
@@ -315,17 +360,17 @@ $$
 \end{enumerate}
 \end{prob}
 \begin{proof}
-\textbf{(a)} Consider $\epsilon_{a}:R[x]\to R$ defined by $\epsilon_{a}(f(x))=f(a)$, an evaluation which was proven to be a \textit {surjective homomorphism} in \textbf{Lemma 3}. We show that $\ker \epsilon_{a}=\langle x-a\rangle=\{f(x)(x-a)\mid f(x)\in R[x]\}.$ 
+\textbf{(a)} Consider $\epsilon_{a}:R[x]\to R$ defined by $\epsilon_{a}(f(x))=f(a)$, an evaluation which was proven to be a \textit {surjective homomorphism} in \textbf{Lemma }\ref{lem:3}. We show that $\ker \epsilon_{a}=\langle x-a\rangle=\{f(x)(x-a)\mid f(x)\in R[x]\}.$ 
 
-$(\subseteq)$ For any $B(x)=\sum_{k=0}^{n}b_{k}x^{k}\in \ker \varepsilon_{a},\; B(a)=0$. Well, $B(x)-B(a)=(\sum_{k=0}^{n}b_{k}x^{k})-(\sum_{k=0}^{n}b_{k}a^{k})=\sum_{k=0}^{n}b_{k}\newline(x^{k}-a^{k})=\sum_{k=1}^{n}b_{k}(x^{k}-a^{k})$. Then by $\textbf{Lemma 4},\;(x^{k}-a^{k})=(x-a)\sum_{i+j=k-1}x^{i}y^{j}$ for each $1\leq k\leq n$. Therefore,
-$$B(x)-B(a)=\sum_{k=1}^{n}b_{k}(x^{k}-a^{k})=\sum_{k=1}^{n}b_{k}((x-a)\sum_{i+j=k-1}x^{i}a^{j})=(x-a)\sum_{k=1}^{n}b_{k}(\sum_{i+j=k-1}x^{i}y^{j})$$
-and since in fact $B(a)=0$, we have that $B(x)=(x-a)\sum\limits_{k=1}^{n}b_{k}(\sum\limits_{i+j=k-1}x^{i}y^{j})\in \langle x-a\rangle$ since $\sum\limits_{k=1}^{n}b_{k}(\sum\limits_{i+j=k-1}x^{i}y^{j})$ belongs to $R[x]$. So then $\ker \epsilon_{a}\subseteq \langle x-a\rangle.$. 
+$(\subseteq)$ For any $B(x)=\sum_{k=0}^{n}b_{k}x^{k}\in \ker \varepsilon_{a},\; B(a)=0$. Well, $B(x)-B(a)=(\sum_{k=0}^{n}b_{k}x^{k})-(\sum_{k=0}^{n}b_{k}a^{k})=\sum_{k=0}^{n}b_{k}\newline(x^{k}-a^{k})=\sum_{k=1}^{n}b_{k}(x^{k}-a^{k})$. Then by $\textbf{Lemma }\ref{lem:4},\;(x^{k}-a^{k})=(x-a)\sum_{i+j=k-1}x^{i}y^{j}$ for each $1\leq k\leq n$. Therefore,
+$$B(x)-B(a)=\sum_{k=1}^{n}b_{k}(x^{k}-a^{k})=\sum_{k=1}^{n}b_{k}((x-a)\sum_{i+j=k-1}x^{i}a^{j})=(x-a)\sum_{k=1}^{n}b_{k}(\sum_{i+j=k-1}x^{i}a^{j})$$
+and since in fact $B(a)=0$, we have that $B(x)=(x-a)\sum\limits_{k=1}^{n}b_{k}(\sum\limits_{i+j=k-1}x^{i}a^{j})\in \langle x-a\rangle$ since $\sum\limits_{k=1}^{n}b_{k}(\sum\limits_{i+j=k-1}x^{i}y^{j})$ belongs to $R[x]$. So then $\ker \epsilon_{a}\subseteq \langle x-a\rangle.$ 
 
-$(\subseteq)\;\forall C(x)=f(x)(x-a)\in \langle x-a\rangle$ obviously $C(a)=f(a)(a-a)=0\implies C(x)\in \ker \epsilon_{a}$. So then $\langle x-a\rangle\subseteq \ker \epsilon_{a}.$. Thus, by the \textbf{First Isomorphism Theorem},
+$(\supseteq)\;\forall C(x)=f(x)(x-a)\in \langle x-a\rangle$ obviously $C(a)=f(a)(a-a)=0\implies C(x)\in \ker \epsilon_{a}$. So then $\langle x-a\rangle\subseteq \ker \epsilon_{a}.$. Thus, by the \textbf{First Isomorphism Theorem},
   $$R[x]/\ker \epsilon_{a}=R[x]/\langle \langle x-a\rangle\cong \epsilon_{a}(R[x])=R.$$
 
 \textbf{(b)} For each $1\leq m\leq n,$ there exist $b_{m,0},\hdots,b_{m,d_{m}}\in R$ and $d_{m}\in \NN$ such that $f_{m}(x)=\sum_{k=0}^{d_{m}}b_{m,k}x^{k}$. Now we use a result obtained in \textbf{(a)}:
-  $$f_{k}(x)-f_{k}(a)=(x-a)\sum_{i=1}^{d_{k}}b_{k,i}(\sum_{a+b=i-1}x^{a}y^{a})\implies f_{k}(x)=f_{k}(a)+(x-a)\sum_{i=1}^{d_{k}}b_{k,i}(\sum_{a+b=i-1}x^{a}y^{a})$$
+  $$f_{k}(x)-f_{k}(a)=(x-a)\sum_{k=1}^{d_{m}}b_{m,k}(\sum_{i+j=k-1}x^{i}a^{j})\implies f_{k}(x)=f_{k}(a)+(x-a)\sum_{k=1}^{d_{m}}b_{m,k}(\sum_{i+j=k-1}x^{i}a^{j})$$
 So then 
 $$f_{k}(x)\in \langle f_{k}(a),x-a\rangle \subseteq \langle f_1(a),\ldots,f_n(a),x-a\rangle,\;\forall 1\leq k \leq n$$
 and
@@ -334,28 +379,36 @@ Therefore, all generators of $\langle f_1(x),\ldots,f_n(x),x-a\rangle$ belong to
 
 \end{proof}
 \newpage
-(c)$$
-R[x]/(f_1(x),\ldots,f_n(x),x-a)\cong R/(f_1(a),\ldots,f_n(a)).
-$$
 \begin{proof}
     \textbf{(c)} In $\textbf{(a)}$ we used the surjective homomorphism $\epsilon_{a}:R[x]\to R$ defined by $\epsilon_{a}(h(x))=h(a)$ to show that $R[x]/\langle x-a\rangle=R[x]/I\cong R$ by the \textbf{First Isomorphism Theorem} where $I=\ker \epsilon_{a}=\langle x-a \rangle$. Much like in $\textbf{Problem 4}$ let $\psi:R\to R[x]/I$ be the pullback isomorphism and let $J=\langle f_1(x),\ldots,f_n(x),x-a\rangle\subseteq R[x]$. Then:
     \setcounter{equation}{0}
 
       \begin{align}
-      &\overbrace{h(x)}^{R[x]}\overset{\epsilon_{a}}{\mapsto}\overbrace{\epsilon_{a}(h(x))=h(a)}^{R}\overset{\psi}{\longleftrightarrow}\overbrace{\class[I]{h(x)}=\class[\ker \epsilon_{a}]{h(x)}}^{R[x]/I =R[x]/\ker \epsilon_{a}}\\
-      \text{So: }&\psi(r)=\psi(\epsilon_{a}(h(x)))=\class[I]{h(x)}\in R[x]/I,\;\text{ for each }r=\epsilon_{a}(h(x))\in \epsilon_{a}(R[x])=R\\
+      &\overbrace{r(x)}^{R[x]}\overset{\epsilon_{a}}{\mapsto}\overbrace{\epsilon_{a}(r(x))=r(a)}^{R}\overset{\psi}{\longleftrightarrow}\overbrace{\class[I]{r(x)}=\class[\ker \epsilon_{a}]{r(x)}}^{R[x]/I =R[x]/\ker \epsilon_{a}}\\
+      \text{So: }&\psi(r)=\psi(\epsilon_{a}(r(x)))=\class[I]{r(x)}\in R[x]/I,\;\text{ for each }r=\epsilon_{a}(r(x))\in \epsilon_{a}(R[x])=R \text{( use }r(x)=r)\\
       \implies &\psi(\epsilon_{a}(j(x)))=\class[I]{j(x)}\in R[x]/I\;\text{ for each }j(x)\in J\\
       \text{Now let: }&\overline{J}=\psi(\epsilon_{a}(J))=\{\psi(\epsilon_{a}(j))=\class[I]{j(x)}\mid j(x)\in J\}=J/I\subseteq R[x]/I \textit{ *an ideal of $R[x]/I$*}
   \end{align}
   Well, $(I+J)/I=(\langle x-a \rangle +\langle f_1(x),\ldots,f_n(x),x-a\rangle) / \langle x-a \rangle = \langle f_1(x),\ldots,f_n(x),x-a\rangle / \langle x-a \rangle=J/I=\overline{J}$. 
-  Since $I,(I+J)$ are ideals of $R[x]$ with $I\subseteq (I+J)$, by the Third Isomorphism Theorem we have that
+  Since $I,(I+J)$ are ideals of $R[x]$ with $I\subseteq (I+J)$, by the \textbf{Third Isomorphism Theorem} we have that
     $$\textcircled{\footnotesize 1}\; \overline{J}=(I+J)/I\text{ is an ideal of $(R[x]/I)$ and }\textcircled{\footnotesize 2}\;\frac{(R[x]/I)}{\overline{J}}=\frac{(R[x]/I)}{(I+J)/I}\cong \frac{R[x]}{I+J}=R[x]/J.$$
-  Now, we pass elements of $\frac{R[x]/I}{\overline{J}}$ through $\Phi:\frac{R[x]/I}{\overline{J}}\to \frac{R[x]}{\langle f_{1}(a),\hdots,f_{n}(a)\rangle }$ defined via $$\Phi(\class[I]{h(x)} + \overline{J})=\psi^{-1}(\class[I]{h(x)})+\psi^{-1}(\overline{J})=\psi^{-1}(\class[I]{h(x)})+\epsilon_{a}(J)$$
-  Obviously this is well defined since $\psi^{-1}$ is an isomorphism, and then $\forall \class[\overline{J}]{\class[I]{A(x)}}, \class[\overline{J}]{\class[I]{B(x)}}\in \frac{R[x]/I}{\overline{J}}:$
-  \begin{align*}
-  &\Phi{\class[\overline{J}]{\class[I]{f(x)}}+\class[\overline{J}]{\class[I]{g(x)}}}=\psi^{-1}(\class[I]{f(x)})+ \epsilon_{a}(J)+\psi^{-1}(g(x))+\epsilon_{a}(J)=\phi^{-1}(f(x)+g(x))+\epsilon_{a}(J)=\\
-  \end{align*}
+  Let $K=\langle f_{1},\hdots, f_{n}\rangle$ and $\Phi:R[x]/I\to \frac{R}{\langle f_{1}(a),\hdots,f_{n}(a)\rangle }=R/K$ defined via $\Phi(\class[I]{h(x)})=\psi^{-1}(\class[I]{h(x)})+K$.
 
+  Obviously this is well defined since $\psi^{-1}$ is an isomorphism, and then for all $\class[I]{A(x)},\class[I]{B(x)}\in R[x]/I,$
+  \begin{align*}
+    &\Phi(\class[1_{R}]{I})=\phi^{-1}(\class[I]{1_{R}})+K=1_{R}+K=1_{R/K}\\
+    &\Phi(\class[I]{A(x)})+\Phi(\class[I]{B(x)})=\psi^{-1}(\class[I]{A(x)})+\psi^{-1}(\class[I]{B(x)})+K=\psi^{-1}(\class[I]{A(x)}+\class[I]{B(x)})+K\\
+    &=\Phi(\class[I]{A(x)}+\class[I]{B(x)})\\
+    &\Phi(\class[I]{A(x)})\Phi(\class[I]{B(x)})=(\psi^{-1}(\class[I]{A(x)}))(\psi^{-1}(\class[I]{B(x)}))+K=\psi^{-1}(\class[I]{A(x)}\class[I]{B(x)})+K\\
+    &=\Phi(\class[I]{A(x)}\class[I]{B(x)})\\
+    &\forall (r+K)\in R/K\;,\exists \psi(r)=\class[I]{r}\in R/I\text{ such that }\Phi(\psi(r))=\psi^{-1}(\psi(r))+K=r+K.
+  \end{align*}
+So $\Phi$ is an surjective ring homomorphism. We show $\ker \Phi=\overline{J}$. $\mathbf{(\subseteq)}$ For any $j(x)\in J=\langle f_{1}(a),\hdots, f_{n}(a),x-a\rangle$ is of the form $j(x)=j_{0}(a)(x-a)+\sum_{i=1}^{n}j_{i}(x)f_{i}(a)$ for some $j_{0}(x),\hdots, j_{n}(x)\in R[x]$, and so $j(a)=\sum_{i=1}^{n}j_{i}(a)f_{i}(a)$. Therefore, for any $\class[I]{j(x)}\in \overline{J}$, $\Phi(\class[I]{j(x)})=\psi^{-1}(\class[I]{j(x)})+K=j(a)+K=K\implies \class[I]{j(x)}\in \ker \Phi \subseteq \ker \Phi.$ 
+
+$\mathbf{(\supseteq)}$ On the other hand, for any $\class[I]{r(x)}$, $r(a)\in K$ and so $r(a)=\sum_{i=1}^{n}r_{i}f_{i}(a)$ for some $r_{1},\hdots, r_{k}\in R$ and then $r(x)=r_{0}(x)(x-a) + \sum_{i=1}^{n}r_{i}(x)f_{i}(x)$ for some $r_{0}(x),r_{1}(x),\hdots, r_{n}(x)\in R[x]$ such that $r_{i}(a)=r_{i}$ for each $1\leq i\leq n$. Therefore, $r(x)\in J$ and so $\class[I]{r(x)}\in \overline{J}\implies \ker \Phi\subseteq \overline{J}$. So $\ker \Phi=\overline{J}$, and by the \textbf{First Isomorphism Theorem} $\textcircled{\footnotesize 3}\;$$\frac{R[x]/I}{\ker \Phi}=\frac{R[x]/I}{\overline{J}}\cong\Phi(R[x]/I)=R/J.$
+
+Thus, by $\textcircled{\footnotesize 2}\text{ and }\textcircled{\footnotesize 3}$,
+$$\frac{R[x]}{\langle f_{1}(x),\hdots, f_{n}(x),x-a\rangle}=R[x]/J\cong \frac{R[x]/I}{\overline{J}}\cong R/K=\frac{R}{\langle f_{1}(a),\hdots,f_{n}(a)\rangle}$$
 \end{proof}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 6 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -367,20 +420,57 @@ If $\kkk$ is an algebraic closed field, then the only maximal ideals of $\kkk[x]
 \end{enumerate}
 \end{prob}
 
+\begin{proof}
+\textbf{(a)}Let $\epsilon_{i}:\RR[x]\to \CC$ be defined via $\epsilon_{i}(f(x))=f(i)$ for all $f(x)\in \RR[x]$. We show this is a surjective ring homomorphism. For any $A(x),B(x)\in \RR[x]$,
+\begin{align*}
+&\epsilon_{i}(1(x))=1(a)=1_{\RR}=1_{\CC}\\
+&\epsilon_{i}(A(x))+\epsilon_{i}(B(x))=A(i)+B(i)=(A+B)(i)\epsilon_{i}((A+B)(x))=\epsilon_{i}(A(x)+B(x))\\
+&\epsilon_{i}(A(x))\epsilon_{i}(B(x))=A(i)B(i)=(AB)(i)\epsilon_{i}((AB)(x))=\epsilon_{i}(A(x)B(x))\\
+&\forall (\alpha+\beta i)\in \CC,\;\epsilon_{i}(\alpha+\beta x)=\alpha+\beta i
+\end{align*}
+Next, we show that $\ker \epsilon_{i}=\langle x^{2}+1\rangle$. $\mathbf{(\subseteq)}$ Consider any $C(x)\in \ker \epsilon_{i}$. \textbf{By Lemma }\ref{lem:5} we have the division algorithm for polynomials over fields. So $C(x)=q(x)(x^{2}+1)+r(x)$ where $r(x)=0$ or $\deg(r(x))<2=\deg(x^{2}+1)$. Well, $0=C(i)=q(i)(i^{2}+1)+r(i)\implies r(i)=0$ and so it can't be linear otherwise $r(i)$ wouldn't vanish; $r(x)=ax+b$ is linear implies $a\neq 0$ and then $r(i)=ai+b\neq 0$ since $\CC$ is an integral domain. So then by $\textbf{Lemma }\ref{lem:5}$ in fact $r(x)$ must be zero, and so $x^{2}+1$ divides $C(x)\implies C(x)\in \langle x^{2}+1\rangle$. $\mathbf{(\supseteq)}$ Trivially, any $f(x)=r(x)(x^{2}+1)$ belongs to $\ker \epsilon_{i}$ since then $f(i)=r(i)(i^{2}-1)=0$.
+
+So then $\ker \epsilon_{i}=\langle x^{2}+1\rangle$ and by the \textbf{First Isomorphism Theorem}
+$$\RR[x]/\langle x^2+1\rangle=\RR[x]/\ker \epsilon_{i} \cong \CC.$$
+
+\textbf{(b)} $\RR[x]/\langle x^{2}+1\rangle\cong \CC$, so $\RR[x]/\langle x^{2}+1\rangle$ is a field and then by \textbf{Lemma }\ref{lem:6}, $\langle x^{2}+1\rangle$ must be maximal.
+
+\end{proof}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 7 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{prob}
 Let $R$ be a commutative ring with $0\neq 1$. In this problem, we will prove that every proper ideal of $R$ is contained in some maximal ideal.
 \begin{enumerate}[label=(\alph*)]
-\item Look up Zorn’s Lemma and record it here.
+\item Look up Zorn's Lemma and record it here.
 \item Define $S=\{J\mid J\text{ is a proper ideal of }R\text{ and }J\supseteq I\}$. Explain why $S$ is a partially ordered set (what is the ordering?).
-\item Given a chain $C$ in $S$, prove that $\bigcap_{J\in C}J$ is an ideal of $R$ (you will use that $C$ is totally ordered), and further that this ideal is in the set $S$.
-\item Conclude using Zorn’s Lemma that $S$ has a maximal element.
+\item Given a chain $C$ in $S$, prove that $\bigcup_{J\in C}J$ is an ideal of $R$ (you will use that $C$ is totally ordered), and further that this ideal is in the set $S$.
+\item Conclude using Zorn's Lemma that $S$ has a maximal element.
 \end{enumerate}
 \end{prob}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 8 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{(a)} Zorn's Lemma is \textbf{Lemma }\ref{lem:7} at the top of this document.
+We state it again for convenience.
+\setcounter{thm}{6} % next prob is 1
+\begin{lem}[Zorn's Lemma]
+Let $(P,\le)$ be a partially ordered set.  
+If every chain in $P$ has an upper bound in $P$, then $P$ contains a maximal element.
+\end{lem}
+The proof for this problem is on the next page.
+\newpage
+\begin{proof}
+\textbf{(b)} (1) $A\supseteq A,\;\forall A\in S$. (2) $A\supseteq B$ and $A\neq B\implies A\supset B\implies B\not\supseteq A$ (3) $A\supseteq B$ and $B\supseteq C \implies A\supseteq C$. So $(J,\supseteq)$ is a poset.
 
+\textbf{(c)} Let $C$ be a chain in $S$ and consider $C_{\cap}=\bigcap_{J\in C} J$. We show this is an ideal of $R$. For any $a,b\in C_{\cap}$, $a,b\in J,\forall J\in C$. So then $a-b\in J,\forall J\in C$ since they're all additive subgroups of $R$ and so $C_{\cap}\leq_{+}R$. 
+
+Next, for any $r\in R$ and any $i\in I$, $ri=ir\in J,\forall J\in C$ and so $ri=ir\in C_{\cap}$. Therefore, $C_{\cap}$ is an ideal of $R.$ Since $C_{\cap}\subseteq J\subset R,\forall J\in C$, $C_{\cap}$ must be a proper ideal of $R$. Lastly, by definition $I$ is contained in every $J\in C\subseteq S$, and so of course $I$ must be contained in their intersection $C_{\cap}$. So $C_{\cap}\in S$.
+
+\textbf{(d)} Since $J\supseteq I,\;\forall J\in C_{\cap}$
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 8 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{thm}{7} % next prob is 1
 \begin{prob}
 Let $\kkk$ be a field. In this problem, we will prove that the only maximal ideal of $\kkk[[x]]$ is $(x)$, which makes $\kkk[[x]]$ a local ring.
 \begin{enumerate}[label=(\alph*)]

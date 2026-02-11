@@ -15,5 +15,14 @@
     "**/*.snm": true,
     "**/*.vrb": true,
     "**/*.xdv": true
+  },
+
+  "workbench.colorCustomizations": {
+    "[Default Dark Modern]": {
+      "notebook.outputContainerBackgroundColor": "#ffffff",
+      "notebook.cellOutputBackground": "#ffffff",
+      "notebook.outputTextColor": "#000000"
   }
+  
+  
 }

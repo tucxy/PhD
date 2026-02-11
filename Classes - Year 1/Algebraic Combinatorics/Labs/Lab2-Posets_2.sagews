@@ -1,46 +1,34 @@
-︠94e84992-6b54-4dad-93fd-04e2bd8f33a9i︠
+︠94e84992-6b54-4dad-93fd-04e2bd8f33a9︠
 %md
-# New Posets from Old and Lattices
+# Posets and Lattices
 
 ## Math 737 - Lab 2
-︡38c3b45a-1f53-4835-8b85-a92a7c240f78︡{"done":true,"md":"# New Posets from Old and Lattices\n\n## Math 737 - Lab 2"}
+︡38c3b45a-1f53-4835-8b85-a92a7c240f78︡{"done":true,"md":"# Posets and Lattices\n\n## Math 737 - Lab 2"}
 ︠8bfac860-65dd-45bb-a582-0cd8b7473771︠
 %md
-## Sage includes many pre-defined posets. Let's explore these. Type posets with a . after it. Then press tab. You should see a list of built-in posets.
+## Sage includes many pre-defined posets. Let's explore these. Type posets with a . after it. Then press tab. You should see a list of built-in posets. 
 
 ︡1d4769e2-9463-4cec-b28b-d6d7588b5e66︡{"done":true,"md":"## Sage includes many pre-defined posets. Let's explore these. Type posets with a . after it. Then press tab. You should see a list of built-in posets."}
 ︠43b6f202-7ad7-4edf-ac12-c9ee02531262i︠
 %md
 
-## Exercise 1: Plot several built-in posets. You may need to insert a parameter such as 3 inside the parentheses at the end.
+## Exercise 1: Plot several built-in posets. You may need to insert a parameter such as 3 inside the parentheses at the end. 
 ︡0ba2f3a1-8da3-416b-b174-c5d871ef0379︡{"done":true,"md":"\n## Exercise 1: Plot several built-in posets. You may need to insert a parameter such as 3 inside the parentheses at the end."}
 ︠081fd9fc-6b74-44a7-8ebb-0631f5207cdf︠
-︡fe537575-88f0-42ca-a58c-8b700a3b2e5d︡
-︠7faea08b-20e0-4227-b9d2-b9a2dc9be14ds︠
-A=posets.AntichainPoset(7)
-A.plot()
 
-B=posets.BubblePoset(2,2)
-B.plot()
-
-C=posets.YoungsLatticePrincipalOrderIdeal(?)
-
-︡36758646-2644-449d-8764-51a748fb1f70︡{"file":{"filename":"/tmp/sage_f0mibplu/tmp_wqghci27.svg","show":true,"text":null,"uuid":"4c8b3b3f-44b4-46b2-9627-54245e738f17"},"once":false}︡{"file":{"filename":"/tmp/sage_f0mibplu/tmp_3g0gqbik.svg","show":true,"text":null,"uuid":"145ba573-d56f-47bc-a66b-344acf30f397"},"once":false}︡{"stderr":"Error in lines 5-5\nTraceback (most recent call last):\n  File \"/cocalc/lib/python3.11/site-packages/smc_sagews/sage_server.py\", line 1251, in execute\n    compile(block + '\\n',\n  File \"<string>\", line 1\n    C=posets.YoungsLatticePrincipalOrderIdeal(?)\n                                              ^\nSyntaxError: invalid syntax\n"}︡{"done":true}
-︠ef0f4e65-c171-4dcc-84f1-efcba7bfd6b3s︠
-B.plot(BackslashOperator
-︡aa8ab8f6-2035-4b9b-a26b-f73242a9c2f4︡{"stderr":"Error in lines 1-1\nTraceback (most recent call last):\n  File \"/cocalc/lib/python3.11/site-packages/smc_sagews/sage_server.py\", line 1251, in execute\n    compile(block + '\\n',\n  File \"<string>\", line 1\n    B.plot(BackslashOperator\n          ^\nSyntaxError: '(' was never closed\n"}︡{"done":true}
+︡8da86847-f84d-4ef2-90c1-ca7273b96f32︡
 ︠e333a610-7a5b-41b0-8ab1-f96454d26efb︠
 ︡1a2415ac-c595-41a9-bcf5-9656a54f2a09︡
 ︠2ec0fd57-6b66-4eec-9999-9e8efae0ac5fi︠
 %md
 ## Sage includes many common combinatorial objects. Let's use Sage to make natural posets on combinatorial objects.
 
-### Until now, we have defined posets by inputting elements and covering relations. Now let's define a poset by specifying a set of combinatorial objects and the partial order as a function which returns 'True' if x < y and 'False' otherwise.
+### Until now, we have defined posets by inputting elements and covering relations. Now let's define a poset by specifying a set of combinatorial objects and the partial order as a function which returns 'True' if x < y and 'False' otherwise. 
 ︡5e492845-6b19-49d2-904d-0c97f68d2832︡{"done":true,"md":"## Sage includes many common combinatorial objects. Let's use Sage to make natural posets on combinatorial objects.\n\n### Until now, we have defined posets by inputting elements and covering relations. Now let's define a poset by specifying a set of combinatorial objects and the partial order as a function which returns 'True' if x < y and 'False' otherwise."}
 ︠b756de19-f2d7-41ed-b37e-ed39e22d4c87i︠
 %md
 
-## Exercise 2: Evaluate the blocks and follow the directions below to define the poset on Dyck paths for $n=3,4,5$ with partial order of containment.
+## Exercise 2: Evaluate the blocks and follow the directions below to define the poset on Dyck paths for $n=3,4,5$ with partial order of containment. 
 ︡8d5d24ef-bee2-4d44-9dbc-4787ecd3cd7f︡{"done":true,"md":"\n## Exercise 2: Evaluate the blocks and follow the directions below to define the poset on Dyck paths for $n=3,4,5$ with partial order of containment."}
 ︠3b05e612-3e05-4494-b3f3-bb3e15111d33s︠
 D = DyckWords(3)
@@ -55,10 +43,10 @@ for d in D:
 ︡af2d0b12-1b04-423f-8c1e-f6d3b9330063︡{"stdout":"()()()\n"}︡{"file":{"filename":"/home/user/.sage/temp/project-a1ee9a2a-806b-47e9-a9e0-4f3f826929de/104546/tmp_XDFJO_.svg","show":true,"text":null,"uuid":"d083130a-cbff-4766-99e4-32b9ac9f54cd"},"once":false}︡{"stdout":"[2, 1]"}︡{"stdout":"\n------------------------------------------------------------------------------------------\n()(())\n"}︡{"file":{"filename":"/home/user/.sage/temp/project-a1ee9a2a-806b-47e9-a9e0-4f3f826929de/104546/tmp_sXbMNO.svg","show":true,"text":null,"uuid":"1d4068bf-e4e0-4a03-b271-803184924059"},"once":false}︡{"stdout":"[1, 1]"}︡{"stdout":"\n------------------------------------------------------------------------------------------\n(())()\n"}︡{"file":{"filename":"/home/user/.sage/temp/project-a1ee9a2a-806b-47e9-a9e0-4f3f826929de/104546/tmp_lrHOHf.svg","show":true,"text":null,"uuid":"c04b9195-25fb-4182-9db0-bb6c7ab79d21"},"once":false}︡{"stdout":"[2]"}︡{"stdout":"\n------------------------------------------------------------------------------------------\n(()())\n"}︡{"file":{"filename":"/home/user/.sage/temp/project-a1ee9a2a-806b-47e9-a9e0-4f3f826929de/104546/tmp_56SIdF.svg","show":true,"text":null,"uuid":"a015b2d7-d998-4be3-82f7-8d519436dcaf"},"once":false}︡{"stdout":"[1]"}︡{"stdout":"\n------------------------------------------------------------------------------------------\n((()))\n"}︡{"file":{"filename":"/home/user/.sage/temp/project-a1ee9a2a-806b-47e9-a9e0-4f3f826929de/104546/tmp_X2yE5_.svg","show":true,"text":null,"uuid":"6e97cc31-acff-4b6e-b402-cb2c36afd210"},"once":false}︡{"stdout":"[]"}︡{"stdout":"\n------------------------------------------------------------------------------------------\n"}︡{"done":true}
 ︠580cf8ac-7068-4ca8-b2b4-fcde484e1f4di︠
 %md
-### Below we define a function for the partial order by diagram containment.
-#### Note how functions are structured in Python.
+### Below we define a function for the partial order by diagram containment. 
+#### Note how functions are structured in Python. 
 
-#### A function starts with 'def' and then has the name of the function followed by the inputs inside ( ) and a colon : at the end of the first line.
+#### A function starts with 'def' and then has the name of the function followed by the inputs inside ( ) and a colon : at the end of the first line. 
 
 #### Then the next lines are indented and contain commands for the function to do. The last line includes 'return' to indicate what the function returns.
 ︡b9deaae2-0599-4acf-81e2-a2091ccc96ec︡{"done":true,"md":"### Below we define a function for the partial order by diagram containment. \n#### Note how functions are structured in Python. \n\n#### A function starts with 'def' and then has the name of the function followed by the inputs inside ( ) and a colon : at the end of the first line. \n\n#### Then the next lines are indented and contain commands for the function to do. The last line includes 'return' to indicate what the function returns."}
@@ -70,7 +58,7 @@ def dyck_path_containment(x,y):
 ︡e3df500b-7daa-4213-a555-3c5a82c270c6︡{"done":true}
 ︠862b3736-9128-45bc-be12-da16e823f7bai︠
 %md
-### Evaluate the block below to see the Dyck path poset for n=3.
+### Evaluate the block below to see the Dyck path poset for n=3. 
 ︡c7cfcf67-2c1c-4cc2-b0ee-55d4fc1d435c︡{"done":true,"md":"### Evaluate the block below to see the Dyck path poset for n=3."}
 ︠11e132c0-4d36-4f4e-9eee-d474acc5eb29s︠
 dyck_path_poset = Poset((DyckWords(3),dyck_path_containment))
@@ -86,7 +74,7 @@ dyck_path_poset.plot()
 ︠f7a999a0-e7eb-43e5-ad19-cd2712bae593i︠
 %md
 
-## Exercise 3: Evaluate the blocks and follow the directions below to explore lattice properties of the Dyck path poset.
+## Exercise 3: Evaluate the blocks and follow the directions below to explore lattice properties of the Dyck path poset. 
 ︡3821683c-126e-4b11-8e17-d1c2b56ad927︡{"done":true,"md":"\n## Exercise 3: Evaluate the blocks and follow the directions below to explore lattice properties of the Dyck path poset."}
 ︠d7a756c5-9803-4f4d-9ede-9151041be998i︠
 %md
@@ -131,8 +119,8 @@ dyck_path_lattice.is
 ### Hint: these posets are built-in, so you do not need to define the partial order function yourself.
 ︡571da6a3-efb9-4846-8f2b-a551e078da01︡{"done":true,"md":"\n## Exercise 4: Explore functions on Permutations (by typing . and tab after the function in the block below) to find and plot the strong and weak Bruhat order for $n=3,4,5$. Then check whether they are lattices, and if so, whether they are distributive.\n### Hint: these posets are built-in, so you do not need to define the partial order function yourself."}
 ︠aef05043-e320-4835-baff-ea3ed408602c︠
-
-︡ec2b1642-cff4-4946-b2fa-a3e3918ff95d︡
+P = Permutations(3)
+︡d72478da-81b1-457b-863a-33b74a4c07ed︡{"done":true}
 ︠c68af56d-9d2a-462e-9a5a-29bdd72ec7a6i︠
 %md
 

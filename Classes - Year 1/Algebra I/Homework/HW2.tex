@@ -112,8 +112,6 @@
 \newcommand{\Rng}{\ensuremath{\mathrm{Rng}}}
 \newcommand{\Ring}{\ensuremath{\mathrm{Ring}}}
 
-\usepackage{hyperref} % MUST BE LAST
-
 
 
 
@@ -156,7 +154,8 @@
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 0 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setcounter{thm}{0} % next prob is 1
-Here are some Lemmas which are referenced throughout the problems.
+\textbf{Here are some Lemmas which are referenced throughout the problems.}
+$\newline$
 \begin{lem}[Sum of Ideals is an Ideal]\label{lem:1}
   If $I,J$ are ideals of a ring $R$, then $I+J=\{i+j\mid i\in I,j\in J\}$ is also an ideal of $R$.
 \end{lem}
@@ -197,10 +196,10 @@ The evaluation homomorphism $\epsilon_{a}:R[x]\to R$ defined by $\epsilon_{a}(f(
 \end{lem}
 \begin{proof}
   \begin{align*}
-    x\sum_{\substack{i+j=k-1\\ i,j\in \NN}}x^{i}y^{i}&=x(x^{k-1}+x^{k-2}y+\cdots +xy^{k-2}+y^{k-1})=x^{k}+(x^{k-1}y+\cdots +x^{2}y^{k-2}+xy^{k-1})\\
-    y\sum_{\substack{i+j=k-1\\ i,j\in \NN}}x^{i}y^{i}&= y(x^{k-1}+x^{k-2}y+\cdots +xy^{k-2}+y^{k-1})=(yx^{k-1}+x^{k-2}y^{2}+\cdots xy^{k-1})+y^{k}\\
+    x\sum_{\substack{i+j=k-1\\ i,j\in \NN}}x^{i}y^{j}&=x(x^{k-1}+x^{k-2}y+\cdots +xy^{k-2}+y^{k-1})=x^{k}+(x^{k-1}y+\cdots +x^{2}y^{k-2}+xy^{k-1})\\
+    y\sum_{\substack{i+j=k-1\\ i,j\in \NN}}x^{i}y^{j}&= y(x^{k-1}+x^{k-2}y+\cdots +xy^{k-2}+y^{k-1})=(yx^{k-1}+x^{k-2}y^{2}+\cdots xy^{k-1})+y^{k}\\
     &=(x^{k-1}y+x^{k-2}y^{2}+\cdots +xy^{k-1})+y^{k}\\
-    \implies (x-y)\sum_{\substack{i+j=k-1\\ i,j\in \NN}}x^{i}y^{i}&=x^{k}+(x^{k-1}y+\cdots +x^{2}y^{k-2}+xy^{k-1})-(x^{k-1}y+x^{k-2}y^{2}+\cdots +xy^{k-1})-y^{k}\\
+    \implies (x-y)\sum_{\substack{i+j=k-1\\ i,j\in \NN}}x^{i}y^{j}&=x^{k}+(x^{k-1}y+\cdots +x^{2}y^{k-2}+xy^{k-1})-(x^{k-1}y+x^{k-2}y^{2}+\cdots +xy^{k-1})-y^{k}\\
     &=x^{k}-y^{k}.
   \end{align*}
 \end{proof}
@@ -243,10 +242,34 @@ Thus,
   If $R$ is a commutative ring with unity, then $R/I$ is a field if and only if $I$ is a maximal ideal of $R$.
 \end{center}
 \end{proof}
+
 \begin{lem}[Zorn's Lemma]\label{lem:7}
 Let $(P,\le)$ be a partially ordered set.  
 If every chain in $P$ has an upper bound in $P$, then $P$ contains a maximal element.
 \end{lem}
+
+\begin{thm}[Problem $8(c)$ from HW 1]\label{thm:unitpower} If $R$ is a commutative ring with unity, then any $A(x)$ is a unit in $R[[x]]$ is a unit if and only if its constant term $[x^{0}]A(x)$ is a unit in $R$.
+\end{thm}
+$\newline$
+\begin{lem}[Maximal ideals contain no units]\label{lem:9}
+  If $M$ is a maximal (two-sided) ideal of a ring $R$, then $M$ contains no units of $R$.
+\end{lem}
+\begin{proof}
+  Suppose $u$ is a unit in $M$ with inverse $u^{-1}\in R$. Then $uu^{-1}=1\in M$. But then $1(r)=r\in M$ for all $r\in R$, and $M=R$ is not proper, a contradiction.
+
+  Thus,
+  \begin{center}
+    A $M$ is a maximal ideal of a ring $R$ contains no units. 
+  \end{center}
+\end{proof}
+
+\begin{lem}\label{lem:10}
+  A subring with unity, of an integral domain $R$ is an integral domain.
+\end{lem}
+\begin{proof}
+  Let $S$ be a unital subring of an integral domain $R$. Then for any $a,b\in S\subseteq R,\; ab=ba$, since $R$ is commutative and $ab=0\text{ with }a\neq 0\implies b=0$ immediately since $R$ is an integral domain. So $S$ is an integral domain. 
+
+\end{proof}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \setcounter{thm}{0} % next prob is 1
@@ -262,7 +285,7 @@ If every chain in $P$ has an upper bound in $P$, then $P$ contains a maximal ele
 \begin{proof}
     \textbf{(a) } Let $\KK$ be a field, and suppose it contains some non-zero zero divisor $b\in \KK\setminus\{0\}$. Then there exists some $a\in \KK\setminus\{0\}$ such that $ab=ba=0$. Since $a,b\in\KK\setminus\{0\}$, they are both units and so there exist $a^{-1},b^{-1}\in \KK$ such that $a^{-1}a=bb^{-1}=1\implies a^{-1}(ab)b^{-1}=1=a^{-1}(0)b^{-1}=0\implies 1=0$. But then $\KK=\{0\}$ which is not a field, a contradiction. Therefore, all non-zero elements are not zero divisors and so $\KK$ is a commutative ring with unity and no zero divisors, which is the definition of an integral domain.
 
-    \textbf{(b) } Let $R$ be a finite integral domain, and let $a$ be some non-zero zero divisor $a\in R\setminus\{0\}$. We show the mapping $a:R\to R$ via $a(x)=ax,\;\forall x\in R$ is a bijection. For all $x,y\in R$,
+    \textbf{(b) } Let $R$ be a finite integral domain, and let $a$ be some non-zero divisor $a\in R\setminus\{0\}$. We show the mapping $a:R\to R$ via $a(x)=ax,\;\forall x\in R$ is a bijection. For all $x,y\in R$,
     \begin{align*}
         &\textbf{[1-1] }a(x)=a(y)\implies ax=ay\implies ax-ay=a(x-y)=0\implies x=y\\
         &\text{otherwise } a\text{ is a zero divisor, and we get a contradiction.}\\
@@ -367,7 +390,7 @@ $$B(x)-B(a)=\sum_{k=1}^{n}b_{k}(x^{k}-a^{k})=\sum_{k=1}^{n}b_{k}((x-a)\sum_{i+j=
 and since in fact $B(a)=0$, we have that $B(x)=(x-a)\sum\limits_{k=1}^{n}b_{k}(\sum\limits_{i+j=k-1}x^{i}a^{j})\in \langle x-a\rangle$ since $\sum\limits_{k=1}^{n}b_{k}(\sum\limits_{i+j=k-1}x^{i}y^{j})$ belongs to $R[x]$. So then $\ker \epsilon_{a}\subseteq \langle x-a\rangle.$ 
 
 $(\supseteq)\;\forall C(x)=f(x)(x-a)\in \langle x-a\rangle$ obviously $C(a)=f(a)(a-a)=0\implies C(x)\in \ker \epsilon_{a}$. So then $\langle x-a\rangle\subseteq \ker \epsilon_{a}.$. Thus, by the \textbf{First Isomorphism Theorem},
-  $$R[x]/\ker \epsilon_{a}=R[x]/\langle \langle x-a\rangle\cong \epsilon_{a}(R[x])=R.$$
+  $$R[x]/\ker \epsilon_{a}=R[x]/\langle x-a\rangle\cong \epsilon_{a}(R[x])=R.$$
 
 \textbf{(b)} For each $1\leq m\leq n,$ there exist $b_{m,0},\hdots,b_{m,d_{m}}\in R$ and $d_{m}\in \NN$ such that $f_{m}(x)=\sum_{k=0}^{d_{m}}b_{m,k}x^{k}$. Now we use a result obtained in \textbf{(a)}:
   $$f_{k}(x)-f_{k}(a)=(x-a)\sum_{k=1}^{d_{m}}b_{m,k}(\sum_{i+j=k-1}x^{i}a^{j})\implies f_{k}(x)=f_{k}(a)+(x-a)\sum_{k=1}^{d_{m}}b_{m,k}(\sum_{i+j=k-1}x^{i}a^{j})$$
@@ -405,7 +428,7 @@ Therefore, all generators of $\langle f_1(x),\ldots,f_n(x),x-a\rangle$ belong to
   \end{align*}
 So $\Phi$ is an surjective ring homomorphism. We show $\ker \Phi=\overline{J}$. $\mathbf{(\subseteq)}$ For any $j(x)\in J=\langle f_{1}(a),\hdots, f_{n}(a),x-a\rangle$ is of the form $j(x)=j_{0}(a)(x-a)+\sum_{i=1}^{n}j_{i}(x)f_{i}(a)$ for some $j_{0}(x),\hdots, j_{n}(x)\in R[x]$, and so $j(a)=\sum_{i=1}^{n}j_{i}(a)f_{i}(a)$. Therefore, for any $\class[I]{j(x)}\in \overline{J}$, $\Phi(\class[I]{j(x)})=\psi^{-1}(\class[I]{j(x)})+K=j(a)+K=K\implies \class[I]{j(x)}\in \ker \Phi \subseteq \ker \Phi.$ 
 
-$\mathbf{(\supseteq)}$ On the other hand, for any $\class[I]{r(x)}$, $r(a)\in K$ and so $r(a)=\sum_{i=1}^{n}r_{i}f_{i}(a)$ for some $r_{1},\hdots, r_{k}\in R$ and then $r(x)=r_{0}(x)(x-a) + \sum_{i=1}^{n}r_{i}(x)f_{i}(x)$ for some $r_{0}(x),r_{1}(x),\hdots, r_{n}(x)\in R[x]$ such that $r_{i}(a)=r_{i}$ for each $1\leq i\leq n$. Therefore, $r(x)\in J$ and so $\class[I]{r(x)}\in \overline{J}\implies \ker \Phi\subseteq \overline{J}$. So $\ker \Phi=\overline{J}$, and by the \textbf{First Isomorphism Theorem} $\textcircled{\footnotesize 3}\;$$\frac{R[x]/I}{\ker \Phi}=\frac{R[x]/I}{\overline{J}}\cong\Phi(R[x]/I)=R/J.$
+$\mathbf{(\supseteq)}$ On the other hand, for any $\class[I]{r(x)}$, $r(a)\in K$ and so $r(a)=\sum_{i=1}^{n}r_{i}f_{i}(a)$ for some $r_{1},\hdots, r_{k}\in R$ and then $r(x)=r_{0}(x)(x-a) + \sum_{i=1}^{n}r_{i}(x)f_{i}(x)$ for some $r_{0}(x),r_{1}(x),\hdots, r_{n}(x)\in R[x]$ such that $r_{i}(a)=r_{i}$ for each $1\leq i\leq n$. Therefore, $r(x)\in J$ and so $\class[I]{r(x)}\in \overline{J}\implies \ker \Phi\subseteq \overline{J}$. So $\ker \Phi=\overline{J}$, and by the \textbf{First Isomorphism Theorem} $\textcircled{\footnotesize 3}\;\frac{R[x]/I}{\ker \Phi}=\frac{R[x]/I}{\overline{J}}\cong\Phi(R[x]/I)=R/J.$
 
 Thus, by $\textcircled{\footnotesize 2}\text{ and }\textcircled{\footnotesize 3}$,
 $$\frac{R[x]}{\langle f_{1}(x),\hdots, f_{n}(x),x-a\rangle}=R[x]/J\cong \frac{R[x]/I}{\overline{J}}\cong R/K=\frac{R}{\langle f_{1}(a),\hdots,f_{n}(a)\rangle}$$
@@ -428,10 +451,10 @@ If $\kkk$ is an algebraic closed field, then the only maximal ideals of $\kkk[x]
 &\epsilon_{i}(A(x))\epsilon_{i}(B(x))=A(i)B(i)=(AB)(i)\epsilon_{i}((AB)(x))=\epsilon_{i}(A(x)B(x))\\
 &\forall (\alpha+\beta i)\in \CC,\;\epsilon_{i}(\alpha+\beta x)=\alpha+\beta i
 \end{align*}
-Next, we show that $\ker \epsilon_{i}=\langle x^{2}+1\rangle$. $\mathbf{(\subseteq)}$ Consider any $C(x)\in \ker \epsilon_{i}$. \textbf{By Lemma }\ref{lem:5} we have the division algorithm for polynomials over fields. So $C(x)=q(x)(x^{2}+1)+r(x)$ where $r(x)=0$ or $\deg(r(x))<2=\deg(x^{2}+1)$. Well, $0=C(i)=q(i)(i^{2}+1)+r(i)\implies r(i)=0$ and so it can't be linear otherwise $r(i)$ wouldn't vanish; $r(x)=ax+b$ is linear implies $a\neq 0$ and then $r(i)=ai+b\neq 0$ since $\CC$ is an integral domain. So then by $\textbf{Lemma }\ref{lem:5}$ in fact $r(x)$ must be zero, and so $x^{2}+1$ divides $C(x)\implies C(x)\in \langle x^{2}+1\rangle$. $\mathbf{(\supseteq)}$ Trivially, any $f(x)=r(x)(x^{2}+1)$ belongs to $\ker \epsilon_{i}$ since then $f(i)=r(i)(i^{2}-1)=0$.
+Next, we show that $\ker \epsilon_{i}=\langle x^{2}+1\rangle$. $\mathbf{(\subseteq)}$ Consider any $C(x)\in \ker \epsilon_{i}$. \textbf{By Lemma }\ref{lem:5} we have the division algorithm for polynomials over fields. So $C(x)=q(x)(x^{2}+1)+r(x)$ where $r(x)=0$ or $\deg(r(x))<2=\deg(x^{2}+1)$. Well, $0=C(i)=q(i)(i^{2}+1)+r(i)\implies r(i)=0$ and so it can't be linear otherwise $r(i)$ wouldn't vanish; $r(x)=ax+b$ is linear implies $a\neq 0$ and then $r(i)=ai+b\neq 0$ since $i\neq 0$ and $ai=-b\implies b\not\in \RR$. So then $r(x)$ must be some constant $r$. So then $r(i)=r(x)=r=0$. So $x^{2}+1$ divides $C(x)\implies C(x)\in \langle x^{2}+1\rangle$. $\mathbf{(\supseteq)}$ Trivially, any $f(x)=r(x)(x^{2}+1)$ belongs to $\ker \epsilon_{i}$ since then $f(i)=r(i)(i^{2}+1)=0$.
 
 So then $\ker \epsilon_{i}=\langle x^{2}+1\rangle$ and by the \textbf{First Isomorphism Theorem}
-$$\RR[x]/\langle x^2+1\rangle=\RR[x]/\ker \epsilon_{i} \cong \CC.$$
+$$\RR[x]/\langle x^2+1\rangle=\RR[x]/\ker \epsilon_{i} \cong \epsilon_{i}(\RR[x])=\CC.$$
 
 \textbf{(b)} $\RR[x]/\langle x^{2}+1\rangle\cong \CC$, so $\RR[x]/\langle x^{2}+1\rangle$ is a field and then by \textbf{Lemma }\ref{lem:6}, $\langle x^{2}+1\rangle$ must be maximal.
 
@@ -439,7 +462,7 @@ $$\RR[x]/\langle x^2+1\rangle=\RR[x]/\ker \epsilon_{i} \cong \CC.$$
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 7 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\newpage
 \begin{prob}
 Let $R$ be a commutative ring with $0\neq 1$. In this problem, we will prove that every proper ideal of $R$ is contained in some maximal ideal.
 \begin{enumerate}[label=(\alph*)]
@@ -450,35 +473,68 @@ Let $R$ be a commutative ring with $0\neq 1$. In this problem, we will prove tha
 \end{enumerate}
 \end{prob}
 
-\textbf{(a)} Zorn's Lemma is \textbf{Lemma }\ref{lem:7} at the top of this document.
-We state it again for convenience.
 \setcounter{thm}{6} % next prob is 1
+\textbf{(a)}
+
 \begin{lem}[Zorn's Lemma]
 Let $(P,\le)$ be a partially ordered set.  
 If every chain in $P$ has an upper bound in $P$, then $P$ contains a maximal element.
 \end{lem}
-The proof for this problem is on the next page.
-\newpage
 \begin{proof}
-\textbf{(b)} (1) $A\supseteq A,\;\forall A\in S$. (2) $A\supseteq B$ and $A\neq B\implies A\supset B\implies B\not\supseteq A$ (3) $A\supseteq B$ and $B\supseteq C \implies A\supseteq C$. So $(J,\supseteq)$ is a poset.
+\textbf{(b)} (1) $A\subseteq A,\;\forall A\in S$. (2) $A\subseteq B$ and $A\neq B\implies A\subset B\implies B\not\subseteq A$ (3) $A\subseteq B$ and $B\subseteq C \implies A\subseteq C$. So $(J,\subseteq)$ is a poset.
 
-\textbf{(c)} Let $C$ be a chain in $S$ and consider $C_{\cap}=\bigcap_{J\in C} J$. We show this is an ideal of $R$. For any $a,b\in C_{\cap}$, $a,b\in J,\forall J\in C$. So then $a-b\in J,\forall J\in C$ since they're all additive subgroups of $R$ and so $C_{\cap}\leq_{+}R$. 
+\textbf{(c)} Let $C$ be a chain in $S$ and consider $U_{C}=\bigcup_{J\in C} J$. We show this is an ideal of $R$. 
 
-Next, for any $r\in R$ and any $i\in I$, $ri=ir\in J,\forall J\in C$ and so $ri=ir\in C_{\cap}$. Therefore, $C_{\cap}$ is an ideal of $R.$ Since $C_{\cap}\subseteq J\subset R,\forall J\in C$, $C_{\cap}$ must be a proper ideal of $R$. Lastly, by definition $I$ is contained in every $J\in C\subseteq S$, and so of course $I$ must be contained in their intersection $C_{\cap}$. So $C_{\cap}\in S$.
+For any $a,b\in U_{C},\;\exists J_{a},J_{b}\in C\text{ such that }a\in J_{a}$ and $b\in J_{b}$, and then $a,b\in J_{a}\cup J_{b}$. Since $C$ is totally ordered, $(J_{a}\subseteq J_{b}\implies J_{a}\cup J_{b}=J_{b})$ or $(J_{b}\subseteq J_{a}\implies J_{a}\cup J_{b}=J_{a})$. Therefore,
+  $$a,b\in \begin{cases}
+  J_{b}, & \text{if } J_{a}\subseteq J_{b}\\
+  J_{a}, & \text{if } J_{b}\subseteq J_{a}
+  \end{cases}\implies a-b\in J_{b}\subseteq U_{c}\text{ or }a-b\in J_{a}\subseteq U_{c}\implies U_{c}\leq_{+} R.$$
+Now, for any $u\in U_{C},\exists J_{u}\in C$ such that $u\in J_{u}$, and since $J_{u}$ is an ideal, for any $r\in R$, $ru=ur\in J_{u}\subseteq U_{C}$. So $U_{C}$ is an ideal of $R$.
 
-\textbf{(d)} Since $J\supseteq I,\;\forall J\in C_{\cap}$
+Now, suppose $1\in U_{C}$. Then there exists some $J_{1}\in C$ such that $1\in J_{1}$. So $r(1)=r\in J_{1},\;\forall r\in R$, and $J_{1}=R$. But then $\exists J_{1}\in C$ which isn't proper, a contradiction. Therefore, $1\not\in U_{C}\implies U_{C}$ is a proper ideal of $R$. Finally, since $I$ is contained in all ideals $J$ in $S$, of course $I$ is contained in any arbitrary union of ideals in $S$, and so of course $U_{C}=\bigcup_{J\in C\subseteq S}J$ contains $I$. Thus, $U_{C}\in S$.
+
+\textbf{(d)} For any chain $C$ in $S$, by \textbf{(c)} we have that $U_{C}=\bigcup_{J\in C}J\in S$ and since $J\subseteq U_{C},\forall J\in C$, $U_{C}$ is an upper bound for $C$ in $S$. So any chain has an upperbound in $S$ and by \textbf{Zorn's Lemma} (Lemma \ref{lem:7}), $S$ contains a maximal element. That is, there exists some maximal ideal of $R$ which contains all proper ideal that contain $I$, or equivalently, every proper ideal $I$ of $R$ is contained in some maximal ideal of $R$.
+
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 8 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \setcounter{thm}{7} % next prob is 1
 \begin{prob}
-Let $\kkk$ be a field. In this problem, we will prove that the only maximal ideal of $\kkk[[x]]$ is $(x)$, which makes $\kkk[[x]]$ a local ring.
+Let $\KK$ be a field. In this problem, we will prove that the only maximal ideal of $\kkk[[x]]$ is $\langle x \rangle$, which makes $\KK[[x]]$ a local ring.
 \begin{enumerate}[label=(\alph*)]
-\item Explain why $(x)=\{f\in \kkk[[x]]\mid f\text{ has no constant term}\}$.
-\item Compute $\kkk[[x]]/(x)$, and then explain why $(x)$ is a maximal ideal.
-\item You may freely use the following result from the optional hint last week: $f\in \kkk[[x]]$ is a unit if and only $f$ has a nonzero constant term. Use Proposition 1.41 to show that the only maximal ideal of $\kkk[[x]]$ is $(x)$.
+\item Explain why $(x)=\{f\in \KK[[x]]\mid f\text{ has no constant term}\}$.
+\item Compute $\KK[[x]]/(x)$, and then explain why $(x)$ is a maximal ideal.
+\item You may freely use the following result from the optional hint last week: $f\in \KK[[x]]$ is a unit if and only $f$ has a nonzero constant term. Use Proposition 1.41 to show that the only maximal ideal of $\KK[[x]]$ is $(x)$.
 \end{enumerate}
 \end{prob}
+\begin{proof}
+  \textbf{(a)} $\mathbf{(\subseteq)}$ Any $F(x)\in \langle x\rangle$ is of the form $F(x)=xQ(x)$ for some $Q(x)=\sum_{i=0}^{\infty}q_{i}x^{i}\in \KK[[x]]$. So then $F(x)=xQ(x)=x\sum_{i=0}^{\infty}q_{i}x^{i}=\sum_{i=0}^{\infty}q_{0}x^{i+1}$ has no constant term and therefore belongs to $\{f\in \KK[[x]]\mid f\text{ has no constant term}\}$. Therefore, $\langle x\rangle\subseteq \{f\in \KK[[x]]\mid f\text{ has no constant term}\}.$
+
+  $\mathbf{(\supseteq)}$ Any $G(x)\in \{f\in \KK[[x]]\mid f\text{ has no constant term}\}$ has no constant term and must be of the form $G(x)=\sum_{j=1}^{\infty}g_{i}x^{i}=x\sum_{i=1}^{\infty}g_{i}x^{i-1}\in \langle x\rangle$ since $\sum_{i=1}^{\infty}g_{i}x^{i-1}\in \KK[[x]]$. So, $\{f\in \KK[[x]]\mid f\text{ has no constant term}\}\subseteq \langle x\rangle.$
+
+  Thus, 
+  \begin{center}
+    $\langle x\rangle=\{f\in \KK[[x]]\mid f\text{ has no constant term}\}.$
+  \end{center}
+  \textbf{(b)} Consider any non-zero $\overline{U(x)}\in \frac{\KK[[x]]}{\langle x\rangle}$. There exists some non-zero $U(x)\in \KK[[x]]\setminus \{0\}$ such that $\overline{U(x)}=U(x)+\langle x\rangle\neq \langle x\rangle$. That is, $U(x)\not\in \langle x\rangle=\{f\in \KK[[x]]\mid f\text{ has no constant term}\}$, and so $U(x)$ has a non-zero constant term $u_{0}=[x^{0}]U(x)\in \KK$. 
+  
+  Well, since $\KK$ is a field, $u_{0}$ must be a unit in $\KK$. Therefore by \textbf{Problem 8(c)}, the constant term $u_{0}=[x^{0}]U(x)$ is a unit in $\KK\implies U(x)$ is a unit in $\KK[[x]]$. So there exists some $U^{-1}(x)\in \KK[[x]]$ such that $U(x)U^{-1}(x)=1$ and so 
+  $$\class[\langle x \rangle]{U(x)}\class[\langle x \rangle]{U^{-1}(x)}=\class[\langle x \rangle]{U(x)U^{-1}(x)}=\class[\langle x \rangle]{1}=1_{\frac{\KK[[x]]}{\langle x\rangle}}\implies \overline{U(x)}=\class[\langle x \rangle]{U(x)} \text{ is a unit in }\frac{\KK[[x]]}{\langle x\rangle}.$$
+  Therefore, every non-zero element of $\frac{\KK[[x]]}{\langle x\rangle}$ is a unit, and so $\frac{\KK[[x]]}{\langle x\rangle}$ is a field.
+  
+  Thus, by \textbf{Lemma }\ref{lem:6}, 
+  \begin{center}
+    $\langle x\rangle$ is a maximal ideal of $\KK[[x]]$.
+  \end{center}
+  \textbf{(c)} Let $M$ be a maximal ideal of $\KK[[x]]$ and consider any $F(x)\in M$. By \textbf{Lemma }\ref{lem:9}, since $M$ is maximal, it contains no units. So then all elements of $M$ are non-units and by the contrapositive of \textbf{Problem }\ref{thm:unitpower}\textbf{(c)}, all elements have no constant term. So $F(x)\in \langle x\rangle=\{f\in \KK[[x]]\mid \text{f has no constant term}\}.$ So $M\subseteq \langle x\rangle \subset \KK[[x]]$. Well, since $M$ is maximal, either $\langle x \rangle = \KK[[x]]$ or $\langle x\rangle = M$. Therefore, since $\langle x\rangle\subset \KK[[x]]$ is proper, we must have that $\langle x\rangle = M$.
+
+  Thus,
+  \begin{center}
+    $\langle x\rangle$ \text{ is the only maximal ideal of } $\KK[[x]].$
+  \end{center}
+\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 9 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -489,12 +545,53 @@ $$
 $$
 \begin{enumerate}[label=(\alph*)]
 \item Prove that $\QQ(\sqrt{d})$ is a subring of $\CC$.
-\item Define a function $N:\QQ(\sqrt{d})\to \QQ$ by $N(a+b\sqrt{d})=a^2+b^2d$. Prove that $N(zw)=N(z)N(w)$ and that $N(z)\neq 0$ if $z\neq 0$. This function is often called the norm.
+\item Define a function $N:\QQ(\sqrt{d})\to \QQ$ by $N(a+b\sqrt{d})=a^2-b^2d$. Prove that $N(zw)=N(z)N(w)$ and that $N(z)\neq 0$ if $z\neq 0$. This function is often called the norm.
 \item Prove that $\QQ(\sqrt{d})$ is a field and is the smallest subfield of $\CC$ containing both $\QQ$ and $\sqrt{d}$ (use $N$).
-\item Prove that $\QQ(\sqrt{d})\cong \QQ[t]/(t^2-d)$.
+\item Prove that $\QQ(\sqrt{d})\cong \QQ[x]/(x^2-d)$.
 \end{enumerate}
 \end{prob}
+\begin{proof}
+$\QQ \subseteq \QQ(\sqrt{d})\subseteq \CC$ since $\forall a,b\in \QQ\subseteq \RR\subseteq \CC,\; a+b\sqrt{d}\in \CC$. 
 
+Next, for any $r_{1}=a_{1}+b_{1}\sqrt{d},r_{2}=a_{2}+b_{2}\sqrt{d}\in \QQ(\sqrt{d})$,
+\begin{align*}
+&1\in \QQ\subseteq \QQ(\sqrt{d})\\
+&r_{1}-r_{2}=(a_{1}-a_{2})+(b_{1}-b_{2})\sqrt{d}\in \QQ(\sqrt{d})\\
+&r_{1}r_{2}=(a_{1}+b_{1}\sqrt{d})(a_{2}+b_{2}\sqrt{d})=(a_{1}a_{2}+b_{1}b_{2}d)+(a_{1}b_{2}+b_{1}a_{2})\sqrt{d}\in \QQ(\sqrt{d})
+\end{align*}
+So $\QQ(\sqrt{d})$ is a subring of $\CC$, and since $\CC$ is an integral domain, by \textbf{Lemma }\ref{lem:10} so is $\QQ(\sqrt{d})$.
+
+\textbf{(b)} Next, $N(r_{1})N(r_{2})=(a_{1}^{2}-b_{1}^{2}d)(a_{2}^{2}-b_{2}^{2}d)=a_{1}^{2}a_{2}^{2}-(a_{1}^{2}b_{2}^{2}+b_{1}^{2}a_{2}^{2})d+b_{1}^{2}b_{2}^{2}d^{2}$. Recall that $\QQ$ is a field.
+
+So on the other hand, $N(r_{1}r_{2})=N((a_{1}a_{2}+b_{1}b_{2}d)+(a_{1}b_{2}+b_{1}a_{2})\sqrt{d})=(a_{1}a_{2}+b_{1}b_{2}d)^{2}-(a_{1}b_{2}+b_{1}a_{2})^{2}d\newline=((a_{1}a_{2})^{2}+2(a_{1}a_{2}b_{1}b_{2})d+(b_{1}b_{2})^{2}d^{2})\;-\;((a_{1}b_{2})^{2}+2(a_{1}b_{2}b_{1}a_{2})+(b_{1}a_{2})^{2})d=a_{1}^{2}a_{2}^{2}+2(a_{1}a_{2}b_{1}b_{2})d+b_{1}^{2}b_{2}^{2}d^{2}-a_{1}^{2}b_{2}^{2}d-2(a_{1}a_{2}b_{1}b_{2})d-b_{1}^{2}a_{2}^{2}d=a_{1}^{2}a_{2}^{2}-(a_{1}^{2}b_{2}^{2}+b_{1}^{2}a_{2}^{2})d+b_{1}^{2}b_{2}^{2}d^{2}=N(r_{1})N(r_{2})$.
+
+Finally, for any non-zero $z=a+b\sqrt{d}\in \QQ(\sqrt{d})$ suppose that $N(a+b\sqrt{d})=a^{2}-b^{2}d=0.$ Then $a^{2}=b^{2}d$. Now, $d\neq 0$ since $0$ is a square. So $a=0\implies b=0$ and $b=0\implies a=0$ since $\ZZ$ is an integral domain, and then both are contradictions since $z=a+b\sqrt{d}\neq 0$. So $a$ and $b$ must both be non-zero. But then $d=\frac{a^{2}}{b^{2}}$ is either the square of an integer, or not an integer at all, a contradiction. Therefore, $N(z)\neq 0$ if $z\neq 0$.
+
+\textbf{(c)} Consider any non-zero $z=a+b\sqrt{d}\in \QQ(\sqrt{d})$. By \textbf{(b)}, $N(z)=a^{2}-b^{2}d\neq 0$, and recall that $\QQ(\sqrt{d})$ is a subring of $\CC$
+$$z^{-1}=\frac{a-b\sqrt{d}}{N(z)}=\frac{a-b\sqrt{d}}{(a+b\sqrt{d})(a-b\sqrt{d})}\in \QQ(\sqrt{d})\implies zz^{-1}=z^{-1}z=\frac{(a+b\sqrt{d})(a-b\sqrt{d})}{(a+b\sqrt{d})(a-b\sqrt{d})}=1$$
+So every non-zero element of the integral domain $\QQ(\sqrt{d})$ is a unit, and therefore $\QQ(\sqrt{d})$ is a field. 
+
+Finally, consider any subfield $\FF$ of $\CC$ containing both $\QQ$ and $\sqrt{d}$. For any $a+b\sqrt{d}$, $a,b,\sqrt{d}\in \FF\implies a+b\sqrt{d}\in \FF$ and so $\QQ(\sqrt{d})\subseteq \FF$ for any such subfield $\FF$. Thus, $\QQ(\sqrt{d})$ is the smallest subfield of $\CC$ containing both $\QQ$ and $\sqrt{d}$.
+
+\end{proof}
+We prove (d) on the next page.
+\newpage
+\begin{proof}
+\textbf{(d)} Let $\epsilon_{\sqrt{d}}:\QQ[x]\to \QQ(\sqrt{d})$ be defined by $\epsilon_{\sqrt{d}}(f(x))=f(\sqrt{d}),\;\forall f(x)\in \QQ[x].$ 
+
+We show this is a surjective ring homomorphism. For any $A(x),B(x)\in \QQ[x]$,
+\begin{align*}
+&\epsilon_{\sqrt{d}}(1(x))=1(\sqrt{d})=1_{\QQ}=1_{\QQ(\sqrt{d})}\\
+&\epsilon_{\sqrt{d}}(A(x))+\epsilon_{\sqrt{d}}(B(x))=A(\sqrt{d})+B(\sqrt{d})=(A+B)(\sqrt{d})=\epsilon_{\sqrt{d}}((A+B)(x))=\epsilon_{\sqrt{d}}(A(x)+B(x))\\
+&\epsilon_{\sqrt{d}}(A(x))\epsilon_{\sqrt{d}}(B(x))=A(\sqrt{d})B(\sqrt{d})=(AB)(\sqrt{d})=\epsilon_{\sqrt{d}}((AB)(x))=\epsilon_{\sqrt{d}}(A(x)B(x))\\
+&\forall (a+b\sqrt{d})\in \QQ(\sqrt{d}),\;\epsilon_{\sqrt{d}}(a+bx)=a+b\sqrt{d}
+\end{align*}
+We show $\ker \epsilon_{\sqrt{d}}=\langle x^{2}-d\rangle$. $\mathbf{(\subseteq)}$ for any $C(x)\in \ker \epsilon_{\sqrt{d}}$, $C(\sqrt{d})=0$. By the \textbf{Division Algorithm} for polynomials over fields (\textbf{Lemma }\ref{lem:5}), $C(x)=q(x)(x^{2}-d)+r(x)$ where $r(x)=0$ or $\deg(r(x))<2=\deg(x^{2}-d)$. Well, $0=C(\sqrt{d})=q(\sqrt{d})(\sqrt{d}^{2}-d)+r(\sqrt{d})\implies r(\sqrt{d})=0$ and so it can't be linear otherwise $r(\sqrt{d})$ wouldn't vanish; $r(x)=ax+b$ is linear implies $a\neq 0$ and then $r(\sqrt{d})=a\sqrt{d}+b\neq 0$ since $\sqrt{d}\neq 0$ and $b=a\sqrt{d}\implies b\not\in \QQ$. So $r(x)$ must be some constant $q\in \QQ$, and then $r(\sqrt{d})=r(x)=q=0$. So $x^{2}-d$ divides $C(x)\implies C(x)\in \langle x^{2}-d\rangle$. $\mathbf{(\supseteq)}$ Trivially, any $f(x)=q(x)(x^{2}-d)$ belongs to $\ker \epsilon_{\sqrt{d}}$ since then $f(\sqrt{d})=r(\sqrt{d})(\sqrt{d}^{2}-d)=0$.
+
+So then $\ker \epsilon_{\sqrt{d}}=\langle x^{2}-d\rangle$ and by the \textbf{First Isomorphism Theorem}
+$$\QQ[x]/\langle x^2-d\rangle=\QQ[x]/\ker \epsilon_{\sqrt{d}} \cong \epsilon_{\sqrt{d}}(\QQ[x])=\QQ(\sqrt{d}).$$
+
+\end{proof}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document}

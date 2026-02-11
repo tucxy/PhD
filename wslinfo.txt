@@ -1,0 +1,6 @@
+wsl
+code /mnt/c/Users/baneg/OneDrive/Desktop/git/PhD
+
+sage --version
+
+lsb_release -r

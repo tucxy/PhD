@@ -1,0 +1,325 @@
+\documentclass[addpoints,10pt]{exam}
+
+\usepackage{amsmath,amsthm,enumitem,wrapfig,amsfonts,mathtools}
+\usepackage[mathscr]{euscript}
+\usepackage[super]{nth}
+\usepackage{dsfont}
+\usepackage{xparse}
+
+\usepackage{geometry}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\renewcommand{\rmdefault}{ptm} %Change the Front Family from the default(cmr) to ptm(Times)
+\usepackage{amsmath,amsfonts,amsthm,amssymb} % Math packages
+\usepackage{bm}
+\usepackage{mathptmx}
+\usepackage{graphicx}
+\usepackage{sectsty} % Allows customizing section commands
+% \allsectionsfont{\centering} % Make all sections centered, the default font and small caps
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{xcolor}
+\definecolor{darkpastelgreen}{rgb}{0.01, 0.75, 0.24}
+\definecolor{blue-violet}{rgb}{0.54, 0.17, 0.89}
+%\usepackage{polylongdiv} %polynomial long division
+% Custom problem environment
+\usepackage{polynom}
+\newcounter{cprob}
+\newenvironment{cprob}[1]{%
+    \setcounter{cprob}{#1}%
+    \noindent\textbf{Problem \thecprob.}%
+}{%
+    \par\bigskip%
+}
+
+\theoremstyle{plain}
+\newcommand{\theoremname}{Theorem}
+\newtheorem{thm}{\protect\theoremname}
+  \theoremstyle{definition}
+  \newtheorem{prob}[thm]{Problem}
+  \newtheorem*{problem*}{Open Problem}
+  \theoremstyle{plain}
+  \newtheorem{conjecture}[thm]{Conjecture}
+  \theoremstyle{plain}
+  \newtheorem{lem}[thm]{Lemma}
+  \newtheorem*{lem*}{Lemma}
+  \newtheorem{obs}[thm]{Observation}
+  \newtheorem{cor}[thm]{Corollary}
+  \theoremstyle{definition}
+\newtheorem{definition}[thm]{Definition}
+
+
+% Patch prob environment to be single spaced
+\let\oldprob\prob
+\let\endoldprob\endprob
+\renewenvironment{prob}
+  {\begin{singlespace}\oldprob}
+  {\endoldprob\end{singlespace}}
+
+% start problem one line below like for enumerated problems with multiple parts
+\newcommand{\belowtitle}{\leavevmode\newline}
+%\Observe command
+\newcommand{\Observe}{\text{Observe.}}
+%(=>)
+\newcommand{\IF}{\mathbf{(\Rightarrow)}}
+%(<=)
+\newcommand{\FI}{\mathbf{(\Leftarrow)}}
+%equivalence classes; \class[S]{ *content in square brackets* }
+\newcommand{\class}[2][]{\ensuremath{\left[\,#2\,\right]_{#1}}}
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}
+\newcommand{\kkk}{\ensuremath{\Bbbk}} 
+\newcommand{\CC}{\ensuremath{\mathbb{C}}}
+\newcommand{\FF}{\ensuremath{\mathbb{F}}}
+\newcommand{\KK}{\ensuremath{\mathbb{K}}}
+\newcommand{\NN}{\ensuremath{\mathbb{N}}}
+\newcommand{\QQ}{\ensuremath{\mathbb{Q}}} 
+\newcommand{\RR}{\ensuremath{\mathbb{R}}} 
+\newcommand{\ZZ}{\ensuremath{\mathbb{Z}}}
+\newcommand{\MM}{\ensuremath{\mathcal{M}}}
+\newcommand{\TT}{\ensuremath{\mathcal{T}}}
+\newcommand{\BB}{\ensuremath{\mathcal{B}}}
+\newcommand{\VV}{\ensuremath{\mathcal{V}}}
+\newcommand{\WW}{\ensuremath{\mathcal{W}}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}}
+\newcommand{\PP}{\ensuremath{\mathcal{P}}}
+\newcommand{\LL}{\ensuremath{\mathcal{L}}}
+\newcommand{\kk}{\ensuremath{\mathds{k}}}
+\newcommand{\EE}{\ensuremath{\mathbb{E}}}
+
+
+\newcommand{\sm}{\char`\\}
+%vector stuff
+\DeclarePairedDelimiter{\ip}{\langle}{\rangle} %inner product/generate
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert} %norm
+\DeclarePairedDelimiter{\sqb}{\lbrack}{\rbrack} %corrd
+
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\mbf}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\tbf}[1]{\textbf{ #1 }}
+\newcommand{\Span}{\ensuremath{\mathrm{Span}}}
+\newcommand{\Char}[1]{\mathrm{Char}\; #1}
+\DeclareMathOperator{\lcm}{lcm}
+\newcommand{\id}{\ensuremath{\mathrm{id}}}
+\newcommand{\Gal}[2]{\mathrm{Gal}(#1/#2)}
+\newcommand{\Aut}{\ensuremath{\mathrm{Aut}}}
+\newcommand{\Fix}[2]{\mathrm{Fix}_{#1}(#2)}
+\newcommand{\nil}{\ensuremath{\mathrm{nil}}}
+\newcommand{\Hom}{\ensuremath{\mathrm{Hom}}}
+\newcommand{\Obj}{\ensuremath{\mathrm{Obj}}}
+
+\newcommand{\Rng}{\ensuremath{\mathrm{Rng}}}
+\newcommand{\Ring}{\ensuremath{\mathrm{Ring}}}
+
+
+
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\def\env@matrix{\hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols c}}
+
+  \newcommand{\proj}[2]{\text{proj}_{#1}(#2)}
+  
+
+%%% Formatting: Page Header
+\newcommand{\StudentName}{Danny Banegas}
+\newcommand{\AssignmentName}{Homework 2}
+\newcommand{\CourseName}{MATH 720 - Algebra I}
+
+
+\pagestyle{headandfoot}
+\runningheadrule
+\firstpageheadrule
+\firstpageheader{\CourseName}{\StudentName}{\AssignmentName}
+\runningheader{\CourseName}{\StudentName}{\AssignmentName}
+\firstpagefooter{}{\thepage}{}
+\runningfooter{}{\thepage}{}
+
+\printanswers
+
+\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+
+\usepackage{parskip}
+\usepackage{setspace}
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 0 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Problem List\footnote{%
+\begin{minipage}{0.95\linewidth}
+\begin{itemize}[leftmargin=*,nosep]
+    \item \textbf{Sagan—Chapter 5:} 1(ac), 4, 5abc, 6a, 7bc, 8c, 9, 10a, 15 (1 poset not $C_n$), 17ab, 18ab, 19a (oneway), 20ab
+    \item \textbf{Stanley—Chapter 3:} 7, 14a, 25, 30a, 34, 38, 33, 52, 62abc
+    \item \textbf{Fulton—Chapter 1:} Exercises 1, 2 (pp.\ 15--16), compute product both ways
+    \item \textbf{Fulton—Chapter 2:} Exercises 1, 2 (pp.\ 24--26)
+\end{itemize}
+\end{minipage}
+}
+
+\setcounter{thm}{0}
+\renewcommand{\thethm}{5.\arabic{thm}}
+ % next prob is 5.1
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Sagan Ch. 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+    \underline{\textbf{Sagan}}
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 5.1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{prob}
+(\textbf{Sagan, Chapter 5, Exercise 1})
+\belowtitle
+This exercise refers to the list of examples just after the definition of a poset.
+\begin{enumerate}[label=(\alph*)]
+\item Verify that they satisfy the definition of a poset.
+\item Show that the partial order in $\Pi_n$ is equivalent to defining $\rho \le \pi$ if every block of $\pi$ is a union of blocks of $\rho$.
+\item Describe the cover relations in the list. For example, in $C_n$ the covers are of the form $i \prec i+1$ for $0 \le i < n$.
+\end{enumerate}
+\end{prob}
+
+\begin{proof}
+    \textbf{(a) Two Posets} 
+    We prove that the set of all positive divisors of $n\in \ZZ$ with $\mid$:$(D_{n},\mid)$ and the set of all subspaces of a vector space $\VV$ over $\FF_{q}$ with subspace containment $\leq$: $(L(\VV), \leq)$ are posets. For any $a,b,c\in D_{n}$ and any $\UU_{1},\UU_{2},\UU_{3}\in L(\VV)$,
+    \begin{align*}
+        &(\text{reflexivity}) && a\mid a &&& \UU_{1}\leq \UU_{1}\\
+        &(\text{antisymmetry}) && a\neq b\text{ and }a\mid b \implies a<b\implies b\nmid a &&& \UU_{1}<\UU_{2}\implies \UU_{2}\not\leq \UU_{1}\\
+        &(\text{transitivity}) && a\mid b \mid c\implies \exists k,q\in \ZZ \text{ s.t. }\substack{ak=b\\ bq=c \\ \implies akq=c} \implies a\mid c &&& \UU_{1}\leq \UU_{2}\leq \UU_{3}\implies \UU_{1}\leq \UU_{3}
+    \end{align*}
+    \textbf{(c)}
+    In $D_{n}$, if $|n|=\prod_{i} p_{i}^{a_{i}}$ is a prime decomposition, then each positive divisor is of the form $d=\prod_{i}p_{i}^{b_{i}}$ where $0 \leq b_{i}\leq a_{i}$ is some 'subdecomposition'. So then each cover relation just looks like $$\prod_{i}p_{i}^{b_{i}}\mid \prod_{i}p_{i}^{\beta_{i}}\text{ where each }\beta_{i}\geq b_{i} \text{ and }\sum_{i}(\beta_{i}-b_{i})=1$$
+    In $L(\VV)$, cover relations look like
+    \begin{center}
+        $\WW \leq \UU$ and $\BB_{\UU}=\BB_{\WW}\sqcup \{b\}$ is a basis for $\UU$ and $b\in \UU$.
+    \end{center}
+    That is, $\WW \leq  \UU$ and $\dim \UU = \dim \WW+1$.
+    
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 5.4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setcounter{thm}{3}
+\newpage
+\begin{prob}
+(\textbf{Sagan, Chapter 5, Exercise 4})
+\belowtitle
+Complete the proof of Proposition 5.1.3. To show that $K_n \cong B_{n-1}$ it may be simpler to show that $K_n \cong B_{n-1}^*$ using the map $\phi$ from Section 1.7.
+\end{prob}
+
+\begin{proof}
+
+\end{proof}
+
+\begin{prob}
+(\textbf{Sagan, Chapter 5, Exercise 5})
+\belowtitle
+Let $f : P \to Q$ be an isomorphism of posets.
+\begin{enumerate}[label=(\alph*)]
+\item Show that $f$ is also an isomorphism of $P^*$ with $Q^*$.
+\item Show that if $P$ has a $\hat{0}$, then so does $Q$.
+\item Show in two ways that if $P$ has a $\hat{1}$, then so does $Q$: by mimicking the proof of part (b) and by using the result of (b) together with part (a).
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+(\textbf{Sagan, Chapter 5, Exercise 6})
+\belowtitle
+\begin{enumerate}[label=(\alph*)]
+\item Show that the axioms for a partially ordered set are satisfied by $P \sqcup Q$, $P + Q$, and $P \times Q$.
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+(\textbf{Sagan, Chapter 5, Exercise 7})
+\belowtitle
+Complete the proof of Proposition 5.2.1.
+\end{prob}
+
+\begin{prob}
+(\textbf{Sagan, Chapter 5, Exercise 8})
+\belowtitle
+\begin{enumerate}[label=(\alph*)]
+\item Show that if $P$ is a ranked poset, then for any $k$ we have $R_k(P)$ is an antichain.
+\item Let $P$ be a ranked poset and assume $f : P \to Q$ is an isomorphism. Show that $Q$ is also ranked and for all $x \in P$ we have $\mathrm{rk}_P x = \mathrm{rk}_Q f(x)$.
+\item Show that if $P,Q$ are ranked posets, then so is $P \times Q$ with rank function
+\[
+\mathrm{rk}_{P\times Q}(x,y) = \mathrm{rk}_P x + \mathrm{rk}_Q y.
+\]
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+(\textbf{Sagan, Chapter 5, Exercise 9})
+\belowtitle
+Prove Proposition 5.2.2.
+\end{prob}
+
+\begin{prob}
+(\textbf{Sagan, Chapter 5, Exercise 10})
+\belowtitle
+\begin{enumerate}[label=(\alph*)]
+\item Prove Proposition 5.3.1.
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+(\textbf{Sagan, Chapter 5, Exercise 15})
+\belowtitle
+Prove Proposition 5.3.4.
+\end{prob}
+
+\begin{prob}
+(\textbf{Sagan, Chapter 5, Exercise 17})
+\belowtitle
+Let $P$ be a finite poset and let $L = J(P)$ be the corresponding distributive lattice.  
+If $X \subseteq P$ is a lower-order ideal, then use the corresponding lowercase letter $x$ to denote the associated element of $L$.
+\begin{enumerate}[label=(\alph*)]
+\item Show that $x$ covers $y$ in $L$ if and only if $Y = X - \{m\}$ where $m$ is a maximal element of $X$.
+\item Show that $x$ is join irreducible in $L$ if and only if $X$ is a principal ideal of $P$.
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+(\textbf{Sagan, Chapter 5, Exercise 18})
+\belowtitle
+Given a poset $P$, let $\mathcal{A}(P)$ be the set of antichains of $P$.  
+Show that the map
+\[
+f : \mathcal{A}(P) \to J(P)
+\]
+given by $f(A) = I(A)$ (where $I(A)$ is the order ideal generated by $A$) is a bijection.
+\end{prob}
+
+\begin{prob}
+(\textbf{Sagan, Chapter 5, Exercise 19})
+\belowtitle
+\begin{enumerate}[label=(\alph*)]
+\item Rederive the formula for $\mu$ in $B_n$, equation (5.6), in two ways: by mimicking the proof of (5.7) and by constructing an $m \in P$ such that $D_m = B_n$ and then applying (5.7).
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+(\textbf{Sagan, Chapter 5, Exercise 20})
+\belowtitle
+\begin{enumerate}[label=(\alph*)]
+\item Let $P$ be a locally finite poset with a $\hat{0}$. Show that if $x$ covers exactly one element of $P$, then
+\[
+\mu(x) =
+\begin{cases}
+-1 & \text{if $x$ covers $\hat{0}$},\\
+0 & \text{otherwise}.
+\end{cases}
+\]
+\item Given any $n \in \ZZ$, construct a poset containing an element $x$ with $\mu(x)=n$.
+\end{enumerate}
+\end{prob}
+
+\end{document}

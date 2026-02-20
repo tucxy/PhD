@@ -5,16 +5,18 @@
 \usepackage[super]{nth}
 \usepackage{dsfont}
 \usepackage{xparse}
+\usepackage{cancel}
 
 \usepackage{geometry}
 \usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
 \renewcommand{\rmdefault}{ptm} %Change the Front Family from the default(cmr) to ptm(Times)
 \usepackage{amsmath,amsfonts,amsthm,amssymb} % Math packages
 \usepackage{bm}
-\usepackage{mathptmx}
+%\usepackage{mathptmx}
 \usepackage{graphicx}
 \usepackage{sectsty} % Allows customizing section commands
 % \allsectionsfont{\centering} % Make all sections centered, the default font and small caps
+
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
 \usetikzlibrary{arrows.meta}
@@ -47,6 +49,9 @@
   \newtheorem{cor}[thm]{Corollary}
   \theoremstyle{definition}
 \newtheorem{definition}[thm]{Definition}
+\newcommand{\subsetdot}{\mathrel{\subset\mkern-13mu\cdot\mkern4mu}}
+
+
 
 
 % Patch prob environment to be single spaced
@@ -86,6 +91,9 @@
 \newcommand{\LL}{\ensuremath{\mathcal{L}}}
 \newcommand{\kk}{\ensuremath{\mathds{k}}}
 \newcommand{\EE}{\ensuremath{\mathbb{E}}}
+\newcommand{\A}{\ensuremath{\mathcal{A}}}
+\newcommand{\YY}{\ensuremath{\mathcal{Y}}}
+
 
 
 \newcommand{\sm}{\char`\\}
@@ -131,8 +139,8 @@
 
 %%% Formatting: Page Header
 \newcommand{\StudentName}{Danny Banegas}
-\newcommand{\AssignmentName}{Homework 2}
-\newcommand{\CourseName}{MATH 720 - Algebra I}
+\newcommand{\AssignmentName}{Homework 1}
+\newcommand{\CourseName}{MATH 737 - Algebraic Combinatorics}
 
 
 \pagestyle{headandfoot}
@@ -150,11 +158,14 @@
 \usepackage{parskip}
 \usepackage{setspace}
 
+
+
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 \begin{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 0 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Problem List\footnote{%
+\renewcommand{\thefootnote}{}
+\footnote{%
 \begin{minipage}{0.95\linewidth}
 \begin{itemize}[leftmargin=*,nosep]
     \item \textbf{Sagan—Chapter 5:} 1(ac), 4, 5abc, 6a, 7bc, 8c, 9, 10a, 15 (1 poset not $C_n$), 17ab, 18ab, 19a (oneway), 20ab
@@ -215,8 +226,39 @@ Complete the proof of Proposition 5.1.3. To show that $K_n \cong B_{n-1}$ it may
 \end{prob}
 
 \begin{proof}
+Recall the following bijection from \textbf{Theorem 1.7.1}: $B_{n-1}\longleftrightarrow K_{n}$ via
+\begin{align*}
+    & \phi(S=\{s_{1},\hdots,s_{k}\})=(x_{1},\hdots, x_{k+1})=(s_{1}-0,s_{2}-s_{1},\hdots,s_{k}-s_{k-1},n-s_{k})\\
+    & \phi^{-1}(X=(x_{1},\hdots x_{k+1}))=\{\sum_{i=1}^{j}x_{i}\mid 1\leq j \leq k\}
+\end{align*}
+\textit{We represent ordered $k$-sums in $K_{n}$ as a $k-$tuple of their parts.}
 
+We show that this is a poset isomorphism from $B_{n-1}^{*}$ to $K_{n}$. Recall that \textit{Any subset of $[n-1]$ is a chain}
+
+$(\leq)$ Consider any $B=\{b_{1}<\cdots <b_{k}\}\in B_{n-1}$. Obviously, $B=A\implies \phi(B)=\phi(A)$. So, we show that $\phi(B\sqcup \{a\})<_{K_{n}}\phi(B)$.
+\\
+$$A=B\sqcup \{a\}=
+    \begin{cases} (i) \{a<b_{1}<\cdots <b_{k}\}\text{ if } a<b_{1},\\
+        (ii) \{b_{1}<\cdots< b_{j}<a<b_{j+1}<\cdots< b_{k}\}\text{ if $b_{j}<a<b_{j+1}$ for some }j\in [k],\\ 
+        (iii)\{b_{1}<\cdots<b_{k}<a\}\text{ if }b_{k}<a.
+    \end{cases}$$
+Therefore,
+$$\phi(A)=\phi(B\sqcup \{a\})=
+    \begin{cases} (i) (\overbrace{\textcolor{red}{a-0,b_{1}-a}}^{b_{1}-0},b_{2}-b_{1},\hdots,n-b_{k})\text{ if } a<b_{1},\\
+        (ii) (b_{1}-0,b_{2}-b_{1},\hdots, \overbrace{\textcolor{red}{a-b_{j},b_{j+1}-a}}^{b_{j},\; b_{j+1}})\text{ if $b_{j}<a<b_{j+1}$ for some }j\in [k],\\ 
+        (iii)(b_{1}-0,\hdots, \overbrace{\textcolor{red}{a-b_{k},n-a}}^{n-b_{k}})\text{ if }b_{k}<a.
+    \end{cases}$$
+    Each case gives a refinement of $\phi(B)=(b_{1}-0,b_{2}-b_{1},\hdots, n-b_{k})$, so $\phi(B\sqcup \{a\})<_{K_{n}} \phi(B)$. Finally, for any $A\supset B$ with $A\setminus B= \{a_{1},\hdots, a_{m}\}$ in $B_{n-1}$
+    $$\phi(A)=\phi(B\sqcup \{a_{1}\}\sqcup\cdots\sqcup \{a_{m}\})<_{K_{n}}\phi(B\sqcup \{a_{1}\}\sqcup\cdots\sqcup \{a_{m-1}\})<_{K_{n}} \cdots <_{K_{n}}\phi(B\sqcup \{a_{1}\})<_{K_{n}}\phi(B)\;\mathbf{(*)}$$
+    So we see that $A\supseteq B\implies \phi(A)\leq_{K_{n}}\phi(B).$
+
+    $(\geq)$ On the otherhand, if $\phi(A)\leq_{K_{n}} \phi(B)$ suppose $A\subset B$. But then  by $(*)$, $B=A\sqcup \{b_{1}\}\sqcup\cdots \sqcup\{b_{m}\}$ where $B\setminus A=\{b_{1},\hdots, b_{m}\}\implies \phi(B)<_{K_{n}}\phi(A)$, a contradiction. So $\phi(A)\leq_{K_{n}}\phi(B)\implies A\supseteq B$ and $\phi$ is a poset isomorphism from $B_{n-1}^{*}$ to $K_{n}$.
+
+    Lastly, we show that $B_{N}$ is \textit{self-dual} for $N\in \ZZ^{+}$. Let $\psi: B_{N}\longrightarrow B_{N}$ be defined by $\psi(A)=A^{c}$. $\psi(\psi(A))=(A^{c})^{c}=A$ and so $\psi$ is it's own bijective inverse. For any $A\subseteq B$ in $B_{n}$, we have $\psi(A)=A^{c}\supseteq B^{c}=\psi(B)$. Then if $\psi(A)=A^{c}\supseteq B^{c}=\psi(B)$, we could apply the previous logic, but also obviously $A\subseteq B$. so $\psi$ is a poset isomorphism from $B_{n}$ to $B_{n}^{*}$ and thus $B_{n}\cong B_{n}^{*}$.
+    Thus,
+    $$B_{n-1}\cong B_{n-1}^{*}\cong K_{n}.$$
 \end{proof}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 5.5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{prob}
 (\textbf{Sagan, Chapter 5, Exercise 5})
@@ -228,54 +270,188 @@ Let $f : P \to Q$ be an isomorphism of posets.
 \item Show in two ways that if $P$ has a $\hat{1}$, then so does $Q$: by mimicking the proof of part (b) and by using the result of (b) together with part (a).
 \end{enumerate}
 \end{prob}
+\begin{proof}
+    \textbf{(a)} For any $a,b\in P^{*}$, $(a\leq_{P} b \iff f(a)\leq_{Q} f(b))\implies (b\geq_{P} a \iff f(b)\geq_{Q} f(a))$ is immediate. Then since $f$ is a bijection, it must be a poset isomorphism from $P^{*}$ to $Q^{*}$.
+
+    \textbf{(b)} $\hat{0}\leq_{P} p,\,\forall p\in P\implies f(\hat{0})\leq_{Q} f(p),\,\forall p\in P$. Now, since $f$ is surjective, $\forall q\in Q,\,\exists p'\in P$ such that $f(p')=q$. Thus, $f(\hat{0})\leq_{Q} f(p')=q,\forall q\in Q\implies f(\hat{0})=\hat{0}_{Q}\in Q$.
+
+    \textbf{(c)} $p\leq_{P} \hat{1},\,\forall p\in P\implies f(p)\leq_{Q} f(\hat{1}),\,\forall p\in P$. Now, since $f$ is surjective, $\forall q\in Q,\,\exists p'\in P$ such that $f(p')=q$. Thus, $q=f(p')\leq_{Q} f(\hat{1}),\forall q\in Q\implies f(\hat{1})=\hat{1}_{Q}\in Q$. Alternatively, $\hat{1}\in P$ is $\hat{0}^{*}\in P^{*}$. So then by $(b)$, $Q^{*}$ has a $\hat{0}^{*}_{Q}$, which must be $\hat{1}_{Q}$ in $Q$.
+
+
+\end{proof}
 
 \begin{prob}
 (\textbf{Sagan, Chapter 5, Exercise 6})
 \belowtitle
-\begin{enumerate}[label=(\alph*)]
-\item Show that the axioms for a partially ordered set are satisfied by $P \sqcup Q$, $P + Q$, and $P \times Q$.
-\end{enumerate}
+Show that the axioms for a partially ordered set are satisfied by $P \sqcup Q$, $P + Q$, and $P \times Q$.
 \end{prob}
-
+\begin{proof}
+    \textbf{(a)} Recall that $a\leq b$ if and only if $a,b\in P$ and $a\leq_{P} b$ or $a,b\in Q$ and $a\leq_{Q} b$. So for any $a,b,c\in P\sqcup Q$,
+    \begin{align*}
+        &(\text{reflexivity})\; a\in P\text{ or }a\in Q\implies a\leq a\\
+        &(\text{antisymmetry})\; a\leq b\text{ and }b\leq a\implies \text{either $a,b\in P$ and $a=b$ or $a,b\in Q$ and $a=b$}\implies a=b\\
+        &(\text{transitivity})\; a\leq b\leq c\implies \text{either $a,b,c\in P$ and $a\leq_{P} b \leq_{P} c$ or $a,b,c\in Q$ and $a\leq_{Q} b \leq_{Q} c$}\implies a\leq c
+    \end{align*}
+    For $P\oplus Q$, recall that $a\leq b$ if and only if $a,b\in P$ and $a\leq_{P} b$ or $a,b\in Q$ and $a\leq_{Q} b$ or $a\in P$ and $b\in Q$. So for any $a,b,c\in P+Q$,
+    \begin{align*}
+        &(\text{reflexivity})\; a\in P\text{ or }a\in Q\implies a\leq a\\
+        &(\text{antisymmetry})\; a\leq b\text{ and }b\leq a\implies \text{either $a,b\in P$ and $a=b$ or $a,b\in Q$ and $a=b$}\implies a=b\\
+        &(\text{transitivity})\; a\leq b\leq c\implies \text{either $a,b,c\in P$ and $a\leq_{P} b \leq_{P} c$ or $a,b,c\in Q$ and $a\leq_{Q} b \leq_{Q} c$}\\ 
+        &\text{or $a,b\in P$ and $c\in Q$ or $a\in P$ and $b,c \in Q$}\implies a\leq c
+    \end{align*}
+    Lastly, for $P\times Q$, recall that $(a_{1},b_{1})\leq (a_{2},b_{2})$ if and only if $a_{1}\leq_{P} a_{2}$ and $b_{1}\leq_{Q} b_{2}$. So for any $(a_{1},b_{1})\newline,(a_{2},b_{2}),(a_{3},b_{3})\in P\times Q$,
+    \begin{align*}
+        &(\text{reflexivity})\; a_{1}\leq_{P} a_{1}\text{ \& }b_{1}\leq_{Q} b_{1}\implies (a_{1},b_{1})\leq (a_{1},b_{1})\\
+        &(\text{antisymmetry})\; (a_{1},b_{1})\leq (a_{2},b_{2})\text{ \& }(a_{2},b_{2})\leq (a_{1},b_{1})\implies a_{1}=a_{2}\text{ \& }b_{1}=b_{2}\implies (a_{1},b_{1})=(a_{2},b_{2})\\
+        &(\text{transitivity})\; (a_{1},b_{1})\leq (a_{2},b_{2})\leq (a_{3},b_{3})\implies a_{1}\leq a_{2}\leq a_{3}\text{ \& } b_{1}\leq b_{2}\leq b_{3}\\
+        &\implies a_{1}\leq a_{3}\text{ \& } b_{1}\leq b_{3}\implies (a_{1},b_{1})\leq (a_{3},b_{3})
+    \end{align*}
+\end{proof}
+\newpage 
 \begin{prob}
-(\textbf{Sagan, Chapter 5, Exercise 7})
+(\textbf{Sagan, Chapter 5, Exercise 7}(b),(c))
 \belowtitle
 Complete the proof of Proposition 5.2.1.
-\end{prob}
 
+(b) If $n=\prod_{i=1}^{k}p_{i}^{n_{i}}$ is a prime decomposition of $n$, then
+$$D_{n}\cong C_{n_{1}}\times \cdots \times C_{n_{k}}$$
+\end{prob}
+\begin{proof}\textbf{(b)}
+    Every divisor $d\in D_{n}$ has a unique prime factorization $d=\prod_{i}^{k}p_{i}^{a_{i}}$ where $0\leq a_{i}\leq n_{i}$ for each $i\in [k]$. So let $\phi: D_{n}\to C_{n_{1}}\times \cdots \times C_{n_{k}}$ be defined via $d=\prod_{i}^{k}p_{i}^{a_{i}}\mapsto (a_{1},\hdots, a_{k})$. Then $\phi^{-1}:C_{n_{1}}\times \cdots C_{n_{k}}\to D_{n}$ defined by $(a_{1},\hdots, a_{k})\mapsto d=\prod_{i=1}^{k}p_{i}^{a_{i}}$ is a bijective inverse of $\phi:$
+    \begin{align*}
+        &\phi(\phi^{-1}(a_{1},\hdots, a_{k}))=\phi(\prod_{i=1}^{k}p_{i}^{a_{i}})=(a_{1},\hdots, a_{k})\\
+        &\phi^{-1}(\phi(d))=\phi^{-1}(a_{1},\hdots, a_{k})=\prod_{i=1}^{k}p_{i}^{a_{i}}=d
+    \end{align*}
+We show $\phi$ is order preserving.
+\begin{align*}
+    &d\leq d' \implies d'=\prod_{i=1}^{k}p_{i}^{a'_{i}}\text{ where }a'_{i}\geq a_{i}\text{ for each }i\in [k]\implies \phi(d)=(a_{1},\hdots, a_{k})\leq (a'_{1},\hdots, a'_{k})=\phi(d')\\
+    &\phi(d)\leq \phi(d')\implies (a_{1},\hdots, a_{k})\leq (a'_{1},\hdots, a'_{k})\text{ \& }a_{i}\leq a'_{i},\;\forall i\in [k]\implies d=\prod_{i=1}^{k}p_{i}^{a_{i}}\leq \prod_{i=1}^{k}p_{i}^{a'_{i}}=d'
+\end{align*}
+Thus, 
+\begin{center}
+    $\phi$ is a poset isomorphism from $D_{n}$ to $C_{n_{1}}\times \cdots \times C_{n_{k}}$.
+\end{center}
+\end{proof}
+\newpage
+(c) If $\rho\leq \tau$ in $\Pi_{n}$, then
+$$[\rho,\tau]\cong \Pi_{n_{1}}\times \cdots \times \Pi_{n_{k}}$$
+where $\tau =  T_{1}\sqcup \cdots \sqcup T_{k}$ and $n_{i}$ is the number of blocks of $\rho$ contained in $T_{i}$ for each $i\in [k]$.
+
+\begin{proof}
+    \textbf{(c)} Let $P_{i}=\{p\in \rho\mid p\in T_{i}\}$ and arbitrarily index the members $P_{i}=\{p_{i,1},\hdots, p_{i,n_{1}}\}$ for each $i\in [k]$. Now let $\sigma\in [\rho,\tau]$. The blocks of $\sigma$ are collapsed blocks of $\rho$ which form refinements of the blocks of $\tau$. So $\sigma = \sigma_{1} \| \cdots \| \sigma_{k}$ where each $\sigma_{i}$ is some union of collapsed blocks in $P_{i}$ which refines $T_{i}$. 
+
+    \textit{*Each $\sigma_{i}$ is not a block, but a 'superblock' which refines $T_{i}$. We use $\sqcup$ to denote a union of blocks forming a partition, $\|$ to denote 'pasting' together superblocks, $\cup$ to denote the collapsing of blocks. We just use superblocks here to specify/group together collapsed blocks of $\rho$ which realize refined blocks of $\tau$*}
+
+    Now, for each $i\in [k]$, let $\lambda_{i}(\rho)=\{\pi\in \Pi_{n_{i}}\mid \bigcup_{j\in \pi}p_{i,j}\text{ is a block in } \sigma_{i}\}$. Each $\lambda_{i}(\rho)$ indexes $\sigma_{i}$, and the union of its parts forms a partition of $[n_{i}]$. Let $\lambda_{i}(\sigma)=\bigsqcup_{\pi\in \lambda_{i}(\rho)}\pi$ be this partition. Zooming out, $\forall i\in [k]:\;\sigma_{i}=\bigsqcup_{\pi\in \lambda_{i}(\rho)}(\bigcup_{j\in \pi}p_{i,j})$ This construction gives us our bijection $\varphi:[\rho,\tau]\to \Pi_{n_{1}}\times \cdots \times \Pi_{n_{k}}$ via
+    $$\varphi(\sigma=\sigma_{1}\|\cdots \|\sigma_{k})=(\lambda_{1},\hdots, \lambda_{k}),\;\forall \sigma\in [\rho,\tau]$$
+    where $\varphi^{-1}\coloneq (\lambda_{1},\hdots, \lambda_{k})\mapsto \sigma_{1}\| \cdots \|\sigma_{k}$ and each $\sigma_{i}=\bigsqcup_{\pi\in \lambda_{i}}(\bigcup_{j\in \pi}p_{i,j})$. \textit{*For the sake of hygiene, we skip making new notation and just clarify that the disjoint union here just iterates over the parts of $\lambda_{i}.$*} 
+    Immediately, by definition,
+    \begin{align*}
+        &\varphi^{-1}(\varphi(\sigma))=\varphi^{-1}(\lambda_{1}(\sigma),\hdots, \lambda_{k}(\sigma))=\sigma_{1}\|\cdots \|\sigma_{k}=\sigma\\
+        &\varphi(\varphi^{-1}(\lambda_{1},\hdots, \lambda_{k}))=\varphi(\sigma_{1}\|\cdots \|\sigma_{k})=(\lambda_{1},\hdots, \lambda_{k})
+    \end{align*}
+    We show $\varphi$ is order preserving. 
+
+    $(\leq)\;\text{ Let }\sigma=\sigma_{1}\|\cdots \|\sigma_{k},\varsigma=\varsigma_{1}\|\cdots \|\varsigma_{k}$ in $[\rho,\tau]$ with $\sigma\leq \varsigma$. Each $\sigma_{i}$ refines $\varsigma_{i}$ since they both refine $T_{i}$. So then of course $\sigma_{i}=\bigsqcup_{\pi\in \lambda_{i}(\sigma)}(\bigcup_{j\in \pi}p_{i,j})\leq \bigsqcup_{\pi\in \lambda_{i}(\varsigma)}(\bigcup_{j\in \pi}p_{i,j})\implies \lambda_{i}(\sigma)\leq \lambda_{i}(\varsigma)$ in $\Pi_{n_{i}}$ for each $i\in [k]$ and then $\varphi(\sigma)=(\lambda_{1}(\sigma),\hdots, \lambda_{k}(\sigma))\leq (\lambda_{1}(\varsigma),\hdots, \lambda_{k}(\varsigma))=\varphi(\varsigma)$.
+
+    $(\geq)$ On the other hand, if $\varphi(\sigma)=(\lambda_{1}(\sigma),\hdots, \lambda_{k}(\sigma))\leq (\lambda_{1}(\varsigma),\hdots, \lambda_{k}(\varsigma))=\varphi(\varsigma)$, then $\lambda_{i}(\sigma)\leq \lambda_{i}(\varsigma)$ in $\Pi_{n_{i}}$ for each $i\in [k]$. So then $\sigma_{i}=\bigsqcup_{\pi\in \lambda_{i}(\sigma)}(\bigcup_{j\in \pi}p_{i,j})\leq \bigsqcup_{\pi\in \lambda_{i}(\varsigma)}(\bigcup_{j\in \pi}p_{i,j})=\varsigma_{i}$ for each $i\in [k]$ and so $\sigma=\sigma_{1}\|\cdots \|\sigma_{k}\leq \varsigma=\varsigma_{1}\|\cdots \|\varsigma_{k}$.
+
+    Thus,
+
+        $$[\rho,\tau]\cong \Pi_{n_{1}}\times \cdots \times \Pi_{n_{k}}$$
+\end{proof}
+\newpage
+\setcounter{thm}{7}
 \begin{prob}
 (\textbf{Sagan, Chapter 5, Exercise 8})
 \belowtitle
-\begin{enumerate}[label=(\alph*)]
-\item Show that if $P$ is a ranked poset, then for any $k$ we have $R_k(P)$ is an antichain.
-\item Let $P$ be a ranked poset and assume $f : P \to Q$ is an isomorphism. Show that $Q$ is also ranked and for all $x \in P$ we have $\mathrm{rk}_P x = \mathrm{rk}_Q f(x)$.
-\item Show that if $P,Q$ are ranked posets, then so is $P \times Q$ with rank function
-\[
-\mathrm{rk}_{P\times Q}(x,y) = \mathrm{rk}_P x + \mathrm{rk}_Q y.
-\]
-\end{enumerate}
+    (c) Show that if $P,Q$ are ranked posets, then so is $P \times Q$ with rank function
+    $$
+    \mathrm{rk}_{P\times Q}(x,y) = \mathrm{rk}_P x + \mathrm{rk}_Q y.
+    $$
 \end{prob}
+\begin{proof}
+    \textbf{(c)} Let $R_{P}$ and $R_{Q}$ be rank functions for $P$ and $Q$, respectively, and let $R_{P\times Q}:P\times Q\to \NN$ be defined by $R_{P\times Q}(x,y)=R_{P}x+R_{Q}y$. Obviously, $R_{P\times Q}$ is well-defined since $R_{P}$ and $R_{Q}$ are. We show $R_{P\times Q}$ is a rank function for $P\times Q$.
+
+    $(\hat{0}\mapsto 0)\;\text{If $P$ has $\hat{0}_{P}$ then $Q$ has $\hat{0}$ and so }R_{P}(\hat{0})=0=R_{Q}(\hat{0}_{Q})\implies R_{P\times Q}(\hat{0}_{P},\hat{0}_{Q})=0+0=0$
+
+    $(a\lessdot b\implies R(a)\lessdot R(b))$ If $R_{P}(x)=m$ and $R_{Q}(y)=n$, and $(x,y)\lessdot (x',y')$, suppose $x \cancel{\lessdot} x'$ and $y\cancel{\lessdot}y'$. But then there exist $x<x*<x'$ and $y<y*<y'$ such that $(x,y)<(x*,y*)<(x',y')$, a contradiction. So $x\lessdot x'$ or $y\lessdot y'$. Now, $(x,y)<(x',y),(x,y')<(x',y')$ so either $x\lessdot x'$ and $y=y'$ or $x=x'$ and $y\lessdot y'$. Therefore, 
+    $$R(x',y')=R_{P}(x)+(R_{Q}(y)+1)=(R_{P}(x)+1)+R_{Q}(y)=R_{P}(x)+R_{Q}(y)+1$$
+    
+    Thus,
+    \begin{center} 
+        $R_{P\times Q}(x,y)=R_{P}(x)+R_{Q}(y)$ is a valid rank function for $P\times Q$.
+    \end{center}
+\end{proof}
 
 \begin{prob}
 (\textbf{Sagan, Chapter 5, Exercise 9})
 \belowtitle
-Prove Proposition 5.2.2.
+Prove Proposition 5.2.2. \textbf{Two Parts}
+\begin{enumerate}[label=(\alph*)]
+    \item If $k\in C_{n}$, then $R(k)=k, R^{-1}(k)=\{k\},\;\text{ and }\mathrm{Rank}\; C_{n}=n$.
+    \item If $S\in B_{n}$, then $R(S)=|S|, R^{-1}(k)=\binom{[n]}{k}=\{k\text{-subsets of }[n]\},\;\text{ and }\mathrm{Rank}\; B_{n}=n$.
+\end{enumerate}
 \end{prob}
+\begin{proof}
+    \textbf{(a)} Let $R:C_{n}\to \NN$ be defined by $R(k)=k$. Obviously $R$ is well-defined. We show $R$ is a valid rank function for $C_{n}$.
+
+    $(\hat{0}\mapsto 0)\; R(0)=0$
+
+    $(a\lessdot b\implies R(a)\lessdot R(b))$ All covers in $C_{n}$ are of the form $k\lessdot k+1$, and so $R(k)=k\lessdot k+1=R(k+1)$.
+
+    Thus, $R(k)=k$ is a valid rank function for $C_{n}$ and $R(\hat{1}_{C_{n}})=R(n)=\mathrm{Rank}\; C_{n}=n$.
+
+    \textbf{(b)} Let $R:B_{n}\to \NN$ be defined by $R(S)=|S|$. Obviously, $R$ is well-defined. We show $R$ is a rank function for $B_{n}$.
+
+    $(\hat{0}\mapsto 0)\; R(\emptyset)=0$
+
+    $(a\lessdot b\implies R(a)\lessdot R(b))$ Covers in $B_{n}$ are of the form $S\lessdot S\sqcup \{a\}$, since any superset $T=S\sqcup (T\setminus S)$ of $S$ must contain all supersets of the form $S\sqcup \{a\}$ where $a\in T\setminus S$. So then any cover $S\lessdot S\sqcup \{a\}$ is such that $R(S\sqcup \{a\})=|S|+1$.
+
+    Thus, $R(S)=|S|$ is a valid rank function for $B_{n}$ and $R(\hat{1}_{B_{n}})=R([n])=\mathrm{Rank}\; B_{n}=n$.
+
+\end{proof}
 
 \begin{prob}
 (\textbf{Sagan, Chapter 5, Exercise 10})
 \belowtitle
+Prove Proposition 5.2.3. \textbf{Two Parts}:
 \begin{enumerate}[label=(\alph*)]
-\item Prove Proposition 5.3.1.
+    \item If $i,j\in C_{n}$, $i\wedge j=\min\{i,j\}$ and $i\vee j=\max\{i,j\}$.
+    \item If $S,T\in B_{n}$, $S\wedge T=S\cap T$ and $S\vee T=S\cup T$.
 \end{enumerate}
 \end{prob}
+\begin{proof}\textbf{(a)}
+    Let $u=\max\{i,j\}$ and $l=\min\{i,j\}$. Obviously $l\leq i,j\leq u$, so $u$ and $l$ are upper and lower bounds, respectively, for $i$ as well as $j$. Well, $u$ and $l$ are either $i$ or $j$ by definition, so no other upper bound $\mu$ can be less than $u$, and no other lower bound $\ell$ can be greater than $l$ otherwise 
+        $$i\text{ or }j=l<\ell\leq i,j\leq \mu<u=i\text{ or } j$$
+    Which is nonsense. 
+    
+    Thus, $i\wedge j=\min\{i,j\}$ and $i\vee j=\max\{i,j\}$.
 
+\textbf{(b)} Let $U=S\cup T$ and $L=S\cap T$. Obviously, $L\subseteq S,T\subseteq U$, so $U$ and $L$ are upper and lower bounds, respectively, for $S$ as well as $T$. Any lowerbound $W\subseteq S,T$ can only contain elements that are shared by both sets, and so by definition $W\subseteq S\cap T=\{i\in [n]\mid i\in S\text{ and }i\in T\}$ which contains all of their common elements. Similarly, any upperbound $S,T\subseteq M$ must contain all elements of either set, and so by definition it must contain their union $S\cup T=\{i\in [n]\mid i\in S\text{ or }i\in T\}\subseteq M$. 
+
+Thus, $S\wedge T=S\cap T$ and $S\vee T=S\cup T$.
+
+\end{proof}
+\setcounter{thm}{14}
 \begin{prob}
 (\textbf{Sagan, Chapter 5, Exercise 15})
 \belowtitle
-Prove Proposition 5.3.4.
-\end{prob}
+Prove Proposition 5.3.4. \textbf{One Poset not $C_{n}$}:
 
+The posets $C_{n}, B_{n},D_{n},Y,K_{n}$ are distributive lattices for all $n.$ 
+\end{prob}
+\begin{proof}
+    We show $B_{n}$ is a distributive lattice. Recall that for all $S,T$ in $B_{n}$, $S\vee T=S\cup T$ and $S\wedge T=S\cap T$. Now for any $A,B,C\in B_{n}$, since De Morgan laws hold for $\cap$ and $\cup$,
+\begin{align*}
+    &A\vee (B\wedge C)=A\cup (B\cap C)=(A\cup B)\cap (A\cup C)=(A\cup B)\wedge (A\cup C)= (A\vee B)\wedge (A\vee C)\\
+    &A\wedge (B\vee C)=A\cap (B\cup C)=(A\cap B)\cup (A\cap C)=(A\cap B)\vee (A\cap C)=(A\wedge B)\vee (A\wedge C)
+\end{align*}
+So $B_{n}$ is a distributive lattice.
+
+\end{proof}
+\newpage
+\setcounter{thm}{16}
 \begin{prob}
 (\textbf{Sagan, Chapter 5, Exercise 17})
 \belowtitle
@@ -286,11 +462,44 @@ If $X \subseteq P$ is a lower-order ideal, then use the corresponding lowercase 
 \item Show that $x$ is join irreducible in $L$ if and only if $X$ is a principal ideal of $P$.
 \end{enumerate}
 \end{prob}
+\begin{proof}
+    \textbf{(a)} $(\Rightarrow)$ Suppose $x,y\in L$ with $y\subsetdot x$. Since $P$ is finite and the order $\subseteq$ is set inclusion, just like in $B_{n}:\; x=y\sqcup\{m\}$ for some $m\in x-y$. That is, $y=x-\{m\}$. Suppose $m$ is not a maximal element of $x$. But then there exists some element $m'<m$ such that $m'\in y-\{m\}$ and $y$ is not a lower-order ideal, a contradiction. So $y=x-\{m\}$ where $m$ is a maximal element of $x$.
 
+    $(\impliedby)$ If $y=x-\{m\}$ where $m$ is a maximal element of $x$, then $y\subset x$ and simply by subset containment the only $z\in L$ such that $y=x-\{m\}\subseteq z\subset x$ is $z=y$. Therefore, $\not\exists z\in L$ such that $y\subset z\subset x$ and $y=x-\{m\}\subsetdot x$.
+
+    Thus, $y=x-\{m\}$ for some maximal element $m$ of $x$ if and only if $y\subsetdot x$.
+
+    \textbf{(b)} $(\implies)$ If $x$ is join irreducible in $L$, then $\exists!y\in L$ such that $y\subsetdot x$. That is, by $(a)$, there is exactly one maximal element $m$ of $x$ such that $y=x-\{m\}\subsetdot x.$ By definition every element of a lower-order ideal $x$ is bounded above by some maximal element of $x$. Well, $m$ is the only maximal element of $x$ and so $p\leq m,\;\forall p\in x$. Therefore, $x$ is a principal ideal of $P$ generated by $m.$
+
+    $(\impliedby)$ If $x$ is a principal ideal of $P$ generated by $m$, then $m$ is the only maximal element of $x.$ By $(a)$, $y\subsetdot x\implies y=x-\{\mu\}$ for some maximal element $\mu$ of $x$, and since the only the only maximal element of $x$ is $m$, $y=x-\{m\}\subsetdot x$ is the only element covered by $x.$ So $x$ is join irreducible in $L$.
+
+\end{proof}
+\newpage
+\setcounter{thm}{0}
+\begin{lem}\label{lem:Ycover}
+    $\lambda\lessdot \mu$ in $\YY$ if and only if $\lambda$ and $\mu$ differ by exactly $1$ in exactly $1$ part. 
+\end{lem}
+\begin{proof}
+    Recall that $\lambda= (\lambda_{1},\hdots \lambda_{m})\leq \mu=(\mu_{1},\hdots, \mu_{n})$ in $\YY$ if and only if $Y(\lambda)\subseteq Y(\mu)$ where $Y(\tau)$ denotes the Young diagram of a partition $\tau$ in $\YY$. Equivalently, $\lambda_{i}\leq \mu_{i},\forall i\in [n]$. Also recall that if $m<n$ we treat $\lambda$ as having an $n-m$-tail of $0$s; 
+    $$\lambda=(\lambda_{1},\hdots, \lambda_{m},\overbrace{0,\hdots,0}^{m-n})=(\substack{\lambda_{i},\forall i\in [m]\\ 0,\text{otherwise}})_{i\in [n]}$$
+
+    $(\implies)$ If $\lambda\lessdot \mu$, suppose that $(i)\;\lambda$ and $\mu$ differ by more than $1$ in some part or that $(ii)\;\lambda$ and $\mu$ differ in more than $1$ part. note that they must differ \textit{in some part}, $\lambda_{i}\lessdot \mu_{i},\forall i\in [n]$ and also:
+    \begin{align*}
+    &(i)\; \exists k\in [n]\text{ s.t. }\mu_{k}-\lambda_{k}=\delta>1\implies \lambda_{k}<\lambda_{k} +1< \lambda+\delta=\mu_{k}\\
+    &(ii)\;\exists a,b\in [n]\text{ s.t. }\substack{\lambda_{a}<\mu_{a}\\ \lambda_{b}<\mu_{b}}
+    \end{align*}
+    But then 
+    $$(i)\;\lambda<(\substack{\lambda+1,\text{ for }i=k\\ \lambda,\text{ otherwise.}})<(\substack{\lambda+\delta,\text{ for }i=k\\ \mu_{i},\text{ otherwise.}})=\mu\text{ or }(ii)\;\lambda<(\substack{\mu_{i},\text{ for }i=a,\\ \lambda_{i},\text{ otherwise.}})<(\substack{\mu_{i},\text{ for }i=a,b,\\ \lambda_{i},\text{ otherwise.}})=\mu$$
+    and then $\lambda\cancel{\lessdot}\mu$, a contradiction. So $\lambda$ and $\mu$ differ by exactly $1$ in exactly $1$ part.
+
+    $(\impliedby)$ If $\lambda$ and $\mu$ differ by exactly $1$ in exactly $1$ part, then $\exists! k\in [n]$ such that $\lambda_{k}<\mu_{k}$ and since $\mu_{k}-\lambda_{k}=1$, obviously:$\lambda_{k}\lessdot \mu_{k}$ in $\ZZ^{+}\implies \lambda\lessdot \mu$.
+
+\end{proof}
+\setcounter{thm}{17}
 \begin{prob}
 (\textbf{Sagan, Chapter 5, Exercise 18})
 \belowtitle
-Given a poset $P$, let $\mathcal{A}(P)$ be the set of antichains of $P$.  
+(a) Given a poset $P$, let $\mathcal{A}(P)$ be the set of antichains of $P$.  
 Show that the map
 \[
 f : \mathcal{A}(P) \to J(P)
@@ -298,14 +507,51 @@ f : \mathcal{A}(P) \to J(P)
 given by $f(A) = I(A)$ (where $I(A)$ is the order ideal generated by $A$) is a bijection.
 \end{prob}
 
+\begin{proof}
+\textbf{(a)} Let $f^{-1}:J(P)\to \A(P)$ be defined by $f^{-1}(I)=\max(I)=\{i\in I\mid i\text{ is maximal in }I\}$. This mapping is well-defined, since distinct maximal elements of an order ideal cannot be comparable, otherwise they wouldn't be maximal. Also, it is obvious you can't generate two distinct order ideals from the same antichain. Behold. $\forall A\in \A, \forall I\in J(P)$:
+\begin{align*}
+    & f(f^{-1}(I))=f(\max(I))=I(\max(I))=I\\
+    & f^{-1}(f(A))=f^{-1}(I(A))=\max\{i\in I(A)\mid i\text{ is maximal in }I(A)\}=A
+\end{align*}
+
+So $f^{-1}$ is the bijective inverse of $f$ and $\A(P)$ and $J(P)$ are in bijection via $f,f^{-1}$.
+\end{proof}
+
+We do $(b)$ on the next page.
+\newpage
+(b) Show that $\mu\in Y$ is join irreducible if and only if $\mu=(k^{l})$ for some $k,l\in \mathbb{P}$
+\begin{proof}
+\textbf{(b)} Let $\mu=(\mu_{1},\hdots, \mu_{n})$.
+
+$(\implies)$ If $\mu$ is join irreducible in $\YY$, then there exists exactly $1$ partition $\lambda$ in $\YY$ such that $\lambda=(\lambda_{1},\hdots, \lambda_{m})\lessdot \mu$. By \textbf{Lemma \ref{lem:Ycover}} any such $\lambda$ must differ by $1$ in exactly $1$ part. Well, if $\lambda$ is the only such partition, then removing $1$ from any single part of $\mu$ results in the same partition $\lambda$ and so $\mu$ must have all parts of equal size. That is, $\mu$ must be a rectangle of the form $\mu=(k^{l})$ for some $k,l\in \mathbb{Z}^{+}$.
+
+$(\impliedby)$ If $\mu$ is a rectangle, then removing $1$ from any single part of $\mu$ results in the same partition, and since any covered element $\lambda\lessdot \mu$ is just the result of removing $1$ from a single part of $\mu$, there is only one such $\lambda$. $\exists! \lambda\in \YY\text{ such that }\lambda\lessdot \mu\implies$ $\mu$ is join irreducible in $\YY$.
+
+\end{proof}
+\setcounter{thm}{18}
 \begin{prob}
 (\textbf{Sagan, Chapter 5, Exercise 19})
 \belowtitle
-\begin{enumerate}[label=(\alph*)]
-\item Rederive the formula for $\mu$ in $B_n$, equation (5.6), in two ways: by mimicking the proof of (5.7) and by constructing an $m \in P$ such that $D_m = B_n$ and then applying (5.7).
-\end{enumerate}
+(a) Rederive the formula for $\mu$ in $B_n$, equation (5.6), in two ways: by mimicking the proof of (5.7) and by constructing an $m \in P$ such that $D_m = B_n$ and then applying (5.7).
 \end{prob}
 
+\begin{proof}
+    \textbf{(I)} Recall the following:
+        $$B_{n}\cong C_{1}^{n}\text{ via }\phi(S)=(\substack{1,\text{ if }i\in S,\\ 0,\text{ otherwise.}})_{i\in [n]}\text{ and } \mu_{C_{1}}\coloneq i\mapsto \begin{cases} 1 &\text{if }i=0,\\ -1 &\text{ if }i=1\end{cases}$$
+        Behold. By \textbf{Theorem 5.4.3} and \textbf{Theorem 5.4.4}
+        \begin{align*}
+        &\mu_{C_{1}^{n}}(a_{1},\hdots, a_{n})=\prod_{i=1}^{n}\mu_{C_{1}}(a_{i})=(-1)^{k}\text{ where }k=\sum_{i=1}^{n}a_{i}.\\
+        &\text{If }\phi_{i}(S)\text{ is the $i$th component of }\phi(S),\forall S\in B_{n},\text{ then }\sum_{i=1}^{n}\phi_{i}(S)=\sum_{i=1}^{n}(\substack{1,\text{ if }i\in S,\\ 0,\text{ otherwise.}})=|S|.\\
+        \implies &\mu_{B_{n}}(S)=\mu_{C_{1}^{n}}(\phi(S))=\mu_{C_{1}^{n}}((\substack{1,\text{ if }i\in S,\\ 0,\text{ otherwise.}})_{i\in [n]})=\prod_{i=1}^{n}\mu_{C_{1}}(\phi_{i}(S))=(-1)^{|S|}.
+        \end{align*}
+    \textbf{(II)} Let $m=\prod_{i=1}^{n}p_{i}$ be a product of $n$ distinct primes. Then any $d\in D_{m}$ is of the form $d=\prod_{i=1}^{n}p_{i}^{a_{i}}$ where $a_{i}\in \{0,1\}$ and then by \textbf{Problem 5.7} we get that $D_{m}\cong C_{1}^{n}\cong B_{n}$ via
+    \begin{align*}
+        &d_{S}=\prod_{i=1}^{n}p_{i}^{a_{i}}\longleftrightarrow (a_{i})_{i\in [n]}\longleftrightarrow \{i\in [n]\mid a_{i}=1\}=S\\
+        \implies &\sum_{i=1}^{n}a_{i}=|S|\text{ if }d_{S}\longleftrightarrow S\\
+        \text{and therefore }& \mu_{D_{m}}(d_{S})=(-1)^{\sum_{i=1}^{n}a_{i}}\implies \mu_{D_{n}}(d_{S})=(-1)^{|S|}=\mu_{B_{n}}(S)
+    \end{align*}
+\end{proof}
+\setcounter{thm}{19}
 \begin{prob}
 (\textbf{Sagan, Chapter 5, Exercise 20})
 \belowtitle
@@ -321,5 +567,35 @@ given by $f(A) = I(A)$ (where $I(A)$ is the order ideal generated by $A$) is a b
 \item Given any $n \in \ZZ$, construct a poset containing an element $x$ with $\mu(x)=n$.
 \end{enumerate}
 \end{prob}
+
+\begin{proof}\textbf{(a)}
+Recall that for a locally finite poset $P$ with $\hat{0}$, 
+$$\mu(x)=\begin{cases}
+    1 & \text{if }x=\hat{0}\\
+    -\sum_{y<x}\mu(y) & \text{if }x>\hat{0}\end{cases}
+,\;\forall x\in P.$$
+If an element $x\in P$ covers exactly one element we have two cases. $(i)\;0\lessdot x\implies \mu(x)=-\sum_{y<x}\mu(y)=-\mu(\hat{0})=-1$. $(ii)$ Otherwise $\exists! q\in P$ such that $\hat{0}<q\lessdot x$, and then since $P$ is locally finite, $[\hat{0},q]\cong C_{n}$ for some $n\in \ZZ^{+}$ and then
+\begin{align*}
+    &P\ni y\longleftrightarrow |[\hat{0},y]|\in C_{n}\text{ and }\mu_{C_{n}}(i)=\begin{cases}
+    1 & \text{if }i=0\\
+    -1 & \text{if }i=1\\
+    0 & \text{otherwise}
+    \end{cases}\\
+    \implies &\mu(x)=-\sum_{y<x}\mu(y)=-\sum_{i=1}^{n} \mu_{C_{n}}(i)=1+(-1)+0+\hdots+0=0.
+\end{align*}
+Thus,
+$$\exists! q\in P\text{ such that }q\lessdot x,\text{ then } \mu(x)=\begin{cases}
+    -1 & \text{ if }\hat{0}\lessdot x\\
+    0& \text{ otherwise.}\end{cases}
+$$
+
+\textbf{(b)} $\mu_{C_{3}}(2)=0$ as shown in the first example of \textbf{Chapter 5.5}. Next, For any $n\in \ZZ^{+}$, let $P=\{\hat{0},x_{1},\hdots, x_{n+1},x\}$ be a poset whose only relations are $0\lessdot x_{i} \lessdot x,\;\forall i\in [n+1].$ Then
+\begin{align*}
+    \textbf{(a)}\text{ and }\hat{0}\lessdot x_{i}\implies&\mu(x_{i})=-1,\;\forall i\in [n+1]\\ 
+    \implies &\mu(x)=-\sum_{y<x}\mu(y)=-(1+\sum_{i\in [n+1]}\mu(x_{i}))=-(1+\sum_{i\in [n+1]}(-1))=n 
+\end{align*}
+and then once again by \textbf{Theorem 5.4.4} $\mu_{C_{1}\times P}(1,x)=\mu_{C_{1}}(1)\mu_{P}(x)=-1\cdot n=-n.$
+\end{proof}
+
 
 \end{document}

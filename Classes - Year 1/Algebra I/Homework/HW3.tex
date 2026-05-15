@@ -1,0 +1,399 @@
+\documentclass[addpoints,10pt]{exam}
+
+\usepackage{amsmath,amsthm,enumitem,wrapfig,amsfonts,mathtools}
+\usepackage[mathscr]{euscript}
+\usepackage[super]{nth}
+\usepackage{dsfont}
+\usepackage{xparse}
+\usepackage{cancel}
+
+\usepackage{geometry}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\renewcommand{\rmdefault}{ptm} %Change the Front Family from the default(cmr) to ptm(Times)
+\usepackage{amsmath,amsfonts,amsthm,amssymb} % Math packages
+\usepackage{bm}
+%\usepackage{mathptmx}
+\usepackage{graphicx}
+\usepackage{sectsty} % Allows customizing section commands
+% \allsectionsfont{\centering} % Make all sections centered, the default font and small caps
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{xcolor}
+\definecolor{darkpastelgreen}{rgb}{0.01, 0.75, 0.24}
+\definecolor{blue-violet}{rgb}{0.54, 0.17, 0.89}
+%\usepackage{polylongdiv} %polynomial long division
+% Custom problem environment
+\usepackage{polynom}
+\newcounter{cprob}
+\newenvironment{cprob}[1]{%
+    \setcounter{cprob}{#1}%
+    \noindent\textbf{Problem \thecprob.}%
+}{%
+    \par\bigskip%
+}
+
+\theoremstyle{plain}
+\newcommand{\theoremname}{Theorem}
+\newtheorem{thm}{\protect\theoremname}
+  \theoremstyle{definition}
+  \newtheorem{prob}[thm]{Problem}
+  \newtheorem*{problem*}{Open Problem}
+  \theoremstyle{plain}
+  \newtheorem{conjecture}[thm]{Conjecture}
+  \theoremstyle{plain}
+  \newtheorem{lem}[thm]{Lemma}
+  \newtheorem*{lem*}{Lemma}
+  \newtheorem{obs}[thm]{Observation}
+  \newtheorem{cor}[thm]{Corollary}
+  \theoremstyle{definition}
+\newtheorem{definition}[thm]{Definition}
+
+
+% Patch prob environment to be single spaced
+\let\oldprob\prob
+\let\endoldprob\endprob
+\renewenvironment{prob}
+  {\begin{singlespace}\oldprob}
+  {\endoldprob\end{singlespace}}
+
+% start problem one line below like for enumerated problems with multiple parts
+\newcommand{\belowtitle}{\leavevmode\newline}
+%\Observe command
+\newcommand{\Observe}{\text{Observe.}}
+%(=>)
+\newcommand{\IF}{\mathbf{(\Rightarrow)}}
+%(<=)
+\newcommand{\FI}{\mathbf{(\Leftarrow)}}
+%equivalence classes; \class[S]{ *content in square brackets* }
+\newcommand{\class}[2][]{\ensuremath{\left[\,#2\,\right]_{#1}}}
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}
+\newcommand{\kkk}{\ensuremath{\Bbbk}} 
+\newcommand{\CC}{\ensuremath{\mathbb{C}}}
+\newcommand{\FF}{\ensuremath{\mathbb{F}}}
+\newcommand{\KK}{\ensuremath{\mathbb{K}}}
+\newcommand{\NN}{\ensuremath{\mathbb{N}}}
+\newcommand{\QQ}{\ensuremath{\mathbb{Q}}} 
+\newcommand{\RR}{\ensuremath{\mathbb{R}}} 
+\newcommand{\ZZ}{\ensuremath{\mathbb{Z}}}
+\newcommand{\MM}{\ensuremath{\mathcal{M}}}
+\newcommand{\TT}{\ensuremath{\mathcal{T}}}
+\newcommand{\BB}{\ensuremath{\mathcal{B}}}
+\newcommand{\VV}{\ensuremath{\mathcal{V}}}
+\newcommand{\WW}{\ensuremath{\mathcal{W}}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}}
+\newcommand{\PP}{\ensuremath{\mathcal{P}}}
+\newcommand{\LL}{\ensuremath{\mathcal{L}}}
+\newcommand{\kk}{\ensuremath{\mathds{k}}}
+\newcommand{\EE}{\ensuremath{\mathbb{E}}}
+\newcommand{\Ss}{\ensuremath{\mathcal{S}}}
+
+
+
+\newcommand{\sm}{\char`\\}
+%vector stuff
+\DeclarePairedDelimiter{\ip}{\langle}{\rangle} %inner product/generate
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert} %norm
+\DeclarePairedDelimiter{\sqb}{\lbrack}{\rbrack} %corrd
+
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\mbf}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\tbf}[1]{\textbf{ #1 }}
+\newcommand{\Span}{\ensuremath{\mathrm{Span}}}
+\newcommand{\Char}[1]{\mathrm{Char}\; #1}
+\DeclareMathOperator{\lcm}{lcm}
+\newcommand{\id}{\ensuremath{\mathrm{id}}}
+\newcommand{\Gal}[2]{\mathrm{Gal}(#1/#2)}
+\newcommand{\Aut}{\ensuremath{\mathrm{Aut}}}
+\newcommand{\Fix}[2]{\mathrm{Fix}_{#1}(#2)}
+\newcommand{\nil}{\ensuremath{\mathrm{nil}}}
+\newcommand{\Hom}{\ensuremath{\mathrm{Hom}}}
+\newcommand{\Obj}{\ensuremath{\mathrm{Obj}}}
+
+\newcommand{\Rng}{\ensuremath{\mathrm{Rng}}}
+\newcommand{\Ring}{\ensuremath{\mathrm{Ring}}}
+
+
+
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\def\env@matrix{\hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols c}}
+
+  \newcommand{\proj}[2]{\text{proj}_{#1}(#2)}
+  
+
+%%% Formatting: Page Header
+\newcommand{\StudentName}{Danny Banegas}
+\newcommand{\AssignmentName}{Homework 3}
+\newcommand{\CourseName}{MATH 720 - Algebra I}
+
+
+\pagestyle{headandfoot}
+\runningheadrule
+\firstpageheadrule
+\firstpageheader{\CourseName}{\StudentName}{\AssignmentName}
+\runningheader{\CourseName}{\StudentName}{\AssignmentName}
+\firstpagefooter{}{\thepage}{}
+\runningfooter{}{\thepage}{}
+
+\printanswers
+
+\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+
+\usepackage{parskip}
+\usepackage{setspace}
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{thm}{0} % next prob is 1
+\begin{prob}
+Let $f : A \to B$ and $g : B \to C$ be functions of sets.
+\begin{enumerate}[label=(\alph*)]
+\item Prove that if $g \circ f$ is injective then $f$ is injective.
+\item Prove that if $g \circ f$ is surjective then $g$ is surjective.
+\item Find an example of $f : A \to B$ and $g : B \to A$ such that $f \circ g = \id_B$ but neither $f$ nor $g$ is bijective.
+\end{enumerate}
+\end{prob}
+
+\begin{proof}
+\textbf{(a)}
+Suppose $g\circ f$ is injective but that $f$ is not injective. So there exists $a,\alpha\in A$ such that $f(a)=f(\alpha)$ but $a\neq \alpha$. But then $g(f(a))=g(f(\alpha))$ and $a\neq \alpha$, which contradicts that $g\circ f$ is injective. So $f$ must be injective.
+
+\textbf{(b)} Suppose $g\circ f$ is surjective but that $g$ is not surjective. So there exists $c\in C$ such that for all $b\in B$, $g(b)\neq c$. But then for all $a\in A$, $g(f(a))\neq c$, which contradicts that $g\circ f$ is surjective. So $g$ must be surjective.
+
+\textbf{(c)} Let $A=\{a\},B=\{b,\beta\},C=\{c\}$. Then let $f\coloneq a\mapsto b$ and $g\coloneq \{b,\beta\}\mapsto c$. Then $f$ is not surjective, and $g$ is not injective but $g\circ f$ is bijective via $(g\circ f)^{-1}\coloneq c\mapsto a.$
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{prob}
+Let $R$ be a commutative ring, and $S \subseteq R$ be a multiplicative set.
+\begin{enumerate}[label=(\alph*)]
+\item Review the definition of $S^{-1}R$, and prove that $+$ and $\cdot$ make $S^{-1}R$ into a commutative ring with identity $1_R/1_R$.
+\item If $0 \in S$, show that $S^{-1}R$ is the zero ring.
+\end{enumerate}
+\end{prob}
+\hrule
+\setcounter{thm}{0} % next prob is 1
+    \begin{definition}[Localization]
+    Let $R$ be a commutative ring and $S \subseteq R$ a multiplicative submonoid; $S$ contains $1_{R}$ and is closed under multiplication. The \textbf{localization $S^{-1}R$ of $R$ at $S$} is defined as follows.
+        $$S^{-1}R := \left\{\frac{r}{s} \mid r \in R, s \in S\right\}/\sim \text{ where }\frac{a}{b}\sim \frac{c}{d} \iff \exists\, s \in S \text{ such that } s(ad-bc)=0.$$ 
+    We define $+$ and $\cdot$ on $\left\{\frac{r}{s} \mid r \in R, s \in S\right\}$ as follows:
+    $$
+    \frac{a}{b} + \frac{c}{d} \coloneq \frac{ad+bc}{bd},\;\frac{a}{b} \cdot \frac{c}{d} \coloneq \frac{ac}{bd}.
+    $$
+    Also, notice that $\frac{a}{b}\cdot\frac{c}{d}=\frac{ac}{bd}=\frac{ca}{db}=\frac{c}{d}\frac{a}{b}$ and $\frac{a}{b}+\frac{c}{d}=\frac{ad+bc}{bd}=\frac{cb+da}{db}=\frac{c}{d}+\frac{a}{b}$. Commutatvity is immediate.
+    \end{definition}
+We now briefly prove a lemma.
+\setcounter{thm}{0} % next prob is 1
+    \begin{lem}\label{lem:localwd}
+    If $\circ$ is a commutative binary operation on $\left\{\frac{r}{s} \mid r \in R, s \in S\right\}$ such that $x\circ y\sim x\circ y'$ for any $x$ and any $y\sim y'$ in $\left\{\frac{r}{s} \mid r \in R, s \in S\right\}$, then for any $x\sim x',y\sim y'$ in $(x\circ y)\sim (x\circ y')\sim (x'\circ y)\sim (x'\circ y')$. That is: $\class[\sim]{x}\circ \class[\sim]{y}=\class[\sim]{x\circ y}$
+    \end{lem}
+\begin{proof}
+ $x\circ y\sim x\circ y'$ for any $y\sim y'\implies y\circ x\sim y\circ x'$ if $x\sim x'$. Similarly, $x'\circ y'\sim x'\circ y$ if $y'\sim y\implies y'\circ x'\sim y'\circ x$ if $x'\sim x$. So then since $x\sim x'$ and $y\sim y'$, we have that $(x\circ y)\sim (x\circ y')\sim (x'\circ y)\sim (x'\circ y')$ by transitivity. 
+\end{proof}
+\hrule
+Next prove that $+,\cdot$ are well-defined on $S^{-1}R$.
+\begin{lem}
+$+,\cdot$ are well-defined on $S^{-1}R$.
+\end{lem}
+\begin{proof}
+        \textbf{(a)}
+    We prove that $S^{-1}R$ is a commutative ring with identity $1$. To begin we show that these $+,\cdot$ are well-defined on $S^{-1}R$. For any $x=\frac{a_{1}}{b_{1}}\sim \frac{a_{2}}{b_{2}}=x'$ and $y=\frac{c_{1}}{d_{1}}\sim \frac{c_{2}}{d_{2}}=y'$ in $\left\{\frac{r}{s} \mid r \in R, s \in S\right\}$, there exists $s,t\in S$ such that $s(a_{1}b_{2}-b_{1}a_{2})=0$ and $t(c_{1}d_{2}-d_{1}c_{2})=0$. 
+    Behold.
+    \begin{align*}
+        &x+y=\frac{a_{1}}{b_{1}}+\frac{c_{2}}{d_{2}}=\frac{a_{1}d_{1}+b_{1}c_{1}}{b_{1}d_{1}},\; x+y'=\frac{a_{1}}{b_{1}}+\frac{c_{2}}{d_{2}}=\frac{a_{1}d_{2}+b_{1}c_{2}}{b_{1}d_{2}}\\
+        &x\cdot y=\frac{a_{1}}{b_{1}}\cdot \frac{c_{1}}{d_{1}}=\frac{a_{1}c_{1}}{b_{1}d_{1}},\; x\cdot y'=\frac{a_{1}}{b_{1}}\cdot \frac{c_{2}}{d_{2}}=\frac{a_{1}c_{2}}{b_{1}d_{2}}\\
+        \implies (i)\;&t(b_{1}d_{2}(a_{1}d_{1}+b_{1}c_{1})-b_{1}d_{1}(a_{1}d_{2}+b_{1}c_{2}))=t(\cancel{a_{1}b_{1}d_{1}d_{2}}+b_{1}^{2}c_{1}d_{2}-\cancel{a_{1}b_{1}d_{1}d_{2}}-b_{1}^{2}d_{1}c_{2})\\
+        &=t b_{1}^{2}(c_{1}d_{2}-d_{1}c_{2})=b_{1}^{2}(t(c_{1}d_{2}-d_{1}c_{2}))=b_{1}^{2}=0\implies x+y\sim x+y'\\
+        \implies (ii)\;&t(b_{1}d_{2}(a_{1}c_{1})-b_{1}d_{1}(a_{1}c_{2}))=t(a_{1}b_{1}c_{1}d_{2}-a_{1}b_{1}d_{1}c_{2})=t a_{1}b_{1}(c_{1}d_{2}-d_{1}c_{2})\\
+        &=a_{1}b_{1}(t(c_{1}d_{2}-d_{1}c_{2}))=a_{1}b_{1}\cdot 0=0\implies x\cdot y\sim x\cdot y'
+    \end{align*}
+    By Lemma \ref{lem:localwd}, since $+,\cdot$ are both commutative binary operations on $\left\{\frac{r}{s} \mid r \in R, s \in S\right\}$ such that $x\circ y\sim x\circ y'$ for any $x$ and any $y\sim y'$, we have that $\class[\sim]{x}\circ \class[\sim]{y}=\class[\sim]{x\circ y}$ for $\circ=+,\cdot$. So $+$ and $\cdot$ are well-defined on $S^{-1}R$.
+\end{proof}
+\newpage
+We finally address the problem on the next page.
+\begin{proof}
+    \textbf{(a)} We now show that $S^{-1}R$ is a commutative ring with unity. For the sake of hygiene, we just use $\frac{a}{b}$ to denote any $\class[\sim]{\frac{a}{b}}$ in $S^{-1}R$, since $+,\cdot$ are well-defined on it. Behold. For any $\frac{a}{b},\frac{c}{d},\frac{e}{f}\in S^{-1}R$, we show each of the ring axioms:
+    \begin{align*}
+        &\text{(Associative $+$) } \frac{a}{b}+\left(\frac{c}{d}+\frac{e}{f}\right)=\frac{a}{b}+\frac{cf+de}{df}=\frac{adf+bcf+deb}{bdf}=\left(\frac{a}{b}+\frac{c}{d}\right)+\frac{e}{f}\\
+        &\text{(Associative $\cdot$) } \frac{a}{b}\cdot \left(\frac{c}{d}\cdot \frac{e}{f}\right)=\frac{a}{b}\cdot \frac{ce}{df}=\frac{ace}{bdf}=\left(\frac{a}{b}\cdot \frac{c}{d}\right)\cdot \frac{e}{f}\\
+        &\text{(Commutative $+$) } \frac{a}{b}+\frac{c}{d}=\frac{ad+bc}{bd}=\frac{cb+da}{db}=\frac{c}{d}+\frac{a}{b}\text{ (*Also shown in \textbf{Definition 1}*)}\\
+        &\text{(Commutative $\cdot$) } \frac{a}{b}\cdot \frac{c}{d}=\frac{ac}{bd}=\frac{ca}{db}=\frac{c}{d}\cdot \frac{a}{b}\implies 1_{S^{-1}R}=\frac{1}{1} \text{ (*Also shown in \textbf{Definition 1}*)}\\
+        &\text{Also, for any }\frac{x}{x}\in S^{-1}R,\; s(x1-1x)=s(x-x)=0,\forall s\in S,\implies \frac{x}{x}=1_{S^{-1}R},\;\forall x\in R\\
+        &\text{($1_{S^{-1}R}$) }\frac{1}{1}\cdot\frac{a}{b}=\frac{a}{b}\cdot\frac{1}{1}=\frac{a}{b}\\
+        &\text{($0_{S^{-1}R}$) } \frac{a}{b}+\frac{0}{1}=\frac{0}{1}+\frac{a}{b}=\frac{0(b)+1a}{1b}=\frac{1a}{1b}=\frac{1}{1}\frac{a}{b}=1_{S^{-1}R}\frac{a}{b}=\frac{a}{b}\\
+        &\text{ Also for any }s\in S, s^{*}(s(0)-(0)1)=s^{*}(0)=0,\;\forall s^{*}\in S\implies \frac{0}{1}=\frac{0}{s}=0_{S^{-1}R},\;\forall s\in S\\
+        &\text{(Additive Inverse) } \frac{a}{b}+\frac{-a}{b}=\frac{-a}{b}+\frac{a}{b}=\frac{-ab+ab}{bb}=\frac{0}{bb}=0_{S^{-1}R}\\
+        &\text{(Distributive) } \frac{a}{b}\cdot \left(\frac{c}{d}+\frac{e}{f}\right)=\frac{a}{b}\cdot \frac{cf+de}{df}=\frac{acf+ade}{bdf}=\frac{ac}{bd}+\frac{ae}{bf}=\left(\frac{a}{b}\cdot \frac{c}{d}\right)+\left(\frac{a}{b}\cdot \frac{e}{f}\right)\\
+        &\text{(Distributive) } \left(\frac{a}{b}+\frac{c}{d}\right)\cdot \frac{e}{f}=\frac{ad+bc}{bd}\cdot \frac{e}{f}=\frac{ade+bce}{bdf}=\frac{ae}{bf}+\frac{ce}{df}=\left(\frac{a}{b}\cdot \frac{e}{f}\right)+\left(\frac{c}{d}\cdot \frac{e}{f}\right)
+    \end{align*}
+    So $S^{-1}R$ is a commutative ring with $1_{S^{-1}R}=\frac{1}{1}$.
+
+    \textbf{(b)} If $0\in S$, then for any $\frac{a}{b}\in S^{-1}R$, $\exists 0\in S\text{ such that }0(a1-0b)=0(a)=0$ and so $\frac{a}{b}=\frac{0}{1}=0_{S^{-1}R},\forall \frac{a}{b}\in S^{-1}R$. So $S^{-1}R=\{0_{S^{-1}R}\}$ is the zero ring.
+
+\end{proof}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\setcounter{thm}{2} % next prob is 1
+\begin{prob}
+Let $R$ be a commutative ring. Recall that we say $R$ is Noetherian if every ideal is finitely generated. Prove that $R$ is Noetherian if and only if every chain of ideals eventually stabilizes, i.e., if
+\[
+I_0 \subseteq I_1 \subseteq I_2 \subseteq \cdots \subseteq I_n \subseteq \cdots
+\]
+is a chain of ideals, then $I_N = I_{N+1} = I_{N+k}$ for all $k>0$ and some $N \in \NN$.
+\end{prob}
+\begin{proof}
+    $(\implies)$ If $R$ is Noetherian and $I_{0}\subseteq I_{1}\subseteq \cdots \subseteq I_{n}\subseteq \cdots $ is a countable chain of ideals in $R$, consider $I=\bigcup_{i\in \NN}I_{i}.$ Behold. $\forall a,b\in I$
+    \begin{align*}
+        &\mathbf{(\leq_{+}):}\;a,b\in I\implies \exists i,j\in \NN \text{ such that }a\in I_{i},b\in I_{j}\implies \text{Without loss of generality }i\leq j\\
+        &\implies a,b\in I_{j}\leq_{+} R\implies a-b\in I_{j}\subseteq I\implies I\leq_{+}R\\
+        &\mathbf{(Absorption):}\; a\in I\implies \exists i\in \NN \text{ such that }a\in I_{i}\\
+        &\implies \forall r\in R, ra=ar\in I_{i}\subseteq I\implies \forall r\in R,\forall a\in I,\; ra=ar\in I.
+    \end{align*}
+    So $I$ is an ideal of $R$, and since $R$ is Noetherian, $I$ is finitely generated. So there exist $a_{1},\ldots,a_{n}\in I$ such that $I=\langle a_{1},\hdots,a_{m}\rangle$. Now, for each $i\in [m]$, $a_{i}\in I\implies \exists k_{i}\in \NN$ such that $a_{i}\in I_{k_{i}}\subseteq I$. Let $N=\max\{k_{1},\ldots,k_{m}\}$. Then $I_{k_{i}}\subseteq I_{N},\forall i\in [m]\implies a_{1},\hdots, a_{m}\in I_{N}\subseteq I=\langle a_{1},\hdots, a_{m}\rangle\implies I_{N}=I.$ So then 
+        $$I_{1}\subseteq \cdots \subseteq I=I_{N}\subseteq I_{N+1}\subseteq \cdots \subseteq I\implies I_{k}=I,\;\forall k\geq N.$$
+
+    $(\impliedby)$ On the other hand if every countable ideal chain stabilizes, consider any ideal $I$ of $R$. If $I=\langle 0\rangle$ or $I=\langle 1\rangle$ it is finitely generated. Otherwise, pick some $a_{1}\in I$. If $i=\langle a_{i}\rangle$, it is finitely generated. Otherwise pick some $a_{2}\in I\setminus \{a_{1}\}$, if $I=\langle a_{1},a_{2}\rangle$ it is finitely generated. If we continue in this fashion, we build a countable chain of ideals each contained in $I$:
+        $$\langle 0\rangle \subseteq \langle a_{1}\rangle \subseteq \langle a_{1},a_{2}\rangle \subseteq \cdots \subseteq I$$
+    Since every countable ideal chain stabilizes, there exists some $N\in \NN$ such that $\langle a_{1},\hdots,a_{N}\rangle = \langle a_{i}\mid 1\leq i\leq k\rangle,\forall k\geq N$. So $I$ is finitely generated. That is, this process must terminate after picking some $N\in \NN$ such that $\langle a_{1},\hdots, a_{N}\rangle = I$.
+
+\end{proof}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{prob}
+Let $R$ be a commutative ring, let $I_j$ be ideals of $R$, and let $P$ be a prime ideal of $R$.
+\begin{enumerate}[label=(\alph*)]
+\item Prove that if $I_1 \cdots I_n \subseteq P$, then $I_j \subseteq P$ for some $j$. \tbf{Hint:} Use contradiction.
+\item By (a), if $P \supseteq \bigcap_{j=1}^r I_j$, then $P$ contains one of the ideals $I_j$. Prove or disprove: if $P \supseteq \bigcap_{j=1}^\infty I_j$, then $P$ contains one of the $I_j$.
+\end{enumerate}
+\end{prob}
+\begin{proof}
+\textbf{(a)} $I_{1}\subseteq P\implies I_{1}\subseteq P$. Now assume that for some $k\geq 1$, $I_{1}\cdots I_{k}\subseteq P\implies I_{j}\subseteq P$ for some $j\in [k]$. Next, if $I_{1}\cdots I_{k+1}\subseteq P$, suppose that $I_{k+1}\not\subseteq P$ and $I_{1}\cdots I_{k}\not\subseteq P.$ Then $\exists (a_{1}\cdots a_{k})\in I_{1}\cdots I_{k}$ and $\exists a_{k+1} \in I_{k+1}$ such that $(a_{1}\cdots a_{k}),a_{k+1}\notin P.$ But then $(a_{1}\cdots a_{k})a_{k+1}\in I_{1}\cdots I_{k+1}\subseteq P\implies P$ is not prime, a contradiction. So either $I_{k+1}\subseteq P$ or $I_{1}\cdots I_{k}\subseteq P\implies I_{j}\subseteq P$ for some $j\in [k]$. So $I_{1}\cdots I_{k+1}\subseteq P\implies I_{j}\subseteq P$ for some $j\in [k+1]$. Finally, by induction, $I_{1}\cdots I_{n}\subseteq P\implies I_{j}\subseteq P$ for some $j\in [n]$.
+
+\textbf{(b)} We prove the finite intersection result. For any $(a_{1}\cdots a_{n})\in I_{1}\cdots I_{n}$ and then any $k\in [n]$, notice that $a_{1}\cdots a_{n}=(a_{1}\cdots a_{k-1})a_{k}(a_{k+1}\cdots a_{n})=(a_{1}\cdots a_{k-1})(a_{k+1}\cdots a_{n})a_{k}\in I_{k}.$ So then $(a_{1}\cdots a_{n})\in I_{k},\;\forall k\in [n]\implies (a_{1}\cdots a_{n})\in \bigcap_{i=1}^{n} I_{i}\implies I_{1}\cdots I_{n}\subseteq \bigcap_{i=1}^{n} I_{i}\subseteq P.$ Therefore, by \textbf{4(a)}, $I_{1}\cdots I_{n}\subseteq P\implies I_{1}\cdots I_{n}\subseteq P\implies I_{j}\subseteq P$ for some $j\in [n]$.
+
+Now consider the countably infinite collection of ideals $\{\langle x^{i}\rangle\in \mathcal{P}(k[[x]])\mid i\in \ZZ^{+}\}$ of $R=k[[x]]$ for some unital commutative ring $k$. $I=\bigcap_{i=1}^{\infty} \langle x^{i}\rangle.$ Any element of $I$ is of the form $rx^{j}$ for some $r\in k$ and some $j\geq 1$. Additionally, $rx^{j}\in I\subseteq \langle x^{j+1}\rangle\implies rx^{j}=r'x^{j+1}$ for some $r'\in k$. Therefore by the definition of equality in $k[[x]]$, $r=r'=0$ and in fact $I=\bigcap_{i=1}^{\infty} \langle x^{i}\rangle=\{0\}$, a prime ideal. However, $\langle x^{i}\rangle \not\subseteq \{0\}, \forall i\geq 1,$ and we have a counterexample in this intersection of ideals in $R=k[[x]]$. 
+
+\end{proof}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{prob}
+Let $R$ be a commutative ring, and let $\nil(R)$ be the set of nilpotents of $R$, i.e.
+\[
+\nil(R) := \{r \in R \mid r^n = 0 \text{ for some } n \in \NN\}.
+\]
+This is often called the nilradical of $R$, and you proved in the last homework that it is an ideal of $R$. Prove that $\nil(R)$ is contained in every prime ideal of $R$.
+\end{prob}
+\begin{proof}
+Let $P$ be any prime ideal of $R$, and consider any $x\in \nil(R).$ If $x^{0}=1=0,$ then $R=\{0\}$ and so $x=0\in P$. If $x^{1}=x=0\in P\leq_{+}R$, then $x\in P$. Suppose $x^{k}\in P\implies x\in P$ for some $k\geq 1$. Then if $x^{k+1}=x(x^{k})\in P$, since $P$ is prime, $x\in P$ or $x^{k}\in P\implies x\in P$. So then by induction $x^{n}\in P\implies x\in P$ for all $n\geq 1$. Therefore, $\forall x\in \nil(R),\;\exists n\in \NN\text{ such that }x^{n}=0\in P\implies x\in P$. So $\nil(R)\subseteq P$. Thus, $\nil(R)$ is contained in any prime ideal $P$ of $R$.
+
+\end{proof}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 6 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{prob}
+A ring is called local if it has a unique maximal ideal. Let $R$ be a commutative local ring. Prove that if $x \in R$, then either $x$ or $1-x$ is a unit.
+\end{prob}
+
+\begin{proof}
+Let $M$ be the unique maximal ideal of $R$. Since $M$ is proper, it can't contain $1$ otherwise $1r=r1=r\in M,\forall r\in R$. Next, if $y\in R$ is not a unit, then $ry=yr\neq 1,\forall r\in R$ and so $\langle y\rangle=\{ry\in R\mid r\in R\}$ doesn't contain $1$. That is, $\langle y\rangle \subset R=\langle 1 \rangle$. So then $\langle y \rangle =M$ or $\langle y\rangle \subset M$ since $M$ is unique and maximal. In either case $y\in M$. So $M$ contains all non-units of $R$. 
+
+Now, suppose $x$ and $1-x$ are both non-units in $R$. Then $x,1-x\in M$. But then $x+1-x=1\in M,$ a contradiction. So either $x$ or $1-x$ is a unit in $R$.
+\end{proof}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 7 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{prob}
+Let $R$ be a commutative ring, and let $I \subseteq R$ be a proper ideal. Prove that the set of prime ideals containing $I$ has minimal elements. These are the minimal primes of $I$. \tbf{Hint:} Use Zorn's Lemma.
+\end{prob}
+
+\begin{proof}
+    Let $S$ be the set of prime ideals of $R$ that contain $I$. In \textbf{Homework 2} we proved that the set of all proper ideals containing $I$ is a poset with set inclusion. So then $(S\setminus \{R\},\subseteq)$ is an induced subposet of that poset. Obviously, $P\subseteq R,\;\forall P\in S\setminus\{R\}$ and so $(S,\subseteq)$ is also a poset. Now consider any chain $C$ in $S$.
+
+    Let $L_{C}=\cap_{P\in C}P$. Obviously, $L\subseteq C,\forall P\in C\implies I\subseteq L$. Next, $\forall a,b\in L, a,b\in P,\forall P\in C\implies a-b\in P\forall P\in C$ since they are all additive subgroups of $R$. So $L\leq_{+}R$. Also, $\forall r\in R, \forall a\in L, ra\in P, \forall P\in C\implies ra=ar\in L$. So $L$ is an ideal of $R$ containing $I$. Finally, if $ab\in L,\;$ then $ab\in P,\;\forall P\in C\implies a\text{ or }b\in P,\;\forall P\in C\implies a\text{ or }b\in L$. So $L$ is a prime ideal of $R$ containing $I$, and a lower bound for $C$ in $S$. So every chain in $S$ has a lowerbound. 
+    
+    So then in the dual poset $S^{*}$ every chain has an upperbound in $S$, and by Zorn's Lemma, there exists a maximal element in $S^{*}$. That is, there exists a minimal element in $S$.
+    
+\end{proof}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 8 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{prob}
+Let $\KK$ be a field. Prove that $\KK$ contains a unique smallest subfield $\kk$ and that $\kk$ is isomorphic to either $\QQ$ or $\ZZ/p\ZZ$ for some prime $p$. $\kk$ is called the prime subfield of $F$. \tbf{Hint:} Intersect all subfields of $\KK$.
+\end{prob}
+\begin{proof}
+    Let $\Ss(K)$ be the set of all subfields of $\KK$ and $\kk=\bigcap_{\FF\in \Ss(K)}\FF$. Obviously, $\FF\subseteq \KK,\;\forall \FF\in \Ss(K)\implies \kk\subseteq \KK$. We show $\kk$ is a subfield of $\KK$. $\forall x,y\in \kk,\; x,y\in \FF,\;\forall \FF\in \Ss(K)$ and
+    \begin{align*}
+        x+y\in \FF,\forall \FF\in \Ss(K)\implies x+y\in \kk\\
+        xy\in \FF,\forall \FF\in \Ss(K)\implies xy\in \kk\\
+        -x\in \FF,\forall \FF\in \Ss(K)\implies -x\in \kk\\
+        x^{-1}\in \FF,\forall \FF\in \Ss(K)\implies x^{-1}\in \kk
+    \end{align*}
+    Then, $\kk=\bigcap_{\FF\in \Ss(K)}\FF\subseteq \FF,\;\forall \FF\in \Ss(K)\implies \kk$ is the smallest subfield of $\KK$ Well, for any other minimal element $\kk'\in \Ss(\KK),$ $\kk'\subseteq \kk\text{ and }\kk\subseteq \kk'\implies \kk=\kk'$. So $\kk$ is the unique smallest subfield of $\KK$. Next, let 
+    $$n_{+}=\sum_{i=1}^{n}1_{\kk},\forall n\in \ZZ^{+}\text{ and }0_{+}=0.$$ 
+
+    If $\Char{\kk}=0$, then let $\phi:\QQ\to \kk$ be defined via
+    $\phi(\frac{a}{b})=\frac{a_{+}}{b_{+}}=a_{+}b_{+}^{-1}.$ This is well-defined since $(i)$ $b\neq 0\implies b_{+}\neq 0_{\kk}\implies b_{+}^{-1}\in \kk$. Also, $(ii) \frac{a}{b}=\frac{c}{d}\implies ad=bc\implies a_{+}d_{+}=b_{+}c_{+}\implies \frac{a_{+}}{b_{+}}=\frac{c_{+}}{d_{+}}$. We show this is a ring homomorphism. For any $\frac{a}{b},\frac{c}{d}\in \QQ$,
+    \begin{align*}
+        &\phi(1)=1_{+}\\
+        &\phi(\frac{a}{b}+\frac{c}{d})=\phi(\frac{ad+bc}{bd})=\frac{(ad+bc)_{+}}{(bd)_{+}}=\frac{a_{+}d_{+}+b_{+}c_{+}}{b_{+}d_{+}}=\frac{a_{+}d_{+}}{b_{+}d_{+}}+\frac{b_{+}c_{+}}{b_{+}d_{+}}\\
+        &=\frac{a_{+}}{b_{+}}\cdot \frac{d_{+}}{d_{+}}+\frac{c_{+}}{d_{+}}\cdot \frac{b_{+}}{b_{+}}=\phi(\frac{a}{b})+\phi(\frac{c}{d})\\
+        &\phi(\frac{a}{b}\cdot \frac{c}{d})=\phi(\frac{ac}{bd})=\frac{(ac)_{+}}{(bd)_{+}}=\frac{a_{+}c_{+}}{b_{+}d_{+}}=(\frac{a_{+}}{b_{+}})(\frac{c_{+}}{d_{+}})=\phi(\frac{a}{b})\cdot \phi(\frac{c}{d})
+    \end{align*}
+    
+    Well, $\frac{a_{+}}{b_{+}}=\frac{c_{+}}{d_{+}}\implies a_{+}d_{+}=b_{+}c_{+}\implies ad=bc\implies \frac{a}{b}=\frac{c}{d}$, so $\phi$ is injective and $\ker \phi=\{0\}$. So then by the \textbf{First Isomorphism Theorem}, $\QQ\cong \QQ/\{0\}\cong \phi(\kk)\subseteq \kk.$ Well, since $\phi(\kk)\subseteq \kk\subseteq \KK$ must then be a field, $\phi(\kk)=\kk$ since otherwise $\kk$ isn't minimal. So $\QQ\cong \kk$.
+
+    If $\Char{\kk}=p>0$, then consider $\kk_{p}=\langle 1_{+}\rangle_{+}\leq_{+} \kk$. Obviously, since $\Char{\kk}=p$, $\kk_{p}=\{0,1_{+},2_{+},\hdots, (p-1)_{+}\}$. All non-zero elements of $\kk_{p}$ are units, and so $\kk_{p}\subseteq \kk\subseteq \KK$ is a field $\implies \kk_{p}=\kk$ since $\kk$ is minimal. Well, then obviously $\phi\coloneq n_{+}\mapsto n$ is a bijection from $\kk$ to  $\ZZ_{p}$. We show this is a ring homomorphism. For any $a_{+},b_{+}\in \kk$,
+    \begin{align*}
+        &\phi(1_{+})=1\\
+        &\phi(a_{+}+b_{+})=a+b=\phi(a_{+})+\phi(b_{+})\\
+        &\phi(a_{+}b_{+})=ab=\phi((a)_{+})\phi((b)_{+})
+    \end{align*}
+    So then $\phi$ is a field isomorphism and $\kk\cong \ZZ_{p}.$
+
+\end{proof}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 9 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{prob}
+Let $P$ be a prime ideal of a commutative ring $R$, and let $R_P$ be the localization of $R$ at $P$.
+\begin{enumerate}[label=(\alph*)]
+\item Prove that if $f \notin P$, then $f/1$ is a unit in $R_P$.
+\item Let $I \subseteq P$ be an ideal of $R$. Prove that
+\[
+IR_P = \left\{\frac{a}{b} \in R_P \mid a \in I\right\}
+\]
+is a proper ideal of $R_P$.
+\item Prove that if $I$ is an ideal of $R$ and $I \not\subseteq P$, then $IR_P = R_P$.
+\item Prove that $R_P$ is a local ring, and describe its maximal ideal.
+\end{enumerate}
+\end{prob}
+\begin{proof}
+    \textbf{(a)} For a prime ideal $P$ of $R$, the localization of $R$ at $P$ is $R_{P}=(R\setminus P)^{-1}R$ and just note that these fractions are equivalence classes. Now, if $f\notin P$ then $\frac{1}{f}\in R_{P}$ and so $\frac{1}{f}\cdot\frac{f}{1}=\frac{f}{1}\cdot \frac{1}{f}=\frac{1}{1}=1_{R_{P}}.$ So $\frac{f}{1}$ is a unit in $R_{P}$.
+
+    \textbf{(b)} If $I$ is an ideal of $R$, Consider any $\frac{a}{b},\frac{c}{d}\in IR_{P}$. $\frac{a}{b}-\frac{c}{d}=\frac{ad-bc}{bd}$. Suppose $bd\in P$. But then since $P$ is prime, $b\in P\text{ or } d\in P$, a contradiction. So $bd\not\in P$ Also, $ad-bc\in I$ since $I$ is an ideal of $R$. So then $\frac{ad-bc}{bd}\in IR_{P}\leq_{+}R_{P}.$ Now, for any $\frac{r}{q}\in R_{P}$ and any $\frac{i}{b}\in IR_{P}$, $\frac{i}{b}\cdot \frac{r}{q}=\frac{r}{q}\cdot\frac{i}{b}=\frac{ri}{qb}$. Once more, $qb\in P\implies q\in P\text{ or }p\in P$, a contradiction. So $qb\not\in P$ and since $ri\in I$, $\frac{ri}{qb}\in IR_{P}$ which must then be an ideal of $R_{P}.$ 
+    
+    If $I\subseteq P$, $IR_{P}$ isnt proper. Then $1_{R_{P}}=\frac{1}{1}\in IR_{P}\implies 1\in I\subseteq P.$ But then $1\notin (R\setminus P)$, and so $\frac{1}{1}\not\in R_{P}$ in the first place, a contradiction. So $I\subseteq P\implies IR_{P}$ is a proper ideal of $R_{P}$.
+
+    \textbf{(c)} We simply prove the other direction $(\supseteq)$ continuing after proving $IR_{P}\subseteq R_{P}$ is an ideal in the first part of $\textbf{(b)}$, with the added assumption that $I\not\subset P$. Since any $i\in I$ does not belong to $P$, for any $\frac{i}{q}\in IR_{P}$, $\frac{q}{i}\in R_{P}\implies \frac{q}{i}\cdot\frac{i}{q}=\frac{i}{q}\cdot \frac{q}{i}=\frac{1}{1}=1_{R_{P}}\in IR_{P}$ since it is an ideal of $R_{P}$ and so $IR_{P}=R_{P}$.
+
+    \textbf{(d)} Consider any proper ideal $I_{P}\subset R_{P}$. Since it can't contain $1_{R_{P}}$, none of it's elements can be units. That is, they can't be of the form $\frac{f}{1}$ where $f\notin P$ by \textbf{(a)}. So then 
+    $$I_{P}\subseteq \{\frac{a}{b}\in R_{P}\mid a\in P\}\implies I_{P}=\{\frac{a}{b}\in R_{P}\mid a\in I\subseteq P\}.$$ Well, since $I_{P}$ is an ideal, for any such $\frac{a}{b}\in I_{P}$, and any $\frac{r}{q}\in R_{P}$, we must have that $\frac{a}{b}\cdot\frac{r}{q}=\frac{r}{q}\cdot\frac{a}{b}=\frac{ra}{qb}\in I_{P}$ and that $\frac{a}{b}-\frac{r}{q}=\frac{aq-br}{bq}\in I_{P}$. Which means that $ra=ar\in I,\forall r\in R,\forall a\in I$ and that $\frac{a}{b}-\frac{r}{q}=\in I_{P},\forall r\in R,\;\forall q\in R\setminus P, \forall r\in R,\forall b,q\in R\setminus P,\forall a\in I\implies \frac{a}{1}-\frac{b}{1}=\frac{a-b}{1}\in I_{P},\;\forall a,b\in I\implies a-b\in I,\;\forall a,b\in I\implies I\leq_{+} R$. That is, $I\subseteq P$ is an ideal of $P$. So any proper ideal $I_{P}\subset R_{P}$ is of the form $I_{P}=IP_{P}$ for some ideal $I\subseteq P.$
+    
+    Well, 
+    
+    $$IR_{P}=\{\frac{a}{b}\in R_{P}\mid a\in I\subseteq P\}\subseteq \{\frac{a}{b}\in R_{P}\mid a\in \bigcup_{I\subseteq P}I\}=PR_{P}\text{ for any ideal }I\subseteq P\text{ of $R$.}$$
+    So $PR_{P}$ contains all proper ideals of $R_{P}$. Thus, $R_{P}$ is a local ring with the unique maximal ideal $PR_{P}$.
+
+\end{proof}
+
+\end{document}

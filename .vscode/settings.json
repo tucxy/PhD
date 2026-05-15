@@ -14,7 +14,8 @@
     "**/*.nav": true,
     "**/*.snm": true,
     "**/*.vrb": true,
-    "**/*.xdv": true
+    "**/*.xdv": true,
+    "**/*.auxlock": true,
   },
 
   "workbench.colorCustomizations": {

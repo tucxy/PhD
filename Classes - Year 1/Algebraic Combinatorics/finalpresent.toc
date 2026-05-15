@@ -1,0 +1,6 @@
+\beamer@sectionintoc {1}{Families of Graphs}{2}{0}{1}
+\beamer@sectionintoc {2}{G-Decompositions}{6}{0}{2}
+\beamer@sectionintoc {3}{cyclic designs}{17}{0}{3}
+\beamer@sectionintoc {4}{Edge Length}{27}{0}{4}
+\beamer@sectionintoc {5}{Edge Length and Cyclic Decomposition}{30}{0}{5}
+\beamer@sectionintoc {6}{$S_{7}\sqcup P_{2}$}{55}{0}{6}

@@ -1,0 +1,405 @@
+\documentclass[addpoints,10pt]{exam}
+
+\usepackage{amsmath,amsthm,enumitem,wrapfig,amsfonts,mathtools}
+\usepackage[mathscr]{euscript}
+\usepackage[super]{nth}
+\usepackage{dsfont}
+\usepackage{xparse}
+\usepackage{cancel}
+
+\usepackage{geometry}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\renewcommand{\rmdefault}{ptm} %Change the Front Family from the default(cmr) to ptm(Times)
+\usepackage{amsmath,amsfonts,amsthm,amssymb} % Math packages
+\usepackage{bm}
+%\usepackage{mathptmx}
+\usepackage{graphicx}
+\usepackage{sectsty} % Allows customizing section commands
+% \allsectionsfont{\centering} % Make all sections centered, the default font and small caps
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{xcolor}
+\definecolor{darkpastelgreen}{rgb}{0.01, 0.75, 0.24}
+\definecolor{blue-violet}{rgb}{0.54, 0.17, 0.89}
+%\usepackage{polylongdiv} %polynomial long division
+% Custom problem environment
+\usepackage{polynom}
+\newcounter{cprob}
+\newenvironment{cprob}[1]{%
+    \setcounter{cprob}{#1}%
+    \noindent\textbf{Problem \thecprob.}%
+}{%
+    \par\bigskip%
+}
+
+\theoremstyle{plain}
+\newcommand{\theoremname}{Theorem}
+\newtheorem{thm}{\protect\theoremname}
+  \theoremstyle{definition}
+  \newtheorem{prob}[thm]{Problem}
+  \newtheorem*{problem*}{Open Problem}
+  \theoremstyle{plain}
+  \newtheorem{conjecture}[thm]{Conjecture}
+  \theoremstyle{plain}
+  \newtheorem{lem}[thm]{Lemma}
+  \newtheorem*{lem*}{Lemma}
+  \newtheorem{obs}[thm]{Observation}
+  \newtheorem{cor}[thm]{Corollary}
+  \theoremstyle{definition}
+\newtheorem{definition}[thm]{Definition}
+
+% Patch prob environment to be single spaced
+\let\oldprob\prob
+\let\endoldprob\endprob
+\renewenvironment{prob}
+  {\begin{singlespace}\oldprob}
+  {\endoldprob\end{singlespace}}
+
+% start problem one line below like for enumerated problems with multiple parts
+\newcommand{\belowtitle}{\leavevmode\newline}
+%\Observe command
+\newcommand{\Observe}{\text{Observe.}}
+%(=>)
+\newcommand{\IF}{\mathbf{(\Rightarrow)}}
+%(<=)
+\newcommand{\FI}{\mathbf{(\Leftarrow)}}
+%equivalence classes; \class[S]{ *content in square brackets* }
+\newcommand{\class}[2][]{\ensuremath{\left[\,#2\,\right]_{#1}}}
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}
+\newcommand{\kkk}{\ensuremath{\Bbbk}}
+\newcommand{\CC}{\ensuremath{\mathbb{C}}}
+\newcommand{\FF}{\ensuremath{\mathbb{F}}}
+\newcommand{\KK}{\ensuremath{\mathbb{K}}}
+\newcommand{\NN}{\ensuremath{\mathbb{N}}}
+\newcommand{\QQ}{\ensuremath{\mathbb{Q}}}
+\newcommand{\RR}{\ensuremath{\mathbb{R}}}
+\newcommand{\ZZ}{\ensuremath{\mathbb{Z}}}
+\newcommand{\MM}{\ensuremath{\mathcal{M}}}
+\newcommand{\TT}{\ensuremath{\mathcal{T}}}
+\newcommand{\BB}{\ensuremath{\mathcal{B}}}
+\newcommand{\VV}{\ensuremath{\mathcal{V}}}
+\newcommand{\WW}{\ensuremath{\mathcal{W}}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}}
+\newcommand{\PP}{\ensuremath{\mathcal{P}}}
+\newcommand{\LL}{\ensuremath{\mathcal{L}}}
+\newcommand{\kk}{\ensuremath{\mathds{k}}}
+\newcommand{\EE}{\ensuremath{\mathbb{E}}}
+\newcommand{\Ss}{\ensuremath{\mathcal{S}}}
+\newcommand{\GG}{\ensuremath{\mathcal{G}}}
+
+\newcommand{\sm}{\char`\\}
+%vector stuff
+\DeclarePairedDelimiter{\ip}{\langle}{\rangle} %inner product/generate
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert} %norm
+\DeclarePairedDelimiter{\sqb}{\lbrack}{\rbrack} %corrd
+
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\mbf}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\tbf}[1]{\textbf{ #1 }}
+\newcommand{\Span}{\ensuremath{\mathrm{Span}}}
+\newcommand{\Char}[1]{\mathrm{Char}\; #1}
+\DeclareMathOperator{\lcm}{lcm}
+\newcommand{\id}{\ensuremath{\mathrm{id}}}
+\newcommand{\Gal}[2]{\mathrm{Gal}(#1/#2)}
+\newcommand{\Aut}{\ensuremath{\mathrm{Aut}}}
+\newcommand{\Fix}[2]{\mathrm{Fix}_{#1}(#2)}
+\newcommand{\nil}{\ensuremath{\mathrm{nil}}}
+\newcommand{\Hom}{\ensuremath{\mathrm{Hom}}}
+\newcommand{\Obj}{\ensuremath{\mathrm{Obj}}}
+
+\newcommand{\Rng}{\ensuremath{\mathrm{Rng}}}
+\newcommand{\Ring}{\ensuremath{\mathrm{Ring}}}
+\newcommand{\h}{\ensuremath{\mathrm{ht}}}
+
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\def\env@matrix{\hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols c}}
+
+\newcommand{\proj}[2]{\text{proj}_{#1}(#2)}
+
+%%% Formatting: Page Header
+\newcommand{\StudentName}{Danny Banegas}
+\newcommand{\AssignmentName}{Homework 4}
+\newcommand{\CourseName}{MATH 720 - Algebra I}
+
+\pagestyle{headandfoot}
+\runningheadrule
+\firstpageheadrule
+\firstpageheader{\CourseName}{\StudentName}{\AssignmentName}
+\runningheader{\CourseName}{\StudentName}{\AssignmentName}
+\firstpagefooter{}{\thepage}{}
+\runningfooter{}{\thepage}{}
+
+\printanswers
+
+\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+
+\usepackage{parskip}
+\usepackage{setspace}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{thm}{0} % next prob is 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% lemmas %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{lem}\label{lem:UFDiv}
+    If $R$ is a UFD, and $r=\prod_{i=1}^{n}p_{i}$ is some irreducible decomposition, then
+    $$d\mid r \iff d=u\prod_{j\in S\subseteq [n]}p_{i}\text{ for some subset }S\subseteq [n]\text{ and some unit }u\in R.$$
+\end{lem}
+
+\begin{proof}
+    Let $d=d_{1}\cdots d_{m}$ be some irreducible decomposition, which is unique up to associates since $R$ is a UFD. $(\implies)$ If $d\mid r,\;\exists q\in R$ such that $r=dq.$ and there exists some irreducible decomposition $q=q_{1}\cdots q_{t}.$
+    
+    $r=\prod_{i=1}^{n}p_{i}=dq=(d_{1}\cdots d_{m})(q_{1}\cdots q_{t}).$ Recall that since $R$ is a UFD, and $r$ decomposes into $n$ many $p_{i}$'s, $r=dq\implies dq$ must decompose into $n$ many $d_{i}$'s and $q_{i}$'s, that is $t+m=n.$ So reindex the $q_{i}$'s so that $q_{i}=q_{i+m}$ for all $i\in [t]$ and we obtain $r=p_{1}\cdots p_{m}q_{m+1}\cdots q_{n}.$ Since $R$ is a UFD, there exists a permutation $\sigma\in S_{n}$ such that for some units $u_{1},\hdots, u_{n}\in R$,
+    $$d_{i}=u_{i}p_{\sigma(i)},\forall i\in [m]\text{ and }q_{i}=u_{i}p_{\sigma(i)},\forall m<i\leq n.$$
+    That is, if $S=\sigma([m])$, since $R$ is commutative, 
+    $$d=(\prod_{i=1}^{m}u_{i})(\prod_{j\in S\subseteq [n]}p_{j})=u\prod_{j\in S\subseteq [n]}p_{j}\text{ where }u=\prod_{i=1}^{n}u_{i}.$$
+    $(\impliedby)$ On the other hand, if $d=u\prod_{j\in S\subseteq [n]}p_{j}$ for some unit $u\in R$, we have that: 
+    $$(u^{-1}\prod_{k\in [n]\setminus S} p_{k})d=(u^{-1}\prod_{k\in [n]\setminus S} p_{k})(u\prod_{j\in S\subseteq [n]}p_{j})=\prod_{i\in [n]}p_{i}=r\implies d\mid r.$$
+    
+\end{proof}
+
+\begin{lem}
+    If $R$ is Noetherian containing a prime ideal $P$, then $R/P$ is also Noetherian. 
+\end{lem}
+\begin{proof}
+    Let $\pi:R\to R/P$ be the canonical homomorphic projection, and $I_{P}$ any ideal of $R/P$. $\pi$ is surjective, so $I=\pi^{-1}(I_{P})\subseteq R$ must be a finitely generated ideal since $R$ is Noetherian. That is, $I=\pi^{-1}(I_{P})=\langle i_{1},\hdots, i_{n}\rangle\implies I_{P}=\pi(I)=\langle \pi(i_{1}),\hdots, \pi(i_{n})\rangle$. Therefore, $R/P$ is Noetherian.
+
+\end{proof}
+\begin{lem}
+    Let $R$ be a Noetherian UFD, and let $P$ be a prime ideal of $R$. Then there exist some prime elements $q_{1},\hdots, q_{n}\in P$ such that $P=\langle q_{1},\hdots, q_{n}\rangle$.
+\end{lem}
+\begin{proof}
+    Since $R$ is Noetherian, $P$ is finitely generated. So there exist some $a_{1},\hdots, a_{n}\in P$ such that $P=\langle a_{1},\hdots, a_{n}\rangle$. Since $R$ is a UFD, for each $i\in [n]$, $a_{i}=\prod_{j=1}^{m_{i}}p_{(i)_{j}}$ for some irreducible and therefore prime $p_{(i)_{j}}$'s. Well, $\prod_{j=1}^{m_{i}}p_{(i)_{j}}\in P\implies q_{i}=p_{(i)_{k}}\in P$ for some $k\in [m_{i}]$. So then $a_{i}=q_{i}\prod_{\substack{j\in [m_{ij}]\\ p_{(i)_{j}\neq q_{i}}}} p_{(i)_{j}}\implies P=\langle q_{1},\hdots, q_{n}\rangle.$
+
+\end{proof}
+
+\begin{lem}[Problem 7 from HW 3]\label{lem:minprime}
+Let $R$ be a commutative ring, and let $I \subseteq R$ be a proper ideal. Prove that the set of prime ideals containing $I$ has minimal elements. We call such a minimal element a \underline{minimal prime ideals over $I$}
+\end{lem}
+
+\begin{proof}
+    Let $S$ be the set of prime ideals of $R$ that contain $I$. In \textbf{Homework 2} we proved that the set of all proper ideals containing $I$ is a poset with set inclusion. So then $(S\setminus \{R\},\subseteq)$ is an induced subposet of that poset. Obviously, $P\subseteq R,\;\forall P\in S\setminus\{R\}$ and so $(S,\subseteq)$ is also a poset. Now consider any chain $C$ in $S$.
+
+    Let $L_{C}=\cap_{P\in C}P$. Obviously, $L_{C}\subseteq C,\forall P\in C\implies I\subseteq L_{C}$. Next, $\forall a,b\in L_{C}, a,b\in P,\forall P\in C\implies a-b\in P\forall P\in C$ since they are all additive subgroups of $R$. So $L_{C}\leq_{+}R$. Also, $\forall r\in R, \forall a\in L_{C}, ra\in P, \forall P\in C\implies ra=ar\in L_{C}$. So $L_{C}$ is an ideal of $R$ containing $I$. Finally, if $ab\in L_{C},\;$ then $ab\in P,\;\forall P\in C\implies a\text{ or }b\in P,\;\forall P\in C\implies a\text{ or }b\in L_{C}$. So $L_{C}$ is a prime ideal of $R$ containing $I$, and a lower bound for $C$ in $S$. So every chain in $S$ has a lowerbound. 
+    
+    So then in the dual poset $S^{*}$ every chain has an upperbound in $S$, and by Zorn's Lemma, there exists a maximal element in $S^{*}$. That is, there exists a minimal element in $S$.
+    
+\end{proof}
+\begin{lem}\label{lem:UFDkrull} A prime ideal $P$ of a UFD $R$ has height at most $1$ if and only if $P$ is principal. 
+\end{lem}
+\begin{proof}
+$(\implies)$ If $P$ has height $1$, then there is no prime ideal strictly between $P$ and $\{0\}$. If $P=\{0\}=\langle 0\rangle$, then it's principal. If $P$ is non-zero, suppose it is not principal. So $P$ contains at least two non-zero coprime generators $x$ and $y$. $R$ is a UFD, so $x$ has a prime decomposition $x=p_{1}\cdots p_{n}$. Therefore, since $P$ is prime, some $p_{j}$ belongs to $P$. So $\langle p_{i}\rangle$ is prime and ${0}\subset \langle p_{i}\rangle \subseteq P\implies P$ is principal or $\{0\}\subset \langle p_{j}\rangle \subset P\implies \mathrm{ht}(P)> 1,$ both contradictions. Thus, $P$ is principal.
+
+$(\impliedby)$ If $P=\{0\}=\langle 0\rangle$, it obviously has height $0\leq 1$. If $P$ is principal and prime, then $P=\langle p\rangle$ for some prime element $p\in R\setminus\{0\}$. Suppose there exists some prime ideal $Q$ strictly between $\{0\}$ and $P$. Then there exists some non-zero $q\in Q$ which has a prime decomposition $q=q_{1}\cdots q_{n}$ since $R$ is a UFD and since $Q$ is prime, some $q_{j}$ belongs to $Q$. Recall that all primes are irreducible and vice versa, so then since $q_{j}\in Q\subset P\implies \exists r\in R\text{ s.t. } q_{j}=rp$, $r$ or $p$ is a unit. No primes are units, so $r$ is a unit. Well, then $q_{j}=rp\in Q\implies (p\in Q\implies P=\langle p\rangle \subseteq Q)\text{ or }(r\in Q\implies rr^{-1}=1\in Q\implies Q=R\subset P),$ which are both contradictions. Thus, there is no prime ideal strictly between $\{0\}$ and $P$, so $\mathrm{ht}(P)=1$.
+\end{proof}
+\newpage
+\begin{lem}\label{lem:NoP}
+    If $R$ is Noetherian domain, then a principal prime ideal $P$ of $R$ has height at most $1$
+\end{lem}
+\begin{proof}
+Let $R$ be a Noetherian integral domain. If $P=\{0\}=\langle 0\rangle$, it has height $0\leq 1$. If $P$ is prime, principal, and non-zero, then $P=\langle p\rangle$ for some prime element $p\in R\setminus\{0\}$. Suppose there exists a prime ideal $Q$ such that $\{0\}\subset Q\subset P.$ Then $\exists q\in Q\setminus\{0\}\subset P\implies \exists r_{0}\in R$ such that $q=r_{0}p$. Since $Q$ is prime we have that $r_{0}\in Q \text{ or } p\in Q.$  but $p$ can't belong to $Q$ since $Q\subset P=\langle p\rangle$, so $r_{0}\in Q$.
+
+We can define a sequence $(r_{i})_{i\in \NN}$ in $R$ recursively by repeating the same process indefinitely
+$$r_{i}p^{i+1}\in Q\implies r_{i}\in Q\implies r_{i}=r_{i+1}p\text{ for some }r_{i+1}\in R\implies q=r_{i}p^{i+1},\;\forall i\in \NN.$$
+Now, since $r_{i}=r_{i+1}p,\forall i\in\NN$, we obtain an ascending chain of ideals
+$$ 
+\langle r_{0}\rangle \subseteq \langle r_{1}\rangle \subseteq \cdots \subseteq \langle r_{i}\rangle \subseteq \cdots
+$$
+which must stabilize at some $i=n\in \ZZ^{+}$ since $R$ is Noetherian. We already have that $r_{n}=r_{n+1}p$ and now $\langle r_{n}\rangle=\langle r_{n+1}\rangle\implies r_{n+1}=sr_{n}$ for some $s\in R$. So then $r_{n}=r_{n+1}p=(sr_{n})p\implies r_{n}-sr_{n}p=r_{n}(1-sp)=0\implies 1-sp=0.$ But then since $q=sr_{n}p^{n+1}\neq 0$ and $R$ is an integral domain, $s$ is non zero and $p$ is a prime unit. The very thing is impossible.
+
+Therefore there is no prime ideal strictly between $\{0\}$ and $P$, and $\operatorname{ht}(P)\leq 1.$
+
+\end{proof}
+\begin{cor}[Corollary of Homework 3 Problem 9]\label{cor:localprime}
+    If $R$ is a commutative ring and $P$ is a prime ideal of $R$, then the set of all prime ideals of $R$ contained in $P$ is in bijection with the set of all prime ideals of $R_{P}$ via $Q\longleftrightarrow QR_{P}$.
+\end{cor}
+\begin{proof}
+    Since $P$ is prime and $R$ is commutative, $R_{P}=\{\frac{r}{q}\mid r\in R, q\in R\setminus P\}$ is a local ring with maximal ideal $PR_{P}$. Additionally, by \textbf{Homework 3}, all ideals of $R_{P}$ are of the form $IR_{P}=\{\frac{i}{q}\in R_{P}\mid i\in I\}$ for some $I\subseteq R$, and $I\not\subseteq P\implies IR_{P}=R_{P}$. We show an ideal $Q\subset P$ is prime if and only if $QR_{P}$ is prime.
+    
+    $(\implies)$ Suppose $Q\subset P$ is prime. If $(\frac{a}{r})(\frac{b}{s})\in QR_{P}$, then $\frac{ab}{rs}\in QR_{P}\implies ab\in Q\implies a\in Q\text{ or }b\in Q\implies \frac{a}{q}\in QR_{P}\text{ or }\frac{b}{d}\in QR_{P}$. So $Q\subset R$ is prime $\implies QR_{P}$ is prime. 
+    
+    $(\impliedby)$ On the other hand, if $QR_{P}$ is prime, $ab\in Q\implies \frac{ab}{1}=(\frac{a}{1})(\frac{b}{1})\in QR_{P}\implies \frac{a}{1}\in QR_{P}\text{ or }\frac{b}{1}\in QR_{P}\implies a\in Q\text{ or }b\in Q.$ So $QR_{P}$ is prime $\implies Q\subset P$ is prime.
+
+    So we see that $QR_{P}$ is prime $\iff Q\subset P$ is prime and immediately the mapping $\phi$ from prime ideals $Q$ properly contained in $P$ to prime ideals of $R_{P}$ defined by $\phi(Q)=QR_{P}$ is a surjection. Now, if $Q_{1}\neq Q_{2}$ but both are prime ideals properly contained in $P$, consider $Q_{1}R_{P}$ and $Q_{2}R_{P}$. Since $Q_{1}\neq Q_{2}$, there exists some $q\in Q_{1}\setminus Q_{2}$ or some $q\in Q_{2}\setminus Q_{1}$. Without loss of generality, let $q\in Q_{1}\setminus Q_{2}$. Then $\frac{q}{1}\in Q_{1}R_{P}$ but $\frac{q}{1}\not\in Q_{2}R_{P}$, so $Q_{1}R_{P}\neq Q_{2}R_{P}$. Therefore, $\phi$ is injective. So $\phi$ is a bijection.
+
+    \textbf{(2)} Now consider $(\PP,\subseteq)$ and $(\PP_{P},\subseteq)$ where $\PP$ is the set of all prime ideals properly contained in $P$, and $\PP_{P}$ is the set of all prime ideals in $R_{P}$. All primes in $R$ must contain $\mathrm{nil}(R)$ since $R$ is commutative, and so by \textbf{Homework 4} $(\PP,\subseteq)\subseteq ()$ the induced subposet obtained by removing $\hat{0}=\nil(R)$, every proper ideal is contained in some maximal element,  $\PP$ is  We proved that both of these are posets with $\hat{0}$. Well, if $Q_{1}\subseteq $
+\end{proof}
+\newpage
+\begin{thm}
+If $R$ is a Noetherian Domain and $P\subset R$ is a prime ideal minimal over $I_{n}=\langle p_{1},\hdots, p_{n}\rangle$ where $p_{1},\ldots,p_{n}$ are primes, then $\h(P)\leq n.$
+\end{thm}
+
+\begin{proof}
+Recall that by \textbf{Lemma~\ref{lem:minprime}}, there exists a minimal prime ideal $P$ over any ideal $I$ in $R$. Let $I=\langle p_{1},\hdots, p_{n}\rangle$ where $p_{1},\ldots,p_{n}$ are primes, and let $P$ be a minimal prime ideal over $I$. Now recall that the localization $R_{P}$ of $R$ at $P$ defined via
+    $$R_{P}=\left\{\frac{r}{q}: r\in R, q\in R\setminus P\right\}\text{ is a local ring with maximal ideal }PR_{P}\text{ by \textbf{Homework 3}.}$$
+
+If $n=1$, $I=\langle p_{1}\rangle$ and since $p_{1}$ is a prime element, $I$ is a prime ideal, and $P=\langle p_{1}\rangle$. By \textbf{Lemma~\ref{lem:NoP}}, $\mathrm{ht}(P)\leq 1$.
+
+Suppose the statement holds for some $k\geq 1$. Let $I=\langle p_{1},\hdots,p_{k},p_{k+1}\rangle$ where $p_{1},\hdots,p_{k+1}$ are primes, and let $P$ be a prime ideal minimal over $I$..
+
+Consider any chain $Q_{1}\subseteq Q_{2}\subseteq \cdots \subseteq Q_{k}=Q$ of prime ideals terminating at $Q$, and let $j\in [k]$ be maximal such that $Q_{j}\subset Q$. Then $Q_{1}\subset \cdots \subset Q_{j}\subset Q$, so $j\leq \mathrm{ht}(Q)\leq k$.
+
+Since $Q\subseteq P$, we may extend this chain by adding $P$ at the end:
+\[
+Q_{1}\subset \cdots \subset Q_{j}\subset Q\subseteq P.
+\]
+
+Passing to the quotient $R/Q$, any strict containment between $Q$ and $P$
+corresponds to a strict containment between $0$ and $P/Q$. Since $R/Q$ is a
+Noetherian domain and $P/Q$ is a prime ideal minimal over
+$\langle\class[Q]{p_{k+1}}\rangle$, Lemma~\ref{lem:NoP} gives
+$\mathrm{ht}(P/Q)\le 1$. Hence there can be at most one strict containment
+between $Q$ and $P$.
+
+Therefore any chain of prime ideals terminating at $P$ has length at most
+$j+1\le k+1$, so $\mathrm{ht}(P)\le k+1$.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\setcounter{thm}{0} % next prob is 1
+\begin{prob}
+Let $R$ be a UFD, and let $a$ and $b$ be nonzero non-unit elements of $R$.
+Prove that $a$ and $b$ have a gcd, and describe it in terms of their prime factorizations.
+\end{prob}
+
+\begin{proof}
+    Since $R$ is a UFD, there exist irreducible decompositions $a=a_{1}\cdots a_{n},b=b_{1}\cdots b_{m}.$ Recall that any irreducibles in a UFD are also prime elements, so these are also prime products. Now let $G=\{p_{1},\hdots,p_{N}\}$ be some minimal collection of non-associate primes appearing in both $a$ and $b$, which must exist since both have finite decompositions. Minimal here means we can express both $a$ and $b$ as a product within $G$. Then there exists $\alpha_{i}$ and $\beta_{i}$ such that $a=\prod_{i=1}^{N} g_{i}^{\alpha_{i}}$ and $b=\prod_{i=1}^{N} g_{i}^{\beta_{i}}$. 
+    
+    Now let $d=\prod_{i=1}^{N} g_{i}^{\gamma_{i}}$ where $\gamma_{i}=\min\{\alpha_{i},\beta_{i}\}$ for each $i\in [N]$. Behold, $\gamma_{i}\leq \alpha_{i},\beta_{i}$ and so
+    \begin{align*}
+        g\prod_{i=1}^{N} g_{i}^{\alpha_{i}-\gamma_{i}}=(\prod_{i=1}^{N} g_{i}^{\alpha_{i}})(\prod_{i=1}^{N} g_{i}^{\alpha_{i}-\gamma_{i}})=a\implies g\mid a\\
+        g\prod_{i=1}^{N} g_{i}^{\beta_{i}-\gamma_{i}}=(\prod_{i=1}^{N} g_{i}^{\beta_{i}})(\prod_{i=1}^{N} g_{i}^{\beta_{i}-\gamma_{i}})=b\implies g\mid b
+    \end{align*}
+ Now consider any common divisor $d$ of $a$ and $b$. By \textbf{Lemma }\ref{lem:UFDiv}, $d$ can be expressed as some product of primes appearing in $a$ and $b$ and some units. Then obviously it is expressible as some unit multiplied by some product in $G$. That is, $d=u\prod_{i=1}^{N} g_{i}^{\delta_{i}}$ for some unit $u\in R$ and $\delta_{i}\leq \alpha_{i},\beta_{i}$ for each $i\in [N]$ since these are non associate primes. Well, $\gamma_{i}=\min\{\alpha_{i},\beta_{i}\}\in \{\alpha_{i},\beta_{i}\}$ for each $i\in [N]$, so $\delta_{i}\leq \alpha_{i},\beta_{i}\implies \delta_{i}\leq \gamma_{i},\;\forall i\in [N]$. Therefore,
+    $$d\prod_{i=1}^{N} g_{i}^{\gamma_{i}-\delta_{i}}=(\prod_{i=1}^{N} g_{i}^{\delta_{i}})(\prod_{i=1}^{N} g_{i}^{\gamma_{i}-\delta_{i}})=\prod_{i=1}^{N} g_{i}^{\gamma_{i}}=g\implies d\mid g.$$
+Thus, $g$ is a gcd of $a$ and $b$.
+   
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{prob}
+Let $R$ be a PID and let $S$ be a multiplicative set of $R$, and let $P \subseteq R$ be a prime ideal.
+\begin{enumerate}[label=(\alph*)]
+\item Prove that $R/P$ is a PID.
+\item Prove that $S^{-1}R$ is a PID.
+\end{enumerate}
+\end{prob}
+\begin{proof}
+    \textbf{(a)} Consider any ideal $I_{P}\subseteq R/P$ and let $\pi:R\to R/P$ be the canonical homomorphic projection. Then the premiage $I=\pi^{-1}(I_{P})$ of $I_{P}$ is an ideal. Since $R$ is a PID, $I=\langle i\rangle$ for some $i \in R$. Then $I_{P}=\pi(I)=\pi(\langle i\rangle)=\langle \pi(i)\rangle$, so $I_{P}$ is principal.
+
+    \textbf{(b)} Consider any ideal $I_{S}\subseteq S^{-1}R$ and let $\iota:R\to S^{-1}R$ be the inclusion mapping defined by $\iota(r)=\frac{r}{1}$, which is clearly a homomorphism. Then the premiage $I=\iota^{-1}(I_{S})$ of $I_{S}$ is an ideal. Since $R$ is a PID, $I=\langle i\rangle$ for some $i \in R$. Then $I_{S}=\iota(I)=\iota(\langle i\rangle)=\langle \iota(i)\rangle$, so $I_{S}$ is principal.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{prob}
+Let $R$ be a Noetherian UFD.
+\begin{enumerate}[label=(\alph*)]
+\item Prove that every descending chain of prime ideals
+$$
+P_0 \supseteq P_1 \supseteq \cdots \supseteq P_n \supseteq \cdots
+$$
+in $R$ stabilizes.
+\item The height of a prime ideal $P$ is (if finite) the maximum length $h$ of a chain of prime ideals
+$$
+P_0 \subseteq P_1 \subseteq \cdots \subseteq P_h = P.
+$$
+Prove that every prime ideal in $R$ of height $1$ is principal.
+\end{enumerate}
+\end{prob}
+
+
+\begin{proof}\textbf{(b)} This is a direct consequence of \textbf{Lemma }\ref{lem:UFDkrull}. If $P$ has height $1$, then $P$ is principal.
+
+\textbf{(a)} \begin{thm}
+If $R$ is a Noetherian UFD and $P=\langle p_{1},\hdots,p_{n}\rangle$ is a prime ideal generated by $n$ prime elements, then $\mathrm{ht}(P)\leq n$.
+\end{thm}
+
+\begin{proof}
+We prove the stronger statement that if $I=\langle p_{1},\hdots,p_{n}\rangle$ is an ideal generated by $n$ prime elements and $P$ is a prime ideal minimal over $I$, then $\mathrm{ht}(P)\leq n$. The result follows immediately since if $P=\langle p_{1},\hdots,p_{n}\rangle$ is itself prime, then $P$ is minimal over itself.
+
+If $n=1$, let $P$ be prime minimal over $\langle p_{1}\rangle$. Since $p_{1}$ is a prime element, $\langle p_{1}\rangle$ is a prime ideal, so $P=\langle p_{1}\rangle$. By Lemma~\ref{lem:NoP}, $\mathrm{ht}(P)\leq 1$.
+
+Suppose the statement holds for $n=k$. Let $I=\langle p_{1},\hdots,p_{k},p_{k+1}\rangle$ and let $P$ be a prime ideal minimal over $I$. Set $J=\langle p_{1},\hdots,p_{k}\rangle$. Since $R$ is Noetherian, there exists a prime ideal $Q$ minimal over $J$. By the induction hypothesis, $\mathrm{ht}(Q)\leq k$.
+
+Let $P_{0}\subsetneq P_{1}\subsetneq\cdots\subsetneq P_{m}=P$ be a chain of prime ideals. Let $i$ be the largest index such that $P_{i}\subseteq Q$. Then $P_{0}\subsetneq\cdots\subsetneq P_{i}\subseteq Q$, so $i\leq\mathrm{ht}(Q)\leq k$.
+
+Since $P$ is minimal over $I$, we have $I\subseteq P_{i+1}$. Thus $p_{1},\hdots,p_{k}\in P_{i+1}$, so $Q\subseteq P_{i+1}$. Passing to the quotient $R/Q$, the ideals $P_{i+1}/Q\subsetneq\cdots\subsetneq P_{m}/Q=P/Q$ form a chain of prime ideals. Since $R/Q$ is a Noetherian domain and $P/Q$ is a prime ideal minimal over $\langle\class[Q]{p_{k+1}}\rangle$, Lemma~\ref{lem:NoP} gives $\mathrm{ht}(P/Q)\leq 1$. Hence $m-i\leq 1$.
+
+Therefore $m=i+(m-i)\leq k+1$, so $\mathrm{ht}(P)\leq k+1$. This completes the induction.
+\end{proof}
+
+\end{proof}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{prob}
+Consider the ring
+$$
+R := \ZZ[\sqrt{-5}] := \{a + b\sqrt{-5} \mid a,b \in \ZZ\}.
+$$
+\begin{enumerate}[label=(\alph*)]
+\item Prove that $R \cong \ZZ[x]/(x^2+5)$.
+\item Since $R$ is a subring of $\QQ(\sqrt{d})$ where $d=-5$, the norm $N$ defined in Homework 2 will still have the property that
+$$
+N(zw)=N(z)N(w)
+$$
+in $R$. Use this to prove that the units in $R$ are $\pm 1$.
+\item Prove that $2$, $3$, $(1+\sqrt{-5})$, and $(1-\sqrt{-5})$ are all irreducible non-associate elements of $R$.
+\item Prove that $R$ is not a UFD.
+\end{enumerate}
+\end{prob}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{prob}
+Let $R$ be a Euclidean domain which is not a field. Prove that there exists a nonzero, non-unit element $c \in R$ such that for all $a \in R$, there is some $q,r \in R$ such that
+$$
+a = qc + r
+$$
+and $r=0$ or $r$ is a unit.
+
+\tbf{Hint:} Pick $c$ so that $N(c)$ is a minimal positive value among norms of non-units.
+\end{prob}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 6 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{prob}
+Consider the ring
+$$
+R := \ZZ\left[\frac{1+\sqrt{-19}}{2}\right]
+:= \left\{a + b\frac{1+\sqrt{-19}}{2} \,\middle|\, a,b \in \ZZ\right\}.
+$$
+\begin{enumerate}[label=(\alph*)]
+\item Since $R$ is a subring of $\QQ(\sqrt{d})$ where $d=-19$, the norm $N$ defined in Homework 2 will still have the property that
+$$
+N(zw)=N(z)N(w)
+$$
+in $R$. Prove that the smallest values of $N(z)$ for $z\in R$ are $0,1,4,5$ and that
+$$
+N\!\left(a + b\frac{1+\sqrt{-19}}{2}\right) \ge 5 \quad \text{if } b\ne 0.
+$$
+\item Prove that the units in $R$ are $\pm 1$.
+\item Prove that if $c \in R$ satisfies the condition in the previous exercise, then $c$ must divide $2$ or $3$ in $R$, and conclude $c=\pm 2$ or $\pm 3$.
+\item Show that there is no $q,r$ such that
+$$
+\frac{1+\sqrt{-19}}{2}=qc+r
+$$
+with $c=\pm 2,\pm 3$ and $r\in\{0,\pm 1\}$, and conclude that $R$ is not a Euclidean domain.
+\end{enumerate}
+\end{prob}
+
+\end{document}

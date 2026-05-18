@@ -144,7 +144,7 @@
 
 %%% Formatting: Page Header
 \newcommand{\StudentName}{Danny Banegas}
-\newcommand{\AssignmentName}{Homework 1}
+\newcommand{\AssignmentName}{Homework 2}
 \newcommand{\CourseName}{MATH 737 - Algebraic Combinatorics}
 
 
@@ -406,10 +406,10 @@ So we see that
 Show that associativity of the product (Claim 1) $T\cdot U\cdot V$ follows from Claims 2 and 3 by forming the appropriate skew tableau $T*U*V$ from three given tableaux $T,U,V$.
 \end{prob}
 \begin{proof}
-Observe the structure of $T*U*V$
+Observe the structure of $T*U*V=\textbf{[Left] }(T*U)*V = T*(U*V)\textbf{ [Right]}$
 \usetikzlibrary{shapes.geometric}
 \[
-\begin{tikzpicture}[scale=1.2]
+\begin{tikzpicture}[scale=1]
 
 % T triangle
 \draw[thick]
@@ -427,7 +427,7 @@ Observe the structure of $T*U*V$
 \node at (4.6,5.4) {$V$};
 
 % black square between T and U
-\fill[black] (0,2) rectangle (2,4);
+\fill[black] (-0.015,2) rectangle (2,4);
 
 % gray completed rectangle between U and V
 \fill[gray!40] (0,4) rectangle (4,6);
@@ -435,8 +435,350 @@ Observe the structure of $T*U*V$
 % outline gray rectangle
 \draw[thick] (0,4) rectangle (4,6);
 
+\begin{scope}[shift={(10,0)}]
+
+% T triangle
+\draw[thick]
+(0,0) -- (0,2) -- (2,2) -- cycle;
+\node at (0.6,1.4) {$T$};
+
+% U triangle
+\draw[thick]
+(2,2) -- (2,4) -- (4,4) -- cycle;
+\node at (2.6,3.4) {$U$};
+
+% V triangle
+\draw[thick]
+(4,4) -- (4,6) -- (6,6) -- cycle;
+\node at (4.6,5.4) {$V$};
+
+% black square above U
+\fill[black]
+(2,4) rectangle (4,6.01);
+
+% gray rectangle to the left
+% bottom edge = top edge of T (y=2)
+% right edge = x=2
+% left edge flush with T
+\fill[gray!40]
+(0,2) rectangle (2,6);
+
+\draw[thick]
+(0,2) rectangle (2,6);
+  
+\end{scope}
 \end{tikzpicture}
+\]
+Since $T*U*V$ is a skew tableau, by [\textbf{Claim 2}], any choice of inner corners lead to the same skew tableau. So starting the \textit{jeu de taquin} by sliding inner corners bounded by $U,T$ and then sliding the remaining inner corners bounded to the right by $V$ will lead to the same rectfication as sliding inner corners bounded by $U, V$ and then sliding the remaining inner corners bounded below by $T$. That is,
+$$\Rect(T*U*V)=\textbf{[Left] }\Rect((\Rect(T*U))*V)=\Rect(T*(\Rect(U*V)))\textbf{ [Right]}.\;\; (i)$$
+Well, by \textbf{[Claim 3]} the rectfication of $A*B$ is equal to the bump product $A\cdot B$; for any SSYT $A,B$, $\Rect(A*B)=A\cdot B$. So then in fact $(i)$ implies that
+$$T\cdot U\cdot V=\textbf (T\cdot U)\cdot V=(T\cdot(U\cdot V)).$$
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 2.1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\setcounter{thm}{0}
+\renewcommand{\thethm}{2.\arabic{thm}}
+\begin{prob}
+Recall the following.
+\begin{align*}
+&S_{\lambda}S_{(p)}=\sum_{\mu} S_{\mu}\\
+&S_{\lambda}S_{(1^{p})}=\sum_{\eta} S_{\eta}
+\end{align*}
+Where $\mu$ are all possible tableau obtained from $\lambda$ by adding $p$ boxes, no two in the same column, and $\eta$ are all possible tableau obtained from $\lambda$ by adding $p$ boxes, no two in the same row.
+
+Prove that if $\lambda = (\lambda_{1}\geq \lambda_{2}\geq \cdots \geq \lambda_{k}\geq 0)$, then the following algebraic conditions hold:
+\begin{align}
+  \mu_{1}\geq \lambda_{1}\geq \mu_{2}\geq \lambda_{2}\geq \cdots \geq \mu_{k}\geq \lambda_{k}\geq \mu_{k+1}\geq \mu_{k+2}=0\text{ and }\sum \mu_{i}=\sum \lambda_{i}+p \\
+  \eta_{1}\geq \lambda_{1}\geq \eta_{2}\geq \lambda_{2}\geq \cdots \geq \eta_{k}\geq \lambda_{k}\geq\cdots \geq \eta_{k+p}\geq \eta_{k+p+1}=0\text{ and }\sum \eta_{i}=\sum \lambda_{i}+p
+\end{align}
+\end{prob}
+\begin{proof}
+Clearly, for all $i\in [k]$, $\mu_{i}\geq \lambda_{i}$, since for each row, either boxes are added or not. Suppose for the sake of contradiction that $\mu_{j+1}>\lambda_{j}$ for some $j\in [k].$ So $\mu_{j}\geq \mu_{j+1}>\lambda_{j}\geq \lambda_{j+1}$. But then a box was added to the $(\lambda_{j}+1)$-column of both row $j$ and row $j+1$, a contradiction. Next, since no two boxes are added to the same column, a maximum of one one new row can be added and so $\mu_{k+1}\geq \mu_{k+2}=0$. Finally, at the end of adding $p$ boxes, of course the total number of boxes exactly increased by $p$. So of course $\sum \mu_{i}=\sum \lambda_{i}+p$ and we see that $(1)$ holds.
+
+Now, at most one box is added to each row of $\eta$ so of course either $\eta_{i}=\lambda_{i}$ or $\eta_{i}=\lambda_{i}+1\implies \eta_{i}-\lambda_{i}\in \{0,1\},\forall i\in [k].$ So then if the result is still a partition, which is assumed by the idea that it has a \text{Schur Polynomial}, of course $\eta_{1}\geq \eta_{2}\geq \cdots \eta_{k}\geq \eta_{k+1}\eta\cdots \geq \eta_{k+p-1}\geq \eta_{k+p}\geq \eta_{k+p+1}=0$. So then since $\lambda_{i}\geq \lambda_{i+1}$, $\eta_{i+1}=\lambda_{i+1}+1\text{ and } \eta_{i}\leq \eta_{i+1}\implies \eta_{i}\geq \lambda_{i}\geq \eta_{i+1},\;\forall i\in [k]$. Then, since at most $k$ boxes are added to rows $1$ through $k$, $0$ to $p$ new rows may be added and so $\eta_{k+1},\hdots,\eta_{p+k}\in\{0,1\}$ and we may now even add more than $p$ boxes so the maximum number of parts will be $p+k$. Finally, at the end of adding $p$ boxes, of course the total number of boxes exactly increased by $p$. So of course $\sum \eta_{i}=\sum \lambda_{i}+p$ and $(2)$ holds.
+
+\end{proof}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 2.2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\setcounter{thm}{1}
+\renewcommand{\thethm}{2.\arabic{thm}}
+
+\begin{prob}
+For partitions $\lambda$ and $\mu$ of the same integer, show that in fact $K_{\lambda\mu}\neq 0$ if and only if $\mu\trianglelefteq \lambda.$
+\end{prob}
+
+\begin{proof}
+Let $\lambda=(\lambda_{1},\hdots, \lambda_{n})$ and $\mu=(\mu_{1},\hdots, \mu_{m})$ partition the same integer. Recall that \(K_{\lambda\mu}\) counts SSYT of shape \(\lambda\) and content \(\mu\). So then trivially \(K_{\lambda\mu}\neq 0\) if and only if there even exists an SSYT of shape \(\lambda\) having exactly \(\mu_i\) entries equal
+to \(i\) for each $i\in [m]$. 
+
+$(\implies)$ Suppose that \(K_{\lambda\mu}\neq 0\) and that \(T\) is such a SSYT. Since entries strictly increase down columns, every entry in row \(k\) is at least \(k\). That is, iteratively we can see that in row $1$, everything is at least $1$, then since row $2$ must be strictly larger component-wise, everything is at least $2,\hdots,$ and so on; every entry equal to each $k\in [m]$ appears before or at but not after row $k$ of $T$. Therefore all entries equal to \(1,2,\ldots,j\) must lie in the first \(j\) rows of $T$.
+
+Now, the first \(j\) rows of \(T\) contain exactly $\lambda_1+\lambda_2+\cdots+\lambda_j$
+boxes and all entries \(1,\ldots,j\) must occur in those rows. So then we must have as many entries equal to each $k\in [j]$ as there are boxes on row $1$ through $j$. That is,
+\[
+\mu_1+\mu_2+\cdots+\mu_j
+\leq
+\lambda_1+\lambda_2+\cdots+\lambda_j
+\]
+for every \(j\in [n]\). So then by definition
+$\mu\trianglelefteq \lambda.$
+
+$(\impliedby)$ On the other hand, if $\mu\trianglelefteq \lambda,$ we construct such a SSYT of shape $\lambda$ and content $\mu$.
+
+Fill the boxes of \(\lambda\) from left to right, top row to bottom row, by placing first \(\mu_1\) copies of \(1\), then \(\mu_2\) copies of \(2\), and so on for each $i\in [m]$, which can be done at each step $j\to j+1\in [m]$ since we must have at least as many boxes $\lambda_{1}+\cdots +\lambda_{k}$ in rows $1$ through $k$ as there are copies of $1$ through $k$; $\mu_1+\mu_2+\cdots+\mu_j \leq
+\lambda_1+\lambda_2+\cdots+\lambda_j$. Finally, we have that $\mu,\lambda$ partition the same integer. So once we run out of copies of integers in $[m]$ encoded by $\mu$ to fill $\lambda$ in with, we must have also run out of boxes in $\lambda$ to put things into. So we have constructed a tableau of shape $\lambda$ with content $\mu\implies K_{\lambda\mu}\neq 0$. 
+
+Thus,
+\[
+K_{\lambda\mu}\neq 0
+\quad\Longleftrightarrow\quad
+\mu\trianglelefteq \lambda.
 \]
 \end{proof}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 3.1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\setcounter{thm}{0}
+\renewcommand{\thethm}{3.\arabic{thm}}
+
+\begin{prob}
+If $w$ is Knuth equivalent to the word of a tableau $T$, show that the number of rows of $T$ is the longest strictly decreasing sequence that can be extracted from $w$. Show that the total number of boxes in the first $k$ columns of $T$ is the maximum sum of the lengths of $k$ disjoint strictly decreasing sequences that can be extracted from $w$.
+\end{prob}
+
+\begin{proof}
+Let $\lambda$ be the shape of $T$.
+
+By \textbf{Lemma 1}, if \(w_T\) is the word of \(T\), then $L(w_T,k)=\lambda_1+\cdots+\lambda_k$ and by \textbf{Lemma 2} since $w$ is knuth equivalent to $w_{T}$, we have that
+$$L(w_T,k)=\lambda_1+\cdots+\lambda_k=L(w,k).$$
+
+Now we apply the same result to decreasing subsequences. Consider the conjugate shape $\lambda'$. Analagously, the maximum total length of \(k\) disjoint strictly
+decreasing subsequences extracted from \(w_{T}\) and therefore $w$ must then be
+\[
+\lambda_1'+\cdots+\lambda_k'.
+\]
+So for $k=1$, the longest strictly decreasing subsequence has length $\lambda_1'$
+, which is exactly the number of rows of \(T\). More generally, \(\lambda_i'\) is the number of boxes in the \(i\)-th column of
+\(T\) and then $\lambda_1'+\cdots+\lambda_k'$ is exactly the total number of boxes in the first \(k\) columns of \(T\). So we see that the total number of boxes in the first \(k\) columns of \(T\) is fact exactly the maximum sum of the lengths of \(k\) disjoint strictly decreasing subsequences extracted from \(w\).
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 3.2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\setcounter{thm}{1}
+\renewcommand{\thethm}{3.\arabic{thm}}
+
+\begin{prob}
+Deduce from this a result of Erdos and Szekeres: Any word of length greater than $n^{2}$ must contain either an increasing or a strictly decreasing sequence of length greater than $n$. Show that this is sharp. More generally, a word of length greater than $m\cdot n$ must contain an increasing sequence of length greater than $n$ or a decreasing sequence of length greater than $m$.
+\end{prob}
+
+\begin{proof}
+Let \(w\) be a word, and let \(T\) be its insertion tableau which has shape $\lambda$. Suppose \(w\) has no increasing subsequence of length greater than \(n\), and no strictly
+decreasing subsequence of length greater than \(m\).
+
+At the beginning of the chapter $L(w,1)$ is defined as the longest increasing subsequence. By our Lemmas, this is exactly $L(w,1)=\lambda_{1}$,
+the number of boxes in the first row of \(T\). So by our assumption the number of boxes in row $1$ of $T$ is at most $n$; $\lambda_{1}\leq n$
+We proved in the previous problem that the longest strictly decreasing subsequence of $w_{T}=w$ here has length $m$ equal to the
+number of rows of \(T\). So then $\lambda$ must have at most $m$ parts.
+
+Putting everything together, the length of $w$ is equal to the number of boxes in $T$, which must have at most $n$ boxes in row 1 and therefore all of its rows and also there are at most $m$ rows in $T$. That is,
+\[
+|w|=|T|\leq mn.
+\]
+Therefore, contrapositively, if $w$ has length greater than or equal to $mn$, then $w$ either contains an increasing subsequence of length greater than
+\(n\), or a strictly decreasing subsequence of length greater than \(m\). Setting \(m=n\), we see that any word of length greater than \(n^2\) contains either an
+increasing subsequence or a strictly decreasing subsequence of length greater
+than \(n\).
+
+Now we show sharpness for the $n^{2}$ case. To show sharpness in the case \(m=n\), consider the word
+\[
+\omega=
+\underbrace{n\,n\,\cdots\,n}_{n\text{ times}}
+\underbrace{(n-1)\,(n-1)\,\cdots\,(n-1)}_{n\text{ times}}
+\cdots
+\underbrace{1\,1\,\cdots\,1}_{n\text{ times}}.
+\]
+$\omega$ has length $n^{2}$ and obviously the longest increasing subsequence is $nn\cdots n$ which has length $n$ and the longest strictly decreasing subsequence that appears is $n(n-1)\cdots 21$ which has length $n$. No larger examples exist for either types of subsequences of $\omega$. So the bound is strict for $n^{2}$; we can only guarantee in full generality that there appears a \textbf{length $n$ or greater} increasing or strictly decreasing sequence, claiming a higher bound would yield the counterexample $\omega$ we just constructed.
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 3.3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\setcounter{thm}{2}
+\renewcommand{\thethm}{3.\arabic{thm}}
+
+\begin{prob}
+Find a word of length $6$ with $L(w,1)=4$, $L(w,2)=6$, but which does not have two disjoint increasing subsequences of lengths $4$ and $2$. 
+\end{prob}
+
+\begin{proof}
+Let $w=(236145)$. The longest increasing subsequence is $(2345)$ and no other length $L(w,1)=4$ increasing sequence exists. $w=(236)\sqcup(145)$ a disjoint union of two increasing subsequence, so the longest disjoint union is the length of the whole word; $K(w,2)=6$. Lastly since the only subsequence of length $4$ is $(2345)$, the only subsequence of length $2$ disjoint from it is the remainder of the word $(61)$, which is not increasing. So $w=(236145)$ satisfies all conditions.
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4.6 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\setcounter{thm}{5}
+\renewcommand{\thethm}{4.\arabic{thm}}
+
+\begin{prob}
+  Show that the number of involutions in $S_{n}$ is
+  $$\sum_{k=0}^{\floor{n/2}} \frac{n!}{(n-2k)!(2^{k}k)!}.$$
+\end{prob}
+\begin{proof}
+An involution in \(S_n\) is a permutation which is it's own inverse. That is, it is a product of disjoint transpositions and $1$-cycles. So then an involution is constructed by forming \(k\in [n]\) disjoint transpositions and fixing the remaining $n-2k$ elements of $[n].$ We describe this construction step by step below to count these involutions.
+
+For any \(k\in [n]\). There are $\binom{n}{2k}$ ways to select the \(2k\) elements that will appear in transpositions.
+Then the number of ways to partition these $2k$ elements into pairs is the iterative product below, where we divide by $k!$ since order we choose the pairs doesn't matter here:
+\begin{align*}
+&\frac{\prod_{j=0}^{k-1}\binom{2k-2j}{2}}{k!}=\frac{1}{k!}\prod_{j=0}^{k-1}\frac{(2k-2j)!}{2!((2k-2j)-2)!}=\frac{1}{k!}\prod_{j=0}^{k-1}\frac{(2k-2j)((2k-2j)-1)}{(2)}\\
+&=\frac{(2k(2k-1))((2k-2)(2k-3))\cdots ((2)(1))}{2^{k}k!}=\frac{(2k)!}{2^{k}k!}.
+\end{align*}
+Combining the two we get that the number of involutions with exactly $k\in [n]$ transpositions is
+\[
+\binom{n}{2k}\frac{(2k)!}{2^k k!}
+=
+\frac{n!}{(n-2)!}\frac{1}{2^k k!}
+=
+\frac{n!}{(n-2k)!2^k k!}.
+\]
+
+We can form between $k=1$ and $k=\floor{n/2}$ transpositions total from $[n]$. So finally we have that the number of involutions in $S_{n}$ is
+\[
+\sum_{k=0}^{\lfloor n/2\rfloor}
+\frac{n!}{(n-2k)!2^k k!}.
+\]
+\end{proof}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 6.1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\setcounter{thm}{0}
+\renewcommand{\thethm}{6.\arabic{thm}}
+
+\begin{prob}
+Prove the following identities
+\begin{align}
+&ne_{n}(x)-p_{1}(x)e_{n-1}(x)+p_{2}e_{n-2}(x)-\hdots +(-1)^{n}p_{n}(x)=0\\
+&nh_{n}(x)-p_{1}(x)h_{n-1}(x)+p_{2}h_{n-2}(x)-\hdots -p_{n}(x)=0
+\end{align}
+\end{prob}
+
+\begin{proof}
+Recall
+\[
+E(t)=\sum_{r\geq 0}e_r(x)t^r=\prod_i(1+x_it),
+\qquad
+H(t)=\sum_{r\geq 0}h_r(x)t^r=\prod_i\frac{1}{1-x_it}.
+\]
+
+We begin by observing that $E'(t)=\sum_{r\geq 1}r e_r(x)t^{r-1}$.
+Also,
+\begin{align*}
+&\frac{E'(t)}{E(t)}
+=
+\sum_i \frac{x_i}{1+x_it}
+=
+\sum_i x_i(1-x_it+x_i^2t^2-\cdots)\text{ (By Geometric series) }\\
+&= 
+p_1(x)-p_2(x)t+p_3(x)t^2-\cdots
+=
+\sum_{r\geq 1}(-1)^{r-1}p_r(x)t^{r-1}.\\
+&E'(t)
+=
+E(t)\sum_{r\geq 1}(-1)^{r-1}p_r(x)t^{r-1}\implies \sum_{r\geq 1}r e_r(x)t^{r-1}
+=
+\left(\sum_{q\geq 0}e_q(x)t^q\right)
+\left(\sum_{r\geq 1}(-1)^{r-1}p_r(x)t^{r-1}\right).
+\end{align*}
+Thus,
+\begin{align*}
+  &[t^{n-1}]E'(t)=ne_n(x)
+=
+p_1(x)e_{n-1}(x)-p_2(x)e_{n-2}(x)+\cdots+(-1)^{n-1}p_n(x)\\
+\implies &ne_n(x)-p_1(x)e_{n-1}(x)+p_2(x)e_{n-2}(x)-\cdots+(-1)^np_n(x)=0.
+\end{align*}
+
+Similarly, we observe that
+$H'(t)=\sum_{r\geq 1}r h_r(x)t^{r-1}.$
+Also,
+\begin{align*}
+&\frac{H'(t)}{H(t)}
+=
+\sum_i \frac{x_i}{1-x_it}
+=
+\sum_i x_i(1+x_it+x_i^2t^2+\cdots)\text{ (By Geometric series) }\\
+&=
+p_1(x)+p_2(x)t+p_3(x)t^2+\cdots
+=
+\sum_{r\geq 1}p_r(x)t^{r-1}.\\
+&H'(t)
+=
+H(t)\sum_{r\geq 1}p_r(x)t^{r-1}
+\implies
+\sum_{r\geq 1}r h_r(x)t^{r-1}
+=
+\left(\sum_{q\geq 0}h_q(x)t^q\right)
+\left(\sum_{r\geq 1}p_r(x)t^{r-1}\right).
+\end{align*}
+Thus,
+\begin{align*}
+&[t^{n-1}]H'(t)=nh_n(x)
+=
+p_1(x)h_{n-1}(x)+p_2(x)h_{n-2}(x)+\cdots+p_n(x)\\
+\implies &nh_n(x)-p_1(x)h_{n-1}(x)-p_2(x)h_{n-2}(x)-\cdots-p_n(x)=0.
+\end{align*}
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 6.6 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\setcounter{thm}{5}
+\renewcommand{\thethm}{6.\arabic{thm}}
+
+\begin{prob}
+Show that $s_{\lambda}(1,\hdots, 1)=\prod_{i<j}\frac{\lambda_{i}-\lambda_{j}+j-i}{j-i}$
+\end{prob}
+\begin{proof}
+By Exercise 5,
+\[
+s_{\lambda}(1,x,x^2,\ldots,x^{m-1})
+=
+x^r\prod_{i<j}
+\frac{x^{\lambda_i-\lambda_j+j-i}-1}{x^{j-i}-1},
+\]
+where
+\[
+r=\lambda_2+2\lambda_3+\cdots=\sum_i(i-1)\lambda_i.
+\]
+
+Using the well-known identity, we get the following:
+\[
+x^a-1=(x-1)(1+x+\cdots+x^{a-1})\implies 
+\frac{x^{\lambda_i-\lambda_j+j-i}-1}{x^{j-i}-1}
+=
+\frac{1+x+\cdots+x^{\lambda_i-\lambda_j+j-i-1}}
+{1+x+\cdots+x^{j-i-1}}.
+\]
+Therefore
+\[
+s_{\lambda}(1,x,x^2,\ldots,x^{m-1})
+=
+x^r
+\prod_{i<j}
+\frac{1+x+\cdots+x^{\lambda_i-\lambda_j+j-i-1}}
+{1+x+\cdots+x^{j-i-1}}.
+\]
+
+Now set \(x=1\). Since \(x^r=1\), and
+\[
+a= 1+(1)+\cdots+(1)^{a-1}
+\]
+we get that
+\[
+s_{\lambda}(1,\ldots,1)
+=
+\prod_{i<j}
+\frac{\lambda_i-\lambda_j+j-i}{j-i}.
+\]
+As desired.
+
+\end{proof}
 \end{document}

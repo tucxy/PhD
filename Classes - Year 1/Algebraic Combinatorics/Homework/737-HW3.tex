@@ -515,7 +515,7 @@ So $c(g)=3$ as shown from the resulting edge cycles, and then $|\Fix{}{g}|=n^(c(
 \def\arraystretch{1} 
 \begin{center}
 \begin{tabular}{l|l|c|c}
-\textbf{Geometric Rotation Class} & \textbf{Pole Permutation $g \in S_4$} & $c(g)$ & $|\mathrm{Fix}(g)|$ \\
+\textbf{Permutation 'class'} & \textbf{Pole Permutation $g \in S_4$} & $c(g)$ & $|\mathrm{Fix}(g)|$ \\
 \hline
 \textbf{1) Identity (1 element)} & & & \\
 Identity & $(1)(2)(3)(4)$ & 12 & $n^{12}$ \\
@@ -552,11 +552,11 @@ $240^\circ$ spin around Pole $P_4$ & $(4)(1\,2\,3)$ & 4 & $n^4$ \\
 \end{center}
 \egroup
 
-\noindent By Burnside's Lemma, we average the number of fixed configurations across the 24 pole permutations of $S_4$:
+\noindent So then by Burnside's Lemma, we get the following
 \[
 \#(\text{distinct edge } n\text{-colorings}) = \#(\text{distinct $(G\curvearrowright X)$-orbits})= \frac{1}{|S_{4}|}\sum_{g\in S_4}|\mathrm{Fix}(g)|
 \]
-Adding all $n$-polynomials in the last row of the table we get the following
+So we add all the entries in the last column of our table to get that
 \[
 \#(\text{distinct edge $n$-colorings}) = \frac{1}{24}\left(n^{12} + 3n^6 + 6n^7 + 8n^4 + 6n^3\right)
 \]

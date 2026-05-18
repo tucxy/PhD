@@ -1,0 +1,365 @@
+\documentclass[addpoints,10pt]{exam}
+
+\usepackage{amsmath,amsthm,enumitem,wrapfig,amsfonts,mathtools}
+\usepackage[mathscr]{euscript}
+\usepackage[super]{nth}
+\usepackage{dsfont}
+\usepackage{xparse}
+\usepackage{cancel}
+
+\usepackage{geometry}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\renewcommand{\rmdefault}{ptm} %Change the Front Family from the default(cmr) to ptm(Times)
+\usepackage{amsmath,amsfonts,amsthm,amssymb} % Math packages
+\usepackage{bm}
+%\usepackage{mathptmx}
+\usepackage{graphicx}
+\usepackage{sectsty} % Allows customizing section commands
+% \allsectionsfont{\centering} % Make all sections centered, the default font and small caps
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{xcolor}
+\definecolor{darkpastelgreen}{rgb}{0.01, 0.75, 0.24}
+\definecolor{blue-violet}{rgb}{0.54, 0.17, 0.89}
+%\usepackage{polylongdiv} %polynomial long division
+% Custom problem environment
+\usepackage{polynom}
+\newcounter{cprob}
+\newenvironment{cprob}[1]{%
+    \setcounter{cprob}{#1}%
+    \noindent\textbf{Problem \thecprob.}%
+}{%
+    \par\bigskip%
+}
+
+\theoremstyle{plain}
+\newcommand{\theoremname}{Theorem}
+\newtheorem{thm}{\protect\theoremname}
+  \theoremstyle{definition}
+  \newtheorem{prob}[thm]{Problem}
+  \newtheorem*{problem*}{Open Problem}
+  \theoremstyle{plain}
+  \newtheorem{conjecture}[thm]{Conjecture}
+  \theoremstyle{plain}
+  \newtheorem{lem}[thm]{Lemma}
+  \newtheorem*{lem*}{Lemma}
+  \newtheorem{obs}[thm]{Observation}
+  \newtheorem{cor}[thm]{Corollary}
+  \theoremstyle{definition}
+\newtheorem{definition}[thm]{Definition}
+
+% Patch prob environment to be single spaced
+\let\oldprob\prob
+\let\endoldprob\endprob
+\renewenvironment{prob}
+  {\begin{singlespace}\oldprob}
+  {\endoldprob\end{singlespace}}
+
+% start problem one line below like for enumerated problems with multiple parts
+\newcommand{\belowtitle}{\leavevmode\newline}
+%\Observe command
+\newcommand{\Observe}{\text{Observe.}}
+%(=>)
+\newcommand{\IF}{\mathbf{(\Rightarrow)}}
+%(<=)
+\newcommand{\FI}{\mathbf{(\Leftarrow)}}
+%equivalence classes; \class[S]{ *content in square brackets* }
+\newcommand{\class}[2][]{\ensuremath{\left[\,#2\,\right]_{#1}}}
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}
+\newcommand{\kkk}{\ensuremath{\Bbbk}}
+\newcommand{\CC}{\ensuremath{\mathbb{C}}}
+\newcommand{\FF}{\ensuremath{\mathbb{F}}}
+\newcommand{\KK}{\ensuremath{\mathbb{K}}}
+\newcommand{\NN}{\ensuremath{\mathbb{N}}}
+\newcommand{\QQ}{\ensuremath{\mathbb{Q}}}
+\newcommand{\RR}{\ensuremath{\mathbb{R}}}
+\newcommand{\ZZ}{\ensuremath{\mathbb{Z}}}
+\newcommand{\MM}{\ensuremath{\mathcal{M}}}
+\newcommand{\TT}{\ensuremath{\mathcal{T}}}
+\newcommand{\BB}{\ensuremath{\mathcal{B}}}
+\newcommand{\VV}{\ensuremath{\mathcal{V}}}
+\newcommand{\WW}{\ensuremath{\mathcal{W}}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}}
+\newcommand{\PP}{\ensuremath{\mathcal{P}}}
+\newcommand{\LL}{\ensuremath{\mathcal{L}}}
+\newcommand{\kk}{\ensuremath{\mathds{k}}}
+\newcommand{\EE}{\ensuremath{\mathbb{E}}}
+\newcommand{\Ss}{\ensuremath{\mathcal{S}}}
+\newcommand{\GG}{\ensuremath{\mathcal{G}}}
+
+\newcommand{\sm}{\char`\\}
+%vector stuff
+\DeclarePairedDelimiter{\ip}{\langle}{\rangle} %inner product/generate
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert} %norm
+\DeclarePairedDelimiter{\sqb}{\lbrack}{\rbrack} %corrd
+
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\mbf}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\tbf}[1]{\textbf{ #1 }}
+\newcommand{\Span}{\ensuremath{\mathrm{Span}}}
+\newcommand{\Char}[1]{\mathrm{Char}\; #1}
+\DeclareMathOperator{\lcm}{lcm}
+\newcommand{\id}{\ensuremath{\mathrm{id}}}
+\newcommand{\Gal}[2]{\mathrm{Gal}(#1/#2)}
+\newcommand{\Aut}{\ensuremath{\mathrm{Aut}}}
+\newcommand{\Fix}[2]{\mathrm{Fix}_{#1}(#2)}
+\newcommand{\nil}{\ensuremath{\mathrm{nil}}}
+\newcommand{\Hom}{\ensuremath{\operatorname{Hom}}}
+\newcommand{\Obj}{\ensuremath{\mathrm{Obj}}}
+
+\newcommand{\Rng}{\ensuremath{\mathrm{Rng}}}
+\newcommand{\Ring}{\ensuremath{\mathrm{Ring}}}
+\newcommand{\h}{\ensuremath{\mathrm{ht}}}
+
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\def\env@matrix{\hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols c}}
+
+\newcommand{\proj}[2]{\text{proj}_{#1}(#2)}
+
+%%% Formatting: Page Header
+\newcommand{\StudentName}{Danny Banegas}
+\newcommand{\AssignmentName}{Final}
+\newcommand{\CourseName}{MATH 720 - Algebra I}
+
+\pagestyle{headandfoot}
+\runningheadrule
+\firstpageheadrule
+\firstpageheader{\CourseName}{\StudentName}{\AssignmentName}
+\runningheader{\CourseName}{\StudentName}{\AssignmentName}
+\firstpagefooter{}{\thepage}{}
+\runningfooter{}{\thepage}{}
+
+\printanswers
+
+\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+
+\usepackage{parskip}
+\usepackage{setspace}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{thm}{0} % next prob is 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% lemmas %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{prob}
+(a) Let $n \geq 3$ be an odd integer that is not a perfect square. Prove that in the ring $\mathbb{Z}[i\sqrt{n}]$ the element $2$ is irreducible but is not prime.
+
+(b) Prove that $\mathbb{Z}[i\sqrt{5}]$ is not a unique factorization domain.
+\end{prob}
+\begin{proof}
+(a) Recall that the norm $N(a+bi\sqrt{n})=a^{2}+b^{2}n$ is multiplicative: $N(\alpha\beta)=N(\alpha)N(\beta),\forall \alpha,\beta\in \ZZ[i\sqrt{n}]$.
+
+Suppose $2$ is reducible. Then there exist non-zero non-units $\alpha=a+bi\sqrt{n},\beta=c+di\sqrt{n}\in \ZZ[i\sqrt{n}]$ such that $2=\alpha\beta$. Now, If neither $\alpha$ nor $\beta$ is a unit, then both norms are greater than $1$ and the only possibility is
+$N(\alpha)=N(\beta)=2$, since $4=(1)(4)=(2)(2).$ But $n\geq 3\implies b^{2}n\geq 3\implies 2=a^{2}+b^{2}n=c^{2}+d^{2}n\geq 3$, a contradiction. So $2$ is irreducible in $\ZZ[i\sqrt{n}]$. 
+
+Now recall that $n\geq 3$ is odd and consider $x=(1+i\sqrt{n}),y=(1-i\sqrt{n})$.
+$$
+xy=(1+i\sqrt{n})(1-i\sqrt{n})=1+n\text{ is an even integer}\implies 2\mid xy
+$$
+But $2\nmid x=1+i\sqrt{n}$ and $2\nmid y= 1-i\sqrt{n}$. So we have found $x,y\in \ZZ[i\sqrt{n}]$ such that $2\mid xy$ and $2\nmid x$ and $2\nmid y\implies 2$ is not prime in $\ZZ[i\sqrt{n}].$
+
+Therefore $2$ is irreducible but not prime in $\mathbb{Z}[i\sqrt{n}]$.
+
+(b) Set $n=5$. From part (a), $2$ is irreducible but not prime in $\mathbb{Z}[i\sqrt{5}]$. In a unique factorization domain, every irreducible element is prime. Therefore $\mathbb{Z}[i\sqrt{5}]$ must not be a unique factorization domain.
+\end{proof}
+\newpage
+\begin{prob}
+Let $R$ be an integral domain and let $K = Q(R)$ be the field of fractions of $R$. For each maximal ideal $\mathfrak{m}$ of $R$, recall that $R_{\mathfrak{m}}$ denotes the localization of $R$ at $\mathfrak{m}$, that is,$R_{\mathfrak{m}}=\left\{\frac{x}{y}\in K \mid x\in R,\ y\in R\setminus \mathfrak{m} \right\}.$
+Let $\operatorname{Max}(R)$ denote the set of maximal ideals of $R$. Prove that
+$R=\bigcap_{\mathfrak{m}\in \operatorname{Max}(R)} R_{\mathfrak{m}}.$
+\end{prob}
+
+\begin{proof}
+Recall that all maximal ideals are proper, so $1\notin \mathfrak{m},\forall \mathfrak{m}\in \operatorname{Max}(R).$ Therefore, $\forall r\in R,\;\frac{r}{1}=r\in R_{\mathfrak{m}},\forall m\in \operatorname{Max}(R)\implies r\in \bigcap_{\mathfrak{m}\in \operatorname{Max}(R)} R_{\mathfrak{m}}\implies R\subseteq \bigcap_{\mathfrak{m}\in \operatorname{Max}(R)} R_{\mathfrak{m}}.$ 
+
+On the other hand consider any $z\in \bigcap_{\mathfrak{m}\in \operatorname{Max}(R)}R_{\mathfrak{m}}.$
+and suppose $z\notin R$. Then let $I=\{r\in R\mid rz\in R\}.$ Quickly, $\forall a,b\in I$, $\forall r\in R$,
+\begin{align*}
+&az,bz\in R\implies az-bz=(a-b)z\in R\implies a-b\in I\implies I\leq_{+}R\\
+&r(az)=(ra)z\in R\implies ra\in I\implies I\trianglelefteq R.
+\end{align*}
+Well, $1\in I\implies 1z=z\in R,$ a contradiction. So $1\notin I\implies I$ is a proper ideal and therefore contained in some maximal ideal $\mathfrak{m}_{z}\in \operatorname{Max}(R).$ Next, $z\in \bigcap_{\mathfrak{m}\in \operatorname{Max}(R)}R_{\mathfrak{m}}\implies z\in R_{\mathfrak{m}_{z}}$ so there exist $x\in R$ and $y\in R\setminus \mathfrak{m}_{z}$ such that $z=\frac{x}{y}\in R_{\mathfrak{m}_{z}}$ and $yz=x\in R.$ So by definition, $y\in I\subseteq \mathfrak{m}_{z}$. But then $y\notin R\setminus \mathfrak{m}_{z},$ a contradiction. Therefore $z\in R$ and $\bigcap_{\mathfrak{m}\in \operatorname{Max}(R)} R_{\mathfrak{m}}\subseteq R$.
+
+Thus,
+$$R=\bigcap_{\mathfrak{m}\in \operatorname{Max}(R)} R_{\mathfrak{m}}.$$
+\end{proof}
+\newpage
+\begin{prob}
+(a) Let $R$ be a principal ideal domain and $M$ a finitely generated projective $R$-module. Prove that $M$ is a free $R$-module.
+
+(b) Give an example showing that part (a) is false without assuming that $R$ is a principal ideal domain.
+\end{prob}
+
+\begin{proof}
+(a) By an equivalence theorem, since $M$ is projective, it is a direct summand of a free module $F$ over $R$; $M\oplus K\cong_{R} F$. Let $\psi$ be this isomorphism and then let $\iota\in \Hom_{R}(M,M\oplus K)$ be the natural inclusion defined by $m\mapsto (m,0)$. This inclusion is injective, so it is an isomorphism to it's image, which is $\mathrm{Im}(\iota)=M\oplus 0$. Refer to the codomain restricted map, which is an isomorphism, as $\iota_{M}$. Then $\psi\circ \iota_{M}$ is an isomorphism to $\psi(M\oplus 0)$ and $M\cong_{R}(\psi\circ \iota_{M})(M)\leq_{R} F$, a submodule of the free module $F$.
+
+Since any submodule of a free module over a PID is also free, $M$ must be isomorphic to a free module, and therefore free itself over $R$.
+
+(b) We give a counterexample to show not $M$ need not be free if $R$ isn't a PID. 
+
+Let $R=\ZZ_{6}$. This isn't even an integral domain since $[2]([3])=[0]$ so 
+it's not a PID. Now consider the $\ZZ_{6}$-action $[k]_{6}(m)=[k]_{n}m$ on $\ZZ_{n}$ where $n\mid 6$. Quickly, for any $a,b,m\in \ZZ_{n}$ and any $[k],[c]\in \ZZ_{6}$,
+\begin{align*}
+&[\text{Well-defined}]: [k]_{6}=[k']_{6}\implies 6\mid k-k'\implies n\mid k-k'\implies [k]_{n}=[k']_{n}\implies [k]_{n}m=[k']_{n}m\\
+&[k]_{6}(a+b)=[k]_{n}(a+b)=[k]_{n}a+[k]_{n}b=[k]_{6}(a)+[k]_{6}(b)\\
+&[c]_{6}([k]_{6}(m))=[c]_{6}([k]_{n}m)=[c]_{n}[k]_{n}m=[ck]_{n}m=[ck]_{6}(m)
+\end{align*}
+So $Z_{n}$ with $n\mid 6$ is an $R$-module. Now let $M=\ZZ_{2}$ and $K=\ZZ_{3}$, and note that both are $R-$modules since $2,3\mid 6$. finally consider $\langle (1,1)\rangle\leq_{+}\ZZ_{2}\oplus \ZZ_{3}.$ The order of $(1,1)$ is $\lcm(|1|_{2},|1|_{3})=6$ and $\ZZ_{2}\oplus \ZZ_{3}$ has order $6$ so in fact $M\oplus K=\ZZ_{2}\oplus \ZZ_{3}$ is isomorphic to $R=\ZZ_{6}$ as a group and this is an $R$-isomorphism since both components are $R$-modules. Obviously $R$ is a free module over itself via $R=\langle 1 \rangle_{R}$, so $M$ is a direct summand of a free $R$-module and therefore projective by our equivalence theorem.
+
+However, $M$ is not free as an $R$-module since if it were $M\cong_{R} R^{N}\implies |M|=|R|^{N}\implies 2=6^{N}$ for some $N\in \ZZ^{+}$, which is impossible. So $M=\ZZ_{2}$ is a finitely generated projective $R$-module but not free over $R=\ZZ_{6}$
+\end{proof}
+\newpage
+\begin{prob}
+Let $R$ be a commutative ring, $I$ an ideal of $R$, and $M$ an $R$-module. Let $IM$ be the submodule of $M$ generated by the set
+$
+\{im \mid i\in I,\ m\in M\}.
+$
+Prove that we have the following isomorphism of $R/I$-modules:
+$
+(R/I)\otimes_R M \cong M/IM.
+$
+\end{prob}
+
+\begin{proof}
+Define $\phi:R/I\times M\to M/IM$ via $(\class[I]{r},m)\mapsto \class[IM]{rm}$. Note that $$\class[I]{r}=\class[I]{s}\implies r-s\in I\implies rm-sm=(r-s)m\in IM\implies \class[IM]{rm}=\class[IM]{sm}$$ 
+So $\phi$ is well-defined. We show this mapping is $R-$billinear.
+\begin{align*}
+&[+_{L}]:\phi(\class[I]{r_{1}}+\class[I]{r_{2}},m)&&=\phi(\class[I]{r_{1}+r_{2}},m)=\class[IM]{(r_{1}+r_{2})m}=\class[IM]{r_{1}m}+\class[IM]{r_{2}m}\\
+&&&=\phi(\class[I]{r_{1}},m)+\phi(\class[I]{r_{2}},m)\\
+&[+_{R}]:\phi(\class[I]{r},m_{1}+m_{2})&&=\class[IM]{r(m_{1}+m_{2})}=\class[IM]{rm_{1}+rm_{2}}= \class[IM]{rm_{1}}+\class[IM]{rm_{2}}\\
+&[\curvearrowright\curvearrowleft]:\phi(\class[I]{r}s,m)&&=\class[IM]{(rs)m}=\class[IM]{r(sm)}=\phi(\class[I]{r},sm)=\class[IM]{r(sm)}\\
+& &&=s\class[IM]{rm}=s\phi(\class[I]{r},m)
+\end{align*}
+By \textbf{Universal Property of Tensors} we have a unique $R$-module homomorphism $\Phi:R/I\otimes_{R} M\to M/IM$ defined by $\Phi(\class[I]{r}\otimes m)=\class[IM]{rm}$. We show this mapping is bijective by constructing an inverse.
+
+Let $\Phi^{-1}:M/IM\to (R/I)\otimes_{R} M$ be defined as follows. For each $\class[IM]{m}\in M/IM$, choose a representative $m\in M$ and set $\Phi^{-1}(\class[IM]{m})=\class[I]{1}\otimes m$. We this mapping is well-defined. If $\class[IM]{m}=\class[IM]{m'}$, then $m-m'\in IM$. So then $m-m'=\sum_{k=1}^{n}i_{k}m_{k}$ for some $i_{1},\hdots,i_{n}\in I$ and some $m_{1},\hdots, m_{n}\in M$. Therefore,
+$$(\class[I]{1}\otimes m)-(\class[I]{1}\otimes m')=\class[I]{1}\otimes \left(\sum_{k=1}^{n}i_{k}m_{k}\right)=\sum_{k=1}^{n}\class[I]{1}\otimes i_{k}m_{k}=\sum_{k=1}^{n}\class[I]{i_{k}}\otimes m_{k}=\sum_{k=1}^{n}\class[I]{0}\otimes m_{k}=0.$$
+So $\Phi^{-1}$ is well-defined. Finally, $\Phi(\Phi^{-1}(\class[IM]{m}))=\Phi(\class[I]{1}\otimes m)=\class[IM]{m}$ and then on the other hand $\Phi^{-1}(\Phi(\class[I]{r}\otimes m))=\Phi^{-1}(\class[IM]{rm})=\class[I]{1}\otimes rm=\class[I]{r}\otimes m$. So then $\Phi$ is an isomorphism and $(R/I)\otimes_R M \cong M/IM.$
+
+\end{proof}
+\newpage
+\begin{prob}
+Let $R$ be an integral domain. Prove that if $R$ is injective as an $R$-module, then $R$ is a field.
+\end{prob}
+\begin{proof}
+By \textbf{Baer's Criterion} if $R$ is injective as an $R$-module, then for every ideal $I\trianglelefteq R$, and any $h\in \Hom_{R}(I,R)$, there exists $f\in \Hom_{R}(R,R)$ such that $f\circ \iota_{I}=h$ where $\iota_{I}$ is the natural inclusion from $I$ to $R$, an injective $R$-module homomorphism.
+
+For any non-zero $x\in R$, set $I=xR$. Quickly, $a,b\in I\implies a=x\alpha,b=x\beta$ for some $\alpha,\beta\in R\implies a-b=x\alpha-x\beta=x(\alpha-\beta)\in xR\text{ and }r(a)=rx\alpha=x(r\alpha)\in xR\implies I=xR$ is an ideal of $R$. Now let $h:I\to R$ be defined by $h(xr)=r$. $xr=xr'\in I\implies xr-xr'=x(r-r')=0\implies r-r'=0\implies r=r'$ since $R$ is an integral domain, so $h$ is well-defined. Next we show that $h\in \Hom_{R}(I,R)$ is surjective.
+\begin{align*}
+&[+]:h(xr+xs)=h(x(r+s))=r+s=h(xr)+h(xs)\\
+&[\curvearrowright]:s h(xr)=sr=h(x(sr))=h(s(xr))\\
+&[\twoheadrightarrow]:\forall r\in R,\ h(xr)=r
+\end{align*}
+Now, since $R$ is an injective $R$-module, there exists some $f\in \Hom_{R}(R,R)$ such that $f\circ \iota_{I}=h$. Finally, since $h(x\cdot 1)=h(x)=1$, $(f\circ \iota_{I})(x)=f(x)=x(f(1))=1$ and so we see that $f(1)=x^{-1}$ since $R$ is commutative. So any non-zero $x\in R$ has an inverse and since $R$ is already an integral domain, it must be a field.
+
+\end{proof}
+\newpage
+\begin{prob}
+Let
+$
+A=
+\begin{pmatrix}
+3 & 0 & 0\\
+a & 3 & 0\\
+b & 0 & -2
+\end{pmatrix}
+\in M_3(\mathbb{R}).
+$
+
+(a) Find the Jordan canonical form of $A$.
+
+(b) For what values of $a,b\in \mathbb{R}$ is $A$ diagonalizable?
+\end{prob}
+
+\begin{proof}
+(a)$|A-I\lambda|= (3-\lambda)\begin{vmatrix}
+3-\lambda & 0\\
+0 & -(2+\lambda)
+\end{vmatrix}=(3-\lambda)(-(3-\lambda)(2+\lambda))=-(3-\lambda)^{2}(2+\lambda)=0\newline \implies \lambda_{1}=3,\lambda_{2}=-2$ are the eigenvalues of $A$ with algebraic multiplicities $2$ and $1$, respectively.Since $\lambda_{2}=-2$ has algebraic multiplicity $1$, that must also be it's geometric multiplicty and so the jordan block it contributes has size $1$ and then must be $(-2)$. Next we compute the geometric multiplicity $\mathrm{nullity}(A-3I)$ of $\lambda_{1}=3$.
+
+\[
+A-3I=
+\begin{pmatrix}
+0 & 0 & 0\\
+a & 0 & 0\\
+b & 0 & -5
+\end{pmatrix}\text{ so }\begin{pmatrix}
+0 & 0 & 0\\
+a & 0 & 0\\
+b & 0 & -5
+\end{pmatrix}\begin{pmatrix}
+x \\
+y \\
+z \\
+\end{pmatrix}=\begin{pmatrix}
+0 \\
+0 \\
+0 \\
+\end{pmatrix}\implies \begin{cases}
+  ax=0\\
+  bx-5z=0
+\end{cases}.
+\]
+$ax=0\implies a=0$ or $x=0$ since $\RR$ is an integral domain. So we have two cases here: (i) and (ii).
+
+(i) If $a=0$, then $x,y$ are free variables and $z=\frac{b}{5}x$ which implies that all vectors of the form $\begin{pmatrix}x\\ y \\ \frac{b}{5}x\\ \end{pmatrix}=
+x\begin{pmatrix} 1\\0\\\frac{b}{5}\end{pmatrix}+y\begin{pmatrix} 0\\1\\0\end{pmatrix}$ are eigenvectors of $\lambda_{1}=3\implies \mathrm{nullity}(A-\lambda_{1}I)=2$ and so $\lambda_{1}$ contributes two jordan blocks of total size $2$, and so they must both be of size $1$. That is, $J_{1}=J_{2}=(3), J_{3}=(-2)$ and the Jordan canonical form of $A$ is
+$$J(A)=J_{1}\oplus J_{2}\oplus J_{3}=\begin{pmatrix} 3&0& 0\\0 & 3 & 0\\0&0&-2\\ \end{pmatrix}$$
+(ii) If $a\neq 0$, then $x=0$ and so $z=\frac{b}{5}x\implies z=0$ and $y$ is our only free variable. That is, $\mathrm{nullity}(A-\lambda_{1})=1$. So then $\lambda_{1}$ must contribute one jordan block of size $2$. That is, $J_{1}=\begin{pmatrix} 3& 1\\0 &3 \\\end{pmatrix}$ and $\lambda_{2}$ contributes the Jordan block $J_{2}=(-2)$ and so the Jordan canonical form of $A$ is
+$$J(A)=J_{1}\oplus J_{2}=\begin{pmatrix} 3&1& 0\\0 & 3 & 0\\0&0&-2\\ \end{pmatrix}$$
+(b) A matrix is diagonalizable if and only if every Jordan block in it has size $1$. By $(a)$ this only happens when $a=0$. There is no restriction on $b$.
+
+\end{proof}
+\newpage
+\begin{prob}
+Let $(a,b)\in \mathbb{Z}^2$. Show that there exists a basis of the free $\mathbb{Z}$-module $\mathbb{Z}^2$ containing $(a,b)$ if and only if $a$ and $b$ are relatively prime.
+\end{prob}
+\begin{proof}
+$(\implies)$ Suppose that there exists a basis of $\mathbb{Z}^2$ containing $(a,b)$. Then there is some $(c,d)\in \mathbb{Z}^2$ linearly independent from $(a,b)$ such that
+$\ZZ^{2}=\langle (a,b),(c,d)\rangle_{\ZZ}$. So then the matrix $((a,b)^{T}\mid (c,d)^{T})$ has rank $2$. That is,
+\[
+\begin{pmatrix}
+a & c\\
+b & d
+\end{pmatrix}\text{is invertible over $\mathbb{Z}$}\implies \frac{1}{ad-bc}\in \ZZ\implies ad-bc\text{ is a unit in }\ZZ.
+\]
+Well, then if $\delta$ is a common divisor of $a$ and $b$, it must also divide $ad-bc=\pm 1\implies \delta=\pm 1\implies \gcd(a,b)=1$. So $a$ and $b$ are relatively prime.
+
+$(\impliedby)$ On the other hand if $a$ and $b$ are relatively prime, then by \text{B\'ezout's Identity} there exist $x,y\in \mathbb{Z}$ such that
+$ax+by=1.$ So let $(c,d)=(-y,x).$
+Then
+\[
+\det
+\begin{pmatrix}
+a & -y\\
+b & x
+\end{pmatrix}
+=
+ax+by=1\implies \begin{pmatrix}
+a & -y\\
+b & x
+\end{pmatrix}^{-1}=\frac{1}{ax+by}\begin{pmatrix}
+x & y\\
+-b & a
+\end{pmatrix}=\begin{pmatrix}
+x & y\\
+-b & a
+\end{pmatrix}
+\]
+Since matrix is invertible over $\mathbb{Z}$ it has rank $2$, it's columns are linearly independent over $\ZZ$ and therefore form a basis for $\ZZ^{2}$ over $\ZZ$. That is, $\langle (a,b),(-y,x)\rangle_{\ZZ}=\ZZ^{2}$ over $\ZZ$.
+
+\end{proof}
+
+\end{document}

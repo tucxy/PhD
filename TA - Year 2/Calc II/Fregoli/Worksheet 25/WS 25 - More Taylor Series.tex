@@ -1,0 +1,82 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath,amsfonts,fullpage,amsthm,graphicx}
+
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{fact}{Fact}
+\newtheorem*{goal}{Goal}
+\newtheorem*{idea}{Idea}
+\newtheorem*{defn}{Definition}
+\newtheorem*{ex}{Example}
+
+%Style section
+%\setlength{\textheight}{10in}
+%\setlength{\textwidth}{7in}
+%\hoffset=-0.75in
+ \pagestyle{plain}
+% \setlength{\topmargin}{0in}
+% \setlength{\headsep}{0in}
+% \setlength{\oddsidemargin}{0in}
+% \setlength{\evensidemargin}{0in}
+
+\begin{document}
+
+
+\pagestyle{empty} %use this to get rid of page numbers
+
+\noindent
+{Math 166 \hskip 1 truein  Names:\ \hrulefill}
+
+\noindent
+%\vskip 0.3truein
+%\bigskip
+%\noindent
+{New series from old}
+\noindent \hspace{2.5in} Section Number: \hrulefill
+\bigskip
+
+For these exercises, you may use the table of common Maclaurin series from the notes and from Table 1 in Section 11.10 of your textbook.
+
+\begin{enumerate}
+%\setcounter{enumi}{-1}
+
+\item What is $\pi -\displaystyle\frac{\pi^3}{3!}+\displaystyle\frac{\pi^5}{5!}-\displaystyle\frac{\pi^7}{7!}+\cdots$ ?
+
+\vfill
+\item Which function has Maclaurin series $\displaystyle\sum_{n=0}^{\infty} (-1)^n \ 5^n  x^n$ ?
+
+\vfill
+
+%\item Use the Maclaurin series for $\displaystyle\frac{1}{1-x}$ to find the Maclaurin series for $\displaystyle\frac{1}{(1-x)^3}$. (Hint: differentiate twice!) What is the radius of convergence? (No ratio test needed - use the information in the table.)
+
+
+
+
+
+
+%\vspace{1.2in}
+%\item Approximate the integral $\int_{-1}^0 \tan^{-1}x \ dx$ by using the 5th order Taylor polynomial for $\tan^{-1}x$.
+
+
+%\pagebreak
+%\vspace{1.8in}
+
+%\newpage
+%\item Find the 3rd order Taylor polynomial for $e^x\sin(x)$ (centered at 0) by multiplying the 3rd order Taylor polynomial for $e^x$ by the 3rd order Taylor polynomial for $\sin(x)$. Do you prefer this method for finding the Taylor polynomial using the Taylor polynomial definition?
+
+
+%\vfill
+%\vfill
+
+
+\pagebreak
+\item Recall that $\sin(x^2)$ has no antiderivative (in terms of elementary functions). In this problem you will approximate $\int_0^1 \sin(x^2) \, dx$ using Taylor series.
+\begin{enumerate}
+\item Write the Maclaurin series of $\sin(x)$ then substitute $x^2$ for $x$ to obtain a Maclaurin series for $\sin(x^2)$.
+\item Integrate this series to find the Maclaurin series of $\int \sin(x^2)  \, dx$.  Remember the $+ C$ constant after integrating.
+\item Use the above to find the 7th order Taylor polynomial for $\int \sin(x^2) \, dx$.
+\item Use this Taylor polynomial to find a numerical approximation for the definite integral $\int_0^1 \sin(x^2) \, dx$.  What happens to the constant from part (b)?
+\item Use relevant error bounds to find the smallest value of $n$ for which the Taylor polynomial of order $n$ for $\int \sin(x^2)\, dx$ is guaranteed to have an error less than $0.1$ when used to approximate $\int_0^1\sin(x^2) \, dx$.
+\end{enumerate}
+
+\end{enumerate}
+\end{document}

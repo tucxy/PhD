@@ -1,0 +1,170 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath,amsfonts,fullpage,amsthm,graphicx}
+
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{fact}{Fact}
+\newtheorem*{goal}{Goal}
+\newtheorem*{idea}{Idea}
+\newtheorem*{defn}{Definition}
+\newtheorem*{ex}{Example}
+
+%Style section
+%\setlength{\textheight}{10in}
+%\setlength{\textwidth}{7in}
+%\hoffset=-0.75in
+ \pagestyle{plain}
+% \setlength{\topmargin}{0in}
+% \setlength{\headsep}{0in}
+% \setlength{\oddsidemargin}{0in}
+% \setlength{\evensidemargin}{0in}
+
+\begin{document}
+
+
+\pagestyle{empty} %use this to get rid of page numbers
+
+\noindent
+{Math 166   \hskip 1.5 truein  Names:\ \hrulefill}
+
+\noindent
+%\vskip 0.3truein
+%\bigskip
+%\noindent
+{Integration Approximation}
+
+\noindent  \hskip 3.5 truein  Section Number:\ \hrulefill
+\medskip
+
+\begin{goal} \rm
+Find approximations to definite integrals
+\end{goal}
+%\smallskip
+
+\begin{enumerate}
+%\setcounter{enumi}{-1}
+
+%\item In what situations would it be good to approximate an integral rather than evaluating it exactly?
+%Let $L_n$ and $R_n$ be the left and right endpoint approximations. Write down a formula for $T_n$, the $n$th trapezoidal rule approximation.
+
+%\bigskip
+
+%\bigskip
+
+\item Fill in the table below with the data you will need to approximate the definite integral of $f(x)=e^{-x^2}$ from $1$ to $3$ with $n=6$.
+
+\begin{tabular}{|c|r|r|}
+\hline  
+~$k$~ & ~$x_k$~ & ~$f(x_k)$~ \\
+\hline
+0 & & ~~~ \\
+\hline
+1 & & \\
+\hline
+2 & & \\
+\hline
+3 & & \\
+\hline
+4 & & \\
+\hline
+5 & & \\
+\hline
+6 & & \\
+\hline
+\end{tabular}
+\hspace{1.5in}
+Also, what does $\Delta x$ equal? 
+
+\item Use the data above to find $L_6$, the left endpoint approximation.
+%& Left & Right & Trapezoidal & Midpoint & Simpson \\
+
+\bigskip
+
+\bigskip
+
+\item Use the data above to find $R_6$, the right endpoint approximation.
+
+\bigskip
+
+\bigskip
+
+\item Use your work in Problems 2 and 3 to find $T_6$, the trapezoidal rule approximation.
+
+\bigskip
+
+\bigskip
+
+\item Fill in another data table to find $M_6$, the midpoint rule approximation.
+
+\begin{tabular}{|c|r|r|}
+\hline  
+~$k$~ & ~$\bar{x}_k$~ & ~$f(\bar{x}_k)$~ \\
+\hline
+1 & & \\
+\hline
+2 & & \\
+\hline
+3 & & \\
+\hline
+4 & & \\
+\hline
+5 & & \\
+\hline
+6 & & \\
+\hline
+\end{tabular}
+
+\item Use your previous work to find $S_{12}$, Simpson's rule approximation.
+\end{enumerate}
+\pagebreak
+%\bigskip
+
+%\bigskip
+
+It is important to know whether these approximations are accurate. Fortunately, there is a known \textbf{error bound} for each of the approximation rules that tells us how close our approximation must be to the true value of the integral. The \textbf{error} is defined as the difference between the value of the integral and the approximation. For example, the error in the trapezoidal rule approximation, which we write as Error$(T_n)$, is $\left|\int_a^b f(x) \ dx - T_n\right|$. A bound on the error is given as:
+$\mbox{Error}(T_n)\leq \displaystyle\frac{K_2 (b-a)^3}{12 n^2} \ \mbox{   where } |f''(x)|\leq K_2 \mbox{ for } a\leq x\leq b$.
+
+%So if we know an upper bound on the second derivative of our function, we can substitute that for $K_2$ in the above inequality to find a bound on the error in the trapezoidal rule.
+
+\begin{enumerate}
+\setcounter{enumi}{6}
+\item Use the above error bound given above to determine how close our $T_6$ approximation from Problem 4 is guaranteed to be to the actual value of the integral. Hint: To find $K_2$, find the maximum value of the absolute value of the second derivative of the function on the given interval. You may use Desmos or another online plotting system to help you.
+%(Note that $|\frac{d^2}{dx^2} e^{-x^2}|\leq 1$ for $1\leq x\leq 3$, so we can use $K_2=1$.)
+
+
+
+\medskip
+
+%\item How big would $n$ have to be so that $T_n$ is within .0001 of the actual value?
+
+%\bigskip
+
+%\bigskip
+
+You can (BUT DO NOT NEED TO) do the same for $M_6$ from Problem 5 using the error bound for the midpoint rule below.
+\[\left|\int_a^b f(x) \ dx - M_n\right| = \mbox{Error}(M_n)\leq \frac{K_2 (b-a)^3}{24 n^2} \ \mbox{   where } |f''(x)|\leq K_2 \mbox{ for } a\leq x\leq b.\]
+
+\medskip
+\pagebreak
+\item How big would $n$ have to be so that $M_n$ is within .0001 of the actual value?
+
+\bigskip
+
+\bigskip
+
+You could also use  the error bound below to determine how close $S_{12}$  is guaranteed to be to the actual value of the integral (BUT DO NOT NEED TO). (Note that $|\frac{d^4}{dx^4} e^{-x^2}|\leq 8$ for $1\leq x\leq 3$.)
+\[\left|\int_a^b f(x) \ dx - S_n\right| = \mbox{Error}(S_n)\leq \frac{K_4 (b-a)^5}{180 n^4} \ \mbox{   where } |f^{(4)}(x)|\leq K_4 \mbox{ for } a\leq x\leq b.\]
+
+\vfill
+
+
+\item How big would $n$ have to be so that the trapezoidal rule approximation $T_n$ for the integral $\int_1^3 e^{-x^2} \ dx$ is within .0001 of the actual value? 
+
+(Hint: Substitute the values of $K_2$, $a$, and $b$ you used in Problem 8 into the inequality $\frac{K_2 (b-a)^3}{12 n^2}\leq .0001$ and then solve the inequality for $n$.) 
+
+\vfill
+
+%\item Answer the same question for $M_n$ and $S_n$.
+\end{enumerate} 
+
+Spend any remaining class time working on your project.
+\end{document}

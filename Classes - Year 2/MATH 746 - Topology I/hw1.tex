@@ -1,0 +1,346 @@
+\documentclass[addpoints,10pt]{exam}
+
+\usepackage{amsmath,amsthm,enumitem,wrapfig,amsfonts,mathtools}
+\usepackage[mathscr]{euscript}
+\usepackage[super]{nth}
+\usepackage{dsfont}
+\usepackage{xparse}
+\usepackage{cancel}
+
+\usepackage{geometry}
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\renewcommand{\rmdefault}{ptm} %Change the Front Family from the default(cmr) to ptm(Times)
+\usepackage{amsmath,amsfonts,amsthm,amssymb} % Math packages
+\usepackage{bm}
+%\usepackage{mathptmx}
+\usepackage{graphicx}
+\usepackage{sectsty} % Allows customizing section commands
+% \allsectionsfont{\centering} % Make all sections centered, the default font and small caps
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{xcolor}
+\definecolor{darkpastelgreen}{rgb}{0.01, 0.75, 0.24}
+\definecolor{blue-violet}{rgb}{0.54, 0.17, 0.89}
+%\usepackage{polylongdiv} %polynomial long division
+% Custom problem environment
+\usepackage{polynom}
+\newcounter{cprob}
+\newenvironment{cprob}[1]{%
+    \setcounter{cprob}{#1}%
+    \noindent\textbf{Problem \thecprob.}%
+}{%
+    \par\bigskip%
+}
+
+\theoremstyle{plain}
+\newcommand{\theoremname}{Theorem}
+\newtheorem{thm}{\protect\theoremname}
+  \theoremstyle{definition}
+  \newtheorem{prob}[thm]{Problem}
+  \newtheorem*{problem*}{Open Problem}
+  \theoremstyle{plain}
+  \newtheorem{conjecture}[thm]{Conjecture}
+  \theoremstyle{plain}
+  \newtheorem{lem}[thm]{Lemma}
+  \newtheorem*{lem*}{Lemma}
+  \newtheorem{obs}[thm]{Observation}
+  \newtheorem{cor}[thm]{Corollary}
+  \theoremstyle{definition}
+\newtheorem{definition}[thm]{Definition}
+
+
+% Patch prob environment to be single spaced
+\let\oldprob\prob
+\let\endoldprob\endprob
+\renewenvironment{prob}
+  {\begin{singlespace}\oldprob}
+  {\endoldprob\end{singlespace}}
+
+% start problem one line below like for enumerated problems with multiple parts
+\newcommand{\belowtitle}{\leavevmode\newline}
+%\Observe command
+\newcommand{\Observe}{\text{Observe.}}
+%(=>)
+\newcommand{\IF}{\mathbf{(\Rightarrow)}}
+%(<=)
+\newcommand{\FI}{\mathbf{(\Leftarrow)}}
+%equivalence classes; \class[S]{ *content in square brackets* }
+\newcommand{\class}[2][]{\ensuremath{\left[\,#2\,\right]_{#1}}}
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}
+\newcommand{\kkk}{\ensuremath{\Bbbk}} 
+\newcommand{\CC}{\ensuremath{\mathbb{C}}}
+\newcommand{\FF}{\ensuremath{\mathbb{F}}}
+\newcommand{\KK}{\ensuremath{\mathbb{K}}}
+\newcommand{\NN}{\ensuremath{\mathbb{N}}}
+\newcommand{\QQ}{\ensuremath{\mathbb{Q}}} 
+\newcommand{\RR}{\ensuremath{\mathbb{R}}} 
+\newcommand{\ZZ}{\ensuremath{\mathbb{Z}}}
+\newcommand{\MM}{\ensuremath{\mathcal{M}}}
+\newcommand{\TT}{\ensuremath{\mathcal{T}}}
+\newcommand{\BB}{\ensuremath{\mathcal{B}}}
+\newcommand{\VV}{\ensuremath{\mathcal{V}}}
+\newcommand{\WW}{\ensuremath{\mathcal{W}}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}}
+\newcommand{\PP}{\ensuremath{\mathcal{P}}}
+\newcommand{\LL}{\ensuremath{\mathcal{L}}}
+\newcommand{\kk}{\ensuremath{\mathds{k}}}
+\newcommand{\EE}{\ensuremath{\mathbb{E}}}
+\newcommand{\Ss}{\ensuremath{\mathcal{S}}}
+
+
+
+
+
+\newcommand{\sm}{\char`\\}
+%vector stuff
+\DeclarePairedDelimiter{\ip}{\langle}{\rangle} %inner product/generate
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert} %norm
+\DeclarePairedDelimiter{\sqb}{\lbrack}{\rbrack} %corrd
+
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\mbf}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\tbf}[1]{\textbf{ #1 }}
+\newcommand{\Span}{\ensuremath{\mathrm{Span}}}
+\newcommand{\Char}[1]{\mathrm{Char}\; #1}
+\DeclareMathOperator{\lcm}{lcm}
+\newcommand{\id}{\ensuremath{\mathrm{id}}}
+\newcommand{\Gal}[2]{\mathrm{Gal}(#1/#2)}
+\newcommand{\Aut}{\ensuremath{\mathrm{Aut}}}
+\newcommand{\Fix}[2]{\mathrm{Fix}_{#1}(#2)}
+\newcommand{\nil}{\ensuremath{\mathrm{nil}}}
+\newcommand{\Hom}{\ensuremath{\mathrm{Hom}}}
+\newcommand{\Obj}{\ensuremath{\mathrm{Obj}}}
+
+\newcommand{\Rng}{\ensuremath{\mathrm{Rng}}}
+\newcommand{\Ring}{\ensuremath{\mathrm{Ring}}}
+
+\newcommand{\im}{\ensuremath{\mathrm{im}}}
+
+
+
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\def\env@matrix{\hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols c}}
+
+  \newcommand{\proj}[2]{\text{proj}_{#1}(#2)}
+  
+
+%%% Formatting: Page Header
+\newcommand{\StudentName}{Danny Banegas}
+\newcommand{\AssignmentName}{Homework 1}
+\newcommand{\CourseName}{MATH 746 - Topology I}
+
+\pagestyle{headandfoot}
+\runningheadrule
+\firstpageheadrule
+\firstpageheader{\CourseName}{\StudentName}{\AssignmentName}
+\runningheader{\CourseName}{\StudentName}{\AssignmentName}
+\firstpagefooter{}{\thepage}{}
+\runningfooter{}{\thepage}{}
+
+\printanswers
+
+\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+
+\usepackage{parskip}
+\usepackage{setspace}
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+\begin{document}
+I briefly met with Ashley, Layton, and Joseph to discuss the homework on Thursday 9/10, so some of these ideas came as a result of our collaboration.
+
+\setcounter{thm}{0}
+\begin{lem}\label{lem:hausclosedcompact}
+  Any closed subset of a compact space is compact. 
+\end{lem}
+  \begin{proof}
+    Consider any open cover $\{U_{\alpha}\}$ of $C$. Since $C$ is closed, $K\setminus{C}$ is open. So then $\{U_{\alpha}\}\cup \{K\setminus C\}$ must be an open cover for all of $K$. Since $K$ is compact, there exists some finite subcover of $\{U_{\alpha}\}\cup \{K\setminus C\}$ which covers all of $K$. Well, $C\subseteq K$, so this finite subcover must cover $C$ as well. 
+    
+    Note that $K\setminus C$ cannot cover $C\subseteq K$ and therefore can't cover all of $K$. So some subset of $\{U_{\alpha}\}$ must be included in this subcover. Let $\{U_{\alpha_{i}}\}_{i=1}^{n}$ be this subset. If $X\setminus C$ is in this subcover, notice that $X\setminus C$ is disjoint from $C$, and so $\{U_{\alpha_{i}}\}_{i=1}^{n}$ must cover $C$. Otherwise we once again have that $\{U_{\alpha_{i}}\}_{i=1}^{n}$ covers $K$ and therefore $C$. 
+    
+    So any open cover $\{U_{\alpha}\}$ of $C$ has a finite subcover, and therefore $C$ is compact.
+
+  \end{proof}
+
+\begin{lem}\label{lem:contimcom}
+  The continuous image of a compact space is compact. 
+\end{lem}
+  \begin{proof}
+    Let $K$ be compact and $f:K\to Y$ a continuous map. Now consider any open cover $\{U_{\alpha}\}$ of $f(K)$. Since $f$ is continuous, each preimage $f^{-1}(U_{\alpha})$ is open in $K$. Now, $\forall x\in K$, $f(x)\in U_{\alpha}$ for some $\alpha$. Therefore, $x\in f^{-1}(U_{\alpha})$, and we see that $\{f^{-1}(U_{\alpha})\}$ is an open cover for $K$. Then since $K$ is compact, there exists a finite subcover $\{f^{-1}(U_{\alpha_{i}})\}_{i=1}^{n}\subseteq \{f^{-1}(U_{\alpha})\}$. 
+    
+    Finally, $K\subseteq \bigcup_{i=1}^{n} f^{-1}(U_{\alpha_{i}})\implies f(K)\subseteq \bigcup_{i=1}^{n}f(f^{-1}(U_{\alpha_{i}}))= \bigcup_{i=1}^{n}U_{\alpha_{i}}\implies \{U_{\alpha_{i}}\}_{i=1}^{n}\subseteq \{U_{\alpha}\}$ is a finite subcover. So any open cover $\{U_{\alpha}\}$ of $f(K)$ has a finite subcover, and therefore $f(K)$ is compact.
+
+  \end{proof}
+
+\begin{lem}\label{lem:comhausclosed}
+  Any compact subset of a Hausdorff space is closed.
+\end{lem}
+  \begin{proof}
+    Let $H$ be Hausdorff and $K\subseteq H$ a compact subset. We show that $H\setminus K$ is open. 
+
+    Since $H$ is Hausdorff, for each $x\in H\setminus K$ and each $k\in K$, we can find disjoint open sets $U_{k}(x),V_{k}$ containing $x$ and $k$, respectively. Now, $\{V_{k}\mid k\in K\}$ is an open cover of $K$, and since $K$ is compact there exists a finite subcover $\{V_{k_{i}}\}_{i=1}^{n}\subseteq {V_{k}}$. Set $U_{x}=\bigcap_{i=1}^{n}U_{k_{i}}(x)$ and recall that $U_{k_{i}}(x)\ni x$ is disjoint with $V_{k_{i}}$ for each $i\in [n]$. 
+    
+    So by construction, $U_{x}$ is disjoint from $\bigcup_{i=1}^{n} V_{k_{i}}\supseteq K$ placing it completely inside $H\setminus K.$ That is, $U_{x}\subseteq H\setminus K,\;\forall x\in H\setminus K$. On the otherhand, $x\in U_{x},\forall x\in H\setminus K\implies H\setminus K\subseteq \bigcup_{x\in H\setminus K}U_{x}.$
+
+    Finally, we see that then $H\setminus K=\bigcup_{x\in H\setminus K} U_{x}$, an arbitrary union of open sets, which implies that $H\setminus K$. Therefore, it's complement $K$ must be closed.
+
+  \end{proof}
+\newpage
+  We used \textit{Heine-Borel} several times in proofs during the first lecture, so I use it here.
+
+  \begin{lem}\label{lem:Scompact} $S^n$ is compact for all $n\in \NN$.
+  \end{lem}
+    \begin{proof}
+      Take $S^{n}$ to be the unit $n$-sphere in $\RR^{n+1}.$ In otherwords, we define $S^{n}=\{\mbf{x}\in \RR^{n+1}\mid \norm{x}=1\}$ as a subspace of $\RR^{n+1}.$ Clearly it is bounded since it fits in the open ball $\BB_{\pi}(\mbf{0})$. Now consider $\RR^{n+1}\setminus S^{n}=\{\mbf{x}\in \RR^{n+1}\mid \norm{\mbf{x}}<1\}\sqcup \{\mbf{x}\in \RR^{n+1}\mid \norm{\mbf{x}}<1\}.$ $\BB_{1}(\mbf{0})$ is the first partite set. Then $\bigcup_{\substack{\mbf{x}\in \RR^{n+1} \\ \norm{x}>1}}\BB_{\frac{1-\norm{\mbf{x}}}{2}}(\mbf{x})$ is the second, since it includes an open ball containing every point 'outside' of $S^{n}$, and the radius of these balls is half the distance from $\mbf{x}$ to $S^{n}$. All together, we get that $\RR^{n+1}\setminus S^{n}$ is an arbitrary union  of open balls in $R^{n+1}$, and therefore open. So $S^{n}$ is closed and bounded, and therefore by \textit{Heine-Borel} it is compact.
+    \end{proof}
+
+
+    
+    \begin{thm}\label{thm:contimjhom} If $f:X\hookrightarrow Y$ is a continuous injection where $X$ is compact and $Y$ is Hausdorff, then $X\cong f(X)$. If $f$ is surjective then $f$ is a homeomorphism.
+    \end{thm}
+  \begin{proof}
+    Since $f$ is injective, $X$ is in bijection with its image $f(X)$. So we show $f^{-1}:f(X)\to X$ is continuous by showing the preimage of every closed set is closed.
+
+    Consider any closed subset $C\subseteq X$. Since $X$ is compact, by \textbf{Lemma }\ref{lem:hausclosedcompact} we have that $C$ is also compact. Then, since $f$ is continuous, by \textbf{Lemma }\ref{lem:contimcom}, the continuous image (and preimage of $C$ via $f^{-1}$) $f(C)$ of the compact set $C$ is also compact. Finally, by \textbf{Lemma }\ref{lem:comhausclosed}, any compact subset of a Hausdorff space is closed. So $f(C)\subseteq f(X)\subseteq Y\implies f(C)$ is closed. So we see the preimage $(f^{-1})^{-1}(C)=f(C)$ of any closed set via $f^{-1}$ is closed, and so $f^{-1}$ is also continuous. 
+    
+    So $f$ is a bicontinuous bijection from $X$ to $f(X)$, or equivalently, $f$ is a homeomorphism from $X$ to its image and $X\cong f(X)$. Finally, if $f(X)=Y$ of course $f$ is a homeomorphism from $X$ to $Y$.
+
+  \end{proof}
+
+  \begin{thm}\label{thm:ballquotienthomeo} $B^{2n}/S^{2n-1}\cong S^{2n}$
+\end{thm}
+
+\begin{proof}
+  Let $\pi:B^{m}\to B^{m}/S^{m-1}$ be the quotient map which collapses the boundary $S^{m-1}$ of the ball to a single point. Define $h:B^{m}\to S^{m}$ by
+\[
+h(x)=\left(2x\sqrt{1-\norm{x}^{2}},\,1-2\norm{x}^{2}\right).
+\]
+
+Note that $x\in S^{m}\iff |x|= 1 \iff |x|^{2}=1.$ So this map indeed goes into the codomain since $|(2x\sqrt{1-|x|^{2}},1-2|x|^{2})|^{2}=(2x\sqrt{1-|x|^{2}})^{2}+(1-2|x|^{2})^{2}=4|x|^{2}(1-|x|^{2})+1-4|x|^{2}+4|x|^{4}=1.$
+
+If $x\in S^{m-1}$, then $\norm{x}=1$, and therefore $h(x)=(2x\sqrt{1-|x|^{2}},1-2|x|^{2})=(\mbf{0},-1).\;\;\;\;\textbf{(*)}$
+
+So $h$ induces a useful map to $H:B^{m}/S^{m-1}\to S^{m}$ defined by $H(\class[S^{m-1}]{x})=h(x).$ If $\class[S^{m-1}]{x}=\class[S^{m-1}]{y}$ then $x,y\in S^{m-1}$ or $x,y\in B^{2m}\setminus S^{m-1}.$ If the former holds, then $h(x)=h(y)=(\mbf{0},-1)$ by \textbf{(*)}. Otherwise if the latter holds by definition $x=y\implies h(x)=h(x).$ so in either case, $H(\class[S^{m-1}]{x})=H(\class[S^{m-1}]{y})=h(x)=h(y).$ So $H$ is well-defined.
+
+Now, suppose $H(\class[S^{2m-1}]{x})=H(\class[s^{2m-1}]{y})=h(x)=h(y)$. If $x,y\in S^{2m-1}$, then of course $\class[S^{2m-1}]{x}=\class[S^{2m-1}]{y}$ since all of $S^{2m-1}$ is collapsed to a single point. Otherwise $x,y\in B^{2m}\setminus S^{m-1}.\implies (2x\sqrt{1-|x|^{2}},1-2|x|^{2})=(2x\sqrt{1-|y|^{2}},1-2|y|^{2})\implies \begin{cases}
+  2x\sqrt{1-|x|^{2}}=2y\sqrt{1-|y|^{2}}\\ 1-2|x|^{2}=1-2|y|^{2}
+\end{cases}$ and then the second row gives $|x|=|y|$ and so $2x\sqrt{1-|x|^{2}}=2y\sqrt{1-|y|^{2}}=2y\sqrt{1-|x|^{2}}\implies 2x=2y\implies x=y\implies \class[S^{2n-1}]{x}=\class[S^{2m-1}]{y}.$ In either case, $H(\class[S^{2m-1}]{x})=H(\class[S^{2m-1}]{y})\implies \class[S^{2m-1}]{x}=\class[S^{2m-1}]{y},$ and $H$ is injective.
+
+Next consider any $(z,t)\in S^{m}$. If $(z,t)=(0,\hdots,0,-1)$, of course then it is the image of $S^{m-1}$ by \textbf{(*)}. Otherwise $t>-1$, since the metric must . Define
+\[
+r=\sqrt{\frac{1-t}{2}}.
+\]
+Since $(u,t)\in S^{m}$, we have $\norm{u}^{2}=1-t^{2}=(1-t)(1+t)$. Let
+\[
+x=\frac{u}{2\sqrt{1-r^{2}}}.
+\]
+Then $\norm{x}=r<1$, and a direct substitution gives
+\[
+h(x)=(u,t).
+\]
+Hence $H$ is surjective.
+
+The map $h$ is continuous, and $h=H\circ\pi$. Since $\pi$ is a quotient map, $H$ is continuous. Since $B^{m}/S^{m-1}$ is compact and $S^{m}$ is Hausdorff, the continuous bijection $H$ is a homeomorphism.
+
+Therefore
+\[
+B^{m}/S^{m-1}\cong S^{m}.
+\]
+
+Taking $m=2n+2$, we obtain
+\[
+B^{2n+2}/S^{2n+1}\cong S^{2n+2}.
+\]
+\end{proof}
+
+  \setcounter{thm}{0}
+%----------------------------------- Problem 1 ----------------------------------%
+\newpage
+\begin{prob}
+Prove that $\mathbb{R}P^{1}\simeq S^{1}$. (One possible way to do this is to construct an explicit map and prove it is a homeomorphism.)
+
+\end{prob}
+  \begin{proof}
+    Here, we take the unit circle in $\RR^{2}$ to be $S^{1}$. In otherwords, we define $S^{1}=\{\mbf{x}\in \RR^{2}\mid \norm{\mbf{x}}=1\}$ as a subspace of $\RR^{2}.$ Now, every line on $\RR P^{1}$ intersects $S^{1}$ at two antipodal points, since $S^{1}$ is centered at the origin. So mapping each point of $S^{1}$ to the line it lies on through the origin would not be injective. This motivates our mapping. 
+
+      Define $f:S^{1}\to \RR P^{1}$ via $f((\cos(\theta), \sin(\theta)))= [(\cos(\theta/2), \sin(\theta/2))]\in \RR P^{1}$ where $\theta$ is the angle from $(1,0)$ to each point on $S^{1}$ modulo $2\pi$.  Next, define $f^{-1}:\RR P^{1}\to S^{1}$ via $f^{-1}([\mbf{x}])=(\cos(2\theta_{[x]}),\sin(2\theta_{[x]}))$ where $\theta_{[x]}$ is the angle to the first antipodal point of $[\mbf{x}]$ hit traveling counterclockwise from $(1,0)$ to $[\mbf{x}]$ along $S^{1}$ modulo $\pi$.
+
+    Clearly, each point on $S^{1}$ has a unique angle $\theta$ modulo $2\pi$, so $f$ is well-defined. Next, each $\theta_{[x]}$ is clearly unique modulo $\pi$, which means each $2\theta_{x}$ is unique modulo $2\pi$ and so $f^{-1}$ is well-defined. Observe.
+    \begin{align*}
+      f^{-1}(f(\cos(\theta), \sin(\theta)))&=f^{-1}([(\cos(\theta/2), \sin(\theta/2))])=(\cos(\theta), \sin(\theta))\\
+      f(f^{-1}([(\cos(\theta_{[x]}), \sin(\theta_{[x]}))]))&=f((\cos(2\theta_{[x]}), \sin(2\theta_{[x]})))=[(\cos(\theta_{[x]}), \sin(\theta_{[x]}))]
+    \end{align*}
+    So we see $f$ is a bijection. The fact that $\RR P^{1}$ is compact is a result from class. So by \textbf{Theorem }\ref{thm:contimjhom} We need only prove that $f^{-1}$ is continuous, and that $S^{1}$ is Hausdorff to show that $S^{1}\cong \RR P^{1}$.
+
+    We begin with the latter. Pick any two distinct points $\mbf{x},\mbf{y}\in S^{1}.$ Since they are distinct, they have some positive distance $d(\mbf{x},\mbf{y})=\norm{\mbf{x}-\mbf{y}}>0$ via the Euclidean metric in $\RR^{2}.$ Let $r_{\mbf{x}\mbf{y}}=d(\mbf{x},\mbf{y})/2.$ Then clearly the open balls $\BB_{r_{\mbf{x}\mbf{y}}}(\mbf{x}),\BB_{r_{\mbf{x}\mbf{y}}}(\mbf{y})\subset \RR^{2}$ are disjoint, and so are the sets $\BB_{r_{\mbf{x}\mbf{y}}}(\mbf{x})\cap S^{1},\BB_{r_{\mbf{x}\mbf{y}}}(\mbf{y})\cap S^{1}$, which are open sets in the subspace $S^{1}$ by definition. So $S^{1}$ is Hausdorff.
+
+    Finally, since any open set of $\RR^{2}$ is an arbitrary union of open balls, and any open set of $S^{1}$ is an intersection of an open set of $R^{2}$ and $S^{1}$, it is trivial that any open set of $S^{1}$ is just an arbitrary union of open arcs. Each an open arc in $S^{1}$ which we denote $(\mbf{a}:\mbf{b})$ via it's endpoints $\mbf{a},\mbf{b}\in S^{1}$, has a unique angle range which defines it $(\theta_{\mbf{a}},\theta_{\mbf{b}})\subseteq [0,2\pi)$. So $f^{-1}((\mbf{a}:\mbf{b}))$ is just all lines $[\mbf{x}]$ with $\theta_{[x]}\in (\theta_{\mbf{a}}/2,\theta_{\mbf{b}}/2)$. Well, just pullback these lines from $\RR P^{1}$ to $\RR^{2}\setminus\{0\}$ and we get an open hourglass $H_{\mbf{a}\mbf{b}}$ centered at the origin. Each point $\mbf{x}$ has some minimal distances $\varepsilon_{\mbf{a}}(\mbf{x}),\varepsilon_{\mbf{b}}(\mbf{x})$, from the boundary rays through $\mbf{a}$ and $\mbf{b}$, respectively. (These distances are found by forming the lines perpendicular to both boundary rays through the point $\mbf{x}$, they minimize the distance via \textit{Pythagorean Theorem}). Set $r_{\mbf{x}}=\min\{\varepsilon_{\mbf{a}}(\mbf{x}),\varepsilon_{\mbf{b}}(\mbf{x})\}/2$, and we can form an open ball in containing $\mbf{x}$ completely within our hourglass $H_{\mbf{a},\mbf{b}}$. Therefore, $\bigcup_{\mbf{x}\in H_{\mbf{a}\mbf{b}}}\BB_{r_{\mbf{x}}}(\mbf{x})=H_{\mbf{a}\mbf{b}}$ and so $H_{\mbf{a}\mbf{b}}$, the quotient preimage of $f^{-1}((\mbf{a}:\mbf{b}))$ is open in $\RR^{2}\setminus\{0\}$. 
+    
+    Therefore, by definition $f^{-1}((\mbf{a}:\mbf{b}))$ is open in $\RR P^{1}$ and so the preimage of any arbitrary union of open arcs in $S^{1}$ via $f^{-1}$ is open in $\RR P^{1}.$ So $f^{-1}$ is a continuous bijection from $\RR P^{1}$ to $S^{1}$, and a homeomorphism by \textbf{Theorem }\ref{thm:contimjhom}.
+
+  \end{proof}
+%----------------------------------- Problem 2 ----------------------------------%
+\newpage
+\setcounter{thm}{1}
+\begin{prob}
+\begin{enumerate}[label=(\alph*)]
+    \item Give $n$ distinct homeomorphisms producing copies of $\mathbb{CP}^{n-1}$ in $\CC P^{n}$.
+
+    \item Let $q:S^{2n+1}\to\CC P^{n}$ be the quotient map and $\phi:B^{2n}\to\CC P^{n}$ be a map from the unit ball to complex projective space defined by $\phi(z)=q(z,\sqrt{1-|z|^{2}})$. Prove that $\phi(S^{2n-1})=\mathbb{CP}^{n-1}\subset\CC P^{n}$.
+
+    \item Prove that $\CC P^{n+1}/\CC P^{n}\simeq S^{2n+2}$.
+\end{enumerate}
+\end{prob}
+
+\begin{proof}
+  (a) In class we proved that $\CC P^{n-1}$ is homeomorphic, say via $f:\CC P^{n-1}\longleftrightarrow H_{0}$, to the projective hyperplane $H_{0}=\{[0:z_{1}:\cdots :z_{n}]\mid (z_{i})_{i\in [n]}\neq 0\}$ that lies in $\CC P^{n}$. Well, of course all projective hyperplane subspaces in the collection $\{H_{i}=[z_{0}:\cdots :z_{i}=0:\cdots :z_{n}]\text{ where } (z_{j})_{j\in [n]\setminus\{i\}}\neq 0\}$ are homeomorphic to $H_{0},$ say via $f_{i}:H_{0}\longleftrightarrow H_{i},\;\forall i\in [n].$ So $f_{i}\circ f$, $\forall i\in [n]$ are indeed the $n$ distinct homeomorphisms desired, which make a total of $n+1$ homeomorphisms from $\CC P^{n-1}$ to projective hyperplane subspaces $H_{i}$ of $\CC P^{n}$, which are the copies of $\CC P^{n-1}$ in $\CC P^{n}$. 
+
+  (b) Take any $z\in S^{2n-1}$ which lies on the boundary of the unit ball $B^{2n}\subset \CC^{n}$. By definition $|z|=1$. So $\phi(z)=q(z,0)=[z_{0}:\cdots :z_{n-1}:0]\in \CC P^{n-1}.$ Therefore, $\phi(S^{2n-1})\subseteq H_{n}\subseteq \CC P^{n}.$ On the otherhand, take any $[z_{0}:\cdots :z_{n-1}:0]=[(z,0)]$ in $H_{n}$. Well, $\frac{1}{|z|}(z,0)\in [(z,0)]$ and so $[(z,0)]=[(\frac{1}{|z|}z,0)]=q(\frac{1}{|z|}z,0)=\phi(\frac{1}{|z|}z)\in \phi(S^{2n-1}).$ Therefore, $H_{n}\subseteq \phi(S^{2n-1})$, and in fact $\phi(S^{2n-1})=H_{n}.$ Since $H_{n}\cong \CC P^{n-1}\subseteq \CC P^{n}$, ruffly $\phi(S^{2n-1})=\CC P^{n-1}\subseteq \CC P^{n}$
+
+  (c)
+
+  We define $f: B^{2n+2}/S^{2n+1} \to \CC P^{n+1}/H_{n+1}$ via $f(\class[S^{2n+1}]{z})=\class[H_{n+1}]{\phi(z)}$. We begin by showing $f$ is well-defined. $\class[S^{2n+1}]{a}=\class[S^{2n+1}]{b}\implies a,b\in S^{2n+1}$ or $a=b\in B^{2n+2}\setminus {S^{2n+1}}.$ If we have the former, by $(b)$, $\phi(a),\phi(b)\in H_{n+1}$ and so $\class[H_{n+1}]{\phi(a)}=\class[H_{n+1}]{\phi(a)}.$ Of course if the latter holds, $\phi(a)=\phi(b)\implies \class[H_{n+1}]{\phi(a)}=\class[H_{n+1}]{\phi(b)}.$ So $f$ is well-defined.
+
+  Now, suppose $f(\class[S^{2n+1}]{x})=f(\class[S^{2n+1}]{y})$. If $x,y\in H_{n+1}=f(S^{2n+1})$, then of course their preimages belong to $S^{2n+1}$ and therefore $\class[S^{2n+1}]{\phi^{-1}(x)}=\class[S^{2n+1}]{y}.$ Otherwise, they do not belong to $H_{n+1}$ and by definition $f(\class[S^{2n+1}]{x})=f(\class[S^{2n+1}]{y})\implies \class[S^{2n+1}]{x}=\class[S^{2n+1}]{y}.$ So $f$ is injective. Next, consider any $\class[H_{n+1}]{x}\in \CC P^{n+1}/H_{n+1}.$ If $x\in H_{n+1}=\phi(S^{2n+1})$, then of course $\exists s\in S^{2n+1}$ such that $\phi(s)=x$ and so $f(\class[S^{2n+1}]{s})=\class[H_{n+1}]{\phi(s)}=\class[H_{n+1}]{x}.$ Otherwise, $x=[x_{0}:\cdots:x_{n+1}]\in \CC P^{n+1}\setminus H_{n+1}$, so $x_{n+1}\neq 0$. Well, $[x_{0}:\cdots:x_{n+1}]=[\frac{1}{x_{n+1}}(x_{0}:\cdots:x_{n+1})]=[\frac{x_{0}}{x_{n+1}}:\cdots:\frac{x_{n}}{x_{n+1}}:1].$ let $u=\frac{1}{x_{n+1}}(x_{0},\hdots,x_{n}).$ Then $[u:1]=[\frac{x_{0}}{x_{n+1}}:\cdots:\frac{x_{n}}{x_{n+1}}:1]$ we solve for $z$ such that $\phi(z,\sqrt{1-|z|^{2}})=[u:1]$. 
+  
+  A simple starting point is $[\frac{z}{\sqrt{1-|z|^{2}}}:1]$, so $u=\frac{z}{\sqrt{1-|z|^{2}}}\implies |u|=\frac{|z|}{\sqrt{1-|z|^{2}}}\implies |u|^{2}=\frac{|z|^{2}}{1-|z|^{2}}\implies |u|^{2}(1-|z|^{2})=|z|^{2}\implies |u|^{2}=|z|^{2}(1+|u|^{2})\implies |z|^{2}=\frac{|u|^{2}}{1+|u|^{2}}\implies 1-|z|^{2}=1-\frac{|u|^{2}}{1+|u|^{2}}=\frac{1}{1+|u|^{2}}\implies \sqrt{1-|z^{2}|}=\frac{1}{\sqrt{1-|u^{2}|}}.$ Finally, $u=\frac{z}{\sqrt{1+|z|^{2}}}=\frac{z}{(\frac{1}{\sqrt{1+|u|^{2}}})}\implies z=\frac{u}{\sqrt{1+|u|^{2}}}$. So we have that $z=(\frac{u}{\sqrt{1+|u|^{2}}})$ is such a preimage in $B^{2n+2}$ via $\phi$ and $f(\class[S^{2n+1}]{z})=[u:1]$ so $f$ is surjective.
+  
+  Let $p,\pi$ be the quotient maps for $B^{2n}/S^{2n+1}$ and $\CC P^{n+2}/H_{n+1}$, respectively. Then $f\circ \pi=p\circ \phi$ by definition. Well, $\phi$ is defined by $q$, which is a quotient map and by definition continuous. Also $p$ is continuous since it is a quotient map. So $p\circ \phi=f\circ \pi$ is continuous. Then since $\pi$ is a quotient map and continuous, $f$ must also be continuous. So $f$ is a homeomorphism. So ruffly, $\CC P^{n+1}/\CC P^{n}\cong B^{2n+2}/S^{2n+1}.$ Collapsing the boundary of a $2n+2$-ball forms a $S^{2n+2}$ sphere so we have the homeomorphism desired.
+\end{proof}
+
+\begin{prob}
+Prove that $S^{n}\wedge S^{m}\simeq S^{n+m}$ for any $n$ and $m$.
+\end{prob}
+
+\begin{prob}
+Let $X$ be a locally compact Hausdorff space. Given a point $x\in X$ and a neighborhood $U$ of $x$, show that there is an open set $V$ such that $x\in V\subseteq\overline{V}\subseteq U$ and $\overline{V}$ is compact. 
+\end{prob}
+
+\begin{prob}
+Consider the smash product $X\wedge Y$ of two pointed spaces $X$ and $Y$. Viewing this as a product, what is the unit $E$, i.e., for which topological space $E$ is $X\wedge E\simeq X$? Now answer the same question for the wedge sum $X\vee Y$.
+\end{prob}
+
+\begin{prob}
+Consider $X=Y=\mathbb{Q}$ and $Z=\mathbb{N}$ with the subspace topology and with basepoint $0$. Then $(X\wedge Y)\wedge Z\not\simeq X\wedge(Y\wedge Z)$. This shows that for pointed topological spaces, the smash product is not associative.
+
+Your task (should you accept it, and you really should!) is to either
+\begin{enumerate}[label=(\alph*)]
+    \item prove this, or
+    \item find a proof and write a brief sketch of it.
+\end{enumerate}
+
+Remark: I know of only two ``proofs'' of this claim, first made in 1958 by Puppe. One of the ``proofs'' is at best a sketch; I do not think it is correct. The second was published in 2006 in a book by May--Sigurdsson (the actual counterexample being included in an appendix and having been worked out by Kathleen Lewis). This might serve as a hint as to which of the above you should try to do.
+\end{prob}
+
+\end{document}

@@ -1,0 +1,98 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+
+\begin{document}
+
+\begin{center}
+    \Large \textbf{Math 166 --- Fun with Sequences}
+\end{center}
+
+\vspace{0.5cm}
+
+\noindent \textbf{Section Number:} \underline{\hspace{3cm}}
+
+\vspace{0.5cm}
+
+\noindent \textbf{Definition.} A \emph{sequence} $\{a_n\}$ is an infinite, ordered list of numbers $a_1, a_2, a_3, \ldots$.
+The sequence $\{a_n\}$ \emph{converges} to $L$ if 
+\[
+\lim_{n \to \infty} a_n = L.
+\]
+If the limit $\lim_{n \to \infty} a_n$ does not exist, we say the sequence $\{a_n\}$ \emph{diverges.}
+
+\vspace{0.5cm}
+
+\noindent \textbf{Theorem.} If $\displaystyle \lim_{x \to \infty} f(x)$ exists, then the sequence $a_n = f(n)$ converges to the same limit:
+\[
+\lim_{n \to \infty} a_n = \lim_{x \to \infty} f(x).
+\]
+
+\vspace{0.5cm}
+
+\noindent \textbf{Definition.} A \emph{geometric sequence} is a sequence $\{a_n\}$ of the form $a_n = c r^n$ for some numbers $c$ and $r$.
+
+\begin{enumerate}
+    \item Let $a_n = r^n$ for some real number $r$ (so $\{a_n\}$ is a geometric sequence with $c=1$). 
+    Write out the $n = 0,1,2,3$ terms of $\{a_n\}$ for each of the following values of $r$. 
+    What is the limit of each sequence?
+    \begin{enumerate}[label=(\alph*)]
+        \item $r = 5$
+        \item $r = 1$
+        \item $r = \tfrac{1}{2}$
+        \item $r = 0$
+        \item $r = -\tfrac{1}{3}$
+        \item $r = -4$
+    \end{enumerate}
+
+    \item Use your work in the previous problem to guess for which values of $r$ the geometric sequence $a_n = r^n$ converges. 
+    Prove your guess using the theorem above.
+\end{enumerate}
+
+\vspace{0.5cm}
+
+\noindent \textbf{Theorem.} If $f$ is continuous and $\displaystyle \lim_{n \to \infty} a_n = L$, then
+\[
+\lim_{n \to \infty} f(a_n) = f\!\left(\lim_{n \to \infty} a_n\right) = f(L).
+\]
+
+\begin{enumerate}[resume]
+    \item Suppose $\{a_n\}$ converges to $7$ and $\{b_n\}$ converges to $14$. 
+    Use the above theorem to answer the question: Does the sequence
+    \[
+    \left\{ \frac{\sqrt{(a_n)^2 + b_n}}{a_n} \right\}
+    \]
+    converge? If so, what is its limit? Show your work.
+\end{enumerate}
+
+\vspace{0.5cm}
+
+\noindent \textbf{Theorem (Monotone Convergence Theorem).} 
+If a sequence $\{a_n\}$ is increasing and bounded above by $M$, then $\{a_n\}$ converges and $\lim_{n \to \infty} a_n \le M$. 
+If a sequence $\{a_n\}$ is decreasing and bounded below by $m$, then $\{a_n\}$ converges and $\lim_{n \to \infty} a_n \ge m$.
+
+\begin{enumerate}[resume]
+    \item Let $\{a_n\}$ be the sequence whose $n$th term is a decimal point followed by the first $n$ positive integers concatenated:
+    \[
+    \{a_n\} = \{0.1,\ 0.12,\ 0.123,\ 0.1234,\ \ldots,\ 0.1234567891011,\ \ldots\}.
+    \]
+    The following steps will help you use the Monotone Convergence Theorem to show this sequence converges. 
+    (The limit of this sequence is called the \emph{Champernowne constant}.)
+    \begin{enumerate}[label=(\alph*)]
+        \item Write a sentence to say why this sequence is increasing.
+        \item Find a number $M$ that is larger than every number in this sequence. That is, show the sequence is bounded above by $M$.
+        \item State what you can conclude from the first sentence of the Monotone Convergence Theorem.
+    \end{enumerate}
+
+    \item Give examples of sequences with the following properties, or state that no such sequence exists. 
+    In either case, justify your answer completely.
+    \begin{enumerate}[label=(\alph*)]
+        \item A sequence $\{a_n\}$ that is decreasing but does not converge to any number $L$.
+        \item A sequence $\{b_n\}$ that is bounded but does not converge to any number $L$.
+        \item A sequence $\{c_n\}$ that is not increasing, is not decreasing, and does converge to some number $L$.
+        \item A sequence $\{d_n\}$ where for each $n \ge 2$, $d_n = r \cdot d_{n-1}$ for some constant $r$ and $\{d_n\}$ converges to $2$.
+    \end{enumerate}
+\end{enumerate}
+
+\end{document}

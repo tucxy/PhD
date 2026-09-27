@@ -1,0 +1,540 @@
+\documentclass[addpoints,10pt]{exam}
+
+\usepackage{amsmath,amsthm,enumitem,wrapfig,amsfonts,mathtools}
+\usepackage[mathscr]{euscript}
+\usepackage[super]{nth}
+\usepackage{dsfont}
+\usepackage{xparse}
+\usepackage{cancel}
+
+\usepackage{geometry}
+\usepackage[T1]{fontenc}
+\renewcommand{\rmdefault}{ptm}
+\usepackage{amsmath,amsfonts,amsthm,amssymb}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{sectsty}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{xcolor}
+\definecolor{darkpastelgreen}{rgb}{0.01, 0.75, 0.24}
+\definecolor{blue-violet}{rgb}{0.54, 0.17, 0.89}
+
+\usepackage{polynom}
+\newcounter{cprob}
+\newenvironment{cprob}[1]{%
+    \setcounter{cprob}{#1}%
+    \noindent\textbf{Problem \thecprob.}%
+}{%
+    \par\bigskip%
+}
+
+\theoremstyle{plain}
+\newcommand{\theoremname}{Theorem}
+\newtheorem{thm}{\protect\theoremname}
+\theoremstyle{definition}
+\newtheorem{prob}[thm]{Problem}
+\newtheorem*{problem*}{Open Problem}
+\theoremstyle{plain}
+\newtheorem{conjecture}[thm]{Conjecture}
+\theoremstyle{plain}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem*{lem*}{Lemma}
+\newtheorem{obs}[thm]{Observation}
+\newtheorem{cor}[thm]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[thm]{Definition}
+
+\let\oldprob\prob
+\let\endoldprob\endprob
+\renewenvironment{prob}
+  {\begin{singlespace}\oldprob}
+  {\endoldprob\end{singlespace}}
+
+\newcommand{\belowtitle}{\leavevmode\newline}
+\newcommand{\Observe}{\text{Observe.}}
+\newcommand{\IF}{\mathbf{(\Rightarrow)}}
+\newcommand{\FI}{\mathbf{(\Leftarrow)}}
+\newcommand{\class}[2][]{\ensuremath{\left[\,#2\,\right]_{#1}}}
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}
+\newcommand{\kkk}{\ensuremath{\Bbbk}}
+\newcommand{\CC}{\ensuremath{\mathbb{C}}}
+\newcommand{\FF}{\ensuremath{\mathbb{F}}}
+\newcommand{\KK}{\ensuremath{\mathbb{K}}}
+\newcommand{\NN}{\ensuremath{\mathbb{N}}}
+\newcommand{\QQ}{\ensuremath{\mathbb{Q}}}
+\newcommand{\RR}{\ensuremath{\mathbb{R}}}
+\newcommand{\ZZ}{\ensuremath{\mathbb{Z}}}
+\newcommand{\MM}{\ensuremath{\mathcal{M}}}
+\newcommand{\TT}{\ensuremath{\mathcal{T}}}
+\newcommand{\BB}{\ensuremath{\mathcal{B}}}
+\newcommand{\VV}{\ensuremath{\mathcal{V}}}
+\newcommand{\WW}{\ensuremath{\mathcal{W}}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}}
+\newcommand{\PP}{\ensuremath{\mathcal{P}}}
+\newcommand{\LL}{\ensuremath{\mathcal{L}}}
+\newcommand{\kk}{\ensuremath{\mathds{k}}}
+\newcommand{\EE}{\ensuremath{\mathbb{E}}}
+\newcommand{\Ss}{\ensuremath{\mathcal{S}}}
+
+\newcommand{\sm}{\char`\\}
+
+\DeclarePairedDelimiter{\ip}{\langle}{\rangle}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\DeclarePairedDelimiter{\sqb}{\lbrack}{\rbrack}
+
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\mbf}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\tbf}[1]{\textbf{ #1 }}
+\newcommand{\Span}{\ensuremath{\mathrm{Span}}}
+\newcommand{\Char}[1]{\mathrm{Char}\; #1}
+\DeclareMathOperator{\lcm}{lcm}
+\newcommand{\id}{\ensuremath{\mathrm{id}}}
+\newcommand{\Gal}[2]{\mathrm{Gal}(#1/#2)}
+\newcommand{\Aut}{\ensuremath{\mathrm{Aut}}}
+\newcommand{\Fix}[2]{\mathrm{Fix}_{#1}(#2)}
+\newcommand{\nil}{\ensuremath{\mathrm{nil}}}
+\newcommand{\Hom}{\ensuremath{\mathrm{Hom}}}
+\newcommand{\Obj}{\ensuremath{\mathrm{Obj}}}
+
+\newcommand{\Rng}{\ensuremath{\mathrm{Rng}}}
+\newcommand{\rank}{\ensuremath{\operatorname{rank}}}
+\newcommand{\Tor}{\ensuremath{\operatorname{Tor}}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\def\env@matrix{\hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols c}}
+
+\newcommand{\proj}[2]{\text{proj}_{#1}(#2)}
+
+%%% Formatting: Page Header
+\newcommand{\StudentName}{Danny Banegas}
+\newcommand{\AssignmentName}{Homework 13}
+\newcommand{\CourseName}{MATH 720 - Algebra I}
+
+\pagestyle{headandfoot}
+\runningheadrule
+\firstpageheadrule
+\firstpageheader{\CourseName}{\StudentName}{\AssignmentName}
+\runningheader{\CourseName}{\StudentName}{\AssignmentName}
+\firstpagefooter{}{\thepage}{}
+\runningfooter{}{\thepage}{}
+
+\printanswers
+
+\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+
+\usepackage{parskip}
+\usepackage{setspace}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{thm}{0}
+
+\begin{prob}
+Consider the matrix
+\[
+\begin{pmatrix}
+9 & 0\\
+0 & 15
+\end{pmatrix}.
+\]
+
+Write a sequence of $\ZZ$-linear row and column operations to get the matrix
+\[
+\begin{pmatrix}
+3 & 0\\
+0 & 45
+\end{pmatrix}.
+\]
+
+Then explain a general method to transform a matrix
+\[
+\begin{pmatrix}
+a & 0\\
+0 & b
+\end{pmatrix}
+\]
+to
+\[
+\begin{pmatrix}
+\gcd(a,b) & 0\\
+0 & \lcm(a,b)
+\end{pmatrix},
+\text{ whenever $a,b$ are elements of a PID $R$.}\]
+
+\end{prob}
+
+\begin{proof}
+First, observe that $\gcd(a,b)=\frac{ab}{\lcm(a,b)}$. Let
+$d=\gcd(a,b)$. Then $a=\alpha d$ and $b=\beta d$ for some
+$\alpha,\beta\in R$. Also, $\lcm(a,b)=\alpha\beta d$.
+
+Now suppose $\delta\mid \alpha,\beta$. Then
+$a=\alpha d$ and $b=\beta d$, so $\delta d\mid a,b$. Hence
+$\delta d\mid \gcd(a,b)=d$, so $\delta$ is a unit. Thus
+$\gcd(\alpha,\beta)=1$. Since $R$ is a PID, there exist $x,y\in R$
+such that $x\alpha+y\beta=1$. Multiplying by $d$, we get
+$xa+yb=d$.
+
+We use this relation to transform the matrix. Starting with
+$\begin{pmatrix} a&0\\0&b\end{pmatrix}$, add column $2$ to column $1$
+to get $\begin{pmatrix} a&0\\b&b\end{pmatrix}$. Then use the Euclidean
+process on the entries in column $1$ until the first column becomes
+$\begin{pmatrix} d\\0\end{pmatrix}$. Then we get a matrix of the form
+$\begin{pmatrix} d&u\\0&v\end{pmatrix}$. Then subtract multiples of
+column $1$ from column $2$ to clear $u$, obtaining
+$\begin{pmatrix} d&0\\0&v\end{pmatrix}$. We can do this since $u$ was obtained from multiples of $a$ and $b$ both of whom share $d$ as a divisor.
+
+Every row and column operation preserves the ideal generated by all
+entries, so $d=\gcd(a,b)$ remains the first diagonal entry. Also row and
+column operations change determinant only by multiplication by a unit.
+Therefore, $ab$ is associate to $dv$ and $v$ is associate to
+$\frac{ab}{d}=\lcm(a,b)$. So the final matrix is equivalent to
+$\begin{pmatrix} \gcd(a,b)&0\\0&\lcm(a,b)\end{pmatrix}$.
+
+For the specific matrix,
+\begin{align*}
+&\begin{pmatrix}
+9&0\\
+0&15
+\end{pmatrix}
+\overset{C_2= C_1+C_2}{\longrightarrow}
+\begin{pmatrix}
+9&0\\
+15&15
+\end{pmatrix}
+\overset{R_2= R_2-R_1}{\longrightarrow}
+\begin{pmatrix}
+9&0\\
+6&15
+\end{pmatrix}
+\overset{R_1= R_1-R_2}{\longrightarrow}
+\begin{pmatrix}
+3&-15\\
+6&15
+\end{pmatrix}
+\overset{R_2= R_2-R_1}{\longrightarrow}
+\begin{pmatrix}
+3&-15\\
+3&30
+\end{pmatrix}\\
+&\overset{R_1= R_1-R_2}{\longrightarrow}
+\begin{pmatrix}
+0&-45\\
+3&30
+\end{pmatrix}
+\overset{R_1\leftrightarrow R_2}{\longrightarrow}
+\begin{pmatrix}
+3&30\\
+0&-45
+\end{pmatrix}
+\overset{C_2=C_2-10C_1}{\longrightarrow}
+\begin{pmatrix}
+3&0\\
+0&-45
+\end{pmatrix}
+\overset{R_2=-R_2}{\longrightarrow}
+\begin{pmatrix}
+3&0\\
+0&45
+\end{pmatrix}.
+\end{align*}
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{prob}
+Read the full proof of Smith Normal Form (in Smith Normal Form Supplement under Week 16), and then list any steps which require $R$ to be a PID.
+\end{prob}
+
+The proof uses that $R$ is a PID in the following places.
+
+First, immediately after defining the function that counts the number of
+prime factors $\ell(a)$ of an element $a\in R$, this only makes sense in
+full generality if every element has a factorization into primes. This is
+true because every PID is a UFD.
+
+Second, the proof uses that every ideal generated by finitely many
+elements is principal. For example, in Case 2a it says that since $R$ is
+a PID, $\langle a_1,a_2\rangle=\langle d\rangle$. This step requires
+$R$ to be a PID.
+
+Third, the same issue occurs later whenever the proof replaces an ideal
+generated by several entries with a single generator.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+\begin{prob}
+Let
+\[
+R=k[x,y,z].
+\]
+
+Explain what goes wrong when you try to find a ``Smith Normal Form'' of
+\[
+\begin{pmatrix}
+x & y\\
+z & x+y
+\end{pmatrix}.
+\]
+\end{prob}
+
+\begin{proof}
+Let $R=k[x,y,z]$. Notice that $R$ is not a PID. In particular,
+$\langle x,y,z\rangle$ is not principal since if
+$\langle x,y,z\rangle=\langle d\rangle$, then $d$ divides $x$, $y$, and
+$z$. Since $x,y,z$ have no common nonunit factor, $d$ must be a unit.
+So $\langle d\rangle=R$. But this would imply
+$\langle x,y,z\rangle=R$, which is impossible since every element of
+$\langle x,y,z\rangle$ has no constant term.
+
+Now consider
+$\begin{pmatrix}x&y\\ z&x+y\end{pmatrix}$. The entries generate the
+ideal $\langle x,y,z,x+y\rangle=\langle x,y,z\rangle$. If a Smith normal
+form existed by the usual PID algorithm, the first diagonal entry would
+generate the ideal generated by all entries. But
+$\langle x,y,z\rangle$ is not principal. Therefore there is no single
+gcd of the entries obtained as an $R$-linear combination of
+$x,y,z,x+y$.
+
+So the first step of the Smith normal form algorithm already fails:
+we cannot replace the entries by a greatest common divisor using row and
+column operations. Therefore the usual Smith normal form process does not
+work over $k[x,y,z]$.
+
+\end{proof}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+\begin{prob}
+Let $R$ be an integral domain with field of fractions $F=Q(R)$, and let
+$M$ be any $R$-module.
+
+Prove that the rank of $M$ is the dimension of the vector space
+$F\otimes_R M$ over $F$.
+\end{prob}
+
+\begin{proof}
+Let $F=Q(R)$. $(\implies)$ Suppose $m_1,\ldots,m_n\in M$ are $R$-linearly independent.
+We prove that $1\otimes m_1,\ldots,1\otimes m_n$ are $F$-linearly
+independent in $F\otimes_R M$.
+
+Suppose $\sum_{i=1}^n \lambda_i(1\otimes m_i)=0$, where
+$\lambda_i\in F$. Write each $\lambda_i=a_i/s_i$ with $a_i\in R$ and
+$s_i\in R\setminus\{0\}$. Let $s=s_1\cdots s_n$. Multiplying by $s$,
+we get $\sum_{i=1}^n b_i(1\otimes m_i)=0$ for some $b_i\in R$.
+Equivalently, $1\otimes \sum_{i=1}^n b_i m_i=0$. Since the $m_i$ are
+$R$-linearly independent, each $b_i=0$, and therefore each
+$\lambda_i=0$. So the pure tensors are $F$-linearly independent.
+
+$(\impliedby)$ On the other hand, suppose $1\otimes m_1,\ldots,1\otimes m_n$ are
+$F$-linearly independent. If $\sum_{i=1}^n r_i m_i=0$ with $r_i\in R$,
+then tensoring gives $\sum_{i=1}^n r_i(1\otimes m_i)=0$ in
+$F\otimes_R M$. Since the tensors are $F$-linearly independent, each
+$r_i=0$. This holds since $R_{i}\cong_{R}\frac{R_{i}}{1}\leq_{R} F$. Therefore, $m_1,\ldots,m_n$ are $R$-linearly independent.
+
+So then $R$-linearly independent subsets of $M$ correspond to
+$F$-linearly independent subsets of $F\otimes_R M$. That is, if $\rank M\leq n$, there exists some $R$-linearly independent $m_{1},\hdots, m_{n}\in M$. If we suppose $\rank F<n$ we then get a contradiction since $1\otimes m_{1},\hdots, 1\otimes m_{n}$ are $F$-linearly independent. If $M$ has infinite rank, then we can form an infinite set of $R$-linearly independent elements in $M$ and a set of $F$-linearly independent pure tensors corresponding to them. So $\rank M=\dim_{F}(F\otimes_{R} M).$
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+\begin{prob}
+Let $R=\ZZ[x]$ and let $M=(2,x)$.
+
+\begin{enumerate}[label=(\alph*)]
+\item Show that $\{2,x\}$ is not a basis for $M$.
+
+\item Show that $M$ has rank $1$ but is not free of rank $1$.
+
+\item Write a presentation for $M$.
+\end{enumerate}
+\end{prob}
+
+\begin{proof}
+(a)
+In $M=\langle 2,x\rangle\subseteq \ZZ[x]$, we have the nontrivial relation
+$x\cdot 2+(-2)\cdot x=0$. The coefficients $x$ and $-2$ are both non-zero
+zero in $\ZZ[x]$. So by our equivalence theorem $\langle 2,x\rangle$ cannot be a basis for $\ZZ[x]$
+
+(b)
+Since $M$ is a nonzero submodule of $R=\ZZ[x]$, and $R$ is an integral
+domain, any two nonzero elements of $M$ are $R$-linearly dependent since for any $m,n\in M\setminus\{0\}$ and any we have that $nm-mn=0$, a non-trivial $R$-linear combination. So no
+two elements of $M$ can be linearly independent, and $\rank M\leq 1$ but $M$ does contain a non-zero element $2$ which is then linearly independent by itself and so $\rank M=1$
+
+Now suppose $M$ were free of rank $1$. Then $M=\langle f\rangle$ for
+some $f\in M$, so $M$ would be a principal ideal. Since $2,x\in M$, we
+would have $f\mid 2$ and $f\mid x$ in $\ZZ[x]$. The only common divisors
+of $2$ and $x$ are units, so $f$ would be a unit. Then
+$M=\langle f\rangle=R$, which is false because $1\notin (2,x)$. So
+$M$ is not free of rank $1$.
+
+(c)
+Let $\phi:R^2\to M$ be defined by $\phi(a,b)=2a+xb$. This map is obviously surjective.
+$2a+xb=0\implies xb=-2a$. So $2a=-xb$, and $x\mid 2a$. Since $x$ is prime in $\ZZ[x]$ and
+$x\nmid 2$, we get that $x\mid a$ and $a=xh$ for some $h\in R$.
+
+Substituting back into $2a=-xb$ gives $2xh=-xb$. Since $R=\ZZ[x]$ is an
+integral domain, we can cancel $x$ to get $2h=-b$. So $b=-2h$.
+
+Therefore $(a,b)=(xh,-2h)=h(x,-2)$, so
+$\ker\phi\subseteq \langle (x,-2)\rangle$.
+Then in the other direction we have that
+$\phi(x,-2)=2x+x(-2)=0$. Therefore, $\ker\phi=\langle (x,-2)\rangle$.
+
+Therefore a presentation is
+$R\xrightarrow{\begin{pmatrix}x\\-2\end{pmatrix}}R^2\to M\to 0$.
+Equivalently, $M\cong R^2/\langle (x,-2)\rangle$.
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 6 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+\begin{prob}
+Let $R$ be a ring and let $M$ be an $R$-module.
+
+\begin{enumerate}[label=(\alph*)]
+\item Prove that if $M$ is projective, then $\Tor(M)=(0)$.
+
+\item Prove that a finitely generated module over a PID is projective if and only if it is free.
+\end{enumerate}
+\end{prob}
+
+\begin{proof}
+(a)
+Let $M$ be projective. Then there exists an $R$-module $N$ such that
+$M\oplus N$ is free. Since $M\oplus N$ embeds into a free module, if
+$m\in M$ is torsion, then there exists nonzero $r\in R$ such that
+$rm=0$. But then $r(m,0)=(0,0)$ in the free module $M\oplus N$. Since
+free modules over a domain are torsion-free, $(m,0)=0$, and so $m=0$.
+Thus, $\Tor(M)=\langle 0\rangle$.
+
+(b)
+If $M$ is free, then $M$ is projective automatically by our equivalence theorem since it is a direct summand of its free self.
+
+On the other hand, suppose $M$ is finitely generated and projective over a PID.
+Since $M$ is finitely generated over a PID, the structure theorem gives
+$M\cong R^r\oplus R/(d_1)\oplus\cdots\oplus R/(d_k)$, where each
+$d_i$ is a nonzero nonunit. By part (a), projective modules are
+torsion-free, so the torsion summands must vanish. Therefore
+$M\cong R^r$ and $M$ is free.
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 7 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+\begin{prob}
+Let $R$ be a PID which is not a field.
+
+Prove that no finitely generated $R$-module is injective.
+
+\textbf{Hint:} Recall that $Q\cong Q_1\oplus Q_2$ is injective if and only if $Q_1$ and $Q_2$ are injective.
+\end{prob}
+
+\begin{proof}
+We prove that no nonzero finitely generated $R$-module is injective.
+
+Since $R$ is a PID and not a field, choose a nonzero nonunit $r\in R$. First, $R$ is not injective as an $R$-module, or we contradict a previous homework problem where we proved that if $R$ is injective over itself then it must be a field.
+
+Next, let $d\in R$ be a nonzero nonunit. We show $R/\langle d\rangle
+$ is not injective. Consider the inclusion $\langle d\rangle\hookrightarrow R$, and let
+$h:\langle d\rangle\to R/\langle d\rangle$ be defined by $h(da)=[a]$. This is well-defined since $R$ is a
+domain. If $R/\langle d\rangle$ were injective, then $h$ would extend to some
+$f:R\to R/\langle d\rangle$. But then
+$h(d\cdot 1)=[1]=f(d)=df(1)=[0]$ in $R/\langle d\rangle$. But then $1-0=1\in \langle d\rangle\implies \langle d\rangle=R$, a contradiction since $d$ is a nonzero nonunit$ \implies \langle d\rangle$ is proper. So $R/\langle d\rangle$ is not
+injective.
+
+Now let $M$ be a nonzero finitely generated $R$-module. By the structure
+theorem for finitely generated modules over a PID,
+$M\cong R^n\oplus R/(d_1)\oplus\cdots\oplus R/(d_k)$,
+where each $d_i$ is a nonzero nonunit.
+
+If $M$ were injective, then every direct summand of $M$ would be
+injective by a previous homework problem. But each possible nonzero summand is either $R$
+or some $R/(d_i)$, and we proved neither type is injective.
+
+Therefore no nonzero finitely generated $R$-module is injective.
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 8 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+\begin{prob}
+Let
+\[
+V=\RR[x]/(x^4+2x^2+3x+1).
+\]
+
+\begin{enumerate}[label=(\alph*)]
+\item Show that $V$ is an $\RR$-vector space with basis
+$\beta=\{1,x,x^2,x^3\}$.
+
+\item Prove that the map $T:V\to V$ given by multiplication by $x$ is an $\RR$-linear transformation.
+
+\item Find the matrix $[T]_{\beta}^{\beta}$.
+\end{enumerate}
+\end{prob}
+
+\begin{proof}
+(a)
+Let $V=\RR[x]/(x^4+2x^2+3x+1)$. Since $x^{4}=-2x^2-3x-1$ in $V$, every element of $V$ can be expressed with a cubic representative, since that relation reduces all powers higher than $3$. So then $\{1,x,x^{2},x^{3}\}$ (modulo $x^4+2x^2+3x+1$) generates $V$.
+
+If $a_0+a_1x+a_2x^2+a_3x^3=0$ in $V$, then
+$a_0+a_1x+a_2x^2+a_3x^3$ belongs to the ideal
+$(x^4+2x^2+3x+1)$. But a nonzero element of that ideal has degree at
+least $4$, while this polynomial has degree at most $3$. So then all
+$a_i=0$ otherwise a degree $1\leq n\leq 3$ polynomial or a constant besides $0$ belongs to $(x^4+2x^2+3x+1)$, both contradictions. So then by our equivalence theorem, $\beta=\{1,x,x^2,x^3\}$ must be a basis for $V$ over $\RR$, and $V\cong \RR^4$ as vector spaces.
+
+(b)
+Let $T:V\to V$ be defined by $T(v)=xv$. $\forall u,v\in V,\forall c\in\RR$, we have
+$T(u+v)=x(u+v)=xu+xv=T(u)+T(v)$ and
+$T(cv)=x(cv)=c(xv)=cT(v)$. Therefore $T$ is $\RR$-linear.
+
+(c)
+We compute the images of the basis elements:
+$T(1)=x$, $T(x)=x^2$, $T(x^2)=x^3$, and
+$T(x^3)=x^4$. In $V$, we have
+$x^4=-(2x^2+3x+1)=-1-3x-2x^2$.
+
+Therefore, 
+$[T(1)]_\beta=\begin{pmatrix}0\\1\\0\\0\end{pmatrix}$,
+$[T(x)]_\beta=\begin{pmatrix}0\\0\\1\\0\end{pmatrix}$,
+$[T(x^2)]_\beta=\begin{pmatrix}0\\0\\0\\1\end{pmatrix}$, and
+$[T(x^3)]_\beta=\begin{pmatrix}-1\\-3\\-2\\0\end{pmatrix}$.
+
+and therefore
+\[
+[T]_\beta^\beta=
+\begin{pmatrix}
+0&0&0&-1\\
+1&0&0&-3\\
+0&1&0&-2\\
+0&0&1&0
+\end{pmatrix}.
+\]
+
+\end{proof}
+
+\end{document}

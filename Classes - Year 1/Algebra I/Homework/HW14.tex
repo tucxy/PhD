@@ -1,0 +1,331 @@
+\documentclass[addpoints,10pt]{exam}
+
+\usepackage{amsmath,amsthm,enumitem,wrapfig,amsfonts,mathtools}
+\usepackage[mathscr]{euscript}
+\usepackage[super]{nth}
+\usepackage{dsfont}
+\usepackage{xparse}
+\usepackage{cancel}
+
+\usepackage{geometry}
+\usepackage[T1]{fontenc}
+\renewcommand{\rmdefault}{ptm}
+\usepackage{amsmath,amsfonts,amsthm,amssymb}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{sectsty}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{xcolor}
+\definecolor{darkpastelgreen}{rgb}{0.01, 0.75, 0.24}
+\definecolor{blue-violet}{rgb}{0.54, 0.17, 0.89}
+
+\usepackage{polynom}
+\newcounter{cprob}
+\newenvironment{cprob}[1]{%
+    \setcounter{cprob}{#1}%
+    \noindent\textbf{Problem \thecprob.}%
+}{%
+    \par\bigskip%
+}
+
+\theoremstyle{plain}
+\newcommand{\theoremname}{Theorem}
+\newtheorem{thm}{\protect\theoremname}
+\theoremstyle{definition}
+\newtheorem{prob}[thm]{Problem}
+\newtheorem*{problem*}{Open Problem}
+\theoremstyle{plain}
+\newtheorem{conjecture}[thm]{Conjecture}
+\theoremstyle{plain}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem*{lem*}{Lemma}
+\newtheorem{obs}[thm]{Observation}
+\newtheorem{cor}[thm]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[thm]{Definition}
+
+\let\oldprob\prob
+\let\endoldprob\endprob
+\renewenvironment{prob}
+  {\begin{singlespace}\oldprob}
+  {\endoldprob\end{singlespace}}
+
+\newcommand{\belowtitle}{\leavevmode\newline}
+\newcommand{\Observe}{\text{Observe.}}
+\newcommand{\IF}{\mathbf{(\Rightarrow)}}
+\newcommand{\FI}{\mathbf{(\Leftarrow)}}
+\newcommand{\class}[2][]{\ensuremath{\left[\,#2\,\right]_{#1}}}
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}
+\newcommand{\kkk}{\ensuremath{\Bbbk}}
+\newcommand{\CC}{\ensuremath{\mathbb{C}}}
+\newcommand{\FF}{\ensuremath{\mathbb{F}}}
+\newcommand{\KK}{\ensuremath{\mathbb{K}}}
+\newcommand{\NN}{\ensuremath{\mathbb{N}}}
+\newcommand{\QQ}{\ensuremath{\mathbb{Q}}}
+\newcommand{\RR}{\ensuremath{\mathbb{R}}}
+\newcommand{\ZZ}{\ensuremath{\mathbb{Z}}}
+\newcommand{\MM}{\ensuremath{\mathcal{M}}}
+\newcommand{\TT}{\ensuremath{\mathcal{T}}}
+\newcommand{\BB}{\ensuremath{\mathcal{B}}}
+\newcommand{\VV}{\ensuremath{\mathcal{V}}}
+\newcommand{\WW}{\ensuremath{\mathcal{W}}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}}
+\newcommand{\PP}{\ensuremath{\mathcal{P}}}
+\newcommand{\LL}{\ensuremath{\mathcal{L}}}
+\newcommand{\kk}{\ensuremath{\mathds{k}}}
+\newcommand{\EE}{\ensuremath{\mathbb{E}}}
+\newcommand{\Ss}{\ensuremath{\mathcal{S}}}
+
+\newcommand{\sm}{\char`\\}
+
+\DeclarePairedDelimiter{\ip}{\langle}{\rangle}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\DeclarePairedDelimiter{\sqb}{\lbrack}{\rbrack}
+
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\mbf}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\tbf}[1]{\textbf{ #1 }}
+\newcommand{\Span}{\ensuremath{\mathrm{Span}}}
+\newcommand{\Char}[1]{\mathrm{Char}\; #1}
+\DeclareMathOperator{\lcm}{lcm}
+\newcommand{\id}{\ensuremath{\mathrm{id}}}
+\newcommand{\Gal}[2]{\mathrm{Gal}(#1/#2)}
+\newcommand{\Aut}{\ensuremath{\mathrm{Aut}}}
+\newcommand{\Fix}[2]{\mathrm{Fix}_{#1}(#2)}
+\newcommand{\nil}{\ensuremath{\mathrm{nil}}}
+\newcommand{\Hom}{\ensuremath{\mathrm{Hom}}}
+\newcommand{\Obj}{\ensuremath{\mathrm{Obj}}}
+
+\newcommand{\Rng}{\ensuremath{\mathrm{Rng}}}
+\newcommand{\rank}{\ensuremath{\operatorname{rank}}}
+\newcommand{\Tor}{\ensuremath{\operatorname{Tor}}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\def\env@matrix{\hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols c}}
+
+\newcommand{\proj}[2]{\text{proj}_{#1}(#2)}
+
+%%% Formatting: Page Header
+\newcommand{\StudentName}{Danny Banegas}
+\newcommand{\AssignmentName}{Homework 14}
+\newcommand{\CourseName}{MATH 720 - Algebra I}
+
+\pagestyle{headandfoot}
+\runningheadrule
+\firstpageheadrule
+\firstpageheader{\CourseName}{\StudentName}{\AssignmentName}
+\runningheader{\CourseName}{\StudentName}{\AssignmentName}
+\firstpagefooter{}{\thepage}{}
+\runningfooter{}{\thepage}{}
+
+\printanswers
+
+\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+
+\usepackage{parskip}
+\usepackage{setspace}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{thm}{0}
+
+\begin{prob}
+Let $k$ be a field, $V$ a vector space, and $T:V\to V$ a linear transformation.
+Suppose $V_{T}$ is the direct sum of cyclic $k[x]$-modules whose annihilators are
+\[
+(x+1)^2,\qquad
+(x-1)(x^2+1)^2,\qquad
+(x^4-1),\qquad
+(x+1)(x^2-1).
+\]
+
+Determine the invariant factors and elementary divisors for $V$.
+\end{prob}
+
+I'm skipping this one since I went to the talk. - Danny
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+\begin{prob}
+Compute the rational canonical form of the matrix over $\RR$
+\[
+\begin{pmatrix}
+1&0&0\\
+0&0&2\\
+0&-2&3
+\end{pmatrix}.
+\]
+
+Does it have a Jordan canonical form over $\RR$?
+\end{prob}
+
+\begin{proof}
+Let
+$A=\begin{pmatrix}1&0&0\\0&0&2\\0&-2&3\end{pmatrix}$.
+Then
+$\chi_A(x)=\det(xI-A)=(x-1)(x^2-3x+4)$.
+
+The factor $x^2-3x+4$ has discriminant $9-16=-7$, so it is irreducible
+into linears over $\RR$ and therefore irreducible over $\RR$. Also, $(x-1)$ and $x^2-3x+4$ are relatively prime. So the only
+invariant factor must be the entire product
+$(x-1)(x^2-3x+4)=(1)x^3+(-4)x^2+(7)x+(-4)=a_{3}x^{3}+a_{2}x^{2}+a_{1}x+a_{0}$.
+
+Therefore the rational canonical form is the companion matrix
+\[
+\begin{pmatrix}
+0&0&-a_{0}\\
+1&0&-a_{1}\\
+0&1&-a_{2}
+\end{pmatrix} = \begin{pmatrix}
+0&0&4\\
+1&0&-7\\
+0&1&4
+\end{pmatrix}.
+\]
+
+Since $x^2-3x+4$ doesn't split over $\RR$, the matrix does not have a
+Jordan canonical form over $\RR$.
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+\begin{prob}
+Determine whether the following matrices are similar, and justify your claim.
+\[
+A=
+\begin{pmatrix}
+-1&4&-4\\
+2&-1&3\\
+0&-4&3
+\end{pmatrix},
+\qquad
+B=
+\begin{pmatrix}
+-3&-4&0\\
+2&3&0\\
+8&8&1
+\end{pmatrix}.
+\]
+\end{prob}
+
+\begin{proof}
+Skipping compuitations, both matrices have characteristic polynomial
+$(x-1)^2(x+1)$.
+
+Now compare the eigenspaces for the eigenvalue $1$. For
+\[
+A=
+\begin{pmatrix}
+-1&4&-4\\
+2&-1&3\\
+0&-4&3
+\end{pmatrix},
+\]
+we have $\rank(A-I)=2$, so $\dim\ker(A-I)=1$.
+
+For
+\[
+B=
+\begin{pmatrix}
+-3&-4&0\\
+2&3&0\\
+8&8&1
+\end{pmatrix},
+\]
+we have $\rank(B-I)=1$, so $\dim\ker(B-I)=2$.
+
+Since similar matrices must have eigenspaces of the same dimension for
+each eigenvalue, $A$ and $B$ are not similar.
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+\begin{prob}
+Let $k$ be a field, and suppose $V$ is a $k$-vector space with basis
+$\{v_1,v_2,v_3\}$ and that $T:V\to V$ is a linear transformation defined by
+\[
+T(v_1)=v_2+v_3,\qquad
+T(v_2)=2v_2-v_1,\qquad
+T(v_3)=v_3.
+\]
+
+\begin{enumerate}[label=(\alph*)]
+\item Write $V_T$ in terms of invariant factors and then in terms of elementary divisors.
+
+\item Determine both the rational canonical form and Jordan canonical form of $T$.
+
+\item Find every eigenvalue of $T$.
+
+\item Is $T$ diagonalizable?
+\end{enumerate}
+\end{prob}
+
+\begin{proof}(a)
+With respect to the basis $\{v_1,v_2,v_3\}$, the matrix of $T$ is
+\[
+A=
+\begin{pmatrix}
+0&-1&0\\
+1&2&0\\
+1&0&1
+\end{pmatrix}.
+\]
+
+Skipping compuitations,
+$\chi_A(x)=\det(xI-A)=(x-1)^3$.
+Also, $A-I$ has rank $2$, $(A-I)^2$ has rank $1$, and $(A-I)^3=0$.
+Thus the largest Jordan block has size $3$, and so there is only one Jordan block.
+
+Therefore the invariant factor form is
+$V_T\cong k[x]/((x-1)^3)$.
+
+The elementary divisor form is the same:
+$V_T\cong k[x]/((x-1)^3)$.
+
+(b) The rational canonical form is the companion matrix of
+$(x-1)^3=x^3-3x^2+3x-1$ since the minimal polynomial of $A$ is $(x-1)^{3}$, and then it must be the largest invariant factor and once more the whole polynomial is the only invariant factor then. So again the companion matrix is the rational cononical form
+\[
+\begin{pmatrix}
+0&0&1\\
+1&0&-3\\
+0&1&3
+\end{pmatrix}.
+\]
+
+And trivially the Jordan canonical form is
+\[
+\begin{pmatrix}
+1&1&0\\
+0&1&1\\
+0&0&1
+\end{pmatrix}.
+\]
+
+(c) The only eigenvalue is $1$. 
+
+(d) Finally, since there is only one Jordan block of size
+$3$, not $1$, the matrix is not diagonalizable.
+
+\end{proof}
+
+\end{document}

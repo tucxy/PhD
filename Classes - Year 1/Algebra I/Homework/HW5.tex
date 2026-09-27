@@ -1,0 +1,728 @@
+\documentclass[addpoints,10pt]{exam}
+
+\usepackage{amsmath,amsthm,enumitem,wrapfig,amsfonts,mathtools}
+\usepackage[mathscr]{euscript}
+\usepackage[super]{nth}
+\usepackage{dsfont}
+\usepackage{xparse}
+\usepackage{cancel}
+
+\usepackage{geometry}
+\usepackage[T1]{fontenc}
+\renewcommand{\rmdefault}{ptm}
+\usepackage{amsmath,amsfonts,amsthm,amssymb}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{sectsty}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta}
+\usepackage{xcolor}
+\definecolor{darkpastelgreen}{rgb}{0.01, 0.75, 0.24}
+\definecolor{blue-violet}{rgb}{0.54, 0.17, 0.89}
+\usepackage{polynom}
+
+\newcounter{cprob}
+\newenvironment{cprob}[1]{%
+    \setcounter{cprob}{#1}%
+    \noindent\textbf{Problem \thecprob.}%
+}{%
+    \par\bigskip%
+}
+
+\theoremstyle{plain}
+\newcommand{\theoremname}{Theorem}
+\newtheorem{thm}{\protect\theoremname}
+\theoremstyle{definition}
+\newtheorem{prob}[thm]{Problem}
+\newtheorem*{problem*}{Open Problem}
+\theoremstyle{plain}
+\newtheorem{conjecture}[thm]{Conjecture}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem*{lem*}{Lemma}
+\newtheorem{obs}[thm]{Observation}
+\newtheorem{cor}[thm]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[thm]{Definition}
+
+\let\oldprob\prob
+\let\endoldprob\endprob
+\renewenvironment{prob}
+  {\begin{singlespace}\oldprob}
+  {\endoldprob\end{singlespace}}
+
+\newcommand{\belowtitle}{\leavevmode\newline}
+\newcommand{\Observe}{\text{Observe.}}
+\newcommand{\IF}{\mathbf{(\Rightarrow)}}
+\newcommand{\FI}{\mathbf{(\Leftarrow)}}
+\newcommand{\class}[2][]{\ensuremath{\left[\,#2\,\right]_{#1}}}
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}
+\newcommand{\kkk}{\ensuremath{\Bbbk}}
+\newcommand{\CC}{\ensuremath{\mathbb{C}}}
+\newcommand{\FF}{\ensuremath{\mathbb{F}}}
+\newcommand{\KK}{\ensuremath{\mathbb{K}}}
+\newcommand{\NN}{\ensuremath{\mathbb{N}}}
+\newcommand{\QQ}{\ensuremath{\mathbb{Q}}}
+\newcommand{\RR}{\ensuremath{\mathbb{R}}}
+\newcommand{\ZZ}{\ensuremath{\mathbb{Z}}}
+\newcommand{\MM}{\ensuremath{\mathcal{M}}}
+\newcommand{\TT}{\ensuremath{\mathcal{T}}}
+\newcommand{\BB}{\ensuremath{\mathcal{B}}}
+\newcommand{\VV}{\ensuremath{\mathcal{V}}}
+\newcommand{\WW}{\ensuremath{\mathcal{W}}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}}
+\newcommand{\PP}{\ensuremath{\mathcal{P}}}
+\newcommand{\LL}{\ensuremath{\mathcal{L}}}
+\newcommand{\kk}{\ensuremath{\mathds{k}}}
+\newcommand{\EE}{\ensuremath{\mathbb{E}}}
+\newcommand{\Ss}{\ensuremath{\mathcal{S}}}
+\newcommand{\GG}{\ensuremath{\mathcal{G}}}
+
+\newcommand{\sm}{\char`\\}
+\DeclarePairedDelimiter{\ip}{\langle}{\rangle}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\DeclarePairedDelimiter{\sqb}{\lbrack}{\rbrack}
+
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\mbf}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\tbf}[1]{\textbf{ #1 }}
+\newcommand{\Span}{\ensuremath{\mathrm{Span}}}
+\newcommand{\Char}[1]{\mathrm{Char}\; #1}
+\DeclareMathOperator{\lcm}{lcm}
+\newcommand{\id}{\ensuremath{\mathrm{id}}}
+\newcommand{\Gal}[2]{\mathrm{Gal}(#1/#2)}
+\newcommand{\Aut}{\ensuremath{\mathrm{Aut}}}
+\newcommand{\Fix}[2]{\mathrm{Fix}_{#1}(#2)}
+\newcommand{\nil}{\ensuremath{\mathrm{nil}}}
+\newcommand{\Hom}{\ensuremath{\mathrm{Hom}}}
+\newcommand{\Obj}{\ensuremath{\mathrm{Obj}}}
+\newcommand{\Rng}{\ensuremath{\mathrm{Rng}}}
+\newcommand{\Ring}{\ensuremath{\mathrm{Ring}}}
+\newcommand{\h}{\ensuremath{\mathrm{ht}}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\def\env@matrix{\hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols c}}
+
+\newcommand{\proj}[2]{\text{proj}_{#1}(#2)}
+
+\newcommand{\StudentName}{Danny Banegas}
+\newcommand{\AssignmentName}{Homework 5}
+\newcommand{\CourseName}{MATH 720 - Algebra I}
+
+\pagestyle{headandfoot}
+\runningheadrule
+\firstpageheadrule
+\firstpageheader{\CourseName}{\StudentName}{\AssignmentName}
+\runningheader{\CourseName}{\StudentName}{\AssignmentName}
+\firstpagefooter{}{\thepage}{}
+\runningfooter{}{\thepage}{}
+
+\printanswers
+
+\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+
+\usepackage{parskip}
+\usepackage{setspace}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{thm}{0}
+
+\begin{prob}
+A discrete valuation on a field $k$ is a map $v : k \to \ZZ \cup \{\infty\}$ such that $v(xy)=v(x)+v(y)$,
+\[
+v(x+y)\geq \min\{v(x),v(y)\},
+\]
+and
+\[
+v(x)=\infty \iff x=0.
+\]
+Prove that the set
+\[
+R:=\{a\in k\setminus\{0\}\mid v(a)\geq 0\}\cup\{0\}
+\]
+is a subring of $k$ and is in fact a Euclidean domain.
+
+(Rings of this form are called discrete valuation rings or DVRs).
+\end{prob}
+
+\begin{proof}
+For any $a,b\in R$,
+
+$[1]:$
+$v(1\cdot a)=v(1)+v(a)=v(a)\implies v(1)=0\implies 1\in R$.
+
+$[+]:$
+$v(a+b)\geq \min\{v(a),v(b)\}\geq 0$
+since $a,b\in R\implies v(a),v(b)\geq 0\implies a+b\in R$.
+
+$[\cdot]:$
+$v(ab)=v(a)+v(b)\geq 0$
+since $a,b\in R\implies ab\in R$.
+
+$[-]:$
+$v((-1)(-1))=v(1)=v(-1)+v(-1)=0$
+so $v(-1)=0\implies -1\in R$ and then
+$(-1)\cdot a=-a\in R$ by $[\cdot]$.
+
+So $R\leq K$ is a subring.
+
+Now consider any $a,b\in R$, $b\neq 0$. Since $K$ is a field,
+$ba^{-1}\in K$, and
+$v(ba^{-1})=v(b)+v(a^{-1})=v(b)-v(a)$.
+Therefore, if $v(a)\geq v(b)$, then
+$v(ab^{-1})=v(a)-v(b)\geq 0\implies ab^{-1}=\frac{a}{b}\in R$.
+
+Also notice that $v(R)=\NN$. We will use this to prove $R$ is a
+Euclidean domain.
+
+For any $a,b\in R\setminus\{0\}$, either
+
+(i) $v(a)\geq v(b)$, or
+
+(ii) $v(a)<v(b)$.
+
+(i) If $v(a)\geq v(b)$, let
+$q=\frac{a}{b}\in R$, $r=0$. We have
+$a=qb+r=\left(\frac{a}{b}\right)b+0=a$
+with $r=0$.
+
+(ii) If $v(a)<v(b)$, then let
+$q=0\in R$ and $r=a\in R$. We have
+$a=qb+r=(0)b+a$
+and
+$v(r)=v(a)<v(b)$.
+
+So for all $a,b\in R\setminus\{0\}$, there exist $q,r\in R$ such that
+$a=qb+r$ where $r=0$ or $v(r)<v(b)$ and $v(R)=\NN$. Thus $R$ is a
+Euclidean domain.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{prob}
+Let $I,J$ be ideals in a commutative ring $R$, and define the maps
+\[
+\varphi:R\to R/I\times R/J
+\]
+by
+\[
+r\mapsto ([r]_I,[r]_J)
+\]
+and
+\[
+\psi:R/I\times R/J\to R/(I+J)
+\]
+by
+\[
+([a]_I,[b]_J)\mapsto [a-b]_{I+J}.
+\]
+Thus,
+\[
+R\xrightarrow{\varphi}R/I\times R/J\xrightarrow{\psi}R/(I+J).
+\]
+
+\begin{enumerate}[label=(\alph*)]
+\item Prove that $([a]_I,[b]_J)\in \operatorname{im}\varphi$ if and only if there exists some $x\in R$ such that
+\[
+[x]_I=[a]_I \qquad \text{and} \qquad [x]_J=[b]_J.
+\]
+
+\item Prove that $([a]_I,[b]_J)\in \ker\psi$ if and only if
+\[
+[a]_{I+J}=[b]_{I+J}.
+\]
+\end{enumerate}
+\end{prob}
+
+\begin{proof}
+(a)
+Suppose
+$([a]_I,[b]_J)\in\varphi(R)$.
+Then there exists $x\in R$ such that
+$\varphi(x)=([a]_I,[b]_J)$, so
+$([x]_I,[x]_J)=([a]_I,[b]_J)$.
+So then
+$[x]_I=[a]_I$
+and
+$[x]_J=[b]_J$.
+
+Conversely, suppose there exists $x\in R$ such that
+$[x]_I=[a]_I$
+and
+$[x]_J=[b]_J$.
+Then
+$\varphi(x)=([x]_I,[x]_J)=([a]_I,[b]_J)$,
+so
+$([a]_I,[b]_J)\in\varphi(R)$.
+
+(b)
+Suppose
+$([a]_I,[b]_J)\in\ker\psi$.
+Then
+$\psi(([a]_I,[b]_J))=[0]_{I+J}$,
+so
+$[a-b]_{I+J}=[0]_{I+J}$.
+Hence
+$a-b\in I+J$,
+which is equivalent to
+$[a]_{I+J}=[b]_{I+J}$.
+
+Conversely, suppose
+$[a]_{I+J}=[b]_{I+J}$.
+Then
+$[a-b]_{I+J}=[0]_{I+J}$,
+so
+$\psi(([a]_I,[b]_J))=[0]_{I+J}$.
+Therefore
+$([a]_I,[b]_J)\in\ker\psi$.
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{prob}
+Using the same notation as Problem 2:
+
+\begin{enumerate}[label=(\alph*)]
+\item Prove that
+\[
+\operatorname{im}\varphi=\ker\psi.
+\]
+In this case, we say the sequence is exact.
+
+Note that when $R=\ZZ$, this becomes the statement:
+\[
+x\equiv a \pmod n
+\qquad \text{and} \qquad
+x\equiv b \pmod m
+\]
+has a solution if and only if
+\[
+a\equiv b \pmod{\operatorname{lcm}(m,n)}.
+\]
+
+\item Find integers $a,b,m,n$ such that
+\[
+\gcd(m,n)\neq 1
+\]
+but the system
+\[
+x\equiv a \pmod n,
+\qquad
+x\equiv b \pmod m
+\]
+still has a solution.
+\end{enumerate}
+\end{prob}
+
+\begin{proof}
+(a)
+Suppose
+$([a]_I,[b]_J)\in\varphi(R)$.
+By the previous problem, there exists $x\in R$ such that
+$[x]_I=[a]_I$
+and
+$[x]_J=[b]_J$.
+Hence
+$a-x\in I$
+and
+$b-x\in J$.
+Therefore
+$a-b=(a-x)+(x-b)\in I+J$,
+so
+$[a]_{I+J}=[b]_{I+J}$.
+By the previous problem again,
+$([a]_I,[b]_J)\in\ker\psi$.
+
+Conversely, suppose
+$([a]_I,[b]_J)\in\ker\psi$.
+Then
+$[a]_{I+J}=[b]_{I+J}$,
+so
+$a-b=i+j$
+for some $i\in I$ and $j\in J$.
+
+Let
+$x=a-i=b+j$.
+Then
+$x-a=-i\in I$
+and
+$x-b=j\in J$,
+so
+$[x]_I=[a]_I$
+and
+$[x]_J=[b]_J$.
+Hence
+$([a]_I,[b]_J)\in\varphi(R)$.
+
+Therefore
+$\varphi(R)=\ker\psi$.
+
+(b)
+Let $a=b=0$ and $m=2,n=4$. $(a)\implies \begin{cases} x\equiv a\pmod m\\ x\equiv a\pmod m\end{cases}\iff a\equiv b\pmod \lcm(m,n)=2.$ This system has the solution $x=8$ and $\gcd(2,4)=2\neq 1$.
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{prob}
+Review the notes on Euclidean domains, PIDs, and UFDs (Sections 1.13--1.15).
+
+\begin{enumerate}[label=(\alph*)]
+\item If $R$ is a Euclidean domain and $I\subseteq R$, then we proved $I$ is principal, say
+\[
+I=(a)
+\]
+for some $a\in R$. Describe $a$.
+
+\item Outline the proof that every PID is a UFD. You do not need to reproduce the full proof, but list every major step.
+\end{enumerate}
+\end{prob}
+
+\begin{proof}
+(a)
+Let $R$ be a Euclidean domain with Euclidean valuation
+$\delta:R\setminus\{0\}\to\NN$, and let $I\subseteq R$ be a nonzero ideal.
+
+Since $\delta(I\setminus\{0\})\subseteq\NN$, by the \textbf{Well-Ordering Principle} there exists $a\in I\setminus\{0\}$ such that $\delta(a)$ is
+minimal.
+
+We prove that $I=\langle a\rangle$. Obviously, $\langle a\rangle\subseteq I$ since $a\in I.$
+
+Now let $x\in I$. Since $R$ is Euclidean, there exist $q,r\in R$ such
+that
+$x=qa+r$,
+where either $r=0$ or $\delta(r)<\delta(a)$.
+
+Since $x,a\in I$ and $I$ is an ideal,
+$r=x-qa\in I$.
+
+By minimality of $\delta(a)$, we can't have that $\delta(r)<\delta(a)$. So $r=0$.
+
+Therefore $x=qa\in\langle a\rangle$, so
+$I\subseteq\langle a\rangle$.
+
+So each $I=\langle a\rangle$ where $a$ minimizes the Euclidean evaluation $\delta$ among non-zero elements of $I$.
+
+(b)
+Let $R$ be a PID.
+
+We first prove existence of irreducible factorizations. Suppose there
+exists a nonzero non-unit which does not factor into irreducibles.
+Choose such an element $x_1$.
+
+Since $x_1$ is not irreducible, we may write
+$x_1=x_2y_2$,
+where neither $x_2$ nor $y_2$ is a unit. In particular,
+$x_1\in\langle x_2\rangle$, so
+$\langle x_1\rangle\subseteq\langle x_2\rangle$.
+
+If equality held, then
+$x_2\in\langle x_1\rangle$, so
+$x_2=rx_1$
+for some $r\in R$. Hence
+\[
+x_1=x_2y_2=(rx_1)y_2=x_1(ry_2).
+\]
+Since $R$ is an integral domain and $x_1\neq 0$, we get
+$1=ry_2$, so $y_2$ is a unit, a contradiction.
+
+Thus
+$\langle x_1\rangle\subsetneq\langle x_2\rangle$.
+
+Continuing inductively gives a strictly increasing chain
+\[
+\langle x_1\rangle
+\subsetneq
+\langle x_2\rangle
+\subsetneq
+\langle x_3\rangle
+\subsetneq
+\cdots.
+\]
+
+But every PID is Noetherian, so such a chain cannot exist and every
+nonzero non-unit factors into irreducibles.
+
+Now let $p$ be irreducible and suppose $p\mid ab$. Consider the ideal
+$\langle p,a\rangle$. Since $R$ is a PID,
+$\langle p,a\rangle=\langle d\rangle$
+for some $d\in R$.
+
+Since $d\mid p$ and $p$ is irreducible, either $d$ is a unit or $d$ is
+associate to $p$.
+
+If $d$ is associate to $p$, then
+$\langle p,a\rangle=\langle p\rangle$,
+so $a\in\langle p\rangle$, i.e. $p\mid a$.
+
+If $d$ is a unit, then
+$\langle p,a\rangle=R$, so there exist $x,y\in R$ such that
+$1=xp+ya$.
+Multiplying by $b$ gives
+$b=xpb+yab$.
+
+Since $p\mid ab$ and clearly $p\mid xpb$, it follows that $p\mid b$.
+
+Therefore every irreducible is prime.
+
+Finally, suppose
+$p_1\cdots p_n=q_1\cdots q_m$
+with all $p_i,q_j$ irreducible. Since $p_1$ is prime,
+$p_1\mid q_1\cdots q_m$, so $p_1\mid q_j$ for some $j$. Since $q_j$ is
+irreducible, $p_1$ is associate to $q_j$. After reordering and cancelling
+associates, continue inductively and you can find some associate $q_{j}$ for each $p_{i}$.
+
+So we see factorization is unique up to associates and reordering, and $R$
+is a UFD.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{prob}
+Let $R$ be an integral domain, and let $p$ be a prime element of $R$.
+
+\begin{enumerate}[label=(\alph*)]
+\item Prove that $p$ is not a unit.
+
+\item Prove that if $q$ is an associate of $p$, then $q$ is also prime.
+\end{enumerate}
+\end{prob}
+
+\begin{proof}
+(a)
+Suppose $p$ is a unit. Then
+$\langle p\rangle=\langle 1\rangle=R$,
+which is not a proper ideal. Since a prime ideal must be proper, this is
+a contradiction. Therefore $p$ is not a unit.
+
+(b)
+Suppose $q$ is associate to $p$. Then
+$q=up$
+for some unit $u\in R^\times$.
+
+Now suppose $q\mid ab$. Then
+$ab=qk=upk$
+for some $k\in R$, so $p\mid ab$.
+
+Since $p$ is prime, either $p\mid a$ or $p\mid b$.
+
+If $p\mid a$, then
+$a=pr$
+for some $r\in R$. Since $p=u^{-1}q$, we have
+\[
+a=pr=(u^{-1}q)r=q(u^{-1}r),
+\]
+so $q\mid a$.
+
+Similarly, if $p\mid b$, then $q\mid b$.
+
+Therefore $q$ is prime.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 6 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{prob}
+Let $R$ be a commutative ring and let $S\subseteq R$ be a multiplicative subset of $R$.
+
+\begin{enumerate}[label=(\alph*)]
+\item Prove that if $I$ is an ideal of $R$ such that
+\[
+I\cap S=\emptyset,
+\]
+then
+\[
+I^e:=S^{-1}I=\left\{\frac{a}{b}\mid a\in I,\ b\in S\right\}
+\]
+is a proper ideal of $S^{-1}R$.
+
+\item Let
+\[
+\varphi:R\to S^{-1}R
+\]
+be the natural ring homomorphism defined by
+\[
+r\mapsto \frac r1.
+\]
+Prove that if $J$ is a proper ideal of $S^{-1}R$, then
+\[
+J^c:=\varphi^{-1}(J)
+\]
+is an ideal of $R$ such that
+\[
+J^c\cap S=\emptyset.
+\]
+\end{enumerate}
+\end{prob}
+
+\begin{proof}
+(a)
+$\forall \frac{i_1}{s_1},\frac{i_2}{s_2}\in S^{-1}I,\text{ we have that }i_1,i_2\in I$ and $s_1,s_2\in S$. So then 
+$s_2i_1-s_1i_2\in I$ and
+\[
+\frac{i_1}{s_1}+\frac{i_2}{s_2}
+=
+\frac{s_2i_1+s_1i_2}{s_1s_2}
+\in S^{-1}I\leq_{+}S^{-1}R.
+\]
+
+$\forall\frac{r}{s}\in S^{-1}R$ we have
+\[
+\frac{r}{s}\cdot\frac{i_1}{s_1}
+=
+\frac{ri_1}{ss_1}\text{ and since $I$ is an ideal, $ri_1\in I$, so
+$\frac{ri_1}{ss_1}\in S^{-1}I$.}
+\]
+
+
+Therefore $S^{-1}I$ is an ideal of $S^{-1}R$.
+
+(b)
+Since $\varphi:R\to S^{-1}R$ is a ring homomorphism and $J$ is a proper ideal
+$J^c=\varphi^{-1}(J)$ is an ideal of $R$. Now suppose $s\in J^c\cap S$. Then
+$\varphi(s)=\frac{s}{1}\in J$.
+
+But
+\[
+\frac{s}{1}\cdot\frac{1}{s}=\frac{1}{1},
+\]
+so $\frac{s}{1}$ is a unit in $S^{-1}R$. Since $\frac{s}{1}\in J$ and $\frac{1}{s}\in S^{-1}R$
+we get $\frac{1}{1}=1_{S^{-1}R}\in J$ and so $J=S^{-1}R$, contradicting that $J$ is proper.
+
+Thus $J^c\cap S=\emptyset$.
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 7 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{prob}
+Using the same notation as Problem 6, let $J$ be a proper ideal of $S^{-1}R$.
+
+\begin{enumerate}[label=(\alph*)]
+\item Prove that
+\[
+(J^c)^e=J
+\]
+while
+\[
+(I^e)^c=\{a\in R\mid (\exists s\in S)\text{ such that } sa\in I\}.
+\]
+
+\item Find an example showing that $(I^e)^c$ need not equal $I$, even if $I\cap S=\emptyset$.
+
+(Hint: Let
+\[
+S=\{1,x,x^2,\dots\}
+\]
+in $R=\CC[x,y]$, and consider $I=(xy)$.)
+\end{enumerate}
+\end{prob}
+
+\begin{proof}
+For Problem 7:
+
+(a)
+First we prove $(J^c)^e=J$. Since $J^c=\varphi^{-1}(J)$, every
+$a\in J^c$ satisfies $a/1\in J$. So every element of $(J^c)^e$ is of
+the form $(r/s)(a/1)$ with $a/1\in J$ and $(J^c)^e\subseteq J$.
+
+Conversely, let $a/s\in J$. Since $J$ is an ideal and $s/1\in S^{-1}R$,
+we have $(s/1)(a/s)=a/1\in J$. So $a\in J^c$, and
+$a/s=(1/s)(a/1)\in (J^c)^e$. Therefore $J\subseteq (J^c)^e$, and
+$(J^c)^e=J$.
+
+Now we prove
+$(I^e)^c=\{a\in R\mid (\exists s\in S)\text{ such that }sa\in I\}$.
+
+Let $a\in (I^e)^c$. Then $a/1\in I^e=S^{-1}I$. Hence
+$a/1=i/t$ for some $i\in I$ and $t\in S$. By equality in the
+localization, there exists $u\in S$ such that $u(ta-i)=0$. Thus
+$uta=ui\in I$. Since $ut\in S$, this shows there exists $s\in S$ such
+that $sa\in I$.
+
+Conversely, suppose there exists $s\in S$ such that $sa\in I$. Then
+$a/1=sa/s\in S^{-1}I=I^e$ and $a\in (I^e)^c$. Therefore
+$(I^e)^c=\{a\in R\mid (\exists s\in S)\text{ such that }sa\in I\}$.
+
+(b)
+Let $R=\CC[x,y]$, let $S=\{1,x,x^2,\dots\}$, and let $I=\langle xy\rangle$.
+Then $I\cap S=\emptyset$, since no power of $x$ is divisible by $xy$.
+
+However, $y\in (I^e)^c$, because $xy\in I$ and $x\in S$. But
+$y\notin I=\langle xy\rangle $. Therefore, $(I^e)^c\neq I$.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 8 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{prob}
+Let $R$ be a UFD, and let $S$ be a multiplicative subset of $R$.
+
+\begin{enumerate}[label=(\alph*)]
+\item Prove that if $q$ is irreducible in $R$, then $q/1$ is either irreducible or a unit in $S^{-1}R$.
+
+\item Prove that if $a/s$ is irreducible in $S^{-1}R$, then $a/s$ is associate to $q/1$ for some irreducible element $q$ of $R$.
+
+\item Prove that $S^{-1}R$ is also a UFD.
+\end{enumerate}
+\end{prob}
+
+\begin{proof}
+(a)
+Let $q$ be irreducible in $R$. Since $R$ is a UFD, $q$ is prime.
+
+If $q/1$ is a unit in $S^{-1}R$, then we are done. So suppose $q/1$ is
+not a unit. We prove $q/1$ is irreducible.
+
+Suppose $q/1=(a/s)(b/t)$ in $S^{-1}R$. Then, after clearing
+denominators, there exists $u\in S$ such that $uqst=uab$. Since $R$ is
+a domain, $qst=ab$. Since $q$ is prime, $q\mid a$ or $q\mid b$.
+
+If $q\mid a$, we have $a=qa'$ for some $a'\in R$. Then
+$q/1=(qa'/s)(b/t)$, and then cancelling $q/1$ gives
+$1=(a'/s)(b/t)$. So $b/t$ is a unit. Similarly, if $q\mid b$, then
+$a/s$ is a unit. Therefore $q/1$ is irreducible in $S^{-1}R$.
+
+(b)
+Suppose $a/s$ is irreducible in $S^{-1}R$. Factor $a$ in the UFD $R$ as
+$a=u q_1\cdots q_n$, where $u\in R^\times$ and each $q_i$ is irreducible
+in $R$.
+
+Then in $S^{-1}R$,
+$a/s=(u/1)(q_1/1)\cdots(q_n/1)(1/s)$.
+Here $u/1$ and $1/s$ are units. Since $a/s$ is irreducible, exactly one
+of the factors $q_i/1$ is nonunit, and all the others are units.
+Therefore $a/s$ is associate to $q_i/1$ for some irreducible $q_i\in R$.
+
+(c)
+Every nonzero nonunit $a/s\in S^{-1}R$ factors into irreducibles by
+factoring $a$ in $R$ and discarding the factors which become units in
+$S^{-1}R$.
+
+By part (b), every irreducible in
+$S^{-1}R$ is associate to $q/1$ for some irreducible $q\in R$.
+
+Also, if $q/1$ is irreducible in $S^{-1}R$, then it is prime. Suppose $(q/1)\mid (a/s)(b/t)$. Clearing denominators gives
+$wuab=wqcst$ for some $w,u\in S$. Since $q$ is prime in $R$, $q$ divides
+one of $w,u,a,b,s,t$. But if $q$ divided one of $w,u,s,t\in S$, then
+$q/1$ would be a unit in $S^{-1}R$, contradiction. So $q\mid a$ or
+$q\mid b$, and then $q/1$ divides $a/s$ or $b/t$.
+
+Thus irreducibles in $S^{-1}R$ are prime. The usual prime-divisibility
+argument gives uniqueness of factorizations up to associates and order.
+Therefore $S^{-1}R$ is a UFD.
+
+\end{proof}
+
+\end{document}
